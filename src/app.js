@@ -14,6 +14,8 @@ import { initState, socketConnect, setJWT } from './actions/LoginActionCreators'
 import * as youTubeSource from './sources/youtube';
 import * as soundCloudSource from './sources/soundcloud';
 
+import * as extensions from './extensions';
+
 import configureStore from './store/configureStore';
 
 // Register default chat commands.
@@ -73,3 +75,5 @@ document.getElementById('app-loading').innerHTML = '';
 // Usually you'll want to do `debug.enable('uwave:*')` and then refresh the
 // page.
 window.debug = require('debug');
+
+window.uw = extensions;
