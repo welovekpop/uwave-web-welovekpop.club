@@ -14,7 +14,7 @@ import { initState, socketConnect, setJWT } from './actions/LoginActionCreators'
 import * as youTubeSource from './sources/youtube';
 import * as soundCloudSource from './sources/soundcloud';
 
-import * as extensions from './extensions';
+import createExtensions from './extensions';
 
 import configureStore from './store/configureStore';
 
@@ -76,4 +76,4 @@ document.getElementById('app-loading').innerHTML = '';
 // page.
 window.debug = require('debug');
 
-window.uw = extensions;
+window.uw = createExtensions(store);
