@@ -13,14 +13,14 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 220px;
-    margin: 0 10px;
+    width: 210px;
+    margin: 0;
     line-height: $header-height;
     height: $header-height;
     background-image: url(assets/img/logo-white.png);
     background-repeat: no-repeat;
-    background-position: 0 16px;
-    background-size: contain;
+    background-position: 10px center;
+    background-size: auto 36px;
     font-size: 0;
   }
 
