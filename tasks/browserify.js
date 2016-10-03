@@ -10,23 +10,17 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import when from 'gulp-if';
 
-import exposePluginDependencies, {
-  EXPORT_MAIN,
-  EXPORT_SUBMODULES
-} from './utils/exposePluginDependencies';
+import exposePluginDependencies, { EXPORT_MAIN } from './utils/exposePluginDependencies';
 
 export const exposeModules = {
-  classnames: EXPORT_MAIN,
   react: EXPORT_MAIN,
   'react-dom': EXPORT_MAIN,
-  redux: EXPORT_MAIN,
   'react-redux': EXPORT_MAIN,
   'react-dnd': EXPORT_MAIN,
   // Not exposing SVG icons because their use is a bit all over the place.
   // Really we should pick a few components to expose here and leave plugins
   // to include the rest.
   'material-ui': /^(styles\/)?([^\/]+)(\/index)?\.js$/,
-  recompose: EXPORT_SUBMODULES,
   'u-wave-web': /^lib\/constants(\/([^\/]+)\.js)?$/
 };
 
@@ -86,7 +80,7 @@ export default function browserifyTask({ minify = false }) {
   return b
     .bundle()
     // Assign a file name to the generated bundle.
-    .pipe(source('out.js'))
+    .pipe(source('app.js'))
     // The generated bundle is a stream, but Uglify.js doesn't work on streams,
     // so we convert it to a Buffer instead.
     .pipe(buffer())
@@ -106,6 +100,6 @@ export default function browserifyTask({ minify = false }) {
         mangle: { toplevel: true }
       })))
     .pipe(sourcemaps.write('./'))
-    // Output to lib/out.js!
-    .pipe(gulp.dest('lib/'));
+    // Output to public/app.js!
+    .pipe(gulp.dest('public/'));
 }
