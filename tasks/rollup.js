@@ -31,9 +31,7 @@ export default function rollupTask({ minify = false }) {
       })
     ],
     external(id) {
-      return id.split('/')[0] in dependencies ||
-        /\.yaml$/.test(id) ||
-        /constants\/([^\/]+?)$/.test(id);
+      return id.split('/')[0] in dependencies || /\.yaml$/.test(id);
     }
   }).then(bundle => bundle.write({
     format: 'cjs',
