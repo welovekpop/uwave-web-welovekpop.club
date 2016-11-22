@@ -1,0 +1,35 @@
+.wlk {
+  &-AboutPage {
+    margin: 2em 10%;
+    line-height: 1.5;
+
+    & a {
+      text-decoration: none;
+    }
+
+    &-title {
+      text-indent: -9999px;
+      height: 2em;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(/assets/img/logo-white.png);
+    }
+
+    &-socialMedia {
+      margin: 0 .8em;
+      display: inline-block;
+    }
+
+    &-separator {
+      border: 0px solid #555;
+      border-top-width: 1px;
+    }
+  }
+  &-Rules {
+    display: flex;
+
+    &-item {
+      margin: .8em 0;
+    }
+  }
+}
