@@ -1,17 +1,13 @@
 import * as React from 'react';
-import FlatButton from 'material-ui/FlatButton';
 
 import FacebookIcon from './icons/Facebook';
 import YouTubeIcon from './icons/YouTube';
 import InstagramIcon from './icons/Instagram';
 import GithubIcon from './icons/Github';
 
-import './AboutPage.css';
+import SocialMediaLink from './SocialMediaLink';
 
-const buttonProps = {
-  style: { WebkitAppearance: 'initial' },
-  target: '_blank'
-};
+import './AboutPage.css';
 
 export default () => (
   <div className="wlk-AboutPage">
@@ -25,38 +21,18 @@ export default () => (
       WE ♥ KPOP can also be found on:
     </p>
     <ul>
-      <li className="wlk-AboutPage-socialMedia">
-        <FlatButton
-          {...buttonProps}
-          href="https://facebook.com/welovekpop.club"
-          label="Facebook"
-          icon={<FacebookIcon />}
-        />
-      </li>
-      <li className="wlk-AboutPage-socialMedia">
-        <FlatButton
-          {...buttonProps}
-          href="https://youtube.com/c/welovekpopclub"
-          label="YouTube"
-          icon={<YouTubeIcon />}
-        />
-      </li>
-      <li className="wlk-AboutPage-socialMedia">
-        <FlatButton
-          {...buttonProps}
-          href="https://instagram.com/welovekpop.club"
-          label="Instagram"
-          icon={<InstagramIcon />}
-        />
-      </li>
-      <li className="wlk-AboutPage-socialMedia">
-        <FlatButton
-          {...buttonProps}
-          href="https://github.com/welovekpop"
-          label="Github"
-          icon={<GithubIcon />}
-        />
-      </li>
+      <SocialMediaLink label="Facebook" href="https://facebook.com/welovekpop.club">
+        <FacebookIcon />
+      </SocialMediaLink>
+      <SocialMediaLink label="YouTube" href="https://youtube.com/c/welovekpopclub">
+        <YouTubeIcon />
+      </SocialMediaLink>
+      <SocialMediaLink label="Instagram" href="https://instagram.com/welovekpop.club">
+        <InstagramIcon />
+      </SocialMediaLink>
+      <SocialMediaLink label="Github" href="https://github.com/welovekpop">
+        <GithubIcon />
+      </SocialMediaLink>
     </ul>
     <hr className="wlk-AboutPage-separator" />
     <h2>Rules</h2>
