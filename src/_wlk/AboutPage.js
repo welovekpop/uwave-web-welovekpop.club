@@ -4,6 +4,8 @@ import FacebookIcon from './icons/Facebook';
 import YouTubeIcon from './icons/YouTube';
 import InstagramIcon from './icons/Instagram';
 import GithubIcon from './icons/Github';
+import TwitterIcon from './icons/Twitter';
+import SlackIcon from './icons/Slack';
 
 import SocialMediaLink from './SocialMediaLink';
 
@@ -30,8 +32,14 @@ export default () => (
       <SocialMediaLink label="Instagram" href="https://instagram.com/welovekpop.club">
         <InstagramIcon />
       </SocialMediaLink>
+      <SocialMediaLink label="Twitter" href="https://twitter.com/wlk_official">
+        <TwitterIcon />
+      </SocialMediaLink>
       <SocialMediaLink label="Github" href="https://github.com/welovekpop">
         <GithubIcon />
+      </SocialMediaLink>
+      <SocialMediaLink label="Slack" href="https://slack.welovekpop.club">
+        <SlackIcon />
       </SocialMediaLink>
     </ul>
     <hr className="wlk-AboutPage-separator" />
