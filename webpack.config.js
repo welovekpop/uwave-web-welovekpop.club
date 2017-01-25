@@ -31,7 +31,7 @@ const plugins = [
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
   }),
   new HtmlPlugin({
-    chunks: [ 'app' ],
+    chunks: [ 'bugsnag', 'app' ],
     inject: false,
     template: './index.html',
     minify: nodeEnv === 'production' ? htmlMinifierOptions : false,
@@ -83,6 +83,7 @@ if (nodeEnv === 'production') {
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: {
+    bugsnag: './_wlk/bugsnag.js',
     app: [ './app.js', './app.css' ]
   },
   output: {
