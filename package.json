@@ -1,6 +1,6 @@
 {
   "name": "u-wave-web",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Web client for üWave servers.",
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "react-redux": "^5.0.0",
     "react-tap-event-plugin": "^2.0.0",
     "react-youtube": "^7.2.0",
-    "recompose": "^0.21.0",
+    "recompose": "^0.22.0",
     "redux": "^3.5.2",
     "redux-logger": "^2.0.4",
     "redux-thunk": "^2.0.1",
