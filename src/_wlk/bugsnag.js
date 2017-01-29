@@ -1,4 +1,4 @@
-/* global uw */
+/* global uw, __VERSION__ */
 import Bugsnag from 'bugsnag-js';
 
 /**
@@ -6,6 +6,8 @@ import Bugsnag from 'bugsnag-js';
  */
 
 Bugsnag.apiKey = 'a3246545081c8decaf0185c7a7f8d402';
+
+Bugsnag.appVersion = __VERSION__;
 
 /**
  * Add current user information.

@@ -28,6 +28,7 @@ const extractAppCss = new ExtractTextPlugin({
 
 const plugins = [
   new DefinePlugin({
+    __VERSION__: JSON.stringify(require('./package.json').version),
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
   }),
   new HtmlPlugin({
