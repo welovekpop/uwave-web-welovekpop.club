@@ -2,6 +2,7 @@ const readFile = require('fs').readFileSync;
 const path = require('path');
 const DefinePlugin = require('webpack').DefinePlugin;
 const ProgressPlugin = require('webpack').ProgressPlugin;
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
@@ -39,7 +40,10 @@ const plugins = [
     loadingScreen: () => require('./tasks/utils/renderLoadingScreen')()
   }),
   extractAppCss,
-  new ProgressPlugin()
+  new ProgressPlugin(),
+  new LodashModuleReplacementPlugin({
+    paths: true
+  })
 ];
 
 if (nodeEnv === 'production') {

@@ -2,12 +2,14 @@ import cx from 'classnames';
 import * as React from 'react';
 import { translate } from 'react-i18next';
 import Dialog from 'material-ui/Dialog';
+import IconButton from 'material-ui/IconButton';
 import uniqueId from 'lodash/uniqueId';
 
 import ArtistIcon from 'material-ui/svg-icons/hardware/headset';
 import TitleIcon from 'material-ui/svg-icons/image/music-note';
 import StartIcon from 'material-ui/svg-icons/av/play-arrow';
 import EndIcon from 'material-ui/svg-icons/av/stop';
+import SwapArtistTitleIcon from 'material-ui/svg-icons/action/swap-horiz';
 
 import formatDuration from '../../../utils/formatDuration';
 
@@ -37,7 +39,11 @@ export default class EditMediaDialog extends React.Component {
   };
 
   state = {
-    errors: null
+    errors: null,
+    artist: this.props.media.artist,
+    title: this.props.media.title,
+    start: formatDuration(this.props.media.start),
+    end: formatDuration(this.props.media.end)
   };
 
   labelStart = uniqueId('editmedia');
@@ -47,10 +53,10 @@ export default class EditMediaDialog extends React.Component {
     e.preventDefault();
 
     const { media, onEditedMedia, onCloseDialog } = this.props;
-    const { artist, title, start, end } = this;
+    const { artist, title, start, end } = this.state;
 
-    const startSeconds = parseDuration(start.value);
-    const endSeconds = parseDuration(end.value);
+    const startSeconds = parseDuration(start);
+    const endSeconds = parseDuration(end);
 
     const errors = [];
     if (isNaN(startSeconds) || startSeconds < 0) {
@@ -70,28 +76,35 @@ export default class EditMediaDialog extends React.Component {
     }
 
     onEditedMedia({
-      artist: artist.value,
-      title: title.value,
+      artist,
+      title,
       start: startSeconds,
       end: endSeconds
     });
     onCloseDialog();
   };
 
-  refArtist = (artist) => {
-    this.artist = artist;
+  handleChangeArtist = (event) => {
+    this.setState({ artist: event.target.value });
   };
 
-  refTitle = (title) => {
-    this.title = title;
+  handleChangeTitle = (event) => {
+    this.setState({ title: event.target.value });
   };
 
-  refStart = (start) => {
-    this.start = start;
+  handleChangeStart = (event) => {
+    this.setState({ start: event.target.value });
   };
 
-  refEnd = (end) => {
-    this.end = end;
+  handleChangeEnd = (event) => {
+    this.setState({ end: event.target.value });
+  };
+
+  handleSwapArtistTitle = () => {
+    this.setState({
+      artist: this.state.title,
+      title: this.state.artist
+    });
   };
 
   render() {
@@ -107,30 +120,40 @@ export default class EditMediaDialog extends React.Component {
 
       ...props
     } = this.props;
-    const { errors } = this.state;
+    const {
+      errors,
+      artist,
+      title,
+      start,
+      end
+    } = this.state;
     const baseTabIndex = 1000;
     let content = null;
     if (open) {
       const artistInput = (
         <TextField
-          ref={this.refArtist}
           className="EditMediaDialogGroup-field"
           placeholder={t([ 'dialogs.editMedia.artistLabel', 'media.artist' ])}
-          defaultValue={media.artist}
+          value={artist}
+          onChange={this.handleChangeArtist}
           icon={<ArtistIcon color="#9f9d9e" />}
           tabIndex={baseTabIndex}
           autoFocus
         />
       );
       const artistTitleLabel = (
-        <div className="EditMediaDialogGroup-label">–</div>
+        <div className="EditMediaDialogGroup-label">
+          <IconButton onClick={this.handleSwapArtistTitle}>
+            <SwapArtistTitleIcon color="#9f9d9e" />
+          </IconButton>
+        </div>
       );
       const titleInput = (
         <TextField
-          ref={this.refTitle}
           className="EditMediaDialogGroup-field"
           placeholder={t([ 'dialogs.editMedia.titleLabel', 'media.title' ])}
-          defaultValue={media.title}
+          value={title}
+          onChange={this.handleChangeTitle}
           icon={<TitleIcon color="#9f9d9e" />}
           tabIndex={baseTabIndex + 1}
         />
@@ -143,11 +166,11 @@ export default class EditMediaDialog extends React.Component {
       );
       const fromInput = (
         <TextField
-          ref={this.refStart}
           id={this.labelStart}
           className="EditMediaDialogGroup-field"
           placeholder="0:00"
-          defaultValue={formatDuration(media.start)}
+          value={start}
+          onChange={this.handleChangeStart}
           icon={<StartIcon color="#9f9d9e" />}
           tabIndex={baseTabIndex + 2}
         />
@@ -159,11 +182,11 @@ export default class EditMediaDialog extends React.Component {
       );
       const toInput = (
         <TextField
-          ref={this.refEnd}
           id={this.labelEnd}
           className="EditMediaDialogGroup-field"
           placeholder={formatDuration(media.duration)}
-          defaultValue={formatDuration(media.end)}
+          value={end}
+          onChange={this.handleChangeEnd}
           icon={<EndIcon color="#9f9d9e" />}
           tabIndex={baseTabIndex + 3}
         />
