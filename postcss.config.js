@@ -6,7 +6,7 @@ module.exports = ({ env }) => ({
     },
     'postcss-cssnext': {},
     cssnano: env === 'production' && {
-      zindex: false,
+      safe: true,
       autoprefixer: false
     }
   }
