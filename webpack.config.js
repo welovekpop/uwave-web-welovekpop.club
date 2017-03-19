@@ -154,7 +154,7 @@ module.exports = {
       {
         include: require.resolve('uwave-tutorial/build'),
         use: [
-          { loader: 'file-loader', options: { name: '[name]_[hash:7].[ext]' } }
+          { loader: 'file-loader', options: { name: 'tutorial_[hash:7].[ext]' } }
         ]
       }
     ]
