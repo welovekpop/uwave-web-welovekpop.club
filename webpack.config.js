@@ -16,6 +16,10 @@ require('babel-register')({
   plugins: [ 'transform-es2015-modules-commonjs' ]
 });
 
+const staticPages = {
+  privacy: './static/privacy.md'
+};
+
 // Minification options used in production mode.
 const htmlMinifierOptions = {
   removeComments: true,
@@ -96,12 +100,55 @@ if (nodeEnv === 'production') {
   babelrc.plugins = babelrc.plugins.concat(babelrc.env.production.plugins);
 }
 
+const context = path.join(__dirname, 'src');
+const entries = {
+  bugsnag: './_wlk/bugsnag.js',
+  app: [ './app.js', './app.css' ]
+};
+
+// Add static pages.
+const staticFiles = [];
+Object.keys(staticPages).forEach((name) => {
+  const fullPath = path.join(__dirname, staticPages[name]);
+  entries[name] = [
+    path.relative(context, fullPath),
+    './markdown.css'
+  ];
+
+  staticFiles.push(fullPath);
+
+  if (nodeEnv === 'production') {
+    // When compiling static pages in production mode, we use the static page
+    // contents as the template, and wrap it in the _actual_ template using a
+    // custom loader.
+    // This is very hacky indeed.
+    // The problem is that we need to insert compiled Markdown and any
+    // potential CSS into the HTML using the HtmlPlugin, but it's really hard
+    // to find the compiled markdown when you're just in a template.
+    // This could use a better alternative :p
+    plugins.push(new HtmlPlugin({
+      chunks: [ name ],
+      filename: `${name}.html`,
+      template: [
+        require.resolve('./tasks/utils/loadStaticHtmlTemplate'),
+        'extract-loader',
+        fullPath
+      ].join('!'),
+      inject: false,
+      minify: htmlMinifierOptions
+    }));
+  } else {
+    plugins.push(new HtmlPlugin({
+      chunks: [ name ],
+      template: './markdown.dev.html',
+      filename: `${name}.html`
+    }));
+  }
+});
+
 module.exports = {
-  context: path.join(__dirname, 'src'),
-  entry: {
-    bugsnag: './_wlk/bugsnag.js',
-    app: [ './app.js', './app.css' ]
-  },
+  context,
+  entry: entries,
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
@@ -150,6 +197,18 @@ module.exports = {
           }
         ].filter(Boolean)
       },
+      nodeEnv !== 'production' && {
+        // Hot reload static pages in development mode.
+        test: staticFiles,
+        use: require.resolve('./tasks/utils/insertHtml')
+      },
+      {
+        test: /\.md$/,
+        use: [
+          'html-loader',
+          require.resolve('./tasks/utils/renderMarkdown')
+        ]
+      },
       // Treat the tutorial script as a raw file.
       {
         include: require.resolve('uwave-tutorial/build'),
@@ -157,6 +216,6 @@ module.exports = {
           { loader: 'file-loader', options: { name: 'tutorial_[hash:7].[ext]' } }
         ]
       }
-    ]
+    ].filter(Boolean)
   }
 };
