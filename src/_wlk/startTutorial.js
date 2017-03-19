@@ -17,5 +17,3 @@ export default function startTutorial() {
     Sideshow.start({ listAll: true });
   });
 }
-
-window._s = startTutorial;
