@@ -112,7 +112,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.mp3$/,
+        test: /\.(mp3|eot|ttf|woff|svg)$/,
         use: [
           { loader: 'file-loader', query: { name: '[name]_[hash:7].[ext]' } }
         ]
@@ -149,6 +149,13 @@ module.exports = {
             query: { cache: true }
           }
         ].filter(Boolean)
+      },
+      // Treat the tutorial script as a raw file.
+      {
+        include: require.resolve('uwave-tutorial/build'),
+        use: [
+          { loader: 'file-loader', options: { name: '[name]_[hash:7].[ext]' } }
+        ]
       }
     ]
   }

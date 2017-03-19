@@ -28,6 +28,8 @@ import { setVoteStats } from './VoteActionCreators';
 import { setWaitList } from './WaitlistActionCreators';
 import { currentUserSelector, tokenSelector } from '../selectors/userSelectors';
 
+import startTutorial from '../_wlk/startTutorial';
+
 const debug = require('debug')('uwave:actions:login');
 
 export function socketConnect() {
@@ -132,7 +134,8 @@ export function register({ email, username, password, grecaptcha }) {
         type: REGISTER_COMPLETE,
         payload: { user }
       });
-      dispatch(login({ email, password }));
+      dispatch(login({ email, password }))
+        .then(startTutorial);
     },
     onError: error => ({
       type: REGISTER_COMPLETE,
