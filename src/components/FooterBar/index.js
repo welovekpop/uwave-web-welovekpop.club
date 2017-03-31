@@ -8,6 +8,8 @@ import SkipButton from './SkipButton';
 import WaitlistButton from './WaitlistButton';
 import ResponseBar from './Responses/Bar';
 
+import RandomizePlaylistsNotice from '../../_wlk/RandomizePlaylistsNotice';
+
 @translate()
 export default class FooterBar extends React.Component {
   static propTypes = {
@@ -24,6 +26,7 @@ export default class FooterBar extends React.Component {
     showSkip: React.PropTypes.bool,
     waitlistIsLocked: React.PropTypes.bool.isRequired,
     voteStats: React.PropTypes.object,
+    shouldRandomizePlaylists: React.PropTypes.bool,
 
     openLoginDialog: React.PropTypes.func,
     openRegisterDialog: React.PropTypes.func,
@@ -85,6 +88,7 @@ export default class FooterBar extends React.Component {
     } = this.props;
     const {
       user, userIsDJ, userInWaitlist,
+      shouldRandomizePlaylists,
       playlist, nextMedia, showSkip,
       baseEta, mediaEndTime,
       voteStats
@@ -105,14 +109,18 @@ export default class FooterBar extends React.Component {
             className="FooterBar-next"
             onClick={togglePlaylistManager}
           >
-            <NextMedia
-              playlist={playlist}
-              nextMedia={nextMedia}
-              userInWaitlist={userInWaitlist}
-              userIsDJ={userIsDJ}
-              baseEta={baseEta}
-              mediaEndTime={mediaEndTime}
-            />
+            {shouldRandomizePlaylists ? (
+              <RandomizePlaylistsNotice />
+            ) : (
+              <NextMedia
+                playlist={playlist}
+                nextMedia={nextMedia}
+                userInWaitlist={userInWaitlist}
+                userIsDJ={userIsDJ}
+                baseEta={baseEta}
+                mediaEndTime={mediaEndTime}
+              />
+            )}
           </button>
           <div
             className={cx(
