@@ -13,6 +13,9 @@ import {
   DO_UPVOTE,
   DO_DOWNVOTE
 } from '../constants/actionTypes/votes';
+import {
+  SHOULD_RANDOMIZE
+} from '../_wlk/constants';
 
 import { advance } from '../actions/BoothActionCreators';
 import {
@@ -123,7 +126,12 @@ const actions = {
   roleChange({ userID, role }) {
     return changeUserRole(userID, role);
   },
-  guests: receiveGuestCount
+  guests: receiveGuestCount,
+
+  'wlk:shouldRandomize': ({ value }) => ({
+    type: SHOULD_RANDOMIZE,
+    payload: value
+  })
 };
 
 export default function middleware({ url = defaultUrl() } = {}) {

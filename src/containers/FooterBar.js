@@ -32,6 +32,9 @@ import {
 import {
   currentVoteStatsSelector
 } from '../selectors/voteSelectors';
+import {
+  shouldRandomizePlaylistsSelector
+} from '../_wlk/selectors';
 
 import FooterBar from '../components/FooterBar';
 
@@ -40,6 +43,7 @@ const mapStateToProps = createStructuredSelector({
   mediaEndTime: endTimeSelector,
   playlist: activePlaylistSelector,
   nextMedia: nextMediaSelector,
+  shouldRandomizePlaylists: shouldRandomizePlaylistsSelector,
   user: currentUserSelector,
   userInWaitlist: userInWaitlistSelector,
   userIsDJ: isCurrentDJSelector,

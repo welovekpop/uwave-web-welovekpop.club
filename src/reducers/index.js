@@ -17,3 +17,4 @@ export time from './time';
 export users from './users';
 export waitlist from './waitlist';
 export votes from './votes';
+export wlk from '../_wlk/reducer';
