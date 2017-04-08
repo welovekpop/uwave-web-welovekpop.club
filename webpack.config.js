@@ -158,6 +158,12 @@ module.exports = {
   plugins,
   module: {
     rules: [
+      nodeEnv === 'production' && {
+        include: [
+          path.join(context, 'app.js')
+        ],
+        use: 'flat-loader'
+      },
       {
         test: /\.(mp3|eot|ttf|woff|svg)$/,
         use: [
