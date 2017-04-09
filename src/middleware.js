@@ -57,6 +57,12 @@ export default function uwaveWebClient(uw, options = {}) {
     });
   }
 
+  const mobile = (req, res) => {
+    fs.createReadStream(path.join(basePath, 'm.html'), 'utf8')
+      .pipe(injectConfig(clientOptions))
+      .pipe(res);
+  };
+
   return clientRouter
     .get('/', (req, res) => {
       fs.createReadStream(path.join(basePath, 'index.html'), 'utf8')
@@ -69,5 +75,7 @@ export default function uwaveWebClient(uw, options = {}) {
         ))
         .pipe(res);
     })
+    .get('/m', mobile)
+    .get('/m.html', mobile)
     .use(serveStatic(basePath));
 }
