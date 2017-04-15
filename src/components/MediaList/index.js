@@ -1,5 +1,6 @@
 import cx from 'classnames';
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import BaseList from 'react-list';
 import LazyList from 'react-list-lazy-load';
 import itemSelection from 'item-selection/immutable';

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { DragLayer } from 'react-dnd';
 import { MEDIA, WAITLIST_USER } from '../constants/DDItemTypes';
-
 import MediaDragPreview from '../components/MediaList/MediaDragPreview';
 
 @DragLayer(monitor => ({

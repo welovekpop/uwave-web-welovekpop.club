@@ -192,6 +192,23 @@ module.exports = {
         test: /\.json$/,
         use: [ 'json-loader' ]
       },
+      // JS loader for dependencies that use ES2015+:
+      {
+        test: /\.js$/,
+        include: [
+          /truncate-url/
+        ],
+        use: {
+          loader: 'babel-loader',
+          query: {
+            babelrc: false,
+            presets: [
+              [ 'latest', { es2015: { modules: false } } ]
+            ]
+          }
+        }
+      },
+      // JS loader for our own code:
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -223,5 +240,13 @@ module.exports = {
         ]
       }
     ].filter(Boolean)
+  },
+  resolve: {
+    mainFields: [
+      'browser',
+      'module',
+      'jsnext:main',
+      'main'
+    ]
   }
 };

@@ -1,5 +1,6 @@
 import cx from 'classnames';
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import ActiveIcon from 'material-ui/svg-icons/navigation/check';
 import { MEDIA } from '../../../constants/DDItemTypes';

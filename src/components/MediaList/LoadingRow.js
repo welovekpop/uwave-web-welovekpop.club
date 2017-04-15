@@ -1,5 +1,6 @@
 import cx from 'classnames';
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MediaLoadingIndicator from './MediaLoadingIndicator';
 
 export default class LoadingRow extends React.Component {
