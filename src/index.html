@@ -37,9 +37,5 @@
     <% htmlWebpackPlugin.options.chunks.forEach((chunk) => { %>
       <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% }) %>
-    <script>
-      uw.renderToDOM(document.querySelector('#app'));
-      document.querySelector('#app-loading').innerHTML = '';
-    </script>
   </body>
 </html>

@@ -3,6 +3,8 @@
 require('loud-rejection/register');
 const gulp = require('gulp');
 const env = require('gulp-util').env;
+const log = require('gulp-util').log;
+const explain = require('explain-error');
 const emojione = require('u-wave-web-emojione');
 const ytSource = require('u-wave-source-youtube');
 const scSource = require('u-wave-source-soundcloud');
@@ -21,8 +23,7 @@ function tryRequire(file, message) {
     const mod = require(file);
     return mod.default || mod;
   } catch (e) {
-    e.message = `${message}\n"${file}" threw: ${e.message}`;
-    throw e;
+    throw explain(e, message);
   }
 }
 
@@ -41,6 +42,14 @@ gulp.task('serve', () => {
 
   const uw = uwave(config);
 
+  uw.on('mongoError', (err) => {
+    throw explain(err, 'Could not connect to MongoDB. Is it installed and running?');
+  });
+
+  uw.on('redisError', (err) => {
+    throw explain(err, 'Could not connect to the Redis server. Is it installed and running?');
+  });
+
   uw.source('youtube', ytSource, config.sources.youtube);
   uw.source('soundcloud', scSource, config.sources.soundcloud);
 
@@ -56,9 +65,6 @@ gulp.task('serve', () => {
       secret: new Buffer('none', 'utf8')
     }))
     .use('/assets/emoji/', emojione.middleware());
-
-  let fs = require('fs');
-  let publicPath;
 
   if (watch) {
     Object.keys(wpConfig.entry).forEach((chunk) => {
@@ -81,29 +87,37 @@ gulp.task('serve', () => {
     const dev = webpackDevMiddleware(compiler, {
       noInfo: true,
       publicPath: '/',
-      serverSideRender: true,
-      // Specify a nonexistent file so webpack-dev-middleware doesn't attempt to
-      // serve it. It'll be served by the u-wave-web middleware instead below.
-      index: '-dummy-'
+      serverSideRender: true
     });
-    app.use(dev);
-    app.use(webpackHotMiddleware(compiler, {
-      log: require('gulp-util').log,
-      path: '/__webpack_hmr'
+
+    // Delay responding to HTTP requests until the first build is complete.
+    app.use((req, res, next) => {
+      dev.waitUntilValid(() => {
+        next();
+      });
+    });
+
+    app.use(createWebClient(uw, {
+      apiUrl,
+      emoji: emojione.emoji,
+      publicPath: '/',
+      // Point u-wave-web middleware to the virtual webpack filesystem.
+      fs: dev.fileSystem,
+      recaptcha: { key: recaptchaTestKeys.sitekey }
     }));
 
-    // Point u-wave-web middleware to the virtual webpack filesystem.
-    fs = dev.fileSystem;
-    publicPath = '/';
+    app.use(dev);
+    app.use(webpackHotMiddleware(compiler, {
+      log,
+      path: '/__webpack_hmr'
+    }));
+  } else {
+    app.use(createWebClient(uw, {
+      apiUrl,
+      emoji: emojione.emoji,
+      recaptcha: { key: recaptchaTestKeys.sitekey }
+    }));
   }
-
-  app.use(createWebClient(uw, {
-    apiUrl,
-    emoji: emojione.emoji,
-    publicPath,
-    fs,
-    recaptcha: { key: recaptchaTestKeys.sitekey }
-  }));
 
   uw.on('stopped', () => {
     process.exit(0);
