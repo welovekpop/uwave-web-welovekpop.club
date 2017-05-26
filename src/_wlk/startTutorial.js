@@ -1,4 +1,4 @@
-import loadScript from 'load-script';
+import loadScript from 'load-script2';
 import tutorialScript from 'uwave-tutorial/build';
 
 export default function startTutorial() {
