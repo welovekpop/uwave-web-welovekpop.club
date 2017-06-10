@@ -135,7 +135,11 @@ export function register({ email, username, password, grecaptcha }) {
         payload: { user }
       });
       dispatch(login({ email, password }))
-        .then(startTutorial);
+        .then(() => {
+          if (matchMedia('(min-width: 769px)').matches) {
+            return startTutorial();
+          }
+        });
     },
     onError: error => ({
       type: REGISTER_COMPLETE,
