@@ -1,13 +1,17 @@
-module.exports = ({ env }) => ({
-  plugins: {
-    'postcss-import': {},
-    'postcss-url': {
-      url: 'rebase'
-    },
-    'postcss-cssnext': {},
-    cssnano: env === 'production' && {
-      safe: true,
-      autoprefixer: false
+module.exports = (options) => {
+  const env = options.env;
+
+  return {
+    plugins: {
+      'postcss-import': {},
+      'postcss-url': {
+        url: 'rebase'
+      },
+      'postcss-cssnext': {},
+      cssnano: env === 'production' && {
+        safe: true,
+        autoprefixer: false
+      }
     }
-  }
-});
+  };
+};
