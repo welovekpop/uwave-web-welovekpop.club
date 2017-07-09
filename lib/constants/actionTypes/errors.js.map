@@ -1,0 +1,1 @@
+{"version":3,"sources":["constants/actionTypes/errors.js"],"names":["ERROR_DISMISS"],"mappings":";;;;;AAAA;AACO,IAAIA,wCAAgB,gBAApB;AACP","file":"errors.js","sourcesContent":["// eslint-disable-next-line import/prefer-default-export\nexport const ERROR_DISMISS = 'errors/DISMISS';\n"]}

@@ -1,0 +1,34 @@
+import _jsx from 'babel-runtime/helpers/jsx';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
+import UpvoteIcon from 'material-ui/svg-icons/action/thumb-up';
+
+import Button from './Button';
+
+var Upvote = function Upvote(_ref) {
+  var t = _ref.t,
+      disabled = _ref.disabled,
+      active = _ref.active,
+      count = _ref.count,
+      onUpvote = _ref.onUpvote;
+  return _jsx(Button, {
+    disabled: disabled,
+    tooltip: t('votes.upvote'),
+    onClick: onUpvote,
+    count: count
+  }, void 0, _jsx(UpvoteIcon, {
+    color: active ? '#4BB64B' : 'white'
+  }));
+};
+
+Upvote.propTypes = process.env.NODE_ENV !== "production" ? {
+  t: PropTypes.func.isRequired,
+  onUpvote: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+  disabled: PropTypes.bool,
+  active: PropTypes.bool
+} : {};
+
+export default translate()(Upvote);
+//# sourceMappingURL=Upvote.js.map

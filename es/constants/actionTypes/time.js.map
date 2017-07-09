@@ -1,0 +1,1 @@
+{"version":3,"sources":["constants/actionTypes/time.js"],"names":["SET_TIMER","OFFSET"],"mappings":"AAAA,OAAO,IAAMA,YAAY,gBAAlB;AACP,OAAO,IAAMC,SAAS,aAAf","file":"time.js","sourcesContent":["export const SET_TIMER = 'tick/SET_TIMER';\nexport const OFFSET = 'tick/OFFSET';\n"]}

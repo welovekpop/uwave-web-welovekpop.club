@@ -1,0 +1,22 @@
+export var WAITLIST_LOAD = 'waitlist/LOAD';
+
+export var WAITLIST_LOCK = 'waitlist/LOCK';
+export var WAITLIST_CLEAR = 'waitlist/CLEAR';
+
+export var WAITLIST_UPDATE = 'waitlist/UPDATE';
+export var WAITLIST_JOIN = 'waitlist/JOIN';
+export var WAITLIST_LEAVE = 'waitlist/LEAVE';
+export var WAITLIST_MOVE = 'waitlist/MOVE';
+
+export var DO_JOIN_START = 'waitlist/DO_JOIN_START';
+export var DO_JOIN_COMPLETE = 'waitlist/DO_JOIN_COMPLETE';
+
+export var DO_LEAVE_START = 'waitlist/DO_LEAVE_START';
+export var DO_LEAVE_COMPLETE = 'waitlist/DO_LEAVE_COMPLETE';
+
+export var DO_LOCK_START = 'waitlist/DO_LOCK_START';
+export var DO_LOCK_COMPLETE = 'waitlist/DO_LOCK_COMPLETE';
+
+export var DO_CLEAR_START = 'waitlist/DO_CLEAR_START';
+export var DO_CLEAR_COMPLETE = 'waitlist/DO_CLEAR_COMPLETE';
+//# sourceMappingURL=waitlist.js.map

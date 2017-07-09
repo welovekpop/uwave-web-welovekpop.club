@@ -1,0 +1,1 @@
+{"version":3,"sources":["constants/actionTypes/request.js"],"names":["REQUEST_START","REQUEST_COMPLETE"],"mappings":";;;;;AAAO,IAAIA,wCAAgB,uBAApB;AACA,IAAIC,8CAAmB,0BAAvB;AACP","file":"request.js","sourcesContent":["export const REQUEST_START = 'request/REQUEST_START';\nexport const REQUEST_COMPLETE = 'request/REQUEST_COMPLETE';\n"]}

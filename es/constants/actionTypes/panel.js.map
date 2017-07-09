@@ -1,0 +1,1 @@
+{"version":3,"sources":["constants/actionTypes/panel.js"],"names":["SELECT_PANEL"],"mappings":"AAAA;AACA,OAAO,IAAMA,eAAe,oBAArB","file":"panel.js","sourcesContent":["// eslint-disable-next-line import/prefer-default-export\nexport const SELECT_PANEL = 'panel/SELECT_PANEL';\n"]}

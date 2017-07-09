@@ -1,0 +1,1 @@
+{"version":3,"sources":["constants/LoadingStates.js"],"names":["IDLE","LOADING","LOADED"],"mappings":";;;;;AAAO,IAAIA,sBAAO,mBAAX;AACA,IAAIC,4BAAU,sBAAd;AACA,IAAIC,0BAAS,qBAAb;AACP","file":"LoadingStates.js","sourcesContent":["export const IDLE = 'loadingState/IDLE';\nexport const LOADING = 'loadingState/LOADING';\nexport const LOADED = 'loadingState/LOADED';\n"]}
