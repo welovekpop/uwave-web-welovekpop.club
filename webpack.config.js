@@ -1,4 +1,3 @@
-const readFile = require('fs').readFileSync;
 const path = require('path');
 const escapeStringRegExp = require('escape-string-regexp');
 const DefinePlugin = require('webpack').DefinePlugin;
@@ -74,6 +73,7 @@ if (nodeEnv === 'production') {
       debug: false
     }),
     new UglifyJsPlugin({
+      sourceMap: true,
       // Yeah… Enables some riskier minification that doesn't work in IE8.
       // But üWave doesn't work in IE8 _anyway_, so we don't care.
       compress: {
@@ -90,16 +90,6 @@ if (nodeEnv === 'production') {
     }),
     new ModuleConcatenationPlugin()
   );
-}
-
-// Workaround: Seems like babel-loader doesn't pick up on the environment type
-// correctly, so we manually load the .babelrc and add the production plugins
-// if necessary.
-const babelrc = JSON.parse(
-  readFile(path.join(__dirname, '.babelrc'), 'utf8')
-);
-if (nodeEnv === 'production') {
-  babelrc.plugins = babelrc.plugins.concat(babelrc.env.production.plugins);
 }
 
 const context = path.join(__dirname, 'src');
@@ -151,10 +141,11 @@ Object.keys(staticPages).forEach((name) => {
 module.exports = {
   context,
   entry: entries,
+  devtool: nodeEnv === 'production' ? 'source-map' : 'inline-source-map',
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: '[name]_[hash].js',
+    filename: nodeEnv === 'production' ? '[name]_[chunkhash].js' : '[name]_dev.js',
     hashDigestLength: 7
   },
   plugins,
@@ -205,7 +196,11 @@ module.exports = {
           query: {
             babelrc: false,
             presets: [
-              [ 'latest', { es2015: { modules: false } } ]
+              [ 'env', {
+                modules: false,
+                loose: true,
+                targets: { uglify: true }
+              } ]
             ]
           }
         }
@@ -215,7 +210,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
-          { loader: 'babel-loader', query: babelrc },
+          'babel-loader',
           nodeEnv !== 'production' && {
             loader: 'eslint-loader',
             query: { cache: true }
