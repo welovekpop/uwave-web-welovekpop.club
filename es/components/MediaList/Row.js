@@ -10,8 +10,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
+import formatDuration from 'format-duration';
 import { MEDIA } from '../../constants/DDItemTypes';
-import formatDuration from '../../utils/formatDuration';
 import MediaLoadingIndicator from './MediaLoadingIndicator';
 import MediaThumbnail from './MediaThumbnail';
 import Actions from './Actions';
@@ -104,7 +104,7 @@ var Row = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = (_temp2
       title: media.title
     }, void 0, media.title), _jsx('div', {
       className: 'MediaListRow-duration'
-    }, void 0, formatDuration(duration)), _jsx(Actions, {
+    }, void 0, formatDuration(duration * 1000)), _jsx(Actions, {
       className: cx('MediaListRow-actions', selectedClass),
       selection: selection,
       media: media,

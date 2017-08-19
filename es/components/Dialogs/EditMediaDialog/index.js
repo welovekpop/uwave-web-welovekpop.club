@@ -14,15 +14,12 @@ import { translate } from 'react-i18next';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import uniqueId from 'lodash/uniqueId';
-
+import formatDuration from 'format-duration';
 import ArtistIcon from 'material-ui/svg-icons/hardware/headset';
 import TitleIcon from 'material-ui/svg-icons/image/music-note';
 import StartIcon from 'material-ui/svg-icons/av/play-arrow';
 import EndIcon from 'material-ui/svg-icons/av/stop';
 import SwapArtistTitleIcon from 'material-ui/svg-icons/action/swap-horiz';
-
-import formatDuration from '../../../utils/formatDuration';
-
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import Button from '../../Form/Button';
@@ -73,8 +70,8 @@ var EditMediaDialog = (_dec = translate(), _dec(_class = function (_React$Compon
       errors: null,
       artist: _this.props.media.artist,
       title: _this.props.media.title,
-      start: formatDuration(_this.props.media.start),
-      end: formatDuration(_this.props.media.end)
+      start: formatDuration(_this.props.media.start * 1000),
+      end: formatDuration(_this.props.media.end * 1000)
     }, _this.labelStart = uniqueId('editmedia'), _this.labelEnd = uniqueId('editmedia'), _this.handleSubmit = function (e) {
       e.preventDefault();
 

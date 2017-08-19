@@ -29,7 +29,7 @@ var Suggestion = function Suggestion(_ref) {
     innerDivStyle: innerDivStyle,
     value: value,
     primaryText: value,
-    onTouchTap: select
+    onClick: select
   }, props));
 };
 

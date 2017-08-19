@@ -5,6 +5,7 @@ export default {
       "cy": "Cymraeg (Welsh)",
       "de": "Deutsch (German)",
       "en": "English",
+      "es": "Español (Spanish)",
       "fr": "Français (French)",
       "ko": "한국어 (Korean)",
       "nl": "Nederlands (Dutch)",

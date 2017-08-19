@@ -16,7 +16,7 @@ var ScrollNotice = function ScrollNotice(_ref) {
     className: 'ChatMessages-scrollDownButton'
   }, void 0, _jsx(FloatingActionButton, {
     mini: true,
-    onTouchTap: onClick
+    onClick: onClick
   }, void 0, _jsx(ScrollDownIcon, {
     style: { fill: muiTheme.palette.textColor }
   }))));

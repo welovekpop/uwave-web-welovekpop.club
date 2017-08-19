@@ -10,20 +10,16 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer as HotContainer } from 'react-hot-loader';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import createLocale from './locale';
 import AppContainer from './containers/App';
 import { get as readSession } from './utils/Session';
 import configureStore from './store/configureStore';
 import { initState, socketConnect, setJWT } from './actions/LoginActionCreators';
+import { languageSelector } from './selectors/settingSelectors';
 import * as api from './api';
 
 // Register default chat commands.
 import './utils/commands';
-
-// A Material-UI dependency, removes the delay from tap events on some mobile
-// devices. üWave currently isn't compatible with mobile yet, but material-ui
-// wants this!
-injectTapEventPlugin();
 
 var Uwave = function () {
   function Uwave() {
@@ -98,13 +94,18 @@ var Uwave = function () {
 
     this.store = configureStore({ config: this.options }, { mediaSources: this.sources, socketUrl: this.options.socketUrl });
 
+    var localePromise = createLocale(languageSelector(this.store.getState()));
+
     if (this.jwt) {
       this.store.dispatch(setJWT(this.jwt));
       this.jwt = null;
     }
 
     this.store.dispatch(socketConnect());
-    return this.store.dispatch(initState()).then(function () {
+    return Promise.all([localePromise, this.store.dispatch(initState())]).then(function (_ref) {
+      var locale = _ref[0];
+
+      _this2.locale = locale;
       _this2.resolveReady();
     });
   };
@@ -114,6 +115,7 @@ var Uwave = function () {
       store: this.store
     }, void 0, _jsx(AppContainer, {
       mediaSources: this.sources,
+      locale: this.locale,
       uwave: this
     }));
   };

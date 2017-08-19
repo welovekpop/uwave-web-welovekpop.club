@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
-import formatDuration from '../../utils/formatDuration';
+import formatDuration from 'format-duration';
 import timed from '../../utils/timed';
 
 var Eta = function Eta(_ref) {
@@ -13,7 +13,7 @@ var Eta = function Eta(_ref) {
       currentTime = _ref.currentTime,
       endTime = _ref.endTime;
 
-  var currentRemaining = Math.floor((endTime - currentTime) / 1000);
+  var currentRemaining = endTime - currentTime;
   return _jsx('span', {
     className: cx('Eta', className)
   }, void 0, formatDuration(base + currentRemaining));

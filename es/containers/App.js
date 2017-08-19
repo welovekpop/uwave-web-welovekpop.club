@@ -12,9 +12,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { I18nextProvider } from 'react-i18next';
-
-import createLocale from '../locale';
-
 import { closeAll } from '../actions/OverlayActionCreators';
 import { createTimer, stopTimer } from '../actions/TickerActionCreators';
 
@@ -65,12 +62,11 @@ var AppContainer = (_dec = connect(mapStateToProps, mapDispatchToProps), _dec(_c
     // Start the clock! üWave stores the current time in the application state
     // primarily to make sure that different timers in the UI update simultaneously.
     this.timerCallbacks = this.props.createTimer();
-    this.locale = createLocale(this.props.language);
   };
 
   AppContainer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     if (this.props.language !== nextProps.language) {
-      this.locale.changeLanguage(nextProps.language);
+      this.props.locale.changeLanguage(nextProps.language);
     }
   };
 
@@ -83,7 +79,7 @@ var AppContainer = (_dec = connect(mapStateToProps, mapDispatchToProps), _dec(_c
     return _jsx(MuiThemeProvider, {
       muiTheme: this.props.muiTheme
     }, void 0, _jsx(I18nextProvider, {
-      i18n: this.locale
+      i18n: this.props.locale
     }, void 0, React.createElement(App, this.props)));
   };
 
@@ -98,6 +94,7 @@ AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   mediaSources: PropTypes.object.isRequired,
   uwave: PropTypes.object,
   language: PropTypes.string,
+  locale: PropTypes.object.isRequired,
   muiTheme: PropTypes.object,
   createTimer: PropTypes.func.isRequired,
   stopTimer: PropTypes.func.isRequired

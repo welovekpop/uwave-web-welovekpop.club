@@ -7,12 +7,16 @@ import { requestComplete, requestCompleteError } from '../actions/RequestActionC
 import { requestOptionsSelector } from '../selectors/configSelectors';
 import { tokenSelector } from '../selectors/userSelectors';
 
+function isEmpty(object) {
+  return !object || Object.keys(object).length === 0;
+}
+
 function makeUrl(path) {
   var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var uri = path;
 
-  if (params) {
+  if (!isEmpty(params)) {
     // heh…
     uri += (uri.indexOf('?') !== -1 ? '&' : '?') + stringifyQS(params);
   }

@@ -15,6 +15,9 @@ var resources = {
   de: function de() {
     return System.import('../locale/de.yaml');
   },
+  es: function es() {
+    return System.import('../locale/es.yaml');
+  },
   fr: function fr() {
     return System.import('../locale/fr.yaml');
   },
@@ -80,10 +83,12 @@ export var availableLanguages = ['en'].concat(Object.keys(resources));
 
 export default function createLocale(language) {
   var locale = i18next.cloneInstance();
-  locale.changeLanguage(language);
-
   locale.availableLanguages = availableLanguages;
 
-  return locale;
+  return new Promise(function (resolve) {
+    locale.changeLanguage(language, function () {
+      resolve(locale);
+    });
+  });
 }
 //# sourceMappingURL=locale.js.map
