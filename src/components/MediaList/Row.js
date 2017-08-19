@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
+import formatDuration from 'format-duration';
 import { MEDIA } from '../../constants/DDItemTypes';
-import formatDuration from '../../utils/formatDuration';
 import MediaLoadingIndicator from './MediaLoadingIndicator';
 import MediaThumbnail from './MediaThumbnail';
 import Actions from './Actions';
@@ -96,7 +96,7 @@ export default class Row extends React.Component {
           {media.title}
         </div>
         <div className="MediaListRow-duration">
-          {formatDuration(duration)}
+          {formatDuration(duration * 1000)}
         </div>
         <Actions
           className={cx('MediaListRow-actions', selectedClass)}
