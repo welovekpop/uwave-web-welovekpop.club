@@ -83,13 +83,11 @@ export default class LoginForm extends React.Component {
           </Button>
         </FormGroup>
 
-        {/*
         <FormGroup>
           <a href onClick={this.handleResetPassword} className="LoginForm-forgot">
             Forgot Password?
           </a>
         </FormGroup>
-        */}
       </Form>
     );
   }
