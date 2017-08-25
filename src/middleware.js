@@ -33,8 +33,12 @@ export default function uwaveWebClient(uw, options = {}) {
   const clientRouter = router();
 
   const mobile = (req, res) => {
+    const transform = trumpet();
+    injectTitle(transform, title);
+    injectConfig(transform, clientOptions);
+
     fs.createReadStream(path.join(basePath, 'm.html'), 'utf8')
-      .pipe(injectConfig(clientOptions))
+      .pipe(transform)
       .pipe(res);
   };
 
