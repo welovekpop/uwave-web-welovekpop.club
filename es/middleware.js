@@ -5,10 +5,16 @@ import trumpet from 'trumpet';
 import router from 'router';
 import serveStatic from 'serve-static';
 
-function injectConfig(config) {
-  var transform = trumpet();
+function injectConfig(transform, config) {
   transform.select('#u-wave-config').createWriteStream().end(JSON.stringify(config));
-  return transform;
+}
+
+function injectTitle(transform, title) {
+  transform.select('title').createWriteStream().end(title);
+}
+
+function injectResetKey(transform, key) {
+  transform.select('#reset-data').createWriteStream().end(key);
 }
 
 export default function uwaveWebClient(uw) {
@@ -18,16 +24,33 @@ export default function uwaveWebClient(uw) {
       basePath = _options$basePath === undefined ? path.join(__dirname, '../public') : _options$basePath,
       _options$fs = options.fs,
       fs = _options$fs === undefined ? defaultFs : _options$fs,
-      clientOptions = _objectWithoutProperties(options, ['basePath', 'fs']);
+      _options$title = options.title,
+      title = _options$title === undefined ? 'üWave' : _options$title,
+      clientOptions = _objectWithoutProperties(options, ['basePath', 'fs', 'title']);
 
   var clientRouter = router();
 
   var mobile = function mobile(req, res) {
-    fs.createReadStream(path.join(basePath, 'm.html'), 'utf8').pipe(injectConfig(clientOptions)).pipe(res);
+    var transform = trumpet();
+    injectTitle(transform, title);
+    injectConfig(transform, clientOptions);
+
+    fs.createReadStream(path.join(basePath, 'm.html'), 'utf8').pipe(transform).pipe(res);
   };
 
   return clientRouter.get('/', function (req, res) {
-    fs.createReadStream(path.join(basePath, 'index.html'), 'utf8').pipe(injectConfig(clientOptions)).pipe(res);
+    var transform = trumpet();
+    injectTitle(transform, title);
+    injectConfig(transform, clientOptions);
+
+    fs.createReadStream(path.join(basePath, 'index.html'), 'utf8').pipe(transform).pipe(res);
+  }).get('/reset/:key', function (req, res) {
+    var transform = trumpet();
+    injectTitle(transform, title);
+    injectConfig(transform, { apiUrl: clientOptions.apiUrl });
+    injectResetKey(transform, req.params.key);
+
+    fs.createReadStream(path.join(basePath, 'password-reset.html'), 'utf8').pipe(transform).pipe(res);
   }).get('/m', mobile).get('/m.html', mobile).use(serveStatic(basePath));
 }
 //# sourceMappingURL=middleware.js.map
