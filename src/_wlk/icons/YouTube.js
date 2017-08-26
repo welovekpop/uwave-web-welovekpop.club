@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
 
 // YouTube icon from the Font-Awesome icon font by Dave Gandy:

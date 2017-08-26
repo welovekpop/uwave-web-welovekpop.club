@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import FacebookIcon from './icons/Facebook';
 import YouTubeIcon from './icons/YouTube';
