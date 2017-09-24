@@ -1,6 +1,6 @@
 import _jsx from 'babel-runtime/helpers/jsx';
 import _extends from 'babel-runtime/helpers/extends';
-import * as React from 'react';
+import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
 
 // Twitter icon from the Font-Awesome icon font by Dave Gandy:

@@ -21,7 +21,7 @@ var YouTubePlayerEmbed = (_temp2 = _class = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleYTPause = function (event) {
-      if (!_this.props.controllable) {
+      if (!_this.props.controllable && _this.props.active) {
         event.target.playVideo();
       }
     }, _this.refPlayer = function (player) {

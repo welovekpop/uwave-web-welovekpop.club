@@ -1,6 +1,6 @@
 import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
-import * as React from 'react';
+import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
 var buttonProps = {

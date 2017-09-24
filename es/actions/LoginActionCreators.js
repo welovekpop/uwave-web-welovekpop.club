@@ -184,16 +184,10 @@ export function logout() {
 
 export function resetPassword(email) {
   return post('/auth/password/reset', email, {
-    onStart: function onStart() {
+    onComplete: function onComplete() {
       return {
         type: RESET_PASSWORD_COMPLETE,
         payload: 'Successfully sent password reset email'
-      };
-    },
-    onComplete: function onComplete(token) {
-      return function (dispatch) {
-        debug('reset token: ', token);
-        dispatch(closeLoginDialog());
       };
     },
     onError: function onError(error) {

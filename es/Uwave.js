@@ -51,9 +51,10 @@ var Uwave = function () {
       this.getComponent = function () {
         return _jsx(HotContainer, {}, void 0, _this._getComponent());
       };
+      var uw = this;
       module.hot.accept('./containers/App', function () {
-        if (_this.renderTarget) {
-          _this.renderToDOM(_this.renderTarget);
+        if (uw.renderTarget) {
+          uw.renderToDOM(uw.renderTarget);
         }
       });
     }

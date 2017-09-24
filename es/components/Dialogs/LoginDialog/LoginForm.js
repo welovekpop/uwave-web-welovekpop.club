@@ -89,7 +89,11 @@ var LoginForm = (_dec = translate(), _dec(_class = function (_React$Component) {
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: 'LoginForm-submit',
       disabled: busy
-    }, void 0, busy ? _ref3 : t('login.login'))));
+    }, void 0, busy ? _ref3 : t('login.login'))), _jsx(FormGroup, {}, void 0, _jsx('a', {
+      href: true,
+      onClick: this.handleResetPassword,
+      className: 'LoginForm-forgot'
+    }, void 0, 'Forgot Password?')));
   };
 
   return LoginForm;

@@ -136,6 +136,10 @@ export default {
       "guests": "and {{count}} guest",
       "guests_plural": "and {{count}} guests"
     },
+    "server": {
+      "connectionLost": "Server connection lost",
+      "reconnecting": "Trying to reconnect..."
+    },
     "settings": {
       "title": "Settings",
       "videoEnabled": "Play Audio/Video",

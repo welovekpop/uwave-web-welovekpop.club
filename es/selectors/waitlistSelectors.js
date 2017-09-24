@@ -42,7 +42,7 @@ export var waitlistSelector = createStructuredSelector({
 });
 
 // Most videos come in at around 4 minutes.
-var averagePlayDuration = 4 * 60;
+var averagePlayDuration = 4 * 60 * 1000;
 export var baseEtaSelector = createSelector(positionSelector, sizeSelector, function (position, size) {
   return (position === -1 ? size : position) * averagePlayDuration;
 });

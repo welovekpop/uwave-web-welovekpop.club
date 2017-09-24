@@ -1,6 +1,8 @@
 export var INIT_STATE = 'auth/INIT_STATE';
 export var SOCKET_CONNECT = 'auth/SOCKET_CONNECT';
 export var SOCKET_RECONNECT = 'auth/SOCKET_RECONNECT';
+export var SOCKET_CONNECTED = 'auth/SOCKET_CONNECTED';
+export var SOCKET_DISCONNECTED = 'auth/SOCKET_DISCONNECTED';
 
 export var SET_TOKEN = 'auth/SET_TOKEN';
 

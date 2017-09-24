@@ -15,6 +15,7 @@ import PlaylistManager from '../../containers/PlaylistManager';
 import RoomHistory from '../../containers/RoomHistory';
 import SettingsManager from '../../containers/SettingsManager';
 import About from '../../containers/About';
+import ConnectionIndicator from '../ConnectionIndicator';
 
 import SidePanels from '../../containers/SidePanels';
 import Dialogs from '../Dialogs';
@@ -46,6 +47,7 @@ var _ref8 = _jsx(DragLayer, {});
 
 var App = function App(_ref) {
   var activeOverlay = _ref.activeOverlay,
+      isConnected = _ref.isConnected,
       settings = _ref.settings,
       hasAboutPage = _ref.hasAboutPage,
       onCloseOverlay = _ref.onCloseOverlay;
@@ -60,7 +62,9 @@ var App = function App(_ref) {
     size: settings.videoSize,
     isMuted: settings.muted,
     volume: settings.volume
-  }), _ref3), _jsx(Overlays, {
+  }), _ref3, _jsx(ConnectionIndicator, {
+    isConnected: isConnected
+  })), _jsx(Overlays, {
     transitionName: 'Overlay',
     active: activeOverlay
   }, void 0, hasAboutPage && _jsx(About, {
@@ -76,6 +80,7 @@ var App = function App(_ref) {
 
 App.propTypes = process.env.NODE_ENV !== "production" ? {
   activeOverlay: PropTypes.string,
+  isConnected: PropTypes.bool.isRequired,
   settings: PropTypes.object.isRequired,
   hasAboutPage: PropTypes.bool,
 

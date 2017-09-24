@@ -3,7 +3,7 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
 
-var _dec, _class, _class2, _temp;
+var _class, _temp;
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -16,12 +16,14 @@ import { closeAll } from '../actions/OverlayActionCreators';
 import { createTimer, stopTimer } from '../actions/TickerActionCreators';
 
 import { settingsSelector, languageSelector, muiThemeSelector } from '../selectors/settingSelectors';
+import { isConnectedSelector } from '../selectors/serverSelectors';
 import App from '../components/App';
 
 var mapStateToProps = createStructuredSelector({
   activeOverlay: function activeOverlay(state) {
     return state.activeOverlay;
   },
+  isConnected: isConnectedSelector,
   settings: settingsSelector,
   language: languageSelector,
   muiTheme: muiThemeSelector,
@@ -38,7 +40,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   }, dispatch);
 };
 
-var AppContainer = (_dec = connect(mapStateToProps, mapDispatchToProps), _dec(_class = (_temp = _class2 = function (_React$Component) {
+var enhance = connect(mapStateToProps, mapDispatchToProps);
+
+var AppContainer = (_temp = _class = function (_React$Component) {
   _inherits(AppContainer, _React$Component);
 
   function AppContainer() {
@@ -84,12 +88,11 @@ var AppContainer = (_dec = connect(mapStateToProps, mapDispatchToProps), _dec(_c
   };
 
   return AppContainer;
-}(React.Component), _class2.childContextTypes = {
+}(React.Component), _class.childContextTypes = {
   timerCallbacks: PropTypes.arrayOf(PropTypes.func),
   mediaSources: PropTypes.object,
   uwave: PropTypes.object
-}, _temp)) || _class);
-export { AppContainer as default };
+}, _temp);
 AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   mediaSources: PropTypes.object.isRequired,
   uwave: PropTypes.object,
@@ -99,4 +102,7 @@ AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   createTimer: PropTypes.func.isRequired,
   stopTimer: PropTypes.func.isRequired
 } : {};
+
+
+export default enhance(AppContainer);
 //# sourceMappingURL=App.js.map

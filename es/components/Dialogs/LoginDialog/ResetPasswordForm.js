@@ -4,12 +4,15 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import EmailIcon from 'material-ui/svg-icons/communication/email';
 import Loader from '../../Loader';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
 import Button from '../../Form/Button';
+
+var enhance = translate();
 
 var _ref = _jsx(EmailIcon, {
   color: '#9f9d9e'
@@ -33,11 +36,19 @@ var ResetPasswordForm = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = { busy: false }, _this.handleSubmit = function (event) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+      busy: false,
+      done: false
+    }, _this.handleSubmit = function (event) {
       event.preventDefault();
       _this.setState({ busy: true });
-      _this.props.onResetPassword({
+      Promise.resolve(_this.props.onResetPassword({
         email: _this.email.value
+      })).then(function () {
+        _this.setState({
+          busy: false,
+          done: true
+        });
       });
     }, _this.refEmail = function (email) {
       _this.email = email;
@@ -49,9 +60,21 @@ var ResetPasswordForm = function (_React$Component) {
   };
 
   ResetPasswordForm.prototype.render = function render() {
-    var error = this.props.error;
-    var busy = this.state.busy;
+    var _props = this.props,
+        t = _props.t,
+        error = _props.error,
+        onCloseDialog = _props.onCloseDialog;
+    var _state = this.state,
+        busy = _state.busy,
+        done = _state.done;
 
+
+    if (done) {
+      return _jsx('div', {}, void 0, _jsx('p', {}, void 0, t('login.passwordResetSent')), _jsx('p', {}, void 0, _jsx(Button, {
+        className: 'ResetPasswordForm-submit',
+        onClick: onCloseDialog
+      }, void 0, t('close'))));
+    }
 
     return _jsx(Form, {
       className: 'ResetPasswordForm',
@@ -65,15 +88,19 @@ var ResetPasswordForm = function (_React$Component) {
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: 'ResetPasswordForm-submit',
       disabled: busy
-    }, void 0, busy ? _ref2 : 'RESET PASSWORD')));
+    }, void 0, busy ? _ref2 : t('login.requestPasswordReset'))));
   };
 
   return ResetPasswordForm;
 }(React.Component);
 
-export { ResetPasswordForm as default };
 ResetPasswordForm.propTypes = process.env.NODE_ENV !== "production" ? {
+  t: PropTypes.func.isRequired,
   error: PropTypes.object,
-  onResetPassword: PropTypes.func
+  onResetPassword: PropTypes.func.isRequired,
+  onCloseDialog: PropTypes.func.isRequired
 } : {};
+
+
+export default enhance(ResetPasswordForm);
 //# sourceMappingURL=ResetPasswordForm.js.map
