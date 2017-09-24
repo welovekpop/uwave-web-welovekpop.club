@@ -1,10 +1,12 @@
 import createDebug from 'debug';
-import WebSocket from '../utils/ReconnectingWebSocket';
+import WebSocket from 'reconnecting-websocket';
 
 import {
   LOGIN_COMPLETE,
   SOCKET_CONNECT,
-  SOCKET_RECONNECT
+  SOCKET_RECONNECT,
+  SOCKET_DISCONNECTED,
+  SOCKET_CONNECTED
 } from '../constants/actionTypes/auth';
 import {
   SEND_MESSAGE
@@ -139,9 +141,10 @@ export default function middleware({ url = defaultUrl() } = {}) {
     let socket;
     let queue = [];
     let sentJWT = false;
+    let opened = false;
 
     function isOpen() {
-      return socket && socket.readyState === WebSocket.OPEN;
+      return socket && opened;
     }
 
     function sendJWT(jwt) {
@@ -176,8 +179,14 @@ export default function middleware({ url = defaultUrl() } = {}) {
     }
 
     function onOpen() {
+      opened = true;
+      dispatch({ type: SOCKET_CONNECTED });
       maybeAuthenticateOnConnect(getState());
-      drainQueuedMessages();
+    }
+
+    function onClose() {
+      opened = false;
+      dispatch({ type: SOCKET_DISCONNECTED });
     }
 
     function onMessage(pack) {
@@ -186,6 +195,12 @@ export default function middleware({ url = defaultUrl() } = {}) {
 
       const { command, data } = JSON.parse(pack.data);
       debug(command, data);
+
+      if (command === 'authenticated') {
+        drainQueuedMessages();
+        return;
+      }
+
       if (typeof actions[command] === 'function') {
         const action = actions[command](data);
         if (action) {
@@ -201,14 +216,15 @@ export default function middleware({ url = defaultUrl() } = {}) {
       switch (type) {
       case SOCKET_RECONNECT:
         if (socket) {
-          socket.refresh();
-          break;
+          socket.close(undefined, undefined, { keepClosed: true });
         }
         // fall through
       case SOCKET_CONNECT:
         socket = new WebSocket(url);
-        socket.onmessage = onMessage;
-        socket.onopen = onOpen;
+        socket.addEventListener('message', onMessage);
+        socket.addEventListener('open', onOpen);
+        socket.addEventListener('close', onClose);
+        socket.addEventListener('connecting', onClose);
         break;
       case SEND_MESSAGE:
         send('sendChat', payload.message);
