@@ -144,6 +144,7 @@ export function register(_ref3) {
           if (matchMedia('(min-width: 769px)').matches) {
             return startTutorial();
           }
+          return null;
         });
       };
     },

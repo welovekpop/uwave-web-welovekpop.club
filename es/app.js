@@ -27,5 +27,9 @@ uw.build().then(function () {
   document.querySelector('#app-loading').innerHTML = '';
 }).catch(function (err) {
   document.querySelector('.LoadingScreen-notice').textContent = 'Error: ' + err.message;
+
+  setTimeout(function () {
+    throw err;
+  }, 0);
 });
 //# sourceMappingURL=app.js.map

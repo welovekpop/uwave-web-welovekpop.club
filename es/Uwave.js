@@ -3,7 +3,7 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 // Polyfills for browsers that might not yet support Promises or the Fetch API
 // (newer & better XMLHttpRequest).
-import 'es6-promise';
+import 'lie/polyfill';
 import 'whatwg-fetch';
 
 import React from 'react';

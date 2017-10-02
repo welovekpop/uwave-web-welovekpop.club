@@ -54,8 +54,8 @@ var DragLayerContainer = (_dec = DragLayer(function (monitor) {
 }(React.Component)) || _class);
 export { DragLayerContainer as default };
 DragLayerContainer.propTypes = process.env.NODE_ENV !== "production" ? {
-  type: React.PropTypes.oneOf([MEDIA, WAITLIST_USER]),
-  items: React.PropTypes.object,
-  isDragging: React.PropTypes.bool.isRequired
+  type: PropTypes.oneOf([MEDIA, WAITLIST_USER]),
+  items: PropTypes.object,
+  isDragging: PropTypes.bool.isRequired
 } : {};
 //# sourceMappingURL=DragLayer.js.map

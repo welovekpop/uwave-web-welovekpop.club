@@ -90,15 +90,15 @@ var PlaylistRow = (_dec = DropTarget(MEDIA, playlistTarget, collect), _dec(_clas
 }(React.Component)) || _class);
 export { PlaylistRow as default };
 PlaylistRow.propTypes = process.env.NODE_ENV !== "production" ? {
-  className: React.PropTypes.string,
-  playlist: React.PropTypes.object,
-  selected: React.PropTypes.bool,
-  isOver: React.PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  playlist: PropTypes.object,
+  selected: PropTypes.bool,
+  isOver: PropTypes.bool.isRequired,
 
-  connectDropTarget: React.PropTypes.func.isRequired,
-  onClick: React.PropTypes.func,
+  connectDropTarget: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   // Used in the drop handler above 👆
   // eslint-disable-next-line react/no-unused-prop-types
-  onAddToPlaylist: React.PropTypes.func
+  onAddToPlaylist: PropTypes.func
 } : {};
 //# sourceMappingURL=Row.js.map

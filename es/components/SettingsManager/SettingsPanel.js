@@ -26,6 +26,14 @@ var _ref2 = _jsx('hr', {
 
 var _ref3 = _jsx(Links, {});
 
+var _ref4 = _jsx('hr', {
+  className: 'SettingsPanel-divider'
+});
+
+var _ref5 = _jsx('hr', {
+  className: 'SettingsPanel-divider'
+});
+
 var SettingsPanel = function (_React$Component) {
   _inherits(SettingsPanel, _React$Component);
 
@@ -89,14 +97,14 @@ var SettingsPanel = function (_React$Component) {
       id: 'uw-setting-language',
       value: settings.language,
       onChange: this.handleLanguageChange
-    }))), _jsx(LogoutButton, {
+    }))), _ref2, _ref3, _ref4, _jsx(LogoutButton, {
       onLogout: onLogout
     })), _jsx('div', {
       className: 'SettingsPanel-column SettingsPanel-column--right'
     }, void 0, _jsx(NotificationSettings, {
       settings: settings,
       onSettingChange: this.props.onSettingChange
-    }), _ref2, _ref3));
+    }), _ref5));
   };
 
   return SettingsPanel;

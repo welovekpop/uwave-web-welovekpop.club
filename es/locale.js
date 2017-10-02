@@ -3,7 +3,7 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 var _class, _temp;
 
 import i18next from 'i18next';
-import en from './locale/en.js';
+import * as en from './locale/en.js';
 
 var resources = {
   cs: function cs() {

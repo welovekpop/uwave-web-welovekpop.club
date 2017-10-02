@@ -62,7 +62,7 @@ var LoadingRow = (_temp = _class = function (_React$Component) {
 }, _temp);
 export { LoadingRow as default };
 LoadingRow.propTypes = process.env.NODE_ENV !== "production" ? {
-  className: React.PropTypes.string,
-  selected: React.PropTypes.bool
+  className: PropTypes.string,
+  selected: PropTypes.bool
 } : {};
 //# sourceMappingURL=LoadingRow.js.map
