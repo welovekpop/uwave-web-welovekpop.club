@@ -73,6 +73,7 @@ if (nodeEnv === 'production') {
   const OccurrenceOrderPlugin = require('webpack').optimize.OccurrenceOrderPlugin;
   const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
   const ModuleConcatenationPlugin = require('webpack').optimize.ModuleConcatenationPlugin;
+  const CommonShakePlugin = require('webpack-common-shake').Plugin;
 
   plugins.push(
     new OccurrenceOrderPlugin(),
@@ -80,6 +81,7 @@ if (nodeEnv === 'production') {
       minimize: true,
       debug: false
     }),
+    new CommonShakePlugin(),
     new UglifyJsPlugin({
       sourceMap: true,
       uglifyOptions: {
@@ -144,12 +146,13 @@ Object.keys(staticPages).forEach((name) => {
 module.exports = {
   context,
   entry: entries,
+  // Quit if there are errors.
+  bail: nodeEnv === 'production',
   devtool: nodeEnv === 'production' ? 'source-map' : 'inline-source-map',
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: nodeEnv === 'production' ? '[name]_[chunkhash].js' : '[name]_dev.js',
-    hashDigestLength: 7
+    filename: nodeEnv === 'production' ? '[name]_[chunkhash:7].js' : '[name]_dev.js'
   },
   plugins,
   module: {
@@ -176,11 +179,7 @@ module.exports = {
       },
       {
         test: /\.yaml$/,
-        use: [ 'json-loader', 'yaml-loader' ]
-      },
-      {
-        test: /\.json$/,
-        use: [ 'json-loader' ]
+        use: [ require.resolve('./tasks/utils/jsonLoader'), 'yaml-loader' ]
       },
       // JS loader for dependencies that use ES2015+:
       {
