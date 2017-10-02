@@ -12,9 +12,9 @@ import MediaDragPreview from '../components/MediaList/MediaDragPreview';
 }))
 export default class DragLayerContainer extends React.Component {
   static propTypes = {
-    type: React.PropTypes.oneOf([ MEDIA, WAITLIST_USER ]),
-    items: React.PropTypes.object,
-    isDragging: React.PropTypes.bool.isRequired
+    type: PropTypes.oneOf([ MEDIA, WAITLIST_USER ]),
+    items: PropTypes.object,
+    isDragging: PropTypes.bool.isRequired
   };
 
   renderPreview() {

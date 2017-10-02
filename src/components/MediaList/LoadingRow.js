@@ -5,8 +5,8 @@ import MediaLoadingIndicator from './MediaLoadingIndicator';
 
 export default class LoadingRow extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    selected: React.PropTypes.bool
+    className: PropTypes.string,
+    selected: PropTypes.bool
   };
 
   static defaultProps = {

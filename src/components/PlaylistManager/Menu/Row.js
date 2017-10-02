@@ -21,16 +21,16 @@ const collect = (connect, monitor) => ({
 @DropTarget(MEDIA, playlistTarget, collect)
 export default class PlaylistRow extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    playlist: React.PropTypes.object,
-    selected: React.PropTypes.bool,
-    isOver: React.PropTypes.bool.isRequired,
+    className: PropTypes.string,
+    playlist: PropTypes.object,
+    selected: PropTypes.bool,
+    isOver: PropTypes.bool.isRequired,
 
-    connectDropTarget: React.PropTypes.func.isRequired,
-    onClick: React.PropTypes.func,
+    connectDropTarget: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     // Used in the drop handler above 👆
     // eslint-disable-next-line react/no-unused-prop-types
-    onAddToPlaylist: React.PropTypes.func
+    onAddToPlaylist: PropTypes.func
   };
 
   render() {

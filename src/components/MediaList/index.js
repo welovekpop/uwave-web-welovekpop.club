@@ -20,15 +20,15 @@ function didMediaChange(prev, next) {
 
 export default class MediaList extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    media: React.PropTypes.array,
-    size: React.PropTypes.number,
-    onRequestPage: React.PropTypes.func,
-    rowComponent: React.PropTypes.func,
-    rowProps: React.PropTypes.object,
+    className: PropTypes.string,
+    media: PropTypes.array,
+    size: PropTypes.number,
+    onRequestPage: PropTypes.func,
+    rowComponent: PropTypes.func,
+    rowProps: PropTypes.object,
 
-    onOpenPreviewMediaDialog: React.PropTypes.func,
-    makeActions: React.PropTypes.func
+    onOpenPreviewMediaDialog: PropTypes.func,
+    makeActions: PropTypes.func
   };
 
   static defaultProps = {

@@ -139,6 +139,7 @@ export function register({ email, username, password, grecaptcha }) {
           if (matchMedia('(min-width: 769px)').matches) {
             return startTutorial();
           }
+          return null;
         });
     },
     onError: error => ({
