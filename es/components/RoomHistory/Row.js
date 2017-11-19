@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class, _class2, _temp2;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -42,7 +39,9 @@ var collect = function collect(connect) {
   };
 };
 
-var HistoryRow = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = (_temp2 = _class2 = function (_React$Component) {
+var enhance = DragSource(MEDIA, mediaSource, collect);
+
+var HistoryRow = function (_React$Component) {
   _inherits(HistoryRow, _React$Component);
 
   function HistoryRow() {
@@ -60,6 +59,10 @@ var HistoryRow = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = 
       _this.setState({ showActions: false });
     }, _this.handleDoubleClick = function () {
       _this.props.onOpenPreviewMediaDialog(_this.props.media.media);
+    }, _this.handleKeyPress = function (event) {
+      if (event.code === 'Space') {
+        _this.props.onClick();
+      }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -98,6 +101,7 @@ var HistoryRow = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = 
       onMouseEnter: this.handleMouseEnter,
       onMouseLeave: this.handleMouseLeave,
       onDoubleClick: this.handleDoubleClick,
+      onKeyPress: this.handleKeyPress,
       onClick: onClick
     }, void 0, thumbnail, _jsx(SongTitle, {
       className: 'HistoryRow-song',
@@ -122,10 +126,11 @@ var HistoryRow = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = 
   };
 
   return HistoryRow;
-}(React.Component), _class2.defaultProps = {
+}(React.Component);
+
+HistoryRow.defaultProps = {
   selected: false
-}, _temp2)) || _class);
-export { HistoryRow as default };
+};
 HistoryRow.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   connectDragSource: PropTypes.func.isRequired,
@@ -138,4 +143,7 @@ HistoryRow.propTypes = process.env.NODE_ENV !== "production" ? {
   onClick: PropTypes.func,
   makeActions: PropTypes.func
 } : {};
+
+
+export default enhance(HistoryRow);
 //# sourceMappingURL=Row.js.map

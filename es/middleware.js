@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as defaultFs from 'fs';
 import trumpet from 'trumpet';
 import router from 'router';
-import serveStatic from 'serve-static';
+import serveStatic from 'connect-gzip-static';
 
 function injectConfig(transform, config) {
   transform.select('#u-wave-config').createWriteStream().end(JSON.stringify(config));
@@ -51,6 +51,8 @@ export default function uwaveWebClient(uw) {
     injectResetKey(transform, req.params.key);
 
     fs.createReadStream(path.join(basePath, 'password-reset.html'), 'utf8').pipe(transform).pipe(res);
-  }).get('/m', mobile).get('/m.html', mobile).use(serveStatic(basePath));
+  }).get('/m', mobile).get('/m.html', mobile).get('/u-wave-web-config.json', function (req, res) {
+    res.json(clientOptions);
+  }).use(serveStatic(basePath));
 }
 //# sourceMappingURL=middleware.js.map

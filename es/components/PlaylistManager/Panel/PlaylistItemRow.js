@@ -13,8 +13,9 @@ import MediaRow from '../../MediaList/Row';
 var mediaTarget = {
   drop: function drop(props, monitor, component) {
     var item = monitor.getItem();
-    if (item.media) {
-      var media = item.media;
+    var media = item.media;
+
+    if (media) {
       var thisID = props.media._id;
       // Do not attempt to move when the selection is dropped on top of an item
       // that is in the selection.

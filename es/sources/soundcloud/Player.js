@@ -120,7 +120,7 @@ var SoundCloudPlayer = function (_React$Component) {
   return SoundCloudPlayer;
 }(React.Component);
 
-export { SoundCloudPlayer as default };
+export default SoundCloudPlayer;
 SoundCloudPlayer.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   active: PropTypes.bool.isRequired,

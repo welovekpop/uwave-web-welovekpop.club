@@ -5,14 +5,11 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-var TextField = (_temp2 = _class = function (_React$Component) {
+var TextField = function (_React$Component) {
   _inherits(TextField, _React$Component);
 
   function TextField() {
@@ -55,10 +52,12 @@ var TextField = (_temp2 = _class = function (_React$Component) {
   }]);
 
   return TextField;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+TextField.defaultProps = {
   type: 'text'
-}, _temp2);
-export { TextField as default };
+};
+export default TextField;
 TextField.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   type: PropTypes.string,

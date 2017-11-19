@@ -9,9 +9,7 @@ import { currentTimeSelector } from '../selectors/timeSelectors';
 
 export default function () {
   return function (Component) {
-    var _class, _temp2;
-
-    var Timed = (_temp2 = _class = function (_React$Component) {
+    var Timed = function (_React$Component) {
       _inherits(Timed, _React$Component);
 
       function Timed() {
@@ -56,10 +54,13 @@ export default function () {
       };
 
       return Timed;
-    }(React.Component), _class.displayName = wrapDisplayName(Component, 'Timed'), _class.contextTypes = {
+    }(React.Component);
+
+    Timed.displayName = wrapDisplayName(Component, 'Timed');
+    Timed.contextTypes = {
       store: PropTypes.object.isRequired,
       timerCallbacks: PropTypes.arrayOf(PropTypes.func).isRequired
-    }, _temp2);
+    };
 
     return Timed;
   };

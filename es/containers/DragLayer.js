@@ -2,23 +2,22 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragLayer } from 'react-dnd';
 import { MEDIA, WAITLIST_USER } from '../constants/DDItemTypes';
 import MediaDragPreview from '../components/MediaList/MediaDragPreview';
 
-var DragLayerContainer = (_dec = DragLayer(function (monitor) {
+var enhance = DragLayer(function (monitor) {
   return {
     items: monitor.getItem(),
     type: monitor.getItemType(),
     currentOffset: monitor.getClientOffset(),
     isDragging: monitor.isDragging()
   };
-}), _dec(_class = function (_React$Component) {
+});
+
+var DragLayerContainer = function (_React$Component) {
   _inherits(DragLayerContainer, _React$Component);
 
   function DragLayerContainer() {
@@ -51,11 +50,14 @@ var DragLayerContainer = (_dec = DragLayer(function (monitor) {
   };
 
   return DragLayerContainer;
-}(React.Component)) || _class);
-export { DragLayerContainer as default };
+}(React.Component);
+
 DragLayerContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   type: PropTypes.oneOf([MEDIA, WAITLIST_USER]),
   items: PropTypes.object,
   isDragging: PropTypes.bool.isRequired
 } : {};
+
+
+export default enhance(DragLayerContainer);
 //# sourceMappingURL=DragLayer.js.map

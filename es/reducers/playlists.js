@@ -231,6 +231,7 @@ export default function reduce() {
           return state;
         }
         var currentFilter = state.currentFilter;
+
         var items = mergePlaylistPage(meta.size, currentFilter.items, payload.media, meta);
         return _extends({}, state, {
           currentFilter: _extends({}, currentFilter, { items: items })
@@ -240,7 +241,7 @@ export default function reduce() {
     case PLAYLIST_CYCLED:
       return updatePlaylistItems(state, payload.playlistID, function (items, playlist) {
         var newItems = items.slice(1);
-        newItems[playlist.size - 1] = items[0];
+        newItems[playlist.size - 1] = items[0]; // eslint-disable-line prefer-destructuring
         return newItems;
       });
 

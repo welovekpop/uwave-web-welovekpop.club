@@ -8,7 +8,7 @@ export default function startTutorial() {
     });
   });
 
-  return Promise.all([script, System.import('uwave-tutorial/distr/stylesheets/sideshow.min.css'), System.import('uwave-tutorial/distr/fonts/sideshow-fontface.min.css')]).then(function (_ref) {
+  return Promise.all([script, import('uwave-tutorial/distr/stylesheets/sideshow.min.css'), import('uwave-tutorial/distr/fonts/sideshow-fontface.min.css')]).then(function (_ref) {
     var Sideshow = _ref[0];
 
     Sideshow.start({ listAll: true });

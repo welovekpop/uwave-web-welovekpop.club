@@ -62,7 +62,7 @@ var Button = function (_React$Component) {
   return Button;
 }(React.Component);
 
-export { Button as default };
+export default Button;
 Button.propTypes = process.env.NODE_ENV !== "production" ? {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,

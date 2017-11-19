@@ -4,9 +4,6 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -24,7 +21,7 @@ var _ref = _jsx('div', {
   size: 'tiny'
 }));
 
-var PromptDialog = (_temp2 = _class = function (_React$Component) {
+var PromptDialog = function (_React$Component) {
   _inherits(PromptDialog, _React$Component);
 
   function PromptDialog() {
@@ -101,11 +98,13 @@ var PromptDialog = (_temp2 = _class = function (_React$Component) {
   };
 
   return PromptDialog;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+PromptDialog.defaultProps = {
   submitLabel: 'OK',
   inputType: 'text'
-}, _temp2);
-export { PromptDialog as default };
+};
+export default PromptDialog;
 PromptDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   children: PropTypes.node,
   placeholder: PropTypes.string,

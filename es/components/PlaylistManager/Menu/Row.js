@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -32,6 +29,8 @@ var collect = function collect(connect, monitor) {
   };
 };
 
+var enhance = DropTarget(MEDIA, playlistTarget, collect);
+
 var _ref2 = _jsx('div', {
   className: 'PlaylistMenuRow-loading'
 }, void 0, _jsx(Loader, {
@@ -44,7 +43,7 @@ var _ref3 = _jsx('div', {
   color: '#fff'
 }));
 
-var PlaylistRow = (_dec = DropTarget(MEDIA, playlistTarget, collect), _dec(_class = function (_React$Component) {
+var PlaylistRow = function (_React$Component) {
   _inherits(PlaylistRow, _React$Component);
 
   function PlaylistRow() {
@@ -87,8 +86,8 @@ var PlaylistRow = (_dec = DropTarget(MEDIA, playlistTarget, collect), _dec(_clas
   };
 
   return PlaylistRow;
-}(React.Component)) || _class);
-export { PlaylistRow as default };
+}(React.Component);
+
 PlaylistRow.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   playlist: PropTypes.object,
@@ -101,4 +100,7 @@ PlaylistRow.propTypes = process.env.NODE_ENV !== "production" ? {
   // eslint-disable-next-line react/no-unused-prop-types
   onAddToPlaylist: PropTypes.func
 } : {};
+
+
+export default enhance(PlaylistRow);
 //# sourceMappingURL=Row.js.map

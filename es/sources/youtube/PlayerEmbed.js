@@ -1,14 +1,11 @@
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import YouTube from '@u-wave/react-youtube';
 
-var YouTubePlayerEmbed = (_temp2 = _class = function (_React$Component) {
+var YouTubePlayerEmbed = function (_React$Component) {
   _inherits(YouTubePlayerEmbed, _React$Component);
 
   function YouTubePlayerEmbed() {
@@ -58,10 +55,12 @@ var YouTubePlayerEmbed = (_temp2 = _class = function (_React$Component) {
   };
 
   return YouTubePlayerEmbed;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+YouTubePlayerEmbed.defaultProps = {
   controllable: false
-}, _temp2);
-export { YouTubePlayerEmbed as default };
+};
+export default YouTubePlayerEmbed;
 YouTubePlayerEmbed.propTypes = process.env.NODE_ENV !== "production" ? {
   active: PropTypes.bool.isRequired,
   media: PropTypes.object,

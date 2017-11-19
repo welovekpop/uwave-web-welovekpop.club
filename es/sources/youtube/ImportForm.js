@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaylistIcon from 'material-ui/svg-icons/av/playlist-play';
@@ -29,7 +26,7 @@ var _ref3 = _jsx(PlaylistIcon, {
 
 var _ref4 = _jsx(FormGroup, {}, void 0, _jsx(Button, {}, void 0, 'Import Playlist'));
 
-var YoutubeImportForm = (_temp2 = _class = function (_React$Component) {
+var YoutubeImportForm = function (_React$Component) {
   _inherits(YoutubeImportForm, _React$Component);
 
   function YoutubeImportForm() {
@@ -87,10 +84,12 @@ var YoutubeImportForm = (_temp2 = _class = function (_React$Component) {
   };
 
   return YoutubeImportForm;
-}(React.Component), _class.contextTypes = {
+}(React.Component);
+
+YoutubeImportForm.contextTypes = {
   store: PropTypes.object
-}, _temp2);
-export { YoutubeImportForm as default };
+};
+export default YoutubeImportForm;
 YoutubeImportForm.propTypes = process.env.NODE_ENV !== "production" ? {
   onShowImportPanel: PropTypes.func.isRequired,
   onHideImportPanel: PropTypes.func.isRequired

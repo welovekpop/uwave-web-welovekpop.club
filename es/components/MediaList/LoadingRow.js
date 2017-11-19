@@ -4,9 +4,6 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -28,7 +25,7 @@ var _ref4 = _jsx('div', {
   className: 'MediaListRow-duration'
 }, void 0, ' \u2026 ');
 
-var LoadingRow = (_temp = _class = function (_React$Component) {
+var LoadingRow = function (_React$Component) {
   _inherits(LoadingRow, _React$Component);
 
   function LoadingRow() {
@@ -57,10 +54,12 @@ var LoadingRow = (_temp = _class = function (_React$Component) {
   };
 
   return LoadingRow;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+LoadingRow.defaultProps = {
   selected: false
-}, _temp);
-export { LoadingRow as default };
+};
+export default LoadingRow;
 LoadingRow.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   selected: PropTypes.bool

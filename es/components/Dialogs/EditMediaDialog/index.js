@@ -4,9 +4,6 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -34,6 +31,8 @@ var parseDuration = function parseDuration(str) {
   }, 0);
 };
 
+var enhance = translate();
+
 var _ref = _jsx(ArtistIcon, {
   color: '#9f9d9e'
 });
@@ -54,7 +53,7 @@ var _ref5 = _jsx(EndIcon, {
   color: '#9f9d9e'
 });
 
-var EditMediaDialog = (_dec = translate(), _dec(_class = function (_React$Component) {
+var EditMediaDialog = function (_React$Component) {
   _inherits(EditMediaDialog, _React$Component);
 
   function EditMediaDialog() {
@@ -90,10 +89,10 @@ var EditMediaDialog = (_dec = translate(), _dec(_class = function (_React$Compon
       var endSeconds = parseDuration(end);
 
       var errors = [];
-      if (isNaN(startSeconds) || startSeconds < 0) {
+      if (Number.isNaN(startSeconds) || startSeconds < 0) {
         errors.push('invalidStartTime');
       }
-      if (isNaN(endSeconds) || endSeconds < 0) {
+      if (Number.isNaN(endSeconds) || endSeconds < 0) {
         errors.push('invalidEndTime');
       } else if (endSeconds < startSeconds) {
         errors.push('endTimeBeforeStart');
@@ -173,7 +172,9 @@ var EditMediaDialog = (_dec = translate(), _dec(_class = function (_React$Compon
         tabIndex: baseTabIndex + 1
       });
 
-      var fromLabel = _jsx('label', {
+      var fromLabel =
+      // eslint-disable-next-line jsx-a11y/label-has-for
+      _jsx('label', {
         htmlFor: this.labelStart,
         className: 'EditMediaDialogGroup-label'
       }, void 0, t('dialogs.editMedia.playFromLabel'));
@@ -186,7 +187,9 @@ var EditMediaDialog = (_dec = translate(), _dec(_class = function (_React$Compon
         icon: _ref4,
         tabIndex: baseTabIndex + 2
       });
-      var toLabel = _jsx('label', {
+      var toLabel =
+      // eslint-disable-next-line jsx-a11y/label-has-for
+      _jsx('label', {
         htmlFor: this.labelEnd,
         className: 'EditMediaDialogGroup-label'
       }, void 0, t('dialogs.editMedia.playToLabel'));
@@ -246,8 +249,8 @@ var EditMediaDialog = (_dec = translate(), _dec(_class = function (_React$Compon
   };
 
   return EditMediaDialog;
-}(React.Component)) || _class);
-export { EditMediaDialog as default };
+}(React.Component);
+
 EditMediaDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   open: PropTypes.bool,
@@ -260,4 +263,7 @@ EditMediaDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   onEditedMedia: PropTypes.func.isRequired,
   onCloseDialog: PropTypes.func.isRequired
 } : {};
+
+
+export default enhance(EditMediaDialog);
 //# sourceMappingURL=index.js.map

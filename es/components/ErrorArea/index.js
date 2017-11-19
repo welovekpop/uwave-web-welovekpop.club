@@ -3,9 +3,6 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
 import _extends from 'babel-runtime/helpers/extends';
-
-var _dec, _class, _class2, _temp2, _initialiseProps;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from 'material-ui/Snackbar';
@@ -42,7 +39,9 @@ export var errorThemeSelector = createSelector(function (props) {
   };
 });
 
-var ErrorArea = (_dec = muiThemeable(), _dec(_class = (_temp2 = _class2 = function (_React$Component) {
+var enhance = muiThemeable();
+
+var ErrorArea = function (_React$Component) {
   _inherits(ErrorArea, _React$Component);
 
   function ErrorArea() {
@@ -77,9 +76,13 @@ var ErrorArea = (_dec = muiThemeable(), _dec(_class = (_temp2 = _class2 = functi
   };
 
   return ErrorArea;
-}(React.Component), _class2.childContextTypes = {
+}(React.Component);
+
+ErrorArea.childContextTypes = {
   muiTheme: PropTypes.object
-}, _initialiseProps = function _initialiseProps() {
+};
+
+var _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
   this.handleDismiss = function () {
@@ -87,8 +90,8 @@ var ErrorArea = (_dec = muiThemeable(), _dec(_class = (_temp2 = _class2 = functi
 
     (_props = _this2.props).onDismiss.apply(_props, arguments);
   };
-}, _temp2)) || _class);
-export { ErrorArea as default };
+};
+
 ErrorArea.propTypes = process.env.NODE_ENV !== "production" ? {
   error: PropTypes.string,
   onDismiss: PropTypes.func.isRequired,
@@ -96,4 +99,7 @@ ErrorArea.propTypes = process.env.NODE_ENV !== "production" ? {
   // eslint-disable-next-line react/no-unused-prop-types
   muiTheme: PropTypes.object.isRequired
 } : {};
+
+
+export default enhance(ErrorArea);
 //# sourceMappingURL=index.js.map

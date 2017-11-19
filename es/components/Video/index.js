@@ -3,9 +3,6 @@ import _extends from 'babel-runtime/helpers/extends';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class;
-
 import cx from 'classnames';
 import isEqual from 'is-equal-shallow';
 import React from 'react';
@@ -21,11 +18,13 @@ var defaultSourceTools = function defaultSourceTools() {
   return null;
 };
 
+var enhance = injectMediaSources();
+
 var _ref = _jsx('div', {
   className: 'Video'
 });
 
-var Video = (_dec = injectMediaSources(), _dec(_class = function (_React$Component) {
+var Video = function (_React$Component) {
   _inherits(Video, _React$Component);
 
   function Video() {
@@ -159,8 +158,8 @@ var Video = (_dec = injectMediaSources(), _dec(_class = function (_React$Compone
   };
 
   return Video;
-}(React.Component)) || _class);
-export { Video as default };
+}(React.Component);
+
 Video.propTypes = process.env.NODE_ENV !== "production" ? {
   getAllMediaSources: PropTypes.func.isRequired,
   isFullscreen: PropTypes.bool,
@@ -173,4 +172,7 @@ Video.propTypes = process.env.NODE_ENV !== "production" ? {
   onFullscreenEnter: PropTypes.func.isRequired,
   onFullscreenExit: PropTypes.func.isRequired
 } : {};
+
+
+export default enhance(Video);
 //# sourceMappingURL=index.js.map

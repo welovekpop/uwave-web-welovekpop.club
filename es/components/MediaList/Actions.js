@@ -7,7 +7,7 @@ var dontBubble = function dontBubble(event) {
   return event.stopPropagation();
 };
 
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 var Actions = function Actions(_ref) {
   var className = _ref.className,
       makeActions = _ref.makeActions,
@@ -17,7 +17,7 @@ var Actions = function Actions(_ref) {
     onClick: dontBubble
   }, void 0, makeActions(media));
 };
-/* eslint-enable jsx-a11y/no-static-element-interactions */
+/* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 
 Actions.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,

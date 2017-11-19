@@ -133,5 +133,5 @@ var Uwave = function () {
   return Uwave;
 }();
 
-export { Uwave as default };
+export default Uwave;
 //# sourceMappingURL=Uwave.js.map

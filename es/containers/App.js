@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -42,7 +39,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 var enhance = connect(mapStateToProps, mapDispatchToProps);
 
-var AppContainer = (_temp = _class = function (_React$Component) {
+var AppContainer = function (_React$Component) {
   _inherits(AppContainer, _React$Component);
 
   function AppContainer() {
@@ -88,11 +85,13 @@ var AppContainer = (_temp = _class = function (_React$Component) {
   };
 
   return AppContainer;
-}(React.Component), _class.childContextTypes = {
+}(React.Component);
+
+AppContainer.childContextTypes = {
   timerCallbacks: PropTypes.arrayOf(PropTypes.func),
   mediaSources: PropTypes.object,
   uwave: PropTypes.object
-}, _temp);
+};
 AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   mediaSources: PropTypes.object.isRequired,
   uwave: PropTypes.object,

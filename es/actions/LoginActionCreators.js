@@ -128,7 +128,9 @@ export function register(_ref3) {
       password = _ref3.password,
       grecaptcha = _ref3.grecaptcha;
 
-  return post('/auth/register', { email: email, username: username, password: password, grecaptcha: grecaptcha }, {
+  return post('/auth/register', {
+    email: email, username: username, password: password, grecaptcha: grecaptcha
+  }, {
     onStart: function onStart() {
       return { type: REGISTER_START };
     },

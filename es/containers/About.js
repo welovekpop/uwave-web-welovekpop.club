@@ -3,15 +3,12 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from '../components/Overlay';
 import About from '../components/About';
 
-var AboutContainer = (_temp = _class = function (_React$Component) {
+var AboutContainer = function (_React$Component) {
   _inherits(AboutContainer, _React$Component);
 
   function AboutContainer() {
@@ -39,8 +36,10 @@ var AboutContainer = (_temp = _class = function (_React$Component) {
   };
 
   return AboutContainer;
-}(React.Component), _class.contextTypes = {
+}(React.Component);
+
+AboutContainer.contextTypes = {
   uwave: PropTypes.object
-}, _temp);
-export { AboutContainer as default };
+};
+export default AboutContainer;
 //# sourceMappingURL=About.js.map

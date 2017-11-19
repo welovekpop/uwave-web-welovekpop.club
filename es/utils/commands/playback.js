@@ -6,7 +6,7 @@ import { doUpvote, doDownvote } from '../../actions/VoteActionCreators';
 register('volume', 'Set the current volume.', {
   action: function action(value) {
     var volume = parseInt(value, 10);
-    if (!isFinite(volume) || volume < 0 || volume > 100) {
+    if (!Number.isFinite(volume) || volume < 0 || volume > 100) {
       return log('Volume must be a number between 0 and 100.');
     }
     return setVolume(volume);

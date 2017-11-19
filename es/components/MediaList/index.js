@@ -3,9 +3,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -28,9 +25,7 @@ function didMediaChange(prev, next) {
   });
 }
 
-var _ref = _jsx('span', {});
-
-var MediaList = (_temp2 = _class = function (_React$Component) {
+var MediaList = function (_React$Component) {
   _inherits(MediaList, _React$Component);
 
   function MediaList() {
@@ -44,6 +39,7 @@ var MediaList = (_temp2 = _class = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = { selection: itemSelection(_this.props.media) }, _this.renderRow = function (index) {
       var _makeActions = _this.props.makeActions;
+
       var props = _this.props.rowProps || {};
       var media = _this.props.media[index];
       var selection = _this.state.selection;
@@ -130,15 +126,19 @@ var MediaList = (_temp2 = _class = function (_React$Component) {
   };
 
   return MediaList;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+var _ref = _jsx('span', {});
+
+MediaList.defaultProps = {
   // The `size` property is only necessary for lazy loading.
   size: null,
   rowComponent: Row,
   makeActions: function makeActions() {
     return _ref;
   }
-}, _temp2);
-export { MediaList as default };
+};
+export default MediaList;
 MediaList.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   media: PropTypes.array,

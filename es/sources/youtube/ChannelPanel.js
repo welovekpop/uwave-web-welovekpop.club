@@ -57,7 +57,7 @@ var ChannelPanel = function (_React$Component) {
   return ChannelPanel;
 }(React.Component);
 
-export { ChannelPanel as default };
+export default ChannelPanel;
 ChannelPanel.propTypes = process.env.NODE_ENV !== "production" ? {
   importingChannelTitle: PropTypes.string.isRequired,
   importablePlaylists: PropTypes.arrayOf(PropTypes.object).isRequired,

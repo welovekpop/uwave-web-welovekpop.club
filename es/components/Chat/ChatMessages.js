@@ -141,7 +141,7 @@ var ChatMessages = function (_React$Component) {
   return ChatMessages;
 }(React.Component);
 
-export { ChatMessages as default };
+export default ChatMessages;
 ChatMessages.propTypes = process.env.NODE_ENV !== "production" ? {
   messages: PropTypes.array,
   motd: PropTypes.array,

@@ -20,6 +20,7 @@ var userTarget = {
   drop: function drop(props, monitor, component) {
     var insertAfter = !isDraggingNearTopOfRow(monitor, component);
     var position = component.props.position;
+
     return { position: insertAfter ? position + 1 : position };
   }
 };

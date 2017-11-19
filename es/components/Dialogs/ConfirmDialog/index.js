@@ -4,9 +4,6 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
@@ -26,7 +23,7 @@ var _ref2 = _jsx('div', {
   size: 'tiny'
 }));
 
-var ConfirmDialog = (_temp2 = _class = function (_React$Component) {
+var ConfirmDialog = function (_React$Component) {
   _inherits(ConfirmDialog, _React$Component);
 
   function ConfirmDialog() {
@@ -95,11 +92,13 @@ var ConfirmDialog = (_temp2 = _class = function (_React$Component) {
   };
 
   return ConfirmDialog;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+ConfirmDialog.defaultProps = {
   cancelLabel: 'Cancel',
   confirmLabel: 'OK'
-}, _temp2);
-export { ConfirmDialog as default };
+};
+export default ConfirmDialog;
 ConfirmDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   children: PropTypes.node,
   confirmLabel: PropTypes.string,

@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -15,6 +12,8 @@ import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
 import Button from '../../Form/Button';
+
+var enhance = translate();
 
 var _ref = _jsx(EmailIcon, {
   color: '#9f9d9e'
@@ -30,7 +29,7 @@ var _ref3 = _jsx('div', {
   size: 'tiny'
 }));
 
-var LoginForm = (_dec = translate(), _dec(_class = function (_React$Component) {
+var LoginForm = function (_React$Component) {
   _inherits(LoginForm, _React$Component);
 
   function LoginForm() {
@@ -97,12 +96,15 @@ var LoginForm = (_dec = translate(), _dec(_class = function (_React$Component) {
   };
 
   return LoginForm;
-}(React.Component)) || _class);
-export { LoginForm as default };
+}(React.Component);
+
 LoginForm.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   error: PropTypes.object,
   onLogin: PropTypes.func,
   onOpenResetPasswordDialog: PropTypes.func
 } : {};
+
+
+export default enhance(LoginForm);
 //# sourceMappingURL=LoginForm.js.map

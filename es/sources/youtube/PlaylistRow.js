@@ -74,7 +74,7 @@ var PlaylistRow = function (_React$Component) {
   return PlaylistRow;
 }(React.Component);
 
-export { PlaylistRow as default };
+export default PlaylistRow;
 PlaylistRow.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   playlist: PropTypes.object.isRequired,

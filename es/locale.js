@@ -1,41 +1,38 @@
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-
-var _class, _temp;
-
 import i18next from 'i18next';
 import * as en from './locale/en.js';
 
 var resources = {
   cs: function cs() {
-    return System.import('./locale/cs.js');
+    return import('./locale/cs.js');
   },
   cy: function cy() {
-    return System.import('./locale/cy.js');
+    return import('./locale/cy.js');
   },
   de: function de() {
-    return System.import('./locale/de.js');
+    return import('./locale/de.js');
   },
   es: function es() {
-    return System.import('./locale/es.js');
+    return import('./locale/es.js');
   },
   fr: function fr() {
-    return System.import('./locale/fr.js');
+    return import('./locale/fr.js');
   },
   ko: function ko() {
-    return System.import('./locale/ko.js');
+    return import('./locale/ko.js');
   },
   nl: function nl() {
-    return System.import('./locale/nl.js');
+    return import('./locale/nl.js');
   },
   pt: function pt() {
-    return System.import('./locale/pt.js');
+    return import('./locale/pt.js');
   },
   zh: function zh() {
-    return System.import('./locale/zh.js');
+    return import('./locale/zh.js');
   }
 };
 
-var UwaveBackend = (_temp = _class = function () {
+var UwaveBackend = function () {
   function UwaveBackend() {
     _classCallCheck(this, UwaveBackend);
 
@@ -65,7 +62,9 @@ var UwaveBackend = (_temp = _class = function () {
   };
 
   return UwaveBackend;
-}(), _class.type = 'backend', _temp);
+}();
+
+UwaveBackend.type = 'backend';
 
 
 i18next.use(new UwaveBackend());

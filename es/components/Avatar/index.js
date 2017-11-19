@@ -10,7 +10,7 @@ var Avatar = function Avatar(_ref) {
     className: cx('Avatar', className)
   }, void 0, _jsx('img', {
     className: 'Avatar-image',
-    src: user.avatar || '/a/' + encodeURIComponent(user._id),
+    src: user.avatar || 'https://sigil.u-wave.net/' + encodeURIComponent(user._id),
     alt: user.username
   }));
 };

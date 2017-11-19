@@ -1,13 +1,10 @@
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _class, _temp2;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
-var ReCaptcha = (_temp2 = _class = function (_React$Component) {
+var ReCaptcha = function (_React$Component) {
   _inherits(ReCaptcha, _React$Component);
 
   function ReCaptcha() {
@@ -41,10 +38,12 @@ var ReCaptcha = (_temp2 = _class = function (_React$Component) {
   };
 
   return ReCaptcha;
-}(React.Component), _class.defaultProps = {
+}(React.Component);
+
+ReCaptcha.defaultProps = {
   theme: 'light'
-}, _temp2);
-export { ReCaptcha as default };
+};
+export default ReCaptcha;
 ReCaptcha.propTypes = process.env.NODE_ENV !== "production" ? {
   grecaptcha: PropTypes.object.isRequired,
   sitekey: PropTypes.string.isRequired,

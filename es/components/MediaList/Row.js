@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class, _class2, _temp2;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -40,11 +37,13 @@ var collect = function collect(connect) {
   };
 };
 
+var enhance = DragSource(MEDIA, mediaSource, collect);
+
 var _ref2 = _jsx(MediaLoadingIndicator, {
   className: 'MediaListRow-loader'
 });
 
-var Row = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = (_temp2 = _class2 = function (_React$Component) {
+var Row = function (_React$Component) {
   _inherits(Row, _React$Component);
 
   function Row() {
@@ -56,7 +55,11 @@ var Row = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = (_temp2
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleDoubleClick = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleKeyPress = function (event) {
+      if (event.code === 'Space') {
+        _this.props.onClick();
+      }
+    }, _this.handleDoubleClick = function () {
       _this.props.onOpenPreviewMediaDialog(_this.props.media);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -90,9 +93,8 @@ var Row = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = (_temp2
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     _jsx('div', {
       className: cx('MediaListRow', className, selectedClass, loadingClass),
-      onMouseEnter: this.handleMouseEnter,
-      onMouseLeave: this.handleMouseLeave,
       onDoubleClick: this.handleDoubleClick,
+      onKeyPress: this.handleKeyPress,
       onClick: onClick
     }, void 0, media.loading ? _ref2 : _jsx(MediaThumbnail, {
       url: media.thumbnail
@@ -113,10 +115,11 @@ var Row = (_dec = DragSource(MEDIA, mediaSource, collect), _dec(_class = (_temp2
   };
 
   return Row;
-}(React.Component), _class2.defaultProps = {
+}(React.Component);
+
+Row.defaultProps = {
   selected: false
-}, _temp2)) || _class);
-export { Row as default };
+};
 Row.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   connectDragSource: PropTypes.func.isRequired,
@@ -129,4 +132,7 @@ Row.propTypes = process.env.NODE_ENV !== "production" ? {
   onClick: PropTypes.func,
   makeActions: PropTypes.func
 } : {};
+
+
+export default enhance(Row);
 //# sourceMappingURL=Row.js.map

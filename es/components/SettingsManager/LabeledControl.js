@@ -2,6 +2,8 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// The control is in `children`.
+/* eslint-disable jsx-a11y/label-has-for */
 var LabeledControl = function LabeledControl(_ref) {
   var id = _ref.id,
       label = _ref.label,
@@ -10,6 +12,7 @@ var LabeledControl = function LabeledControl(_ref) {
     htmlFor: id
   }, void 0, label), children);
 };
+/* eslint-enable jsx-a11y/label-has-for */
 
 LabeledControl.propTypes = process.env.NODE_ENV !== "production" ? {
   id: PropTypes.string.isRequired,

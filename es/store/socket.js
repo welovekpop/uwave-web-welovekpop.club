@@ -16,9 +16,10 @@ import { favorited, receiveVote } from '../actions/VoteActionCreators';
 var debug = createDebug('uwave:websocket');
 
 function defaultUrl() {
-  var port = location.port || (location.protocol === 'https:' ? 443 : 80);
-  var protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-  return protocol + '//' + location.hostname + ':' + port;
+  var loc = window.location;
+  var port = loc.port || (loc.protocol === 'https:' ? 443 : 80);
+  var protocol = loc.protocol === 'https:' ? 'wss:' : 'ws:';
+  return protocol + '//' + loc.hostname + ':' + port;
 }
 
 var actions = {
@@ -102,7 +103,9 @@ var actions = {
         position = _ref11.position,
         waitlist = _ref11.waitlist;
 
-    return movedInWaitlist({ userID: userID, moderatorID: moderatorID, position: position, waitlist: waitlist });
+    return movedInWaitlist({
+      userID: userID, moderatorID: moderatorID, position: position, waitlist: waitlist
+    });
   },
 
   // TODO Treat moderator force-add and force-remove differently from voluntary
@@ -182,6 +185,7 @@ export default function middleware() {
 
     function maybeAuthenticateOnConnect(state) {
       var jwt = state.auth.jwt;
+
       debug('open', jwt);
       if (jwt) {
         sendJWT(jwt);
@@ -245,7 +249,14 @@ export default function middleware() {
     return function (next) {
       return function (action) {
         var type = action.type,
-            payload = action.payload;
+            payload = action.payload,
+            error = action.error;
+
+
+        if (error) {
+          next(action);
+          return;
+        }
 
         switch (type) {
           case SOCKET_RECONNECT:

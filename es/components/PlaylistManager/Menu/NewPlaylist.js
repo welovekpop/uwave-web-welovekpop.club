@@ -2,9 +2,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,6 +9,8 @@ import { translate } from 'react-i18next';
 import CreatePlaylistIcon from 'material-ui/svg-icons/content/add';
 
 import PromptDialog from '../../Dialogs/PromptDialog';
+
+var enhance = translate();
 
 var _ref = _jsx('div', {
   className: 'PlaylistMenuRow-active-icon'
@@ -23,7 +22,7 @@ var _ref2 = _jsx(CreatePlaylistIcon, {
   color: '#777'
 });
 
-var NewPlaylist = (_dec = translate(), _dec(_class = function (_React$Component) {
+var NewPlaylist = function (_React$Component) {
   _inherits(NewPlaylist, _React$Component);
 
   function NewPlaylist() {
@@ -73,11 +72,14 @@ var NewPlaylist = (_dec = translate(), _dec(_class = function (_React$Component)
   };
 
   return NewPlaylist;
-}(React.Component)) || _class);
-export { NewPlaylist as default };
+}(React.Component);
+
 NewPlaylist.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   t: PropTypes.func.isRequired,
   onCreatePlaylist: PropTypes.func.isRequired
 } : {};
+
+
+export default enhance(NewPlaylist);
 //# sourceMappingURL=NewPlaylist.js.map

@@ -75,7 +75,7 @@ var Volume = function (_React$Component) {
   return Volume;
 }(React.Component);
 
-export { Volume as default };
+export default Volume;
 Volume.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   volume: PropTypes.number,

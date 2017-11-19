@@ -2,9 +2,6 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
 import _jsx from 'babel-runtime/helpers/jsx';
-
-var _dec, _class;
-
 import cx from 'classnames';
 import sortBy from 'lodash/sortBy';
 import uniqBy from 'lodash/uniqBy';
@@ -66,13 +63,15 @@ var renderEmoji = function renderEmoji(props) {
   return React.createElement(EmojiSuggestion, props);
 };
 
-var Input = (_dec = translate(), _dec(_class = function (_React$Component) {
-  _inherits(Input, _React$Component);
+var enhance = translate();
 
-  function Input() {
+var ChatInput = function (_React$Component) {
+  _inherits(ChatInput, _React$Component);
+
+  function ChatInput() {
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Input);
+    _classCallCheck(this, ChatInput);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -99,11 +98,11 @@ var Input = (_dec = translate(), _dec(_class = function (_React$Component) {
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  Input.prototype.clear = function clear() {
+  ChatInput.prototype.clear = function clear() {
     this.setState({ value: '' });
   };
 
-  Input.prototype.render = function render() {
+  ChatInput.prototype.render = function render() {
     var _state = this.state,
         focused = _state.focused,
         value = _state.value;
@@ -150,14 +149,17 @@ var Input = (_dec = translate(), _dec(_class = function (_React$Component) {
     })));
   };
 
-  return Input;
-}(React.Component)) || _class);
-export { Input as default };
-Input.propTypes = process.env.NODE_ENV !== "production" ? {
+  return ChatInput;
+}(React.Component);
+
+ChatInput.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   onSend: PropTypes.func.isRequired,
   mentionableUsers: PropTypes.array.isRequired,
   mentionableGroups: PropTypes.array.isRequired,
   availableEmoji: PropTypes.array.isRequired
 } : {};
+
+
+export default enhance(ChatInput);
 //# sourceMappingURL=index.js.map

@@ -11,7 +11,8 @@ var _ref2 = _jsx(Loader, {
 var OfflineIcon = function OfflineIcon(_ref) {
   var style = _ref.style;
   return _jsx('div', {
-    style: _extends({}, style, { width: 24, height: 24, display: 'inline-block' })
+    style: _extends({}, style, { width: 24, height: 24, display: 'inline-block'
+    })
   }, void 0, _ref2);
 };
 

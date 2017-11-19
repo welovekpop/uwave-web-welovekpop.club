@@ -24,6 +24,7 @@ var PlaylistImport = function PlaylistImport(_ref) {
   var sources = getAllMediaSources();
   Object.keys(sources).forEach(function (sourceType) {
     var ImportForm = sources[sourceType].ImportForm;
+
     if (ImportForm) {
       forms.push(_jsx(ImportForm, {
         onShowImportPanel: function onShowImportPanel() {

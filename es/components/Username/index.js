@@ -19,8 +19,8 @@ var Username = function Username(_ref) {
   var muiTheme = _ref.muiTheme,
       className = _ref.className,
       user = _ref.user;
-
   var rankColors = muiTheme.rankColors;
+
   var roleName = tempRoleIDToRoleName[Math.min(user.role, 4)];
   var styles = void 0;
   if (rankColors[roleName]) {

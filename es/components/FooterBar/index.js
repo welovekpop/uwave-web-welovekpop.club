@@ -3,9 +3,6 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-
-var _dec, _class, _class2, _temp;
-
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -19,13 +16,15 @@ import ResponseBar from './Responses/Bar';
 
 import RandomizePlaylistsNotice from '../../_wlk/RandomizePlaylistsNotice';
 
+var enhance = translate();
+
 var _ref = _jsx(RandomizePlaylistsNotice, {});
 
 var _ref2 = _jsx('div', {
   className: 'FooterBar-guest'
 }, void 0, 'You have to log in if you want to play!');
 
-var FooterBar = (_dec = translate(), _dec(_class = (_temp = _class2 = function (_React$Component) {
+var FooterBar = function (_React$Component) {
   _inherits(FooterBar, _React$Component);
 
   function FooterBar(props) {
@@ -139,10 +138,11 @@ var FooterBar = (_dec = translate(), _dec(_class = (_temp = _class2 = function (
   };
 
   return FooterBar;
-}(React.Component), _class2.contextTypes = {
+}(React.Component);
+
+FooterBar.contextTypes = {
   muiTheme: PropTypes.object
-}, _temp)) || _class);
-export { FooterBar as default };
+};
 FooterBar.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   className: PropTypes.string,
@@ -171,4 +171,7 @@ FooterBar.propTypes = process.env.NODE_ENV !== "production" ? {
   onUpvote: PropTypes.func,
   onDownvote: PropTypes.func
 } : {};
+
+
+export default enhance(FooterBar);
 //# sourceMappingURL=index.js.map

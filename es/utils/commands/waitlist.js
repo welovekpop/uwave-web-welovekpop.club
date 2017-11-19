@@ -65,7 +65,7 @@ register('wlmove', 'Move a user to a different position in the waitlist. ' + 'Sy
         return dispatch(log('Provide a user to move in the waitlist. Syntax: "/wlmove username position"'));
       }
       var position = parseInt(posStr, 10) - 1;
-      if (!isFinite(position) || position < 0) {
+      if (typeof position !== 'number' || position < 0) {
         return dispatch(log('Provide a position to move @' + username + ' to. Syntax: "/wlmove username position"'));
       }
 

@@ -149,6 +149,7 @@ export function playlistCycled(playlistID) {
 function shouldLoadAfterCycle(playlist) {
   var media = playlist.media;
   // If the playlist was fully loaded, we can cycle naively
+
   if (media.length === playlist.size && media.every(Boolean)) {
     return false;
   }

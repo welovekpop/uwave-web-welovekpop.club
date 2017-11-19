@@ -71,5 +71,5 @@ var ReCaptcha = function (_React$Component) {
   return ReCaptcha;
 }(React.Component);
 
-export { ReCaptcha as default };
+export default ReCaptcha;
 //# sourceMappingURL=index.js.map

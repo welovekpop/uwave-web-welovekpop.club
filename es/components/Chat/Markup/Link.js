@@ -2,7 +2,7 @@ import _extends from 'babel-runtime/helpers/extends';
 import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import React from 'react';
 import PropTypes from 'prop-types';
-import truncate from 'truncate-url';
+import shortenUrl from 'shorten-url';
 
 var Link = function Link(_ref) {
   var children = _ref.children,
@@ -17,7 +17,7 @@ var Link = function Link(_ref) {
       target: '_blank',
       rel: 'noopener noreferrer'
     }, props),
-    truncate(children, 60)
+    shortenUrl(children, 60)
   );
 };
 

@@ -19,7 +19,7 @@ var key = document.querySelector('#reset-data').textContent;
 
 var store = createStore(combineReducers(reducers), { config: config }, applyMiddleware(thunk, webApiRequest()));
 
-var qs = parseQS(location.search.slice(1));
+var qs = parseQS(window.location.search.slice(1));
 store.dispatch(setResetKey(key || qs.key));
 
 createLocale('en').then(function (locale) {

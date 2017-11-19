@@ -79,7 +79,7 @@ var YouTubeImportPlaylistPanel = function (_React$Component) {
   return YouTubeImportPlaylistPanel;
 }(React.Component);
 
-export { YouTubeImportPlaylistPanel as default };
+export default YouTubeImportPlaylistPanel;
 YouTubeImportPlaylistPanel.propTypes = process.env.NODE_ENV !== "production" ? {
   importingPlaylist: PropTypes.shape({
     sourceID: PropTypes.string,

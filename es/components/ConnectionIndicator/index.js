@@ -17,7 +17,7 @@ var positionStyle = {
 
 var _ref2 = _jsx(OfflineIcon, {});
 
-var ConnectionIndicator = enhance(function (_ref) {
+var ConnectionIndicator = function ConnectionIndicator(_ref) {
   var isConnected = _ref.isConnected,
       t = _ref.t;
   return isConnected ? null : _jsx('div', {
@@ -27,12 +27,12 @@ var ConnectionIndicator = enhance(function (_ref) {
     subtitle: t('server.reconnecting'),
     avatar: _ref2
   })));
-});
-
-ConnectionIndicator.propTypes = {
-  t: PropTypes.func.isRequired,
-  isConnected: PropTypes.bool.isRequired
 };
 
-export default ConnectionIndicator;
+ConnectionIndicator.propTypes = process.env.NODE_ENV !== "production" ? {
+  t: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired
+} : {};
+
+export default enhance(ConnectionIndicator);
 //# sourceMappingURL=index.js.map
