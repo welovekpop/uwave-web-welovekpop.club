@@ -11,8 +11,9 @@ import ResponseBar from './Responses/Bar';
 
 import RandomizePlaylistsNotice from '../../_wlk/RandomizePlaylistsNotice';
 
-@translate()
-export default class FooterBar extends React.Component {
+const enhance = translate();
+
+class FooterBar extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     className: PropTypes.string,
@@ -175,3 +176,5 @@ export default class FooterBar extends React.Component {
     );
   }
 }
+
+export default enhance(FooterBar);

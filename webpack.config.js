@@ -1,7 +1,6 @@
 const path = require('path');
 const escapeStringRegExp = require('escape-string-regexp');
-const DefinePlugin = require('webpack').DefinePlugin;
-const ProgressPlugin = require('webpack').ProgressPlugin;
+const { DefinePlugin, ProgressPlugin } = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
@@ -48,14 +47,13 @@ const plugins = [
   ]),
   new HtmlPlugin({
     chunks: [ 'bugsnag', 'app' ],
-    inject: false,
     template: './index.html',
+    title: 'üWave',
     minify: nodeEnv === 'production' ? htmlMinifierOptions : false,
     loadingScreen: () => require('./tasks/utils/renderLoadingScreen')()
   }),
   new HtmlPlugin({
     chunks: [ 'passwordReset' ],
-    inject: false,
     template: './password-reset.html',
     filename: 'password-reset.html',
     title: 'Reset Password',
@@ -69,11 +67,20 @@ const plugins = [
 ];
 
 if (nodeEnv === 'production') {
-  const LoaderOptionsPlugin = require('webpack').LoaderOptionsPlugin;
-  const OccurrenceOrderPlugin = require('webpack').optimize.OccurrenceOrderPlugin;
+  const CompressionPlugin = require('compression-webpack-plugin');
+  const brotli = require('brotli/compress');
+  const {
+    LoaderOptionsPlugin,
+    optimize: {
+      OccurrenceOrderPlugin,
+      ModuleConcatenationPlugin
+    }
+  } = require('webpack');
   const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-  const ModuleConcatenationPlugin = require('webpack').optimize.ModuleConcatenationPlugin;
   const CommonShakePlugin = require('webpack-common-shake').Plugin;
+  const SriPlugin = require('webpack-subresource-integrity');
+
+  const compressible = /\.(js|css|svg|mp3)$/;
 
   plugins.push(
     new OccurrenceOrderPlugin(),
@@ -92,7 +99,29 @@ if (nodeEnv === 'production') {
         }
       }
     }),
-    new ModuleConcatenationPlugin()
+    new ModuleConcatenationPlugin(),
+    // Add Gzip-compressed files.
+    new CompressionPlugin({
+      test: compressible,
+      asset: '[path].gz[query]',
+      algorithm: 'gzip'
+    }),
+    // Add Brotli-compressed files.
+    new CompressionPlugin({
+      test: compressible,
+      asset: '[path].br[query]',
+      algorithm(buffer, opts, cb) {
+        const result = brotli(buffer);
+        if (result) {
+          cb(null, Buffer.from(result));
+        } else {
+          cb(null, buffer);
+        }
+      }
+    }),
+    new SriPlugin({
+      hashFuncNames: [ 'sha512' ]
+    })
   );
 }
 
@@ -152,7 +181,8 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: nodeEnv === 'production' ? '[name]_[chunkhash:7].js' : '[name]_dev.js'
+    filename: nodeEnv === 'production' ? '[name]_[chunkhash:7].js' : '[name]_dev.js',
+    crossOriginLoading: 'anonymous'
   },
   plugins,
   module: {

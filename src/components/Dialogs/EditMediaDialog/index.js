@@ -21,8 +21,9 @@ const parseDuration = str => str.split(':')
   .map(part => parseInt(part.trim(), 10))
   .reduce((duration, part) => (duration * 60) + part, 0);
 
-@translate()
-export default class EditMediaDialog extends React.Component {
+const enhance = translate();
+
+class EditMediaDialog extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     open: PropTypes.bool,
@@ -51,16 +52,18 @@ export default class EditMediaDialog extends React.Component {
     e.preventDefault();
 
     const { media, onEditedMedia, onCloseDialog } = this.props;
-    const { artist, title, start, end } = this.state;
+    const {
+      artist, title, start, end
+    } = this.state;
 
     const startSeconds = parseDuration(start);
     const endSeconds = parseDuration(end);
 
     const errors = [];
-    if (isNaN(startSeconds) || startSeconds < 0) {
+    if (Number.isNaN(startSeconds) || startSeconds < 0) {
       errors.push('invalidStartTime');
     }
-    if (isNaN(endSeconds) || endSeconds < 0) {
+    if (Number.isNaN(endSeconds) || endSeconds < 0) {
       errors.push('invalidEndTime');
     } else if (endSeconds < startSeconds) {
       errors.push('endTimeBeforeStart');
@@ -158,6 +161,7 @@ export default class EditMediaDialog extends React.Component {
       );
 
       const fromLabel = (
+        // eslint-disable-next-line jsx-a11y/label-has-for
         <label htmlFor={this.labelStart} className="EditMediaDialogGroup-label">
           {t('dialogs.editMedia.playFromLabel')}
         </label>
@@ -174,6 +178,7 @@ export default class EditMediaDialog extends React.Component {
         />
       );
       const toLabel = (
+        // eslint-disable-next-line jsx-a11y/label-has-for
         <label htmlFor={this.labelEnd} className="EditMediaDialogGroup-label">
           {t('dialogs.editMedia.playToLabel')}
         </label>
@@ -249,3 +254,5 @@ export default class EditMediaDialog extends React.Component {
     );
   }
 }
+
+export default enhance(EditMediaDialog);

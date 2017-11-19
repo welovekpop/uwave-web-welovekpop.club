@@ -27,8 +27,9 @@ const collect = connect => ({
   connectDragPreview: connect.dragPreview()
 });
 
-@DragSource(MEDIA, mediaSource, collect)
-export default class HistoryRow extends React.Component {
+const enhance = DragSource(MEDIA, mediaSource, collect);
+
+class HistoryRow extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     connectDragSource: PropTypes.func.isRequired,
@@ -61,9 +62,13 @@ export default class HistoryRow extends React.Component {
   };
 
   handleDoubleClick = () => {
-    this.props.onOpenPreviewMediaDialog(
-      this.props.media.media
-    );
+    this.props.onOpenPreviewMediaDialog(this.props.media.media);
+  };
+
+  handleKeyPress = (event) => {
+    if (event.code === 'Space') {
+      this.props.onClick();
+    }
   };
 
   render() {
@@ -78,7 +83,9 @@ export default class HistoryRow extends React.Component {
       // etc
       onClick
     } = this.props;
-    const { media, timestamp, user, stats } = historyEntry;
+    const {
+      media, timestamp, user, stats
+    } = historyEntry;
     const { showActions } = this.state;
     const selectedClass = selected ? 'is-selected' : '';
     const thumbnail = (
@@ -90,7 +97,7 @@ export default class HistoryRow extends React.Component {
         />
       </div>
     );
-    return connectDragSource(
+    return connectDragSource((
       // See PlaylistManager/Panel/Row.js
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
@@ -98,6 +105,7 @@ export default class HistoryRow extends React.Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         onDoubleClick={this.handleDoubleClick}
+        onKeyPress={this.handleKeyPress}
         onClick={onClick}
       >
         {thumbnail}
@@ -125,6 +133,8 @@ export default class HistoryRow extends React.Component {
           />
         )}
       </div>
-    );
+    ));
   }
 }
+
+export default enhance(HistoryRow);

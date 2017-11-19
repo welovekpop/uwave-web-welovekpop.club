@@ -18,8 +18,9 @@ const collect = (connect, monitor) => ({
   isOver: monitor.isOver()
 });
 
-@DropTarget(MEDIA, playlistTarget, collect)
-export default class PlaylistRow extends React.Component {
+const enhance = DropTarget(MEDIA, playlistTarget, collect);
+
+class PlaylistRow extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     playlist: PropTypes.object,
@@ -63,7 +64,7 @@ export default class PlaylistRow extends React.Component {
       );
     }
 
-    return connectDropTarget(
+    return connectDropTarget((
       <button
         role="menuitem"
         className={cx('PlaylistMenuRow', activeClass, selectedClass, droppableClass, className)}
@@ -77,6 +78,8 @@ export default class PlaylistRow extends React.Component {
           <div className="PlaylistMenuRow-count">{playlist.size}</div>
         </div>
       </button>
-    );
+    ));
   }
 }
+
+export default enhance(PlaylistRow);

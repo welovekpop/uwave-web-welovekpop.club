@@ -18,26 +18,33 @@ class UserCardWrapper extends React.Component {
   };
 
   componentDidMount() {
-    this.fitInsideWindow();
+    this.shouldFit = true;
   }
 
   componentDidUpdate() {
-    this.fitInsideWindow();
+    this.shouldFit = true;
   }
 
   fitInsideWindow() {
+    if (!this.container) {
+      return;
+    }
+
     const card = this.container.firstChild;
     const rect = card.getBoundingClientRect();
     const offsetBottom = window.innerHeight - rect.bottom;
     if (offsetBottom < 0) {
       this.setState({
-        positionDiffY: offsetBottom
+        positionDiffY: offsetBottom - 1
       });
     }
   }
 
   refContainer = (container) => {
     this.container = container;
+    if (this.shouldFit && container) {
+      this.fitInsideWindow();
+    }
   };
 
   render() {
