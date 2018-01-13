@@ -19,7 +19,10 @@ import {
   SHOULD_RANDOMIZE
 } from '../_wlk/constants';
 
-import { advance } from '../actions/BoothActionCreators';
+import {
+  advance,
+  skipped
+} from '../actions/BoothActionCreators';
 import {
   receive as chatReceive,
   removeMessage,
@@ -83,6 +86,9 @@ const actions = {
   },
   advance(booth) {
     return advance(booth);
+  },
+  skip({ userID, moderatorID, reason }) {
+    return skipped({ userID, moderatorID, reason });
   },
   favorite({ userID, historyID }) {
     return favorited({ userID, historyID });

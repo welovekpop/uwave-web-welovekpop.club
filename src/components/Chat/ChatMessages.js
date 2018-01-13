@@ -1,22 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogMessage from './LogMessage';
 import Message from './Message';
-import JoinMessage from './NotificationMessages/JoinMessage';
-import LeaveMessage from './NotificationMessages/LeaveMessage';
-import NameChangedMessage from './NotificationMessages/NameChangedMessage';
 import Motd from './Motd';
 import ScrollDownNotice from './ScrollDownNotice';
-
-const specialTypes = {
-  log: LogMessage,
-  userJoin: JoinMessage,
-  userLeave: LeaveMessage,
-  userNameChanged: NameChangedMessage
-};
+import specialMessages from './specialMessages';
 
 export default class ChatMessages extends React.Component {
   static propTypes = {
+    bus: PropTypes.object.isRequired,
     messages: PropTypes.array,
     motd: PropTypes.array,
     canDeleteMessages: PropTypes.bool,
@@ -32,8 +23,12 @@ export default class ChatMessages extends React.Component {
   };
 
   componentDidMount() {
+    const { bus } = this.props;
+
     this.scrollToBottom();
     this.shouldScrollToBottom = false;
+
+    bus.on('chat:scroll', this.onExternalScroll);
 
     // A window resize may affect the available space.
     if (typeof window !== 'undefined') {
@@ -54,10 +49,25 @@ export default class ChatMessages extends React.Component {
   }
 
   componentWillUnmount() {
+    const { bus } = this.props;
+
+    bus.off('chat:scroll', this.onExternalScroll);
+
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', this.handleResize);
     }
   }
+
+  onExternalScroll = (direction) => {
+    const el = this.container;
+    if (direction === 'start') {
+      el.scrollTop = 0;
+    } else if (direction === 'end') {
+      el.scrollTop = el.scrollHeight;
+    } else {
+      el.scrollTop += direction * 250;
+    }
+  };
 
   scrollToBottom() {
     const el = this.container;
@@ -107,7 +117,7 @@ export default class ChatMessages extends React.Component {
   }
 
   renderMessage(msg) {
-    const SpecialMessage = specialTypes[msg.type];
+    const SpecialMessage = specialMessages[msg.type];
     if (SpecialMessage) {
       return (
         <SpecialMessage
