@@ -5,20 +5,10 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogMessage from './LogMessage';
 import Message from './Message';
-import JoinMessage from './NotificationMessages/JoinMessage';
-import LeaveMessage from './NotificationMessages/LeaveMessage';
-import NameChangedMessage from './NotificationMessages/NameChangedMessage';
 import Motd from './Motd';
 import ScrollDownNotice from './ScrollDownNotice';
-
-var specialTypes = {
-  log: LogMessage,
-  userJoin: JoinMessage,
-  userLeave: LeaveMessage,
-  userNameChanged: NameChangedMessage
-};
+import specialMessages from './specialMessages';
 
 var ChatMessages = function (_React$Component) {
   _inherits(ChatMessages, _React$Component);
@@ -34,6 +24,15 @@ var ChatMessages = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
       isScrolledToBottom: true
+    }, _this.onExternalScroll = function (direction) {
+      var el = _this.container;
+      if (direction === 'start') {
+        el.scrollTop = 0;
+      } else if (direction === 'end') {
+        el.scrollTop = el.scrollHeight;
+      } else {
+        el.scrollTop += direction * 250;
+      }
     }, _this.handleResize = function () {
       if (_this.state.isScrolledToBottom) {
         _this.scrollToBottom();
@@ -51,8 +50,13 @@ var ChatMessages = function (_React$Component) {
   }
 
   ChatMessages.prototype.componentDidMount = function componentDidMount() {
+    var bus = this.props.bus;
+
+
     this.scrollToBottom();
     this.shouldScrollToBottom = false;
+
+    bus.on('chat:scroll', this.onExternalScroll);
 
     // A window resize may affect the available space.
     if (typeof window !== 'undefined') {
@@ -73,6 +77,11 @@ var ChatMessages = function (_React$Component) {
   };
 
   ChatMessages.prototype.componentWillUnmount = function componentWillUnmount() {
+    var bus = this.props.bus;
+
+
+    bus.off('chat:scroll', this.onExternalScroll);
+
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', this.handleResize);
     }
@@ -103,7 +112,7 @@ var ChatMessages = function (_React$Component) {
   };
 
   ChatMessages.prototype.renderMessage = function renderMessage(msg) {
-    var SpecialMessage = specialTypes[msg.type];
+    var SpecialMessage = specialMessages[msg.type];
     if (SpecialMessage) {
       return React.createElement(SpecialMessage, _extends({
         key: msg._id
@@ -143,6 +152,7 @@ var ChatMessages = function (_React$Component) {
 
 export default ChatMessages;
 ChatMessages.propTypes = process.env.NODE_ENV !== "production" ? {
+  bus: PropTypes.object.isRequired,
   messages: PropTypes.array,
   motd: PropTypes.array,
   canDeleteMessages: PropTypes.bool,

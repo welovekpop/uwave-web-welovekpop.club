@@ -8,6 +8,7 @@ import { translate } from 'react-i18next';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import PromptDialog from '../Dialogs/PromptDialog';
+import DialogCloseAnimation from '../DialogCloseAnimation';
 
 var changeNameButtonStyle = {
   padding: 2,
@@ -72,14 +73,16 @@ var ChangeUsernameButton = function (_React$Component) {
       style: changeNameButtonStyle,
       iconStyle: changeNameIconStyle,
       onClick: this.handleOpen
-    }, void 0, _ref), this.state.changingUsername && _jsx(PromptDialog, {
+    }, void 0, _ref), _jsx(DialogCloseAnimation, {
+      delay: 450
+    }, void 0, this.state.changingUsername && _jsx(PromptDialog, {
       title: t('settings.profile.username.change'),
       submitLabel: t('settings.profile.username.save'),
       icon: _ref2,
       value: initialUsername,
       onSubmit: this.handleSubmit,
       onCancel: this.handleClose
-    }));
+    })));
   };
 
   return ChangeUsernameButton;

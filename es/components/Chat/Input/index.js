@@ -93,6 +93,22 @@ var ChatInput = function (_React$Component) {
         }
         _this.clear();
       }
+      if (e.key === 'PageUp') {
+        e.preventDefault();
+        _this.props.onScroll(-1);
+      }
+      if (e.key === 'PageDown') {
+        e.preventDefault();
+        _this.props.onScroll(1);
+      }
+      if (e.key === 'End' && e.ctrlKey) {
+        e.preventDefault();
+        _this.props.onScroll('end');
+      }
+      if (e.key === 'Home' && e.ctrlKey) {
+        e.preventDefault();
+        _this.props.onScroll('start');
+      }
     }, _this.handleUpdate = function (newValue) {
       _this.setState({ value: newValue });
     }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -155,6 +171,7 @@ var ChatInput = function (_React$Component) {
 ChatInput.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   onSend: PropTypes.func.isRequired,
+  onScroll: PropTypes.func.isRequired,
   mentionableUsers: PropTypes.array.isRequired,
   mentionableGroups: PropTypes.array.isRequired,
   availableEmoji: PropTypes.array.isRequired

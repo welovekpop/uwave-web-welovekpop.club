@@ -1,4 +1,4 @@
-import { ADVANCE, LOAD_HISTORY_START, LOAD_HISTORY_COMPLETE } from '../constants/actionTypes/booth';
+import { ADVANCE, BOOTH_SKIP, LOAD_HISTORY_START, LOAD_HISTORY_COMPLETE } from '../constants/actionTypes/booth';
 import { flattenPlaylistItem } from './PlaylistActionCreators';
 import { get, post } from './RequestActionCreators';
 
@@ -58,6 +58,25 @@ export function skipSelf() {
       return dispatch(post('/booth/skip', { remove: remove }));
     }
     return Promise.reject(new Error('You\'re not currently playing.'));
+  };
+}
+
+export function skipped(_ref) {
+  var userID = _ref.userID,
+      moderatorID = _ref.moderatorID,
+      reason = _ref.reason;
+
+  return function (dispatch, getState) {
+    var users = usersSelector(getState());
+    dispatch({
+      type: BOOTH_SKIP,
+      payload: {
+        user: users[userID],
+        moderator: users[moderatorID],
+        reason: reason,
+        timestamp: Date.now()
+      }
+    });
   };
 }
 

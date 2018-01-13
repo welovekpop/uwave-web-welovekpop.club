@@ -5,12 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import TransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { updateMedia } from '../actions/PlaylistActionCreators';
 import { closeEditMediaDialog } from '../actions/DialogActionCreators';
-
 import { editMediaDialogSelector } from '../selectors/dialogSelectors';
 import EditMediaDialog from '../components/Dialogs/EditMediaDialog';
+import DialogCloseAnimation from '../components/DialogCloseAnimation';
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return bindActionCreators({
@@ -29,10 +28,8 @@ var EditMediaDialogContainer = function EditMediaDialogContainer(_ref) {
       media = _ref.media,
       props = _objectWithoutProperties(_ref, ['onUpdateMedia', 'playlistID', 'media']);
 
-  return _jsx(TransitionGroup, {
-    transitionName: 'Dialog',
-    transitionEnterTimeout: DIALOG_ANIMATION_DURATION,
-    transitionLeaveTimeout: DIALOG_ANIMATION_DURATION
+  return _jsx(DialogCloseAnimation, {
+    delay: DIALOG_ANIMATION_DURATION
   }, void 0, media && React.createElement(EditMediaDialog, _extends({}, props, {
     media: media,
     onEditedMedia: function onEditedMedia(update) {

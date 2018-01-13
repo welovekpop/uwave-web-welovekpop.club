@@ -3,7 +3,10 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import compose from 'recompose/compose';
+import withProps from 'recompose/withProps';
 import { connect } from 'react-redux';
+import { withBus } from 'react-bus';
 import { createStructuredSelector } from 'reselect';
 import { inputMessage } from '../actions/ChatActionCreators';
 import { availableGroupMentionsSelector, emojiCompletionsSelector } from '../selectors/chatSelectors';
@@ -24,18 +27,27 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   }, dispatch);
 };
 
-var _ref2 = _jsx('span', {});
+var enhance = compose(connect(mapStateToProps, mapDispatchToProps), withBus(), withProps(function (_ref) {
+  var bus = _ref.bus;
+  return {
+    onScroll: function onScroll(direction) {
+      return bus.emit('chat:scroll', direction);
+    }
+  };
+}));
 
-var ChatInputContainer = function ChatInputContainer(_ref) {
-  var isLoggedIn = _ref.isLoggedIn,
-      props = _objectWithoutProperties(_ref, ['isLoggedIn']);
+var _ref3 = _jsx('span', {});
 
-  return isLoggedIn ? React.createElement(ChatInput, props) : _ref2;
+var ChatInputContainer = function ChatInputContainer(_ref2) {
+  var isLoggedIn = _ref2.isLoggedIn,
+      props = _objectWithoutProperties(_ref2, ['isLoggedIn']);
+
+  return isLoggedIn ? React.createElement(ChatInput, props) : _ref3;
 };
 
 ChatInputContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   isLoggedIn: PropTypes.bool.isRequired
 } : {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatInputContainer);
+export default enhance(ChatInputContainer);
 //# sourceMappingURL=ChatInput.js.map

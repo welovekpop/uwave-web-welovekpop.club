@@ -78,8 +78,7 @@ var PromptDialog = function (_React$Component) {
         contentClassName: cx('Dialog', contentClassName),
         bodyClassName: cx('Dialog-body', bodyClassName),
         titleClassName: cx('Dialog-title', titleClassName),
-        onRequestClose: this.handleClose,
-        open: true
+        onRequestClose: this.handleClose
       }),
       _jsx(Form, {
         onSubmit: this.handleSubmit
@@ -102,7 +101,8 @@ var PromptDialog = function (_React$Component) {
 
 PromptDialog.defaultProps = {
   submitLabel: 'OK',
-  inputType: 'text'
+  inputType: 'text',
+  open: true
 };
 export default PromptDialog;
 PromptDialog.propTypes = process.env.NODE_ENV !== "production" ? {
@@ -112,6 +112,7 @@ PromptDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   inputType: PropTypes.string,
   icon: PropTypes.node,
   value: PropTypes.string,
+  open: PropTypes.bool,
 
   bodyClassName: PropTypes.string,
   contentClassName: PropTypes.string,

@@ -2,6 +2,7 @@ import { register } from '../ChatCommands';
 import { log } from '../../actions/ChatActionCreators';
 import { setVolume, mute, unmute } from '../../actions/PlaybackActionCreators';
 import { doUpvote, doDownvote } from '../../actions/VoteActionCreators';
+import { set as setSetting } from '../../actions/SettingsActionCreators';
 
 register('volume', 'Set the current volume.', {
   action: function action(value) {
@@ -34,6 +35,18 @@ register('upvote', 'Upvote the current track.', {
 register('downvote', 'Downvote the current track.', {
   action: function action() {
     return doDownvote();
+  }
+});
+
+register('playback', 'Enable or disable playback. Syntax: "/playback on|off"', {
+  action: function action(type) {
+    if (type.toLowerCase() === 'on') {
+      return setSetting('videoEnabled', true);
+    }
+    if (type.toLowerCase() === 'off') {
+      return setSetting('videoEnabled', false);
+    }
+    return log('Use "/playback on" to enable media playback or "/playback off" to disable it.');
   }
 });
 //# sourceMappingURL=playback.js.map

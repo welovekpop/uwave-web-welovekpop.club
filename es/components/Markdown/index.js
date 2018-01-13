@@ -6,6 +6,7 @@ import BaseMarkdown from 'react-markdown';
 var Markdown = function Markdown(_ref) {
   var source = _ref.source;
   return _jsx(BaseMarkdown, {
+    escapeHtml: false,
     source: source
   });
 };

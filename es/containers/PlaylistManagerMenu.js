@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { addMedia as addToPlaylist, createPlaylist, selectPlaylist } from '../actions/PlaylistActionCreators';
 import { showImportPanel } from '../actions/ImportActionCreators';
-import { showSearchResults } from '../actions/SearchActionCreators';
+import { showSearchResults, deleteSearch } from '../actions/SearchActionCreators';
 
 import { playlistsSelector, selectedPlaylistSelector } from '../selectors/playlistSelectors';
 import { searchQuerySelector, showSearchResultsSelector, searchResultsCountSelector } from '../selectors/searchSelectors';
@@ -26,6 +26,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     onCreatePlaylist: createPlaylist,
     onSelectPlaylist: selectPlaylist,
     onSelectSearchResults: showSearchResults,
+    onCloseSearchResults: deleteSearch,
     onShowImportPanel: showImportPanel
   }, dispatch);
 };

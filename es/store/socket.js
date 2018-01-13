@@ -6,7 +6,7 @@ import { SEND_MESSAGE } from '../constants/actionTypes/chat';
 import { DO_UPVOTE, DO_DOWNVOTE } from '../constants/actionTypes/votes';
 import { SHOULD_RANDOMIZE } from '../_wlk/constants';
 
-import { advance as _advance } from '../actions/BoothActionCreators';
+import { advance as _advance, skipped } from '../actions/BoothActionCreators';
 import { receive as chatReceive, removeMessage, removeMessagesByUser, removeAllMessages, muteUser as _chatMute, unmuteUser as _chatUnmute } from '../actions/ChatActionCreators';
 import { cyclePlaylist } from '../actions/PlaylistActionCreators';
 import { join as userJoin, leave as userLeave, changeUsername, changeUserRole, receiveGuestCount } from '../actions/UserActionCreators';
@@ -65,43 +65,50 @@ var actions = {
   advance: function advance(booth) {
     return _advance(booth);
   },
-  favorite: function favorite(_ref6) {
+  skip: function skip(_ref6) {
     var userID = _ref6.userID,
-        historyID = _ref6.historyID;
+        moderatorID = _ref6.moderatorID,
+        reason = _ref6.reason;
+
+    return skipped({ userID: userID, moderatorID: moderatorID, reason: reason });
+  },
+  favorite: function favorite(_ref7) {
+    var userID = _ref7.userID,
+        historyID = _ref7.historyID;
 
     return favorited({ userID: userID, historyID: historyID });
   },
-  vote: function vote(_ref7) {
-    var _id = _ref7._id,
-        value = _ref7.value;
+  vote: function vote(_ref8) {
+    var _id = _ref8._id,
+        value = _ref8.value;
 
     return receiveVote({ userID: _id, vote: value });
   },
-  waitlistJoin: function waitlistJoin(_ref8) {
-    var userID = _ref8.userID,
-        waitlist = _ref8.waitlist;
+  waitlistJoin: function waitlistJoin(_ref9) {
+    var userID = _ref9.userID,
+        waitlist = _ref9.waitlist;
 
     return joinedWaitlist({ userID: userID, waitlist: waitlist });
   },
-  waitlistLeave: function waitlistLeave(_ref9) {
-    var userID = _ref9.userID,
-        waitlist = _ref9.waitlist;
+  waitlistLeave: function waitlistLeave(_ref10) {
+    var userID = _ref10.userID,
+        waitlist = _ref10.waitlist;
 
     return leftWaitlist({ userID: userID, waitlist: waitlist });
   },
   waitlistUpdate: function waitlistUpdate(waitlist) {
     return updatedWaitlist(waitlist);
   },
-  waitlistLock: function waitlistLock(_ref10) {
-    var locked = _ref10.locked;
+  waitlistLock: function waitlistLock(_ref11) {
+    var locked = _ref11.locked;
 
     return setWaitlistLocked(locked);
   },
-  waitlistMove: function waitlistMove(_ref11) {
-    var userID = _ref11.userID,
-        moderatorID = _ref11.moderatorID,
-        position = _ref11.position,
-        waitlist = _ref11.waitlist;
+  waitlistMove: function waitlistMove(_ref12) {
+    var userID = _ref12.userID,
+        moderatorID = _ref12.moderatorID,
+        position = _ref12.position,
+        waitlist = _ref12.waitlist;
 
     return movedInWaitlist({
       userID: userID, moderatorID: moderatorID, position: position, waitlist: waitlist
@@ -110,23 +117,23 @@ var actions = {
 
   // TODO Treat moderator force-add and force-remove differently from voluntary
   // joins and leaves.
-  waitlistAdd: function waitlistAdd(_ref12) {
-    var userID = _ref12.userID,
-        waitlist = _ref12.waitlist;
+  waitlistAdd: function waitlistAdd(_ref13) {
+    var userID = _ref13.userID,
+        waitlist = _ref13.waitlist;
 
     return joinedWaitlist({ userID: userID, waitlist: waitlist });
   },
-  waitlistRemove: function waitlistRemove(_ref13) {
-    var userID = _ref13.userID,
-        waitlist = _ref13.waitlist;
+  waitlistRemove: function waitlistRemove(_ref14) {
+    var userID = _ref14.userID,
+        waitlist = _ref14.waitlist;
 
     return leftWaitlist({ userID: userID, waitlist: waitlist });
   },
   waitlistClear: function waitlistClear() {
     return clearWaitlist();
   },
-  playlistCycle: function playlistCycle(_ref14) {
-    var playlistID = _ref14.playlistID;
+  playlistCycle: function playlistCycle(_ref15) {
+    var playlistID = _ref15.playlistID;
 
     return cyclePlaylist(playlistID);
   },
@@ -136,23 +143,23 @@ var actions = {
   leave: function leave(userID) {
     return userLeave(userID);
   },
-  nameChange: function nameChange(_ref15) {
-    var userID = _ref15.userID,
-        username = _ref15.username;
+  nameChange: function nameChange(_ref16) {
+    var userID = _ref16.userID,
+        username = _ref16.username;
 
     return changeUsername(userID, username);
   },
-  roleChange: function roleChange(_ref16) {
-    var userID = _ref16.userID,
-        role = _ref16.role;
+  roleChange: function roleChange(_ref17) {
+    var userID = _ref17.userID,
+        role = _ref17.role;
 
     return changeUserRole(userID, role);
   },
 
   guests: receiveGuestCount,
 
-  'wlk:shouldRandomize': function wlkShouldRandomize(_ref17) {
-    var value = _ref17.value;
+  'wlk:shouldRandomize': function wlkShouldRandomize(_ref18) {
+    var value = _ref18.value;
     return {
       type: SHOULD_RANDOMIZE,
       payload: value
@@ -161,13 +168,13 @@ var actions = {
 };
 
 export default function middleware() {
-  var _ref18 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref18$url = _ref18.url,
-      url = _ref18$url === undefined ? defaultUrl() : _ref18$url;
+  var _ref19 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref19$url = _ref19.url,
+      url = _ref19$url === undefined ? defaultUrl() : _ref19$url;
 
-  return function (_ref19) {
-    var dispatch = _ref19.dispatch,
-        getState = _ref19.getState;
+  return function (_ref20) {
+    var dispatch = _ref20.dispatch,
+        getState = _ref20.getState;
 
     var socket = void 0;
     var queue = [];

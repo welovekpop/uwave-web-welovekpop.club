@@ -3,6 +3,7 @@ import find from 'array-find';
 import ms from 'ms';
 import splitargs from 'splitargs';
 import parseChatMarkup from 'u-wave-parse-chat-markup';
+import flashDocumentTitle from 'flash-document-title';
 import playMentionSound from '../utils/playMentionSound';
 import { RECEIVE_MOTD, SET_MOTD_START, SET_MOTD_COMPLETE, SEND_MESSAGE, RECEIVE_MESSAGE, LOG, REMOVE_MESSAGE, REMOVE_USER_MESSAGES, REMOVE_ALL_MESSAGES, MUTE_USER, UNMUTE_USER } from '../constants/actionTypes/chat';
 import { put } from './RequestActionCreators';
@@ -124,8 +125,11 @@ export function receive(message) {
       }
     });
 
-    if (isMention && settings.mentionSound) {
-      playMentionSound();
+    if (isMention) {
+      if (settings.mentionSound) {
+        playMentionSound();
+      }
+      flashDocumentTitle('\uD83D\uDCAC ' + sender.username);
     }
   };
 }

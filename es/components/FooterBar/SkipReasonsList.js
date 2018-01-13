@@ -12,7 +12,7 @@ var SkipReasonsList = function SkipReasonsList(_ref) {
   var reasons = _ref.reasons,
       onSelect = _ref.onSelect;
   return _jsx(Menu, {
-    onItemTouchTap: function onItemTouchTap(event, item) {
+    onItemClick: function onItemClick(event, item) {
       return onSelect(item.props.value);
     }
   }, void 0, reasons.map(function (reason) {

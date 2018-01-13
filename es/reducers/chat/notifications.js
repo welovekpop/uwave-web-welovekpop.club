@@ -1,4 +1,4 @@
-import { USER_JOIN, USER_LEAVE, CHANGE_USERNAME } from '../../constants/ActionTypes';
+import { BOOTH_SKIP, USER_JOIN, USER_LEAVE, CHANGE_USERNAME } from '../../constants/ActionTypes';
 
 export default function reduceNotifications(state, _ref) {
   var type = _ref.type,
@@ -25,6 +25,15 @@ export default function reduceNotifications(state, _ref) {
         _id: 'userNameChanged-' + payload.userID + '-' + payload.timestamp,
         user: payload.user,
         newUsername: payload.username,
+        timestamp: payload.timestamp
+      }]);
+    case BOOTH_SKIP:
+      return state.concat([{
+        type: 'skip',
+        _id: 'skip-' + payload.timestamp,
+        user: payload.user,
+        moderator: payload.moderator,
+        reason: payload.reason,
         timestamp: payload.timestamp
       }]);
     default:

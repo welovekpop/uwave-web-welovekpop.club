@@ -1,4 +1,5 @@
 export var ADVANCE = 'booth/ADVANCE';
+export var BOOTH_SKIP = 'booth/SKIP';
 export var LOAD_HISTORY_START = 'booth/LOAD_HISTORY_START';
 export var LOAD_HISTORY_COMPLETE = 'booth/LOAD_HISTORY_COMPLETE';
 

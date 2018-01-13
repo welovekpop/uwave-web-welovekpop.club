@@ -2,7 +2,8 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'array-find';
-import TransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 var Overlays = function Overlays(_ref) {
   var children = _ref.children,
@@ -16,13 +17,17 @@ var Overlays = function Overlays(_ref) {
   } else if (children.key === active) {
     view = children;
   }
-  return _jsx('div', {
+  if (view) {
+    view = _jsx(CSSTransition, {
+      mountOnEnter: true,
+      unmountOnExit: true,
+      classNames: 'Overlay',
+      timeout: 180
+    }, void 0, view);
+  }
+  return _jsx(TransitionGroup, {
     className: 'Overlays'
-  }, void 0, _jsx(TransitionGroup, {
-    transitionName: 'Overlay',
-    transitionEnterTimeout: 180,
-    transitionLeaveTimeout: 180
-  }, void 0, view));
+  }, void 0, view);
 };
 
 Overlays.propTypes = process.env.NODE_ENV !== "production" ? {

@@ -91,7 +91,7 @@ var PlaylistsMenu = function (_React$Component) {
         maxHeight: MENU_HEIGHT,
         width: MENU_WIDTH,
         autoWidth: false,
-        onItemTouchTap: _this.handleSelect
+        onItemClick: _this.handleSelect
       }, void 0, _jsx(MenuItem, {
         style: menuItemStyle,
         value: NEW_PLAYLIST,

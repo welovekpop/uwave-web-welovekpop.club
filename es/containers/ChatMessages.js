@@ -1,4 +1,6 @@
+import compose from 'recompose/compose';
 import { connect } from 'react-redux';
+import { withBus } from 'react-bus';
 import { createStructuredSelector } from 'reselect';
 
 import { motdSelector, messagesSelector, markupCompilerOptionsSelector, canDeleteMessagesSelector } from '../selectors/chatSelectors';
@@ -17,5 +19,7 @@ var mapDispatchToProps = {
   onDeleteMessage: deleteChatMessage
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatMessages);
+var enhance = compose(connect(mapStateToProps, mapDispatchToProps), withBus());
+
+export default enhance(ChatMessages);
 //# sourceMappingURL=ChatMessages.js.map

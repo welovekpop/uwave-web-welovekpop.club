@@ -8,7 +8,7 @@ import mapObj from 'object.map';
 
 import { LOAD_ALL_PLAYLISTS_COMPLETE, LOAD_PLAYLIST_START, LOAD_PLAYLIST_COMPLETE, PLAYLIST_CYCLED, SELECT_PLAYLIST, ACTIVATE_PLAYLIST_START, ACTIVATE_PLAYLIST_COMPLETE, CREATE_PLAYLIST_START, CREATE_PLAYLIST_COMPLETE, RENAME_PLAYLIST_START, RENAME_PLAYLIST_COMPLETE, DELETE_PLAYLIST_START, DELETE_PLAYLIST_COMPLETE, ADD_MEDIA_START, ADD_MEDIA_COMPLETE, REMOVE_MEDIA_START, REMOVE_MEDIA_COMPLETE, MOVE_MEDIA_START, MOVE_MEDIA_COMPLETE, UPDATE_MEDIA_START, UPDATE_MEDIA_COMPLETE, FILTER_PLAYLIST_ITEMS, FILTER_PLAYLIST_ITEMS_COMPLETE } from '../constants/actionTypes/playlists';
 import { DO_FAVORITE_COMPLETE } from '../constants/actionTypes/votes';
-import { SEARCH_START } from '../constants/actionTypes/search';
+import { SEARCH_START, SEARCH_DELETE } from '../constants/actionTypes/search';
 
 var initialState = {
   playlists: {},
@@ -181,6 +181,19 @@ export default function reduce() {
       return _extends({}, state, {
         playlists: deselectAll(state.playlists),
         selectedPlaylistID: null
+      });
+    case SEARCH_DELETE:
+      // Select the active playlist when search results are closed while they
+      // were focused.
+      if (state.selectedPlaylistID) return state;
+
+      return _extends({}, state, {
+        playlists: mapObj(state.playlists, function (playlist) {
+          return _extends({}, playlist, {
+            selected: playlist.active
+          });
+        }),
+        selectedPlaylistID: state.activePlaylistID
       });
 
     case LOAD_PLAYLIST_START:

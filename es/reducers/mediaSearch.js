@@ -1,7 +1,7 @@
 import _extends from 'babel-runtime/helpers/extends';
 import { SHOW_IMPORT_PANEL } from '../constants/actionTypes/imports';
 import { SELECT_PLAYLIST } from '../constants/actionTypes/playlists';
-import { SET_SEARCH_SOURCE, SHOW_SEARCH_RESULTS, SEARCH_START, SEARCH_COMPLETE } from '../constants/actionTypes/search';
+import { SET_SEARCH_SOURCE, SHOW_SEARCH_RESULTS, SEARCH_START, SEARCH_COMPLETE, SEARCH_DELETE } from '../constants/actionTypes/search';
 import { IDLE, LOADING, LOADED } from '../constants/LoadingStates';
 
 var initialState = {
@@ -37,6 +37,13 @@ export default function reduce() {
     case SET_SEARCH_SOURCE:
       return _extends({}, state, {
         sourceType: payload.source
+      });
+    case SEARCH_DELETE:
+      return _extends({}, state, {
+        query: null,
+        loadingState: IDLE,
+        results: {},
+        showResults: false
       });
     case SELECT_PLAYLIST:
     case SHOW_IMPORT_PANEL:

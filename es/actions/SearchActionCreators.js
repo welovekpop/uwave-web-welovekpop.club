@@ -1,4 +1,4 @@
-import { SET_SEARCH_SOURCE, SHOW_SEARCH_RESULTS, SEARCH_START, SEARCH_COMPLETE } from '../constants/actionTypes/search';
+import { SET_SEARCH_SOURCE, SHOW_SEARCH_RESULTS, SEARCH_START, SEARCH_COMPLETE, SEARCH_DELETE } from '../constants/actionTypes/search';
 import { get } from './RequestActionCreators';
 
 export function setSource(source) {
@@ -42,5 +42,11 @@ export function search(query) {
       };
     }
   });
+}
+
+export function deleteSearch() {
+  return {
+    type: SEARCH_DELETE
+  };
 }
 //# sourceMappingURL=SearchActionCreators.js.map

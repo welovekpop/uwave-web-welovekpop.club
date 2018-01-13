@@ -17,6 +17,7 @@ var Menu = function Menu(_ref) {
       onCreatePlaylist = _ref.onCreatePlaylist,
       onSelectPlaylist = _ref.onSelectPlaylist,
       onSelectSearchResults = _ref.onSelectSearchResults,
+      onCloseSearchResults = _ref.onCloseSearchResults,
       onAddToPlaylist = _ref.onAddToPlaylist,
       showImportPanel = _ref.showImportPanel,
       onShowImportPanel = _ref.onShowImportPanel;
@@ -34,7 +35,8 @@ var Menu = function Menu(_ref) {
     className: cx('PlaylistMenu-row', searchIsSelected),
     query: searchQuery,
     size: searchResults,
-    onClick: onSelectSearchResults
+    onClick: onSelectSearchResults,
+    onClose: onCloseSearchResults
   }), playlists.map(function (pl) {
     return _jsx(PlaylistRow, {
       className: 'PlaylistMenu-row',
@@ -62,6 +64,7 @@ Menu.propTypes = process.env.NODE_ENV !== "production" ? {
   onCreatePlaylist: PropTypes.func.isRequired,
   onSelectPlaylist: PropTypes.func.isRequired,
   onSelectSearchResults: PropTypes.func.isRequired,
+  onCloseSearchResults: PropTypes.func.isRequired,
   onAddToPlaylist: PropTypes.func.isRequired,
   onShowImportPanel: PropTypes.func.isRequired
 } : {};
