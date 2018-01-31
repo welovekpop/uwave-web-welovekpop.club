@@ -12,26 +12,26 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 var THICKNESS = {
-  large: 3.6,
-  tiny: 10
+  large: 1.6,
+  tiny: 2.6
 };
 
 var CircularProgress = function CircularProgress(_ref) {
   var _ref$size = _ref.size,
       size = _ref$size === undefined ? 'large' : _ref$size;
   return _jsx('div', {
-    className: cx('MuiCircularProgress', 'MuiCircularProgress--' + size)
+    className: cx('MuiCircularProgress', 'MuiCircularProgress--' + size),
+    role: 'progressbar'
   }, void 0, _jsx('svg', {
     className: 'MuiCircularProgress-svg',
-    viewBox: '0 0 100 100'
+    viewBox: '0 0 50 50'
   }, void 0, _jsx('circle', {
     className: 'MuiCircularProgress-circle',
-    cx: 50,
-    cy: 50,
-    r: 50 - THICKNESS[size] / 2,
+    cx: 25,
+    cy: 25,
+    r: 20,
     fill: 'none',
-    strokeWidth: THICKNESS[size],
-    strokeMiterlimit: '20'
+    strokeWidth: THICKNESS[size]
   })));
 };
 
