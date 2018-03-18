@@ -33,7 +33,7 @@ import {
   currentVoteStatsSelector,
 } from '../selectors/voteSelectors';
 import {
-  shouldRandomizePlaylistsSelector
+  shouldRandomizePlaylistsSelector,
 } from '../_wlk/selectors';
 
 import FooterBar from '../components/FooterBar';

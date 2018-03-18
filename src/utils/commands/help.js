@@ -18,5 +18,5 @@ register('help', 'List available commands.', {
 register('tutorial', 'Start a tutorial.', {
   action: () => () => {
     startTutorial();
-  }
+  },
 });

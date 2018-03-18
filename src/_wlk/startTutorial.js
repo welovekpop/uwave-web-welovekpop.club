@@ -12,8 +12,8 @@ export default function startTutorial() {
   return Promise.all([
     script,
     import('uwave-tutorial/distr/stylesheets/sideshow.min.css'),
-    import('uwave-tutorial/distr/fonts/sideshow-fontface.min.css')
-  ]).then(([ Sideshow ]) => {
+    import('uwave-tutorial/distr/fonts/sideshow-fontface.min.css'),
+  ]).then(([Sideshow]) => {
     Sideshow.start({ listAll: true });
   });
 }

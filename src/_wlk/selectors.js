@@ -5,5 +5,5 @@ const baseSelector = state => state.wlk;
 
 export const shouldRandomizePlaylistsSelector = createSelector(
   baseSelector,
-  wlk => wlk.shouldRandomize
+  wlk => wlk.shouldRandomize,
 );

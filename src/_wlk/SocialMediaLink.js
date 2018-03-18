@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 
 const buttonProps = {
   style: { WebkitAppearance: 'initial' },
-  target: '_blank'
+  target: '_blank',
 };
 
 const SocialMediaLink = ({ href, label, children }) => (
@@ -18,9 +19,9 @@ const SocialMediaLink = ({ href, label, children }) => (
 );
 
 SocialMediaLink.propTypes = {
-  href: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired
+  href: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default SocialMediaLink;
