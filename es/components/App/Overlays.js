@@ -18,12 +18,14 @@ var Overlays = function Overlays(_ref) {
     view = children;
   }
   if (view) {
+    // Pass on the `view.key` so that overlays are mounted and unmounted correctly
+    // when switching from one to the other.
     view = _jsx(CSSTransition, {
       mountOnEnter: true,
       unmountOnExit: true,
       classNames: 'Overlay',
       timeout: 180
-    }, void 0, view);
+    }, view.key, view);
   }
   return _jsx(TransitionGroup, {
     className: 'Overlays'

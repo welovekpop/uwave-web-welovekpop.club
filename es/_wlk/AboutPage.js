@@ -22,13 +22,13 @@ var _ref = _jsx('div', {
   rel: 'noopener noreferrer'
 }, void 0, '\xFCWave'), '.'), _jsx('p', {}, void 0, 'WE \u2665 KPOP can also be found on:'), _jsx('ul', {}, void 0, _jsx(SocialMediaLink, {
   label: 'Facebook',
-  href: 'https://facebook.com/welovekpop.club'
+  href: 'https://facebook.com/wlk.yt'
 }, void 0, _jsx(FacebookIcon, {})), _jsx(SocialMediaLink, {
   label: 'YouTube',
   href: 'https://youtube.com/c/welovekpopclub'
 }, void 0, _jsx(YouTubeIcon, {})), _jsx(SocialMediaLink, {
   label: 'Instagram',
-  href: 'https://instagram.com/welovekpop.club'
+  href: 'https://instagram.com/wlk_official'
 }, void 0, _jsx(InstagramIcon, {})), _jsx(SocialMediaLink, {
   label: 'Twitter',
   href: 'https://twitter.com/wlk_official'
@@ -37,7 +37,7 @@ var _ref = _jsx('div', {
   href: 'https://github.com/welovekpop'
 }, void 0, _jsx(GithubIcon, {})), _jsx(SocialMediaLink, {
   label: 'Slack',
-  href: 'https://slack.welovekpop.club'
+  href: 'https://slack.wlk.yt'
 }, void 0, _jsx(SlackIcon, {}))), _jsx('hr', {
   className: 'wlk-AboutPage-separator'
 }), _jsx('h2', {}, void 0, 'Rules'), _jsx('div', {

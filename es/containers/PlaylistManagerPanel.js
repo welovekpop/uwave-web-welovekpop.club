@@ -42,6 +42,11 @@ var onMoveToFirst = function onMoveToFirst(playlist) {
     return moveMedia(playlist, selectionOrOne(media, selection), { at: 'start' });
   };
 };
+var onMoveToLast = function onMoveToLast(playlist) {
+  return function (media, selection) {
+    return moveMedia(playlist, selectionOrOne(media, selection), { at: 'end' });
+  };
+};
 var onEditMedia = function onEditMedia(playlist) {
   return function (media) {
     return editMedia(playlist, media);
@@ -79,6 +84,7 @@ var mergeProps = function mergeProps(state, _ref2, props) {
     onOpenAddMediaMenu: onOpenAddMediaMenu,
     onOpenPreviewMediaDialog: openPreviewMediaDialog,
     onMoveToFirst: onMoveToFirst(state.playlist._id),
+    onMoveToLast: onMoveToLast(state.playlist._id),
     onMoveMedia: onMoveMedia(state.playlist._id),
     onEditMedia: onEditMedia(state.playlist._id),
     onRemoveFromPlaylist: onRemoveFromPlaylist(state.playlist._id),

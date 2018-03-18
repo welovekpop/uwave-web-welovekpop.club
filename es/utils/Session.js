@@ -1,8 +1,14 @@
+import cookiesEnabled from '@f/cookies-enabled';
+
 var SESSION_KEY = '_session';
 
-export function set(jwt) {
+export function preferredSessionType() {
+  return typeof navigator !== 'undefined' && cookiesEnabled() ? 'cookie' : 'token';
+}
+
+export function set(key) {
   try {
-    localStorage.setItem(SESSION_KEY, jwt);
+    localStorage.setItem(SESSION_KEY, key);
   } catch (e) {
     // cookies disabled
   }

@@ -1,18 +1,20 @@
 import { createSelector, createStructuredSelector } from 'reselect';
 import objMap from 'object.map';
+import parseChatMarkup from 'u-wave-parse-chat-markup';
 
 import { getAvailableGroupMentions } from '../utils/chatMentions';
 import { availableEmojiNamesSelector, availableEmojiImagesSelector } from './configSelectors';
-import { usersSelector, currentUserSelector } from './userSelectors';
+import { usersSelector, currentUserSelector, currentUserHasRoleSelector, createRoleCheckSelector } from './userSelectors';
 import { notificationSettingsSelector } from './settingSelectors';
 
 var baseSelector = function baseSelector(state) {
   return state.chat;
 };
 
-export var motdSelector = createSelector(baseSelector, function (chat) {
+export var rawMotdSelector = createSelector(baseSelector, function (chat) {
   return chat.motd;
 });
+export var motdSelector = createSelector(rawMotdSelector, parseChatMarkup);
 
 var MAX_MESSAGES = 500;
 var allMessagesSelector = createSelector(baseSelector, function (chat) {
@@ -23,6 +25,7 @@ var filteredMessagesSelector = createSelector(allMessagesSelector, notificationS
     if (message.type === 'userJoin') return notificationSettings.userJoin;
     if (message.type === 'userLeave') return notificationSettings.userLeave;
     if (message.type === 'userNameChanged') return notificationSettings.userNameChanged;
+    if (message.type === 'skip') return notificationSettings.skip;
     return true;
   });
 });
@@ -59,8 +62,10 @@ export var currentUserMuteSelector = createSelector(currentUserSelector, mutesSe
   return user ? mutes[user._id] : null;
 });
 
-export var availableGroupMentionsSelector = createSelector(currentUserSelector, function (user) {
-  return getAvailableGroupMentions(user);
+export var availableGroupMentionsSelector = createSelector(currentUserHasRoleSelector, function (hasRole) {
+  return getAvailableGroupMentions(function (mention) {
+    return hasRole('chat.mention.' + mention);
+  });
 });
 
 export var emojiCompletionsSelector = createSelector(availableEmojiImagesSelector, function (images) {
@@ -72,5 +77,5 @@ export var emojiCompletionsSelector = createSelector(availableEmojiImagesSelecto
   });
 });
 
-export { isModeratorSelector as canDeleteMessagesSelector } from './userSelectors';
+export var canDeleteMessagesSelector = createRoleCheckSelector('chat.delete');
 //# sourceMappingURL=chatSelectors.js.map

@@ -16,6 +16,9 @@ var enhance = compose(withProps(function (props) {
     },
     onToggleUserNameChanged: function onToggleUserNameChanged(e, value) {
       props.onSettingChange('notifications.userNameChanged', value);
+    },
+    onToggleSkip: function onToggleSkip(e, value) {
+      props.onSettingChange('notifications.skip', value);
     }
   };
 }), translate());
@@ -25,7 +28,8 @@ var NotificationSettings = function NotificationSettings(_ref) {
       settings = _ref.settings,
       onToggleUserJoin = _ref.onToggleUserJoin,
       onToggleUserLeave = _ref.onToggleUserLeave,
-      onToggleUserNameChanged = _ref.onToggleUserNameChanged;
+      onToggleUserNameChanged = _ref.onToggleUserNameChanged,
+      onToggleSkip = _ref.onToggleSkip;
   return _jsx('div', {}, void 0, _jsx('h2', {
     className: 'SettingsPanel-header'
   }, void 0, t('settings.notifications.title')), _jsx('p', {
@@ -45,6 +49,11 @@ var NotificationSettings = function NotificationSettings(_ref) {
     labelPosition: 'left',
     toggled: settings.notifications.userNameChanged,
     onToggle: onToggleUserNameChanged
+  }), _jsx(Toggle, {
+    label: t('settings.notifications.skip'),
+    labelPosition: 'left',
+    toggled: settings.notifications.skip,
+    onToggle: onToggleSkip
   }));
 };
 
@@ -54,7 +63,8 @@ NotificationSettings.propTypes = process.env.NODE_ENV !== "production" ? {
   onSettingChange: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   onToggleUserJoin: PropTypes.func.isRequired,
   onToggleUserLeave: PropTypes.func.isRequired,
-  onToggleUserNameChanged: PropTypes.func.isRequired
+  onToggleUserNameChanged: PropTypes.func.isRequired,
+  onToggleSkip: PropTypes.func.isRequired
 } : {};
 
 export default enhance(NotificationSettings);

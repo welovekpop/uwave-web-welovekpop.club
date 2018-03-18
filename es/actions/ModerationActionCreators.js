@@ -1,7 +1,7 @@
 import _typeof from 'babel-runtime/helpers/typeof';
 import { djSelector } from '../selectors/boothSelectors';
 
-import { SKIP_DJ_START, SKIP_DJ_COMPLETE, MOVE_USER_START, MOVE_USER_COMPLETE, REMOVE_USER_START, REMOVE_USER_COMPLETE, MUTE_USER_START, MUTE_USER_COMPLETE, UNMUTE_USER_START, UNMUTE_USER_COMPLETE, BAN_USER_START, BAN_USER_COMPLETE, SET_USER_ROLE_START, SET_USER_ROLE_COMPLETE } from '../constants/actionTypes/moderation';
+import { SKIP_DJ_START, SKIP_DJ_COMPLETE, MOVE_USER_START, MOVE_USER_COMPLETE, REMOVE_USER_START, REMOVE_USER_COMPLETE, MUTE_USER_START, MUTE_USER_COMPLETE, UNMUTE_USER_START, UNMUTE_USER_COMPLETE, BAN_USER_START, BAN_USER_COMPLETE, ADD_USER_ROLES_START, ADD_USER_ROLES_COMPLETE, REMOVE_USER_ROLES_START, REMOVE_USER_ROLES_COMPLETE } from '../constants/actionTypes/moderation';
 
 import { removeMessage, removeMessagesByUser, removeAllMessages } from './ChatActionCreators';
 import { del, post, put } from './RequestActionCreators';
@@ -116,35 +116,53 @@ export function moveWaitlistUser(user, position) {
   });
 }
 
-export function setUserRoleStart(user, role) {
-  return {
-    type: SET_USER_ROLE_START,
-    payload: { user: user, role: role }
-  };
-}
-
-export function setUserRoleComplete(user, role) {
-  return {
-    type: SET_USER_ROLE_COMPLETE,
-    payload: { user: user, role: role }
-  };
-}
-
-export function setUserRole(user, role) {
+export function addUserRole(user, role) {
   var userID = (typeof user === 'undefined' ? 'undefined' : _typeof(user)) === 'object' ? user._id : user;
-  return put('/users/' + userID + '/role', { role: role }, {
+  return put('/users/' + userID + '/roles/' + role, {}, {
     onStart: function onStart() {
-      return setUserRoleStart(user, role);
+      return {
+        type: ADD_USER_ROLES_START,
+        payload: { user: user, roles: [role] }
+      };
     },
     onComplete: function onComplete() {
-      return setUserRoleComplete(user, role);
+      return {
+        type: ADD_USER_ROLES_COMPLETE,
+        payload: { user: user, roles: [role] }
+      };
     },
     onError: function onError(error) {
       return {
-        type: SET_USER_ROLE_COMPLETE,
+        type: ADD_USER_ROLES_COMPLETE,
         error: true,
         payload: error,
-        meta: { user: user, role: role }
+        meta: { user: user, roles: [role] }
+      };
+    }
+  });
+}
+
+export function removeUserRole(user, role) {
+  var userID = (typeof user === 'undefined' ? 'undefined' : _typeof(user)) === 'object' ? user._id : user;
+  return del('/users/' + userID + '/roles/' + role, {}, {
+    onStart: function onStart() {
+      return {
+        type: REMOVE_USER_ROLES_START,
+        payload: { user: user, roles: [role] }
+      };
+    },
+    onComplete: function onComplete() {
+      return {
+        type: REMOVE_USER_ROLES_COMPLETE,
+        payload: { user: user, roles: [role] }
+      };
+    },
+    onError: function onError(error) {
+      return {
+        type: REMOVE_USER_ROLES_COMPLETE,
+        error: true,
+        payload: error,
+        meta: { user: user, roles: [role] }
       };
     }
   });

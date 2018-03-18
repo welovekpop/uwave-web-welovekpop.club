@@ -12,18 +12,22 @@ import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
 import Button from '../../Form/Button';
+import SocialLogin from './SocialLogin';
+import Separator from './Separator';
 
 var enhance = translate();
 
-var _ref = _jsx(EmailIcon, {
+var _ref = _jsx(React.Fragment, {}, void 0, _jsx(SocialLogin, {}), _jsx(Separator, {}));
+
+var _ref2 = _jsx(EmailIcon, {
   color: '#9f9d9e'
 });
 
-var _ref2 = _jsx(PasswordIcon, {
+var _ref3 = _jsx(PasswordIcon, {
   color: '#9f9d9e'
 });
 
-var _ref3 = _jsx('div', {
+var _ref4 = _jsx('div', {
   className: 'Button-loading'
 }, void 0, _jsx(Loader, {
   size: 'tiny'
@@ -65,33 +69,35 @@ var LoginForm = function (_React$Component) {
   LoginForm.prototype.render = function render() {
     var _props = this.props,
         t = _props.t,
-        error = _props.error;
+        error = _props.error,
+        supportsSocialAuth = _props.supportsSocialAuth;
     var busy = this.state.busy;
 
 
     return _jsx(Form, {
       className: 'LoginForm',
       onSubmit: this.handleSubmit
-    }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
+    }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), supportsSocialAuth && _ref, _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refEmail,
       className: 'LoginForm-field',
       type: 'email',
       placeholder: t('login.email'),
-      icon: _ref,
+      icon: _ref2,
       autoFocus: true
     })), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refPassword,
       className: 'LoginForm-field',
       type: 'password',
       placeholder: t('login.password'),
-      icon: _ref2
+      icon: _ref3
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: 'LoginForm-submit',
       disabled: busy
-    }, void 0, busy ? _ref3 : t('login.login'))), _jsx(FormGroup, {}, void 0, _jsx('a', {
-      href: true,
-      onClick: this.handleResetPassword,
+    }, void 0, busy ? _ref4 : t('login.login'))), _jsx(FormGroup, {
       className: 'LoginForm-forgot'
+    }, void 0, _jsx('button', {
+      onClick: this.handleResetPassword,
+      className: 'LoginForm-forgotLink'
     }, void 0, 'Forgot Password?')));
   };
 
@@ -101,6 +107,7 @@ var LoginForm = function (_React$Component) {
 LoginForm.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   error: PropTypes.object,
+  supportsSocialAuth: PropTypes.bool,
   onLogin: PropTypes.func,
   onOpenResetPasswordDialog: PropTypes.func
 } : {};

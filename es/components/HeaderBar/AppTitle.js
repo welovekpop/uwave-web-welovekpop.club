@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import AboutIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import logo from '../../../assets/img/logo-white.png';
 
 var _ref2 = _jsx(AboutIcon, {});
 
@@ -16,7 +17,11 @@ var AppTitle = function AppTitle(_ref) {
     className: cx('AppTitle', className, hasAboutPage && 'AppTitle--hasAboutPage')
   }, void 0, _jsx('h1', {
     className: 'AppTitle-logo'
-  }, void 0, children), hasAboutPage && _jsx(IconButton, {
+  }, void 0, _jsx('img', {
+    className: 'AppTitle-logoImage',
+    alt: children,
+    src: logo
+  })), hasAboutPage && _jsx(IconButton, {
     className: 'AppTitle-button',
     onClick: onClick
   }, void 0, _ref2));

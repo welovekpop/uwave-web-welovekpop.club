@@ -41,12 +41,14 @@ export default function createUwaveStore() {
   // debugging :)
   enableLogging && logger].filter(Boolean);
 
+  var currentReducers = _extends({}, reducers, {
+    sources: createSourcesReducer(options)
+  });
+
   var store = createStore(
   // Finish up the reducer function by combining all the different reducers
   // into one big reducer that works on one big state object.
-  combineReducers(_extends({}, reducers, {
-    sources: createSourcesReducer(options)
-  })), initialState, compose(
+  combineReducers(currentReducers), initialState, compose(
   // Adds all of the above ☝ middleware features to the store.
   applyMiddleware.apply(undefined, middleware),
   // Keeps the user's settings in localStorage, so that a refresh doesn't
@@ -65,6 +67,13 @@ export default function createUwaveStore() {
       })));
     });
   }
+
+  store.mount = function (name, reducer) {
+    var _extends2;
+
+    currentReducers = _extends({}, currentReducers, (_extends2 = {}, _extends2[name] = reducer, _extends2));
+    store.replaceReducer(combineReducers(currentReducers));
+  };
 
   return store;
 }

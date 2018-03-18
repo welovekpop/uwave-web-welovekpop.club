@@ -406,10 +406,10 @@ export function closeAddMediaMenu() {
   return { type: CLOSE_ADD_MEDIA_MENU };
 }
 
-export function addMediaStart(playlistID, media, afterID) {
+export function addMediaStart(playlistID, media, location) {
   return {
     type: ADD_MEDIA_START,
-    payload: { playlistID: playlistID, media: media, afterID: afterID }
+    payload: { playlistID: playlistID, media: media, location: location }
   };
 }
 
@@ -543,17 +543,17 @@ export function removeMedia(playlistID, items) {
   });
 }
 
-export function moveMediaStart(playlistID, items, afterID) {
+export function moveMediaStart(playlistID, items, location) {
   return {
     type: MOVE_MEDIA_START,
-    payload: { playlistID: playlistID, afterID: afterID, medias: items }
+    payload: { playlistID: playlistID, location: location, medias: items }
   };
 }
 
-export function moveMediaComplete(playlistID, items, afterID) {
+export function moveMediaComplete(playlistID, items, location) {
   return {
     type: MOVE_MEDIA_COMPLETE,
-    payload: { playlistID: playlistID, afterID: afterID, medias: items }
+    payload: { playlistID: playlistID, location: location, medias: items }
   };
 }
 
@@ -562,20 +562,20 @@ function resolveMoveOptions() {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   if (opts.after) {
-    return opts.after;
+    return { after: opts.after };
   }
   if (opts.before) {
     for (var i = 0, l = playlist.length; i < l; i += 1) {
       if (playlist[i] && playlist[i]._id === opts.before) {
         if (i === 0) {
-          return -1;
+          return { at: 'start' };
         }
-        return playlist[i - 1]._id;
+        return { after: playlist[i - 1]._id };
       }
     }
   }
-  if (opts.at === 'start') {
-    return -1;
+  if (opts.at) {
+    return { at: opts.at };
   }
   return null;
 }
@@ -583,25 +583,25 @@ function resolveMoveOptions() {
 export function moveMedia(playlistID, medias, opts) {
   return function (dispatch, getState) {
     var playlistItems = playlistItemsSelector(getState())[playlistID];
-    var afterID = resolveMoveOptions(playlistItems, opts);
+    var location = resolveMoveOptions(playlistItems, opts);
 
     var items = medias.map(function (media) {
       return media._id;
     });
 
-    return dispatch(put('/playlists/' + playlistID + '/move', { items: items, after: afterID }, {
+    return dispatch(put('/playlists/' + playlistID + '/move', _extends({ items: items }, location), {
       onStart: function onStart() {
-        return moveMediaStart(playlistID, medias, afterID);
+        return moveMediaStart(playlistID, medias, location);
       },
       onComplete: function onComplete() {
-        return moveMediaComplete(playlistID, medias, afterID);
+        return moveMediaComplete(playlistID, medias, location);
       },
       onError: function onError(error) {
         return {
           type: MOVE_MEDIA_COMPLETE,
           error: true,
           payload: error,
-          meta: { playlistID: playlistID, medias: medias, afterID: afterID }
+          meta: { playlistID: playlistID, medias: medias, location: location }
         };
       }
     }));

@@ -13,10 +13,12 @@ import AddToPlaylistAction from '../../MediaList/Actions/AddToPlaylist';
 import RemoveFromPlaylistAction from '../../MediaList/Actions/RemoveFromPlaylist';
 import EditMediaAction from '../../MediaList/Actions/EditMedia';
 import MoveToFirstAction from '../../MediaList/Actions/MoveToFirst';
+import MoveToLastAction from '../../MediaList/Actions/MoveToLast';
 
 var makeActions = function makeActions(_ref) {
   var onOpenAddMediaMenu = _ref.onOpenAddMediaMenu,
       onMoveToFirst = _ref.onMoveToFirst,
+      onMoveToLast = _ref.onMoveToLast,
       onEditMedia = _ref.onEditMedia,
       onRemoveFromPlaylist = _ref.onRemoveFromPlaylist,
       isFiltered = _ref.isFiltered;
@@ -33,7 +35,11 @@ var makeActions = function makeActions(_ref) {
       onFirst: function onFirst() {
         return onMoveToFirst(media, selection);
       }
-    }, 'first'), _jsx(EditMediaAction, {
+    }, 'first'), index === 0 && !isFiltered && _jsx(MoveToLastAction, {
+      onLast: function onLast() {
+        return onMoveToLast(media, selection);
+      }
+    }, 'last'), _jsx(EditMediaAction, {
       onEdit: function onEdit() {
         return onEditMedia(media);
       }

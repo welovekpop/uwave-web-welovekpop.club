@@ -10,7 +10,7 @@ import { put } from './RequestActionCreators';
 import { execute } from '../utils/ChatCommands';
 import { muteTimeoutsSelector, mutedUserIDsSelector, currentUserMuteSelector } from '../selectors/chatSelectors';
 import { settingsSelector } from '../selectors/settingSelectors';
-import { currentUserSelector, userListSelector } from '../selectors/userSelectors';
+import { currentUserSelector, userListSelector, userHasRoleSelector, currentUserHasRoleSelector } from '../selectors/userSelectors';
 import { currentTimeSelector } from '../selectors/timeSelectors';
 
 import { getAvailableGroupMentions, resolveMentions, hasMention } from '../utils/chatMentions';
@@ -18,7 +18,7 @@ import { getAvailableGroupMentions, resolveMentions, hasMention } from '../utils
 export function receiveMotd(text) {
   return {
     type: RECEIVE_MOTD,
-    payload: parseChatMarkup(text, {})
+    payload: text
   };
 }
 
@@ -53,6 +53,7 @@ export function sendChat(text) {
   return function (dispatch, getState) {
     var state = getState();
     var sender = currentUserSelector(state);
+    var hasRole = currentUserHasRoleSelector(state);
     var mute = currentUserMuteSelector(state);
     if (mute) {
       var timeLeft = ms(mute.expiresAt - Date.now(), { long: true });
@@ -64,7 +65,7 @@ export function sendChat(text) {
     var message = prepareMessage(state, sender, text, {
       mentions: [].concat(users.map(function (user) {
         return user.username;
-      }), getAvailableGroupMentions(sender))
+      }), getAvailableGroupMentions(hasRole))
     });
     dispatch(message);
   };
@@ -95,22 +96,26 @@ function isMuted(state, userID) {
 
 export function receive(message) {
   return function (dispatch, getState) {
-    var settings = settingsSelector(getState());
-    var currentUser = currentUserSelector(getState());
-    var users = userListSelector(getState());
+    var state = getState();
+    var settings = settingsSelector(state);
+    var currentUser = currentUserSelector(state);
+    var users = userListSelector(state);
     var sender = find(users, function (user) {
       return user._id === message.userID;
     });
+    var senderHasRole = userHasRoleSelector(state)(sender);
     var mentions = [].concat(users.map(function (user) {
       return user.username;
-    }), getAvailableGroupMentions(sender));
+    }), getAvailableGroupMentions(function (mention) {
+      return senderHasRole('chat.mention.' + mention);
+    }));
 
-    if (isMuted(getState(), message.userID)) {
+    if (isMuted(state, message.userID)) {
       return;
     }
 
     var parsed = parseChatMarkup(message.text, { mentions: mentions });
-    resolveMentions(parsed, getState());
+    resolveMentions(parsed, state);
 
     var isMention = currentUser ? hasMention(parsed, currentUser._id) : false;
 

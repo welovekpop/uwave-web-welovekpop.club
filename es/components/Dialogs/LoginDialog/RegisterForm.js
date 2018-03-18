@@ -9,30 +9,34 @@ import Checkbox from 'material-ui/Checkbox';
 import EmailIcon from 'material-ui/svg-icons/communication/email';
 import PasswordIcon from 'material-ui/svg-icons/action/lock';
 import UserIcon from 'material-ui/svg-icons/social/person';
-
 import Loader from '../../Loader';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
 import Button from '../../Form/Button';
-
 import ReCaptcha from '../../ReCaptcha';
+import SocialLogin from './SocialLogin';
+import Separator from './Separator';
 
 var enhance = translate();
 
-var _ref = _jsx(UserIcon, {
+var _ref = _jsx(SocialLogin, {});
+
+var _ref2 = _jsx(Separator, {});
+
+var _ref3 = _jsx(UserIcon, {
   color: '#9f9d9e'
 });
 
-var _ref2 = _jsx(EmailIcon, {
+var _ref4 = _jsx(EmailIcon, {
   color: '#9f9d9e'
 });
 
-var _ref3 = _jsx(PasswordIcon, {
+var _ref5 = _jsx(PasswordIcon, {
   color: '#9f9d9e'
 });
 
-var _ref4 = _jsx('div', {
+var _ref6 = _jsx('div', {
   className: 'Button-loading'
 }, void 0, _jsx(Loader, {
   size: 'tiny'
@@ -107,24 +111,24 @@ var RegisterForm = function (_React$Component) {
     return _jsx(Form, {
       className: 'RegisterForm',
       onSubmit: this.handleSubmit
-    }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
+    }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), _ref, _ref2, _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refUsername,
       className: 'RegisterForm-field',
       placeholder: t('login.username'),
-      icon: _ref,
+      icon: _ref3,
       autoFocus: true
     })), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refEmail,
       className: 'RegisterForm-field',
       type: 'email',
       placeholder: t('login.email'),
-      icon: _ref2
+      icon: _ref4
     })), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refPassword,
       className: 'RegisterForm-field',
       type: 'password',
       placeholder: t('login.password'),
-      icon: _ref3
+      icon: _ref5
     })), this.renderCaptcha(), _jsx(FormGroup, {}, void 0, _jsx(Checkbox, {
       style: { float: 'left', width: 'auto' },
       checked: agreed,
@@ -139,7 +143,7 @@ var RegisterForm = function (_React$Component) {
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: 'RegisterForm-submit',
       disabled: busy || !agreed
-    }, void 0, busy ? _ref4 : t('login.register'))));
+    }, void 0, busy ? _ref6 : t('login.register'))));
   };
 
   return RegisterForm;

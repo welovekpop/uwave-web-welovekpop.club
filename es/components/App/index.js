@@ -14,6 +14,7 @@ import Overlays from './Overlays';
 import PlaylistManager from '../../containers/PlaylistManager';
 import RoomHistory from '../../containers/RoomHistory';
 import SettingsManager from '../../containers/SettingsManager';
+import AdminProxy from '../AdminProxy';
 import About from '../../containers/About';
 import ConnectionIndicator from '../ConnectionIndicator';
 
@@ -69,7 +70,9 @@ var App = function App(_ref) {
     active: activeOverlay
   }, void 0, hasAboutPage && _jsx(About, {
     onCloseOverlay: onCloseOverlay
-  }, 'about'), _jsx(PlaylistManager, {
+  }, 'about'), _jsx(AdminProxy, {
+    onCloseOverlay: onCloseOverlay
+  }, 'admin'), _jsx(PlaylistManager, {
     onCloseOverlay: onCloseOverlay
   }, 'playlistManager'), _jsx(RoomHistory, {
     onCloseOverlay: onCloseOverlay

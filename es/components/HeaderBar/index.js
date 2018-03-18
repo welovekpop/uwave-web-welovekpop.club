@@ -38,14 +38,15 @@ var HeaderBar = function HeaderBar(_ref) {
       hasAboutPage: hasAboutPage,
       onClick: onToggleAboutOverlay
     }, void 0, title),
-    _jsx(CurrentMedia, {
-      className: 'HeaderBar-now-playing',
+    _jsx('div', {
+      className: 'HeaderBar-nowPlaying'
+    }, void 0, _jsx(CurrentMedia, {
+      className: 'HeaderBar-media',
       media: media
-    }),
-    dj && _jsx(CurrentDJ, {
+    }), dj && _jsx(CurrentDJ, {
       className: 'HeaderBar-dj',
       dj: dj
-    }),
+    })),
     media && _jsx(Progress, {
       className: 'HeaderBar-progress',
       currentProgress: mediaProgress,

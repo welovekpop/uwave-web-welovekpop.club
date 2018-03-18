@@ -1,8 +1,8 @@
 import createDebug from 'debug';
-import { INIT_STATE, SOCKET_CONNECT, SOCKET_RECONNECT, REGISTER_START, REGISTER_COMPLETE, LOGIN_START, LOGIN_COMPLETE, SET_TOKEN, LOGOUT_START, LOGOUT_COMPLETE, RESET_PASSWORD_COMPLETE } from '../constants/actionTypes/auth';
+import { INIT_STATE, SOCKET_CONNECT, SOCKET_RECONNECT, AUTH_STRATEGIES, REGISTER_START, REGISTER_COMPLETE, LOGIN_START, LOGIN_COMPLETE, SET_TOKEN, LOGOUT_START, LOGOUT_COMPLETE, RESET_PASSWORD_COMPLETE } from '../constants/actionTypes/auth';
 import { LOAD_ALL_PLAYLISTS_START } from '../constants/actionTypes/playlists';
 import * as Session from '../utils/Session';
-import { get, post } from './RequestActionCreators';
+import { get, post, del } from './RequestActionCreators';
 import { advance, loadHistory } from './BoothActionCreators';
 import { receiveMotd } from './ChatActionCreators';
 import { setPlaylists, selectPlaylist, activatePlaylistComplete } from './PlaylistActionCreators';
@@ -11,7 +11,7 @@ import { closeLoginDialog } from './DialogActionCreators';
 import { setUsers } from './UserActionCreators';
 import { setVoteStats } from './VoteActionCreators';
 import { setWaitList } from './WaitlistActionCreators';
-import { currentUserSelector, tokenSelector } from '../selectors/userSelectors';
+import { tokenSelector } from '../selectors/userSelectors';
 import startTutorial from '../_wlk/startTutorial';
 
 var debug = createDebug('uwave:actions:login');
@@ -24,14 +24,26 @@ export function socketReconnect() {
   return { type: SOCKET_RECONNECT };
 }
 
+export function setAuthenticationStrategies(strategies) {
+  return {
+    type: AUTH_STRATEGIES,
+    payload: { strategies: strategies }
+  };
+}
+
 export function loginComplete(_ref) {
-  var jwt = _ref.jwt,
+  var token = _ref.token,
+      socketToken = _ref.socketToken,
       user = _ref.user;
 
   return function (dispatch) {
     dispatch({
       type: LOGIN_COMPLETE,
-      payload: { jwt: jwt, user: user }
+      payload: {
+        token: token,
+        socketToken: socketToken,
+        user: user
+      }
     });
     dispatch(closeLoginDialog());
   };
@@ -46,6 +58,7 @@ export function loadedState(state) {
     if (state.motd) {
       dispatch(receiveMotd(state.motd));
     }
+    dispatch(setAuthenticationStrategies(state.authStrategies));
     dispatch(setUsers(state.users || []));
     dispatch(setPlaylists(state.playlists || []));
     dispatch(setWaitList({
@@ -60,7 +73,8 @@ export function loadedState(state) {
     if (state.user) {
       var token = tokenSelector(getState());
       dispatch(loginComplete({
-        jwt: token,
+        token: token,
+        socketToken: state.socketToken,
         user: state.user
       }));
     }
@@ -88,10 +102,10 @@ export function initState() {
   });
 }
 
-export function setJWT(jwt) {
+export function setSessionToken(token) {
   return {
     type: SET_TOKEN,
-    payload: { jwt: jwt }
+    payload: { token: token }
   };
 }
 
@@ -103,12 +117,13 @@ export function login(_ref2) {
   var email = _ref2.email,
       password = _ref2.password;
 
-  return post('/auth/login', { email: email, password: password }, {
+  var sessionType = Session.preferredSessionType();
+  return post('/auth/login?session=' + sessionType, { email: email, password: password }, {
     onStart: loginStart,
     onComplete: function onComplete(res) {
       return function (dispatch) {
         Session.set(res.meta.jwt);
-        dispatch(setJWT(res.meta.jwt));
+        dispatch(setSessionToken(res.meta.jwt));
         dispatch(initState());
       };
     },
@@ -172,17 +187,15 @@ function logoutComplete() {
 }
 
 export function logout() {
-  return function (dispatch, getState) {
-    var me = currentUserSelector(getState());
-    dispatch(logoutStart());
-    Session.unset();
-    if (me) {
-      dispatch(logoutComplete());
-      dispatch(socketReconnect());
-    } else {
-      dispatch(logoutComplete());
-    }
-  };
+  return del('/auth', {}, {
+    onStart: function onStart() {
+      return function (dispatch) {
+        dispatch(logoutStart());
+        Session.unset();
+      };
+    },
+    onComplete: logoutComplete
+  });
 }
 
 export function resetPassword(email) {
@@ -201,5 +214,42 @@ export function resetPassword(email) {
       };
     }
   });
+}
+
+export function getSocketAuthToken() {
+  return get('/auth/socket', {
+    onComplete: function onComplete(res) {
+      return function () {
+        return {
+          socketToken: res.data.socketToken
+        };
+      };
+    }
+  });
+}
+
+function whenWindowClosed(window) {
+  return new Promise(function (resolve) {
+    var i = setInterval(function () {
+      if (window.closed) {
+        clearInterval(i);
+        resolve();
+      }
+    }, 50);
+  });
+}
+function socialLogin(service) {
+  return function (dispatch, getState) {
+    var apiUrl = getState().config.apiUrl;
+
+    var loginWindow = window.open(apiUrl + '/auth/service/' + service);
+    return whenWindowClosed(loginWindow).then(function () {
+      // Check login state after the window closed.
+      dispatch(initState());
+    });
+  };
+}
+export function loginWithGoogle() {
+  return socialLogin('google');
 }
 //# sourceMappingURL=LoginActionCreators.js.map

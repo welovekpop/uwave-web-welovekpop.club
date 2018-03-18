@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import memoize from 'lodash/memoize';
 
 export var configSelector = function configSelector(state) {
   return state.config;
@@ -26,5 +27,15 @@ var reCaptchaSelector = createSelector(configSelector, function (config) {
 
 export var reCaptchaSiteKeySelector = createSelector(reCaptchaSelector, function (rc) {
   return rc ? rc.key : false;
+});
+
+export var rolesSelector = createSelector(configSelector, function (config) {
+  return config.roles;
+});
+
+export var roleSelector = memoize(function (roleName) {
+  return createSelector(rolesSelector, function (roles) {
+    return roles[roleName];
+  });
 });
 //# sourceMappingURL=configSelectors.js.map

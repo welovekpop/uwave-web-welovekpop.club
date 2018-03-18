@@ -4,6 +4,7 @@ export var SOCKET_RECONNECT = 'auth/SOCKET_RECONNECT';
 export var SOCKET_CONNECTED = 'auth/SOCKET_CONNECTED';
 export var SOCKET_DISCONNECTED = 'auth/SOCKET_DISCONNECTED';
 
+export var AUTH_STRATEGIES = 'auth/AUTH_STRATEGIES';
 export var SET_TOKEN = 'auth/SET_TOKEN';
 
 export var REGISTER_START = 'auth/REGISTER_START';

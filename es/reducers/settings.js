@@ -12,7 +12,8 @@ var initialState = {
   notifications: {
     userJoin: true,
     userLeave: true,
-    userNameChanged: true
+    userNameChanged: true,
+    skip: true
   }
 };
 
@@ -25,7 +26,12 @@ export default function reduce() {
   switch (type) {
     case LOAD_SETTINGS:
       // Loading settings defaults to the initial state.
-      return _extends({}, initialState, payload);
+      return _extends({}, initialState, payload, {
+        // Merge notification settings if we have new ones.
+        // Needed if new notification types were added since the last time
+        // settings were saved to localStorage.
+        notifications: payload ? _extends({}, initialState.notifications, payload.notifications) : initialState.notifications
+      });
     case CHANGE_SETTING:
       return merge(state, payload, { clone: true });
     default:

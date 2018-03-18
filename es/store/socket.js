@@ -1,15 +1,16 @@
 import createDebug from 'debug';
 import WebSocket from 'reconnecting-websocket';
 
-import { LOGIN_COMPLETE, SOCKET_CONNECT, SOCKET_RECONNECT, SOCKET_DISCONNECTED, SOCKET_CONNECTED } from '../constants/actionTypes/auth';
+import { LOGIN_COMPLETE, LOGOUT_START, SOCKET_CONNECT, SOCKET_RECONNECT, SOCKET_DISCONNECTED, SOCKET_CONNECTED } from '../constants/actionTypes/auth';
 import { SEND_MESSAGE } from '../constants/actionTypes/chat';
 import { DO_UPVOTE, DO_DOWNVOTE } from '../constants/actionTypes/votes';
 import { SHOULD_RANDOMIZE } from '../_wlk/constants';
 
+import { getSocketAuthToken } from '../actions/LoginActionCreators';
 import { advance as _advance, skipped } from '../actions/BoothActionCreators';
 import { receive as chatReceive, removeMessage, removeMessagesByUser, removeAllMessages, muteUser as _chatMute, unmuteUser as _chatUnmute } from '../actions/ChatActionCreators';
 import { cyclePlaylist } from '../actions/PlaylistActionCreators';
-import { join as userJoin, leave as userLeave, changeUsername, changeUserRole, receiveGuestCount } from '../actions/UserActionCreators';
+import { join as userJoin, leave as userLeave, changeUsername, addUserRoles, removeUserRoles, receiveGuestCount } from '../actions/UserActionCreators';
 import { clearWaitlist, joinedWaitlist, leftWaitlist, updatedWaitlist, movedInWaitlist, setLocked as setWaitlistLocked } from '../actions/WaitlistActionCreators';
 import { favorited, receiveVote } from '../actions/VoteActionCreators';
 
@@ -149,17 +150,20 @@ var actions = {
 
     return changeUsername(userID, username);
   },
-  roleChange: function roleChange(_ref17) {
-    var userID = _ref17.userID,
-        role = _ref17.role;
-
-    return changeUserRole(userID, role);
-  },
 
   guests: receiveGuestCount,
-
-  'wlk:shouldRandomize': function wlkShouldRandomize(_ref18) {
-    var value = _ref18.value;
+  'acl:allow': function aclAllow(_ref17) {
+    var userID = _ref17.userID,
+        roles = _ref17.roles;
+    return addUserRoles(userID, roles);
+  },
+  'acl:disallow': function aclDisallow(_ref18) {
+    var userID = _ref18.userID,
+        roles = _ref18.roles;
+    return removeUserRoles(userID, roles);
+  },
+  'wlk:shouldRandomize': function wlkShouldRandomize(_ref19) {
+    var value = _ref19.value;
     return {
       type: SHOULD_RANDOMIZE,
       payload: value
@@ -168,37 +172,43 @@ var actions = {
 };
 
 export default function middleware() {
-  var _ref19 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref19$url = _ref19.url,
-      url = _ref19$url === undefined ? defaultUrl() : _ref19$url;
+  var _ref20 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref20$url = _ref20.url,
+      url = _ref20$url === undefined ? defaultUrl() : _ref20$url;
 
-  return function (_ref20) {
-    var dispatch = _ref20.dispatch,
-        getState = _ref20.getState;
+  return function (_ref21) {
+    var dispatch = _ref21.dispatch,
+        getState = _ref21.getState;
 
     var socket = void 0;
     var queue = [];
-    var sentJWT = false;
+    var sentAuthToken = false;
     var opened = false;
 
     function isOpen() {
       return socket && opened;
     }
 
-    function sendJWT(jwt) {
-      socket.send(jwt);
-      sentJWT = true;
+    function sendAuthToken(tokne) {
+      socket.send(tokne);
+      sentAuthToken = true;
     }
 
     function maybeAuthenticateOnConnect(state) {
-      var jwt = state.auth.jwt;
+      var user = state.auth.user;
 
-      debug('open', jwt);
-      if (jwt) {
-        sendJWT(jwt);
-      } else {
-        sentJWT = false;
-      }
+      if (!user) return;
+      debug('open', user.id);
+
+      dispatch(getSocketAuthToken()).then(function (_ref22) {
+        var socketToken = _ref22.socketToken;
+
+        if (socketToken) {
+          sendAuthToken(socketToken);
+        } else {
+          sentAuthToken = false;
+        }
+      });
     }
 
     function send(command, data) {
@@ -288,9 +298,13 @@ export default function middleware() {
             send('vote', -1);
             break;
           case LOGIN_COMPLETE:
-            if (!sentJWT && isOpen()) {
-              sendJWT(payload.jwt);
+            if (!sentAuthToken && isOpen()) {
+              sendAuthToken(payload.socketToken);
             }
+            break;
+          case LOGOUT_START:
+            sentAuthToken = false;
+            send('logout', null);
             break;
           default:
             break;

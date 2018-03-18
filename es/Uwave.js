@@ -14,7 +14,7 @@ import createLocale from './locale';
 import AppContainer from './containers/App';
 import { get as readSession } from './utils/Session';
 import configureStore from './store/configureStore';
-import { initState, socketConnect, setJWT } from './actions/LoginActionCreators';
+import { initState, socketConnect, setSessionToken } from './actions/LoginActionCreators';
 import { languageSelector } from './selectors/settingSelectors';
 import * as api from './api';
 
@@ -32,12 +32,12 @@ var Uwave = function () {
 
     this.options = {};
     this.sources = {};
-    this.jwt = null;
+    this.sessionToken = null;
     this.renderTarget = null;
     this.aboutPageComponent = null;
 
     this.options = options;
-    this.jwt = session;
+    this.sessionToken = session;
     this.ready = new Promise(function (resolve) {
       _this.resolveReady = resolve;
     });
@@ -47,9 +47,10 @@ var Uwave = function () {
     Object.assign(this, api.actions);
 
     if (module.hot) {
-      this._getComponent = this.getComponent;
+      var getComponent = this.getComponent;
+
       this.getComponent = function () {
-        return _jsx(HotContainer, {}, void 0, _this._getComponent());
+        return _jsx(HotContainer, {}, void 0, getComponent.call(_this));
       };
       var uw = this;
       module.hot.accept('./containers/App', function () {
@@ -97,9 +98,9 @@ var Uwave = function () {
 
     var localePromise = createLocale(languageSelector(this.store.getState()));
 
-    if (this.jwt) {
-      this.store.dispatch(setJWT(this.jwt));
-      this.jwt = null;
+    if (this.sessionToken) {
+      this.store.dispatch(setSessionToken(this.sessionToken));
+      this.sessionToken = null;
     }
 
     this.store.dispatch(socketConnect());

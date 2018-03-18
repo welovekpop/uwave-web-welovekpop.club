@@ -1,6 +1,6 @@
 import _extends from 'babel-runtime/helpers/extends';
 import assign from 'object-assign';
-import { stringify as stringifyQS } from 'querystring';
+import qsStringify from 'qs-stringify';
 
 import { REQUEST_START } from '../constants/actionTypes/request';
 import { requestComplete, requestCompleteError } from '../actions/RequestActionCreators';
@@ -18,7 +18,7 @@ function makeUrl(path) {
 
   if (!isEmpty(params)) {
     // heh…
-    uri += (uri.indexOf('?') !== -1 ? '&' : '?') + stringifyQS(params);
+    uri += (uri.indexOf('?') !== -1 ? '&' : '?') + qsStringify(params);
   }
 
   return uri;
@@ -45,7 +45,7 @@ function rejectNonOK(response) {
 }
 
 var defaultOptions = {
-  apiUrl: '/v1'
+  apiUrl: '/api'
 };
 
 export default function middleware() {
@@ -94,7 +94,7 @@ export default function middleware() {
           credentials: 'same-origin'
         };
 
-        if (token) {
+        if (token && token !== 'cookie') {
           requestOptions.headers.Authorization = 'JWT ' + token;
         }
 

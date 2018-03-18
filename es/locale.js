@@ -37,7 +37,7 @@ var UwaveBackend = function () {
     _classCallCheck(this, UwaveBackend);
 
     this.type = 'backend';
-    this.cache = { en: Promise.resolve(en) };
+    this.cache = {};
   }
 
   UwaveBackend.prototype.getResource = function getResource(language) {
@@ -77,6 +77,9 @@ i18next.init({
     escapeValue: false
   }
 });
+
+// Synchronously add the fallback language.
+i18next.addResourceBundle('en', 'uwave', en.uwave);
 
 export var availableLanguages = ['en'].concat(Object.keys(resources));
 

@@ -11,12 +11,25 @@ export default {
       "days": "{{count}} dag",
       "days_plural": "{{count}} dagen"
     },
+    "roles": {
+      "user": "Gebruiker",
+      "special": "Special",
+      "moderator": "Moderator",
+      "manager": "Manager",
+      "admin": "Administrator"
+    },
     "chat": {
       "title": "Chat",
       "placeholder": "Klik hier om te chatten!",
       "userJoin": "{{username}} is verbonden",
       "userLeave": "{{username}} gaat weg",
-      "userNameChanged": "{{username}} is nu {{newUsername}}"
+      "userNameChanged": "{{username}} is nu {{newUsername}}",
+      "modSkip": "{{username}} slaat {{djName}}s beurt over",
+      "modSkipReason": "{{username}} slaat {{djName}}s beurt over: {{reason}}",
+      "selfSkip": "{{username}} slaat hun beurt over",
+      "selfSkipReason": "{{username}} slaat hun beurt over: {{reason}}",
+      "rolesAdded": "{{username}} is nu {{roles}}",
+      "rolesRemoved": "{{username}} is niet meer {{roles}}"
     },
     "dialogs": {
       "confirm": {
@@ -36,7 +49,9 @@ export default {
         "nameInputTitle": "Naam"
       },
       "deletePlaylist": {
-        "action": "Verwijder"
+        "action": "Verwijder",
+        "title": "Afspeellijst Verwijderen",
+        "confirm": "Weet je zeker dat je deze afspeellijst wilt verwijderen?"
       },
       "renamePlaylist": {
         "action": "Wijzig Naam",
@@ -159,7 +174,10 @@ export default {
       "username": "Gebruikersnaam",
       "email": "E-mailadres",
       "password": "Wachtwoord",
-      "forgotPassword": "Wachtwoord vergeten?"
+      "forgotPassword": "Wachtwoord vergeten?",
+      "social": {
+        "loginWithGoogle": "Aanmelden via Google"
+      }
     }
   }
 };

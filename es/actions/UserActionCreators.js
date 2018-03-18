@@ -1,4 +1,4 @@
-import { LOAD_ONLINE_USERS, USER_JOIN, USER_LEAVE, CHANGE_USERNAME, CHANGE_ROLE, RECEIVE_GUEST_COUNT, DO_CHANGE_USERNAME_START, DO_CHANGE_USERNAME_COMPLETE } from '../constants/actionTypes/users';
+import { LOAD_ONLINE_USERS, USER_JOIN, USER_LEAVE, CHANGE_USERNAME, USER_ADD_ROLES, USER_REMOVE_ROLES, RECEIVE_GUEST_COUNT, DO_CHANGE_USERNAME_START, DO_CHANGE_USERNAME_COMPLETE } from '../constants/actionTypes/users';
 import { currentUserSelector, usersSelector } from '../selectors/userSelectors';
 import { put } from './RequestActionCreators';
 
@@ -85,14 +85,33 @@ export function doChangeUsername(username) {
   };
 }
 
-export function changeUserRole(userID, role) {
-  return {
-    type: CHANGE_ROLE,
-    payload: {
-      userID: userID,
-      role: role,
-      timestamp: Date.now()
-    }
+export function addUserRoles(userID, roles) {
+  return function (dispatch, getState) {
+    var user = usersSelector(getState())[userID];
+    return dispatch({
+      type: USER_ADD_ROLES,
+      payload: {
+        user: user,
+        userID: userID,
+        roles: roles,
+        timestamp: Date.now()
+      }
+    });
+  };
+}
+
+export function removeUserRoles(userID, roles) {
+  return function (dispatch, getState) {
+    var user = usersSelector(getState())[userID];
+    return dispatch({
+      type: USER_REMOVE_ROLES,
+      payload: {
+        user: user,
+        userID: userID,
+        roles: roles,
+        timestamp: Date.now()
+      }
+    });
   };
 }
 //# sourceMappingURL=UserActionCreators.js.map

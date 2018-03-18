@@ -65,7 +65,7 @@ var Video = function (_React$Component) {
 
   Video.prototype.componentDidMount = function componentDidMount() {
     if (screenfull.enabled) {
-      document.documentElement.addEventListener(screenfull.raw.fullscreenchange, this.handleFullscreenChange);
+      screenfull.on('change', this.handleFullscreenChange);
     }
   };
 

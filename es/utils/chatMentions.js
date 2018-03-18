@@ -7,13 +7,11 @@ export { groupMentions };
 /**
  * Get a list of group names that can be mentioned by a user.
  *
- * @param {{ role: number }} user
+ * @param {function(role: string): boolean} canMention
  */
-export function getAvailableGroupMentions(user) {
-  if (user) {
-    return Object.keys(groupMentions).filter(function (mention) {
-      return user.role >= groupMentions[mention].role;
-    });
+export function getAvailableGroupMentions(canMention) {
+  if (canMention) {
+    return Object.keys(groupMentions).filter(canMention);
   }
   return [];
 }
@@ -28,10 +26,10 @@ export function resolveMentions(tree, state) {
   var users = userListSelector(state);
   tree.forEach(function (node) {
     if (node.type === 'mention') {
-      var group = groupMentions[node.mention];
+      var groupSelector = groupMentions[node.mention];
       /* eslint-disable no-param-reassign */
-      if (group) {
-        node.group = group.users(state);
+      if (groupSelector) {
+        node.group = groupSelector(state);
       } else {
         node.user = find(users, function (user) {
           return user.username.toLowerCase() === node.mention;
