@@ -1,6 +1,7 @@
 import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
+import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 
 var buttonProps = {
@@ -22,9 +23,9 @@ var SocialMediaLink = function SocialMediaLink(_ref) {
 };
 
 SocialMediaLink.propTypes = process.env.NODE_ENV !== "production" ? {
-  href: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired
+  href: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired
 } : {};
 
 export default SocialMediaLink;
