@@ -12,13 +12,15 @@ import AddToPlaylistAction from '../../MediaList/Actions/AddToPlaylist';
 import RemoveFromPlaylistAction from '../../MediaList/Actions/RemoveFromPlaylist';
 import EditMediaAction from '../../MediaList/Actions/EditMedia';
 import MoveToFirstAction from '../../MediaList/Actions/MoveToFirst';
+import MoveToLastAction from '../../MediaList/Actions/MoveToLast';
 
 const makeActions = ({
   onOpenAddMediaMenu,
   onMoveToFirst,
+  onMoveToLast,
   onEditMedia,
   onRemoveFromPlaylist,
-  isFiltered
+  isFiltered,
 }) =>
   (media, selection, index) => [
     <AddToPlaylistAction
@@ -34,6 +36,12 @@ const makeActions = ({
         onFirst={() => onMoveToFirst(media, selection)}
       />
     ),
+    (index === 0 && !isFiltered) && (
+      <MoveToLastAction
+        key="last"
+        onLast={() => onMoveToLast(media, selection)}
+      />
+    ),
     <EditMediaAction
       key="edit"
       onEdit={() => onEditMedia(media)}
@@ -41,7 +49,7 @@ const makeActions = ({
     <RemoveFromPlaylistAction
       key="remove"
       onRemove={() => onRemoveFromPlaylist(media, selection)}
-    />
+    />,
   ];
 
 const PlaylistPanel = (props) => {
@@ -59,7 +67,7 @@ const PlaylistPanel = (props) => {
     onLoadPlaylistPage,
     onFilterPlaylistItems,
     onMoveMedia,
-    onOpenPreviewMediaDialog
+    onOpenPreviewMediaDialog,
   } = props;
 
   let list;
@@ -117,7 +125,7 @@ PlaylistPanel.propTypes = {
   onFilterPlaylistItems: PropTypes.func.isRequired,
   onNotDeletable: PropTypes.func.isRequired,
   onMoveMedia: PropTypes.func.isRequired,
-  onOpenPreviewMediaDialog: PropTypes.func.isRequired
+  onOpenPreviewMediaDialog: PropTypes.func.isRequired,
 };
 
 export default PlaylistPanel;

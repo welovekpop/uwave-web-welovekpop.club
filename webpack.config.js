@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const path = require('path');
 const escapeStringRegExp = require('escape-string-regexp');
 const { DefinePlugin, ProgressPlugin } = require('webpack');
@@ -11,11 +12,11 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 // Compile src/ on the fly so we can use components etc. during build time.
 require('babel-register')({
   only: new RegExp(escapeStringRegExp(path.join(__dirname, 'src'))),
-  plugins: [ 'transform-es2015-modules-commonjs' ]
+  plugins: ['transform-es2015-modules-commonjs'],
 });
 
 const staticPages = {
-  privacy: './static/privacy.md'
+  privacy: './static/privacy.md',
 };
 
 // Minification options used in production mode.
@@ -28,7 +29,7 @@ const htmlMinifierOptions = {
   removeRedundantAttributes: true,
   removeScriptTypeAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  removeOptionalTags: true
+  removeOptionalTags: true,
 };
 
 const noConfigBabelLoader = {
@@ -36,48 +37,48 @@ const noConfigBabelLoader = {
   query: {
     babelrc: false,
     presets: [
-      [ 'env', {
+      ['env', {
         modules: false,
         loose: true,
-        targets: { uglify: true }
-      } ]
-    ]
-  }
+        targets: { uglify: true },
+      }],
+    ],
+  },
 };
 
 const extractAppCss = new ExtractTextPlugin({
   filename: '[name]_[contenthash:7].css',
   // Disable in development mode, so we can use CSS hot reloading.
-  disable: nodeEnv === 'development'
+  disable: nodeEnv === 'development',
 });
 
 const plugins = [
   new DefinePlugin({
     __VERSION__: JSON.stringify(require('./package.json').version),
-    'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+    'process.env': { NODE_ENV: JSON.stringify(nodeEnv) },
   }),
   new CopyPlugin([
-    { from: '../assets/favicon.ico', to: 'favicon.ico' }
+    { from: '../assets/favicon.ico', to: 'favicon.ico' },
   ]),
   new HtmlPlugin({
-    chunks: [ 'bugsnag', 'app' ],
+    chunks: ['bugsnag', 'app'],
     template: './index.html',
     title: 'üWave',
     minify: nodeEnv === 'production' ? htmlMinifierOptions : false,
-    loadingScreen: () => require('./tasks/utils/renderLoadingScreen')()
+    loadingScreen: () => require('./tasks/utils/renderLoadingScreen')(),
   }),
   new HtmlPlugin({
-    chunks: [ 'passwordReset' ],
+    chunks: ['passwordReset'],
     template: './password-reset.html',
     filename: 'password-reset.html',
     title: 'Reset Password',
-    minify: nodeEnv === 'production' ? htmlMinifierOptions : false
+    minify: nodeEnv === 'production' ? htmlMinifierOptions : false,
   }),
   extractAppCss,
   new ProgressPlugin(),
   new LodashModuleReplacementPlugin({
-    paths: true
-  })
+    paths: true,
+  }),
 ];
 
 if (nodeEnv === 'production') {
@@ -87,8 +88,8 @@ if (nodeEnv === 'production') {
     LoaderOptionsPlugin,
     optimize: {
       OccurrenceOrderPlugin,
-      ModuleConcatenationPlugin
-    }
+      ModuleConcatenationPlugin,
+    },
   } = require('webpack');
   const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
   const CommonShakePlugin = require('webpack-common-shake').Plugin;
@@ -100,7 +101,7 @@ if (nodeEnv === 'production') {
     new OccurrenceOrderPlugin(),
     new LoaderOptionsPlugin({
       minimize: true,
-      debug: false
+      debug: false,
     }),
     new CommonShakePlugin(),
     new UglifyJsPlugin({
@@ -109,16 +110,16 @@ if (nodeEnv === 'production') {
         toplevel: true,
         compress: {
           pure_getters: true,
-          unsafe: true
-        }
-      }
+          unsafe: true,
+        },
+      },
     }),
     new ModuleConcatenationPlugin(),
     // Add Gzip-compressed files.
     new CompressionPlugin({
       test: compressible,
       asset: '[path].gz[query]',
-      algorithm: 'gzip'
+      algorithm: 'gzip',
     }),
     // Add Brotli-compressed files.
     new CompressionPlugin({
@@ -131,19 +132,19 @@ if (nodeEnv === 'production') {
         } else {
           cb(null, buffer);
         }
-      }
+      },
     }),
     new SriPlugin({
-      hashFuncNames: [ 'sha512' ]
-    })
+      hashFuncNames: ['sha512'],
+    }),
   );
 }
 
 const context = path.join(__dirname, 'src');
 const entries = {
   bugsnag: './_wlk/bugsnag.js',
-  app: [ './app.js', './app.css' ],
-  passwordReset: [ './password-reset/app.js' ]
+  app: ['./app.js', './app.css'],
+  passwordReset: ['./password-reset/app.js'],
 };
 
 // Add static pages.
@@ -152,7 +153,7 @@ Object.keys(staticPages).forEach((name) => {
   const fullPath = path.join(__dirname, staticPages[name]);
   entries[name] = [
     path.relative(context, fullPath),
-    './markdown.css'
+    './markdown.css',
   ];
 
   staticFiles.push(fullPath);
@@ -167,21 +168,21 @@ Object.keys(staticPages).forEach((name) => {
     // to find the compiled markdown when you're just in a template.
     // This could use a better alternative :p
     plugins.push(new HtmlPlugin({
-      chunks: [ name ],
+      chunks: [name],
       filename: `${name}.html`,
       template: [
         require.resolve('./tasks/utils/loadStaticHtmlTemplate'),
         'extract-loader',
-        fullPath
+        fullPath,
       ].join('!'),
       inject: false,
-      minify: htmlMinifierOptions
+      minify: htmlMinifierOptions,
     }));
   } else {
     plugins.push(new HtmlPlugin({
-      chunks: [ name ],
+      chunks: [name],
       template: './markdown.dev.html',
-      filename: `${name}.html`
+      filename: `${name}.html`,
     }));
   }
 });
@@ -196,7 +197,7 @@ module.exports = {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
     filename: nodeEnv === 'production' ? '[name]_[chunkhash:7].js' : '[name]_dev.js',
-    crossOriginLoading: 'anonymous'
+    crossOriginLoading: 'anonymous',
   },
   plugins,
   module: {
@@ -204,30 +205,30 @@ module.exports = {
       {
         test: /\.(mp3|eot|ttf|woff|svg)$/,
         use: [
-          { loader: 'file-loader', query: { name: '[name]_[hash:7].[ext]' } }
-        ]
+          { loader: 'file-loader', query: { name: '[name]_[hash:7].[ext]' } },
+        ],
       },
       {
         test: /\.(gif|jpe?g|png|svg)$/,
         use: [
           { loader: 'file-loader', query: { name: '[name]_[hash:7].[ext]' } },
-          { loader: 'image-webpack-loader', query: { bypassOnDebug: true } }
-        ]
+          { loader: 'image-webpack-loader', query: { bypassOnDebug: true } },
+        ],
       },
       {
         test: /\.css$/,
         use: extractAppCss.extract({
           fallback: 'style-loader',
-          use: [ 'css-loader', 'postcss-loader' ]
-        })
+          use: ['css-loader', 'postcss-loader'],
+        }),
       },
       {
         test: /\.yaml$/,
         use: [
           noConfigBabelLoader,
           require.resolve('./tasks/utils/jsonLoader'),
-          'yaml-loader'
-        ]
+          'yaml-loader',
+        ],
       },
       // JS loader for dependencies that use ES2015+:
       {
@@ -235,11 +236,11 @@ module.exports = {
         include: [
           /url-regex/,
           /truncate-url/,
-          /format-duration/
+          /format-duration/,
         ],
         use: [
-          noConfigBabelLoader
-        ]
+          noConfigBabelLoader,
+        ],
       },
       // JS loader for our own code:
       {
@@ -249,37 +250,37 @@ module.exports = {
           'babel-loader',
           nodeEnv !== 'production' && {
             loader: 'eslint-loader',
-            query: { cache: true }
-          }
-        ].filter(Boolean)
+            query: { cache: true },
+          },
+        ].filter(Boolean),
       },
       nodeEnv !== 'production' && {
         // Hot reload static pages in development mode.
         test: staticFiles,
-        use: require.resolve('./tasks/utils/insertHtml')
+        use: require.resolve('./tasks/utils/insertHtml'),
       },
       {
         test: /\.md$/,
         use: [
           'html-loader',
-          require.resolve('./tasks/utils/renderMarkdown')
-        ]
+          require.resolve('./tasks/utils/renderMarkdown'),
+        ],
       },
       // Treat the tutorial script as a raw file.
       {
         include: require.resolve('uwave-tutorial/build'),
         use: [
-          { loader: 'file-loader', options: { name: 'tutorial_[hash:7].[ext]' } }
-        ]
-      }
-    ].filter(Boolean)
+          { loader: 'file-loader', options: { name: 'tutorial_[hash:7].[ext]' } },
+        ],
+      },
+    ].filter(Boolean),
   },
   resolve: {
     mainFields: [
       'browser',
       'module',
       'jsnext:main',
-      'main'
-    ]
-  }
+      'main',
+    ],
+  },
 };

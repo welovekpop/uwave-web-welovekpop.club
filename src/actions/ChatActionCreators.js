@@ -19,32 +19,34 @@ import {
   REMOVE_ALL_MESSAGES,
 
   MUTE_USER,
-  UNMUTE_USER
+  UNMUTE_USER,
 } from '../constants/actionTypes/chat';
 import { put } from './RequestActionCreators';
 import { execute } from '../utils/ChatCommands';
 import {
   muteTimeoutsSelector,
   mutedUserIDsSelector,
-  currentUserMuteSelector
+  currentUserMuteSelector,
 } from '../selectors/chatSelectors';
 import { settingsSelector } from '../selectors/settingSelectors';
 import {
   currentUserSelector,
-  userListSelector
+  userListSelector,
+  userHasRoleSelector,
+  currentUserHasRoleSelector,
 } from '../selectors/userSelectors';
 import { currentTimeSelector } from '../selectors/timeSelectors';
 
 import {
   getAvailableGroupMentions,
   resolveMentions,
-  hasMention
+  hasMention,
 } from '../utils/chatMentions';
 
 export function receiveMotd(text) {
   return {
     type: RECEIVE_MOTD,
-    payload: parseChatMarkup(text, {})
+    payload: text,
   };
 }
 
@@ -55,8 +57,8 @@ export function log(text) {
     type: LOG,
     payload: {
       _id: logIdx,
-      text
-    }
+      text,
+    },
   };
 }
 
@@ -68,8 +70,8 @@ export function prepareMessage(state, user, text, parseOpts = {}) {
     payload: {
       user,
       message: text,
-      parsed
-    }
+      parsed,
+    },
   };
 }
 
@@ -77,6 +79,7 @@ export function sendChat(text) {
   return (dispatch, getState) => {
     const state = getState();
     const sender = currentUserSelector(state);
+    const hasRole = currentUserHasRoleSelector(state);
     const mute = currentUserMuteSelector(state);
     if (mute) {
       const timeLeft = ms(mute.expiresAt - Date.now(), { long: true });
@@ -88,8 +91,8 @@ export function sendChat(text) {
     const message = prepareMessage(state, sender, text, {
       mentions: [
         ...users.map(user => user.username),
-        ...getAvailableGroupMentions(sender)
-      ]
+        ...getAvailableGroupMentions(hasRole),
+      ],
     });
     dispatch(message);
   };
@@ -98,7 +101,7 @@ export function sendChat(text) {
 export function inputMessage(text) {
   return (dispatch, getState) => {
     if (text[0] === '/') {
-      const [ command, ...params ] = splitargs(text.slice(1));
+      const [command, ...params] = splitargs(text.slice(1));
       if (command) {
         const result = execute(getState(), command, params);
         if (result) {
@@ -117,21 +120,23 @@ function isMuted(state, userID) {
 
 export function receive(message) {
   return (dispatch, getState) => {
-    const settings = settingsSelector(getState());
-    const currentUser = currentUserSelector(getState());
-    const users = userListSelector(getState());
+    const state = getState();
+    const settings = settingsSelector(state);
+    const currentUser = currentUserSelector(state);
+    const users = userListSelector(state);
     const sender = find(users, user => user._id === message.userID);
+    const senderHasRole = userHasRoleSelector(state)(sender);
     const mentions = [
       ...users.map(user => user.username),
-      ...getAvailableGroupMentions(sender)
+      ...getAvailableGroupMentions(mention => senderHasRole(`chat.mention.${mention}`)),
     ];
 
-    if (isMuted(getState(), message.userID)) {
+    if (isMuted(state, message.userID)) {
       return;
     }
 
     const parsed = parseChatMarkup(message.text, { mentions });
-    resolveMentions(parsed, getState());
+    resolveMentions(parsed, state);
 
     const isMention = currentUser ? hasMention(parsed, currentUser._id) : false;
 
@@ -140,11 +145,11 @@ export function receive(message) {
       payload: {
         message: {
           ...message,
-          user: sender
+          user: sender,
         },
         isMention,
-        parsed
-      }
+        parsed,
+      },
     });
 
     if (isMention) {
@@ -159,27 +164,27 @@ export function receive(message) {
 export function removeMessage(id) {
   return {
     type: REMOVE_MESSAGE,
-    payload: { _id: id }
+    payload: { _id: id },
   };
 }
 
 export function removeMessagesByUser(userID) {
   return {
     type: REMOVE_USER_MESSAGES,
-    payload: { userID }
+    payload: { userID },
   };
 }
 
 export function removeAllMessages() {
   return {
-    type: REMOVE_ALL_MESSAGES
+    type: REMOVE_ALL_MESSAGES,
   };
 }
 
 function expireMute(userID) {
   return {
     type: UNMUTE_USER,
-    payload: { userID }
+    payload: { userID },
   };
 }
 
@@ -195,8 +200,8 @@ export function muteUser(userID, { moderatorID, expiresAt }) {
         moderatorID,
         expiresAt,
         expirationTimer: expireIn > 0 ?
-          setTimeout(() => dispatch(expireMute(userID)), expireIn) : null
-      }
+          setTimeout(() => dispatch(expireMute(userID)), expireIn) : null,
+      },
     });
   };
 }
@@ -209,7 +214,7 @@ export function unmuteUser(userID, { moderatorID }) {
     }
     dispatch({
       type: UNMUTE_USER,
-      payload: { userID, moderatorID }
+      payload: { userID, moderatorID },
     });
   };
 }
@@ -217,14 +222,14 @@ export function unmuteUser(userID, { moderatorID }) {
 export function setMotdStart(motd) {
   return {
     type: SET_MOTD_START,
-    payload: motd
+    payload: motd,
   };
 }
 
 export function setMotdComplete(motd) {
   return {
     type: SET_MOTD_COMPLETE,
-    payload: motd
+    payload: motd,
   };
 }
 
@@ -238,7 +243,7 @@ export function setMotd(text) {
     onError: error => ({
       type: SET_MOTD_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }

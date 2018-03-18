@@ -1,15 +1,9 @@
 import { expect } from 'chai';
-import proxyquire from 'proxyquire';
 import { LOGIN_COMPLETE } from '../../src/constants/actionTypes/auth';
 import createStore from '../../src/store/configureStore';
 import * as s from '../../src/selectors/userSelectors';
-
-const {
-  loginComplete,
-  setJWT
-} = proxyquire('../../src/actions/LoginActionCreators', {
-  '../utils/Socket': { auth() {} }
-});
+import { loginComplete, setSessionToken } from '../../src/actions/LoginActionCreators';
+import { setUsers } from '../../src/actions/UserActionCreators';
 
 describe('reducers/auth', () => {
   it('should not respond to unrelated actions', () => {
@@ -28,7 +22,7 @@ describe('reducers/auth', () => {
   describe('action: auth/SET_TOKEN', () => {
     const { dispatch, getState } = createStore();
     it('should set the current session token', () => {
-      dispatch(setJWT('test token'));
+      dispatch(setSessionToken('test token'));
       expect(s.tokenSelector(getState())).to.equal('test token');
     });
   });
@@ -37,7 +31,8 @@ describe('reducers/auth', () => {
     const { dispatch, getState } = createStore();
     it('should set the current user if successful', () => {
       const userObj = { _id: 'test user' };
-      dispatch(loginComplete({ jwt: 'test token', user: userObj }));
+      dispatch(setUsers([userObj]));
+      dispatch(loginComplete({ token: 'test token', user: userObj }));
       expect(s.tokenSelector(getState())).to.equal('test token');
       expect(s.currentUserSelector(getState())).to.eql(userObj);
       expect(s.authErrorSelector(getState())).to.be.null;
@@ -47,7 +42,7 @@ describe('reducers/auth', () => {
       dispatch({
         type: LOGIN_COMPLETE,
         payload: new Error('failed'),
-        error: true
+        error: true,
       });
       expect(s.tokenSelector(getState())).to.be.null;
       expect(s.currentUserSelector(getState())).to.be.null;

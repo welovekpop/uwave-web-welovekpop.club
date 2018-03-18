@@ -12,8 +12,11 @@ const Overlays = ({ children, active }) => {
     view = children;
   }
   if (view) {
+    // Pass on the `view.key` so that overlays are mounted and unmounted correctly
+    // when switching from one to the other.
     view = (
       <CSSTransition
+        key={view.key}
         mountOnEnter
         unmountOnExit
         classNames="Overlay"
@@ -32,7 +35,7 @@ const Overlays = ({ children, active }) => {
 
 Overlays.propTypes = {
   children: PropTypes.node,
-  active: PropTypes.string
+  active: PropTypes.string,
 };
 
 export default Overlays;

@@ -4,6 +4,7 @@ import {
   SOCKET_CONNECT,
   SOCKET_RECONNECT,
 
+  AUTH_STRATEGIES,
   REGISTER_START,
   REGISTER_COMPLETE,
   LOGIN_START,
@@ -12,22 +13,22 @@ import {
   LOGOUT_START,
   LOGOUT_COMPLETE,
 
-  RESET_PASSWORD_COMPLETE
+  RESET_PASSWORD_COMPLETE,
 } from '../constants/actionTypes/auth';
 import { LOAD_ALL_PLAYLISTS_START } from '../constants/actionTypes/playlists';
 import * as Session from '../utils/Session';
-import { get, post } from './RequestActionCreators';
+import { get, post, del } from './RequestActionCreators';
 import { advance, loadHistory } from './BoothActionCreators';
 import { receiveMotd } from './ChatActionCreators';
 import {
-  setPlaylists, selectPlaylist, activatePlaylistComplete
+  setPlaylists, selectPlaylist, activatePlaylistComplete,
 } from './PlaylistActionCreators';
 import { syncTimestamps } from './TickerActionCreators';
 import { closeLoginDialog } from './DialogActionCreators';
 import { setUsers } from './UserActionCreators';
 import { setVoteStats } from './VoteActionCreators';
 import { setWaitList } from './WaitlistActionCreators';
-import { currentUserSelector, tokenSelector } from '../selectors/userSelectors';
+import { tokenSelector } from '../selectors/userSelectors';
 import startTutorial from '../_wlk/startTutorial';
 
 const debug = createDebug('uwave:actions:login');
@@ -40,11 +41,22 @@ export function socketReconnect() {
   return { type: SOCKET_RECONNECT };
 }
 
-export function loginComplete({ jwt, user }) {
+export function setAuthenticationStrategies(strategies) {
+  return {
+    type: AUTH_STRATEGIES,
+    payload: { strategies },
+  };
+}
+
+export function loginComplete({ token, socketToken, user }) {
   return (dispatch) => {
     dispatch({
       type: LOGIN_COMPLETE,
-      payload: { jwt, user }
+      payload: {
+        token,
+        socketToken,
+        user,
+      },
     });
     dispatch(closeLoginDialog());
   };
@@ -54,16 +66,17 @@ export function loadedState(state) {
   return (dispatch, getState) => {
     dispatch({
       type: INIT_STATE,
-      payload: state
+      payload: state,
     });
     if (state.motd) {
       dispatch(receiveMotd(state.motd));
     }
+    dispatch(setAuthenticationStrategies(state.authStrategies));
     dispatch(setUsers(state.users || []));
     dispatch(setPlaylists(state.playlists || []));
     dispatch(setWaitList({
       waitlist: state.waitlist,
-      locked: state.waitlistLocked
+      locked: state.waitlistLocked,
     }));
     if (state.booth && state.booth.historyID) {
       // TODO don't set this when logging in _after_ entering the page?
@@ -73,8 +86,9 @@ export function loadedState(state) {
     if (state.user) {
       const token = tokenSelector(getState());
       dispatch(loginComplete({
-        jwt: token,
-        user: state.user
+        token,
+        socketToken: state.socketToken,
+        user: state.user,
       }));
     }
     if (state.activePlaylist) {
@@ -93,14 +107,14 @@ export function initState() {
       dispatch(syncTimestamps(beforeTime, state.time));
       dispatch(loadedState(state));
       dispatch(loadHistory());
-    }
+    },
   });
 }
 
-export function setJWT(jwt) {
+export function setSessionToken(token) {
   return {
     type: SET_TOKEN,
-    payload: { jwt }
+    payload: { token },
   };
 }
 
@@ -109,26 +123,27 @@ function loginStart() {
 }
 
 export function login({ email, password }) {
-  return post('/auth/login', { email, password }, {
+  const sessionType = Session.preferredSessionType();
+  return post(`/auth/login?session=${sessionType}`, { email, password }, {
     onStart: loginStart,
     onComplete: res => (dispatch) => {
       Session.set(res.meta.jwt);
-      dispatch(setJWT(res.meta.jwt));
+      dispatch(setSessionToken(res.meta.jwt));
       dispatch(initState());
     },
     onError: error => ({
       type: LOGIN_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }
 
 export function register({
-  email, username, password, grecaptcha
+  email, username, password, grecaptcha,
 }) {
   return post('/auth/register', {
-    email, username, password, grecaptcha
+    email, username, password, grecaptcha,
   }, {
     onStart: () => ({ type: REGISTER_START }),
     onComplete: res => (dispatch) => {
@@ -136,7 +151,7 @@ export function register({
       debug('registered', user);
       dispatch({
         type: REGISTER_COMPLETE,
-        payload: { user }
+        payload: { user },
       });
       dispatch(login({ email, password }))
         .then(() => {
@@ -149,8 +164,8 @@ export function register({
     onError: error => ({
       type: REGISTER_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }
 
@@ -166,29 +181,57 @@ function logoutComplete() {
 }
 
 export function logout() {
-  return (dispatch, getState) => {
-    const me = currentUserSelector(getState());
-    dispatch(logoutStart());
-    Session.unset();
-    if (me) {
-      dispatch(logoutComplete());
-      dispatch(socketReconnect());
-    } else {
-      dispatch(logoutComplete());
-    }
-  };
+  return del('/auth', {}, {
+    onStart: () => (dispatch) => {
+      dispatch(logoutStart());
+      Session.unset();
+    },
+    onComplete: logoutComplete,
+  });
 }
 
 export function resetPassword(email) {
   return post('/auth/password/reset', email, {
     onComplete: () => ({
       type: RESET_PASSWORD_COMPLETE,
-      payload: 'Successfully sent password reset email'
+      payload: 'Successfully sent password reset email',
     }),
     onError: error => ({
       type: RESET_PASSWORD_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
+}
+
+export function getSocketAuthToken() {
+  return get('/auth/socket', {
+    onComplete: res => () => ({
+      socketToken: res.data.socketToken,
+    }),
+  });
+}
+
+function whenWindowClosed(window) {
+  return new Promise((resolve) => {
+    const i = setInterval(() => {
+      if (window.closed) {
+        clearInterval(i);
+        resolve();
+      }
+    }, 50);
+  });
+}
+function socialLogin(service) {
+  return (dispatch, getState) => {
+    const { apiUrl } = getState().config;
+    const loginWindow = window.open(`${apiUrl}/auth/service/${service}`);
+    return whenWindowClosed(loginWindow).then(() => {
+      // Check login state after the window closed.
+      dispatch(initState());
+    });
+  };
+}
+export function loginWithGoogle() {
+  return socialLogin('google');
 }

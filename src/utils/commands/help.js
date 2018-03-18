@@ -12,7 +12,7 @@ register('help', 'List available commands.', {
         dispatch(log(`/${name} - ${command.description}`));
       }
     });
-  }
+  },
 });
 
 register('tutorial', 'Start a tutorial.', {

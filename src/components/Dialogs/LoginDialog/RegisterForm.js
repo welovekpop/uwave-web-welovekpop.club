@@ -5,14 +5,14 @@ import Checkbox from 'material-ui/Checkbox';
 import EmailIcon from 'material-ui/svg-icons/communication/email';
 import PasswordIcon from 'material-ui/svg-icons/action/lock';
 import UserIcon from 'material-ui/svg-icons/social/person';
-
 import Loader from '../../Loader';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
 import Button from '../../Form/Button';
-
 import ReCaptcha from '../../ReCaptcha';
+import SocialLogin from './SocialLogin';
+import Separator from './Separator';
 
 const enhance = translate();
 
@@ -23,13 +23,13 @@ class RegisterForm extends React.Component {
     reCaptchaSiteKey: PropTypes.string,
     error: PropTypes.object,
 
-    onRegister: PropTypes.func
+    onRegister: PropTypes.func,
   };
 
   state = {
     busy: false,
     agreed: false,
-    captchaResponse: null
+    captchaResponse: null,
   };
 
   componentWillReceiveProps() {
@@ -43,19 +43,19 @@ class RegisterForm extends React.Component {
       username: this.username.value,
       email: this.email.value,
       password: this.password.value,
-      grecaptcha: this.state.captchaResponse
+      grecaptcha: this.state.captchaResponse,
     });
   };
 
   handleCaptchaResponse = (response) => {
     this.setState({
-      captchaResponse: response
+      captchaResponse: response,
     });
   };
 
   handleTosCheckbox = (event, checked) => {
     this.setState({
-      agreed: checked
+      agreed: checked,
     });
   };
 
@@ -93,6 +93,8 @@ class RegisterForm extends React.Component {
     return (
       <Form className="RegisterForm" onSubmit={this.handleSubmit}>
         {error && <FormGroup>{error.message}</FormGroup>}
+        <SocialLogin />
+        <Separator />
         <FormGroup>
           <TextField
             ref={this.refUsername}

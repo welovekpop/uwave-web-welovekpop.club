@@ -3,30 +3,31 @@ import {
   USER_JOIN,
   USER_LEAVE,
   CHANGE_USERNAME,
-  CHANGE_ROLE,
+  USER_ADD_ROLES,
+  USER_REMOVE_ROLES,
 
   RECEIVE_GUEST_COUNT,
 
   DO_CHANGE_USERNAME_START,
-  DO_CHANGE_USERNAME_COMPLETE
+  DO_CHANGE_USERNAME_COMPLETE,
 } from '../constants/actionTypes/users';
 import {
   currentUserSelector,
-  usersSelector
+  usersSelector,
 } from '../selectors/userSelectors';
 import { put } from './RequestActionCreators';
 
 export function setUsers(users) {
   return {
     type: LOAD_ONLINE_USERS,
-    payload: { users }
+    payload: { users },
   };
 }
 
 export function receiveGuestCount(guests) {
   return {
     type: RECEIVE_GUEST_COUNT,
-    payload: { guests }
+    payload: { guests },
   };
 }
 
@@ -35,8 +36,8 @@ export function join(user) {
     type: USER_JOIN,
     payload: {
       user,
-      timestamp: Date.now()
-    }
+      timestamp: Date.now(),
+    },
   };
 }
 
@@ -48,8 +49,8 @@ export function leave(id) {
       payload: {
         user,
         userID: id,
-        timestamp: Date.now()
-      }
+        timestamp: Date.now(),
+      },
     });
   };
 }
@@ -63,8 +64,8 @@ export function changeUsername(userID, username) {
         user,
         userID,
         username,
-        timestamp: Date.now()
-      }
+        timestamp: Date.now(),
+      },
     });
   };
 }
@@ -76,29 +77,48 @@ export function doChangeUsername(username) {
     return dispatch(put(`/users/${user._id}/username`, { username }, {
       onStart: () => ({
         type: DO_CHANGE_USERNAME_START,
-        payload: { username }
+        payload: { username },
       }),
       onComplete: ({ data }) => ({
         type: DO_CHANGE_USERNAME_COMPLETE,
-        payload: { username: data.username }
+        payload: { username: data.username },
       }),
       onError: error => ({
         type: DO_CHANGE_USERNAME_COMPLETE,
         error: true,
         payload: error,
-        meta: { username }
-      })
+        meta: { username },
+      }),
     }));
   };
 }
 
-export function changeUserRole(userID, role) {
-  return {
-    type: CHANGE_ROLE,
-    payload: {
-      userID,
-      role,
-      timestamp: Date.now()
-    }
+export function addUserRoles(userID, roles) {
+  return (dispatch, getState) => {
+    const user = usersSelector(getState())[userID];
+    return dispatch({
+      type: USER_ADD_ROLES,
+      payload: {
+        user,
+        userID,
+        roles,
+        timestamp: Date.now(),
+      },
+    });
+  };
+}
+
+export function removeUserRoles(userID, roles) {
+  return (dispatch, getState) => {
+    const user = usersSelector(getState())[userID];
+    return dispatch({
+      type: USER_REMOVE_ROLES,
+      payload: {
+        user,
+        userID,
+        roles,
+        timestamp: Date.now(),
+      },
+    });
   };
 }

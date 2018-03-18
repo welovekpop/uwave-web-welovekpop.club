@@ -13,6 +13,7 @@ import Overlays from './Overlays';
 import PlaylistManager from '../../containers/PlaylistManager';
 import RoomHistory from '../../containers/RoomHistory';
 import SettingsManager from '../../containers/SettingsManager';
+import AdminProxy from '../AdminProxy';
 import About from '../../containers/About';
 import ConnectionIndicator from '../ConnectionIndicator';
 
@@ -26,7 +27,7 @@ const App = ({
   isConnected,
   settings,
   hasAboutPage,
-  onCloseOverlay
+  onCloseOverlay,
 }) => (
   <div className="App">
     <div className="AppColumn AppColumn--left">
@@ -51,6 +52,10 @@ const App = ({
           key="about"
           onCloseOverlay={onCloseOverlay}
         />}
+        <AdminProxy
+          key="admin"
+          onCloseOverlay={onCloseOverlay}
+        />
         <PlaylistManager
           key="playlistManager"
           onCloseOverlay={onCloseOverlay}
@@ -84,12 +89,12 @@ App.propTypes = {
   settings: PropTypes.object.isRequired,
   hasAboutPage: PropTypes.bool,
 
-  onCloseOverlay: PropTypes.func.isRequired
+  onCloseOverlay: PropTypes.func.isRequired,
 };
 
 export default compose(
   DragDropContext(HTML5Backend),
   // DragDropContext needs to be able to set a ref on the component, so we can't
   // use a stateless function directly.
-  toClass
+  toClass,
 )(App);

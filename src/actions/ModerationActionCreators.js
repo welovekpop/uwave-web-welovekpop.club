@@ -7,14 +7,15 @@ import {
   MUTE_USER_START, MUTE_USER_COMPLETE,
   UNMUTE_USER_START, UNMUTE_USER_COMPLETE,
   BAN_USER_START, BAN_USER_COMPLETE,
-  SET_USER_ROLE_START, SET_USER_ROLE_COMPLETE
+  ADD_USER_ROLES_START, ADD_USER_ROLES_COMPLETE,
+  REMOVE_USER_ROLES_START, REMOVE_USER_ROLES_COMPLETE,
 } from '../constants/actionTypes/moderation';
 
 import {
-  removeMessage, removeMessagesByUser, removeAllMessages
+  removeMessage, removeMessagesByUser, removeAllMessages,
 } from './ChatActionCreators';
 import {
-  del, post, put
+  del, post, put,
 } from './RequestActionCreators';
 
 export function skipCurrentDJ(reason = '', shouldRemove = false) {
@@ -26,7 +27,7 @@ export function skipCurrentDJ(reason = '', shouldRemove = false) {
     const payload = {
       userID: dj._id,
       reason,
-      remove: shouldRemove
+      remove: shouldRemove,
     };
     return dispatch(post('/booth/skip', payload, {
       onStart: () => ({ type: SKIP_DJ_START, payload }),
@@ -35,8 +36,8 @@ export function skipCurrentDJ(reason = '', shouldRemove = false) {
         type: SKIP_DJ_COMPLETE,
         error: true,
         payload: error,
-        meta: payload
-      })
+        meta: payload,
+      }),
     }));
   };
 }
@@ -48,14 +49,14 @@ export function removeCurrentDJ(reason = '') {
 export function removeWaitlistUserStart(user) {
   return {
     type: REMOVE_USER_START,
-    payload: { user }
+    payload: { user },
   };
 }
 
 export function removeWaitlistUserComplete(user) {
   return {
     type: REMOVE_USER_COMPLETE,
-    payload: { user }
+    payload: { user },
   };
 }
 
@@ -76,7 +77,7 @@ export function removeWaitlistUser(user) {
       .catch(error => dispatch({
         type: REMOVE_USER_COMPLETE,
         error: true,
-        payload: error
+        payload: error,
       }));
   };
 }
@@ -84,14 +85,14 @@ export function removeWaitlistUser(user) {
 export function moveWaitlistUserStart(user, position) {
   return {
     type: MOVE_USER_START,
-    payload: { user, position }
+    payload: { user, position },
   };
 }
 
 export function moveWaitlistUserComplete(user, position) {
   return {
     type: MOVE_USER_COMPLETE,
-    payload: { user, position }
+    payload: { user, position },
   };
 }
 
@@ -103,36 +104,48 @@ export function moveWaitlistUser(user, position) {
       type: MOVE_USER_COMPLETE,
       error: true,
       payload: error,
-      meta: { user, position }
-    })
+      meta: { user, position },
+    }),
   });
 }
 
-export function setUserRoleStart(user, role) {
-  return {
-    type: SET_USER_ROLE_START,
-    payload: { user, role }
-  };
-}
-
-export function setUserRoleComplete(user, role) {
-  return {
-    type: SET_USER_ROLE_COMPLETE,
-    payload: { user, role }
-  };
-}
-
-export function setUserRole(user, role) {
+export function addUserRole(user, role) {
   const userID = typeof user === 'object' ? user._id : user;
-  return put(`/users/${userID}/role`, { role }, {
-    onStart: () => setUserRoleStart(user, role),
-    onComplete: () => setUserRoleComplete(user, role),
+  return put(`/users/${userID}/roles/${role}`, {}, {
+    onStart: () => ({
+      type: ADD_USER_ROLES_START,
+      payload: { user, roles: [role] },
+    }),
+    onComplete: () => ({
+      type: ADD_USER_ROLES_COMPLETE,
+      payload: { user, roles: [role] },
+    }),
     onError: error => ({
-      type: SET_USER_ROLE_COMPLETE,
+      type: ADD_USER_ROLES_COMPLETE,
       error: true,
       payload: error,
-      meta: { user, role }
-    })
+      meta: { user, roles: [role] },
+    }),
+  });
+}
+
+export function removeUserRole(user, role) {
+  const userID = typeof user === 'object' ? user._id : user;
+  return del(`/users/${userID}/roles/${role}`, {}, {
+    onStart: () => ({
+      type: REMOVE_USER_ROLES_START,
+      payload: { user, roles: [role] },
+    }),
+    onComplete: () => ({
+      type: REMOVE_USER_ROLES_COMPLETE,
+      payload: { user, roles: [role] },
+    }),
+    onError: error => ({
+      type: REMOVE_USER_ROLES_COMPLETE,
+      error: true,
+      payload: error,
+      meta: { user, roles: [role] },
+    }),
   });
 }
 
@@ -143,8 +156,8 @@ export function deleteChatMessage(id) {
       type: undefined,
       error: true,
       payload: error,
-      meta: { id }
-    })
+      meta: { id },
+    }),
   });
 }
 
@@ -155,8 +168,8 @@ export function deleteChatMessagesByUser(userID) {
       type: undefined,
       error: true,
       payload: error,
-      meta: { userID }
-    })
+      meta: { userID },
+    }),
   });
 }
 
@@ -166,22 +179,22 @@ export function deleteAllChatMessages() {
     onError: error => ({
       type: undefined,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }
 
 export function muteUserStart(userID, duration) {
   return {
     type: MUTE_USER_START,
-    payload: { userID, duration }
+    payload: { userID, duration },
   };
 }
 
 export function muteUserComplete(userID, duration) {
   return {
     type: MUTE_USER_COMPLETE,
-    payload: { userID, duration }
+    payload: { userID, duration },
   };
 }
 
@@ -196,22 +209,22 @@ export function muteUser(user, duration = 10 * 60 * 1000) {
     onError: error => ({
       type: MUTE_USER_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }
 
 export function unmuteUserStart(userID) {
   return {
     type: UNMUTE_USER_START,
-    payload: { userID }
+    payload: { userID },
   };
 }
 
 export function unmuteUserComplete(userID) {
   return {
     type: UNMUTE_USER_COMPLETE,
-    payload: { userID }
+    payload: { userID },
   };
 }
 
@@ -223,22 +236,22 @@ export function unmuteUser(user) {
     onError: error => ({
       type: UNMUTE_USER_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }
 
 export function banUserStart(userID, duration, permanent) {
   return {
     type: BAN_USER_START,
-    payload: { userID, duration, permanent }
+    payload: { userID, duration, permanent },
   };
 }
 
 export function banUserComplete(ban) {
   return {
     type: BAN_USER_COMPLETE,
-    payload: ban
+    payload: ban,
   };
 }
 
@@ -253,7 +266,7 @@ export function banUser(user, { duration = 24 * 60 * 60 * 1000, permanent = fals
     onError: error => ({
       type: BAN_USER_COMPLETE,
       error: true,
-      payload: error
-    })
+      payload: error,
+    }),
   });
 }

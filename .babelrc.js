@@ -17,16 +17,14 @@ const preset = {
     ['env', {
       modules: false,
       loose: env === 'production',
-      targets,
-      // Force enable the classes transform, react-hot-loader doesn't
-      // appear to work well with native classes + arrow functions in
-      // transpiled class properties.
-      include: env === 'development' ? ['transform-es2015-classes'] : []
+      targets
     }],
-    'stage-2',
     'react'
   ],
   plugins: [
+    'syntax-dynamic-import',
+    'transform-object-rest-spread',
+    'transform-class-properties',
     'transform-export-extensions',
     ['transform-runtime', { polyfill: false }]
   ]

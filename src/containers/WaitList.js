@@ -4,20 +4,20 @@ import { createStructuredSelector } from 'reselect';
 
 import {
   moveWaitlistUser,
-  removeWaitlistUser
+  removeWaitlistUser,
 } from '../actions/ModerationActionCreators';
 import { waitlistUsersSelector } from '../selectors/waitlistSelectors';
-import { isModeratorSelector } from '../selectors/userSelectors';
+import { createRoleCheckSelector } from '../selectors/userSelectors';
 import WaitList from '../components/WaitList';
 
 const mapStateToProps = createStructuredSelector({
   users: waitlistUsersSelector,
-  canMoveUsers: isModeratorSelector
+  canMoveUsers: createRoleCheckSelector('waitlist.move'),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   onMoveUser: moveWaitlistUser,
-  onRemoveUser: removeWaitlistUser
+  onRemoveUser: removeWaitlistUser,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(WaitList);

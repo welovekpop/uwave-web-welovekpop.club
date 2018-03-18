@@ -36,16 +36,18 @@ export default function createUwaveStore(initialState = {}, options = {}) {
     // Redux-Logger logs state changes to the console, including the
     // Before-state, the Action object, and the After-state. Invaluable for
     // debugging :)
-    enableLogging && logger
+    enableLogging && logger,
   ].filter(Boolean);
+
+  let currentReducers = {
+    ...reducers,
+    sources: createSourcesReducer(options),
+  };
 
   const store = createStore(
     // Finish up the reducer function by combining all the different reducers
     // into one big reducer that works on one big state object.
-    combineReducers({
-      ...reducers,
-      sources: createSourcesReducer(options)
-    }),
+    combineReducers(currentReducers),
     initialState,
     compose(
       // Adds all of the above ☝ middleware features to the store.
@@ -55,8 +57,8 @@ export default function createUwaveStore(initialState = {}, options = {}) {
       // This is done separately from the Middleware features, because it changes
       // the _initial_ `settings` state, something that Middleware can't do.
       persistSettings,
-      batchedSubscribe(rerender)
-    )
+      batchedSubscribe(rerender),
+    ),
   );
 
   if (process.env.NODE_ENV === 'development' && module.hot) {
@@ -66,10 +68,18 @@ export default function createUwaveStore(initialState = {}, options = {}) {
     module.hot.accept('../reducers', () => {
       store.replaceReducer(combineReducers({
         ...reducers,
-        sources: createSourcesReducer(options)
+        sources: createSourcesReducer(options),
       }));
     });
   }
+
+  store.mount = (name, reducer) => {
+    currentReducers = {
+      ...currentReducers,
+      [name]: reducer,
+    };
+    store.replaceReducer(combineReducers(currentReducers));
+  };
 
   return store;
 }

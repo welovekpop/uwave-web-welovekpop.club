@@ -23,6 +23,13 @@ uwave:
     days: "{{count}} day"
     days_plural: "{{count}} days"
 
+  roles:
+    user: User
+    special: Special
+    moderator: Moderator
+    manager: Manager
+    admin: Admin
+
   chat:
     title: Chat
     placeholder: Click here to chat!
@@ -33,6 +40,8 @@ uwave:
     modSkipReason: "{{username}} skipped {{djName}}'s turn: {{reason}}"
     selfSkip: "{{username}} skipped their turn"
     selfSkipReason: "{{username}} skipped their turn: {{reason}}"
+    rolesAdded: "{{username}} is now a {{roles}}"
+    rolesRemoved: "{{username}} is no longer a {{roles}}"
 
   dialogs:
     confirm:
@@ -154,6 +163,7 @@ uwave:
       userJoin: User Joins
       userLeave: User Leaves
       userNameChanged: User Changes Nickname
+      skip: A Song Is Skipped
     profile:
       username:
         change: Change Username
@@ -175,7 +185,24 @@ uwave:
     passwordResetSent: "We've sent an email to that address with password reset instructions."
     privacyPolicy: Privacy Policy
     agree: I am at least 13 years old and accept the {{privacyPolicy}}.
+    social:
+      loginWithGoogle: Sign in with Google
   resetPassword:
     introduction: Enter a new password below.
     submit: Reset Password
     success: Your password has been reset. You can now close this page.
+
+  admin:
+    users:
+      user: User
+      joinedAt: Created
+      email: E-Mail
+      roles: Roles
+    bans:
+      user: User
+      duration: Duration
+      reason: Reason
+      bannedBy: Banned By
+      actions: Actions
+      unban: Unban
+      noReason: No reason given.

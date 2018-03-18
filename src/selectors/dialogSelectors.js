@@ -2,7 +2,7 @@ import assign from 'object-assign';
 import { createSelector } from 'reselect';
 import { reCaptchaSiteKeySelector } from './configSelectors';
 import { volumeSelector } from './settingSelectors';
-import { authErrorSelector } from './userSelectors';
+import { authErrorSelector, supportsSocialAuthSelector } from './userSelectors';
 
 const baseSelector = state => state.dialogs;
 
@@ -12,16 +12,18 @@ export const loginDialogSelector = createSelector(
   baseSelector,
   authErrorSelector,
   reCaptchaSiteKeySelector,
-  (dialogs, error, siteKey) => assign(merge(dialogs.login), {
+  supportsSocialAuthSelector,
+  (dialogs, error, siteKey, supportsSocialAuth) => assign(merge(dialogs.login), {
     error,
     useReCaptcha: !!siteKey,
-    reCaptchaSiteKey: siteKey || null
-  })
+    reCaptchaSiteKey: siteKey || null,
+    supportsSocialAuth,
+  }),
 );
 
 export const editMediaDialogSelector = createSelector(
   baseSelector,
-  dialogs => merge(dialogs.editMedia)
+  dialogs => merge(dialogs.editMedia),
 );
 
 export const previewMediaDialogSelector = createSelector(
@@ -29,11 +31,11 @@ export const previewMediaDialogSelector = createSelector(
   volumeSelector,
   (dialogs, volume) => ({
     ...merge(dialogs.previewMedia),
-    volume
-  })
+    volume,
+  }),
 );
 
 export const isPreviewMediaDialogOpenSelector = createSelector(
   baseSelector,
-  dialogs => dialogs.previewMedia && !!dialogs.previewMedia.open
+  dialogs => dialogs.previewMedia && !!dialogs.previewMedia.open,
 );

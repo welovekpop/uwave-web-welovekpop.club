@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
 import {
   LOAD_SETTINGS,
-  CHANGE_SETTING
+  CHANGE_SETTING,
 } from '../constants/actionTypes/settings';
 
 const initialState = {
@@ -14,19 +14,30 @@ const initialState = {
   notifications: {
     userJoin: true,
     userLeave: true,
-    userNameChanged: true
-  }
+    userNameChanged: true,
+    skip: true,
+  },
 };
 
 export default function reduce(state = initialState, action = {}) {
   const { type, payload } = action;
   switch (type) {
-  case LOAD_SETTINGS:
+    case LOAD_SETTINGS:
     // Loading settings defaults to the initial state.
-    return { ...initialState, ...payload };
-  case CHANGE_SETTING:
-    return merge(state, payload, { clone: true });
-  default:
-    return state;
+      return {
+        ...initialState,
+        ...payload,
+        // Merge notification settings if we have new ones.
+        // Needed if new notification types were added since the last time
+        // settings were saved to localStorage.
+        notifications: payload ? {
+          ...initialState.notifications,
+          ...payload.notifications,
+        } : initialState.notifications,
+      };
+    case CHANGE_SETTING:
+      return merge(state, payload, { clone: true });
+    default:
+      return state;
   }
 }
