@@ -23,13 +23,13 @@ export default () => (
       WE ♥ KPOP can also be found on:
     </p>
     <ul>
-      <SocialMediaLink label="Facebook" href="https://facebook.com/welovekpop.club">
+      <SocialMediaLink label="Facebook" href="https://facebook.com/wlk.yt">
         <FacebookIcon />
       </SocialMediaLink>
       <SocialMediaLink label="YouTube" href="https://youtube.com/c/welovekpopclub">
         <YouTubeIcon />
       </SocialMediaLink>
-      <SocialMediaLink label="Instagram" href="https://instagram.com/welovekpop.club">
+      <SocialMediaLink label="Instagram" href="https://instagram.com/wlk_official">
         <InstagramIcon />
       </SocialMediaLink>
       <SocialMediaLink label="Twitter" href="https://twitter.com/wlk_official">
@@ -38,7 +38,7 @@ export default () => (
       <SocialMediaLink label="Github" href="https://github.com/welovekpop">
         <GithubIcon />
       </SocialMediaLink>
-      <SocialMediaLink label="Slack" href="https://slack.welovekpop.club">
+      <SocialMediaLink label="Slack" href="https://slack.wlk.yt">
         <SlackIcon />
       </SocialMediaLink>
     </ul>
