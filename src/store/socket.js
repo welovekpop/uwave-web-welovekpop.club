@@ -14,9 +14,7 @@ import {
   DO_UPVOTE,
   DO_DOWNVOTE,
 } from '../constants/actionTypes/votes';
-import {
-  SHOULD_RANDOMIZE,
-} from '../_wlk/constants';
+import { SHOULD_RANDOMIZE } from '../_wlk/constants';
 
 import { getSocketAuthToken } from '../actions/LoginActionCreators';
 import {
