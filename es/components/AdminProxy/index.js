@@ -12,9 +12,9 @@ var _ref = _jsx(Loader, {
 
 var AdminComponent = loadable({
   loader: function loader() {
-    return import('../../admin/containers/AdminApp');
+    return import('../../admin/containers/AdminApp' /* webpackChunkName: "admin" */);
   },
-  LoadingComponent: function LoadingComponent() {
+  loading: function loading() {
     return _ref;
   }
 });

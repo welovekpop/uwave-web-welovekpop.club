@@ -4,31 +4,31 @@ import * as en from './locale/en.js';
 
 var resources = {
   cs: function cs() {
-    return import('./locale/cs.js');
+    return import('./locale/cs.js' /* webpackChunkName: "lang_cs" */);
   },
   cy: function cy() {
-    return import('./locale/cy.js');
+    return import('./locale/cy.js' /* webpackChunkName: "lang_cy" */);
   },
   de: function de() {
-    return import('./locale/de.js');
+    return import('./locale/de.js' /* webpackChunkName: "lang_de" */);
   },
   es: function es() {
-    return import('./locale/es.js');
+    return import('./locale/es.js' /* webpackChunkName: "lang_es" */);
   },
   fr: function fr() {
-    return import('./locale/fr.js');
+    return import('./locale/fr.js' /* webpackChunkName: "lang_fr" */);
   },
   ko: function ko() {
-    return import('./locale/ko.js');
+    return import('./locale/ko.js' /* webpackChunkName: "lang_ko" */);
   },
   nl: function nl() {
-    return import('./locale/nl.js');
+    return import('./locale/nl.js' /* webpackChunkName: "lang_nl" */);
   },
   pt: function pt() {
-    return import('./locale/pt.js');
+    return import('./locale/pt.js' /* webpackChunkName: "lang_pt" */);
   },
   zh: function zh() {
-    return import('./locale/zh.js');
+    return import('./locale/zh.js' /* webpackChunkName: "lang_zh" */);
   }
 };
 
