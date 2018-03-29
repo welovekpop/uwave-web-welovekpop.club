@@ -1,6 +1,6 @@
-# u-wave-web
+# @wlk/client
 
-Web client for [üWave][].
+Custom web client for [üWave][].
 
 [Dependencies](#dependencies) - [Setup](#getting-things-working) -
 [Building](#building) - [Server API](#server-api) - [Client API](#client-api) -

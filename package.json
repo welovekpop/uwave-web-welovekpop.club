@@ -1,10 +1,10 @@
 {
-  "name": "u-wave-web",
+  "name": "@wlk/client",
   "version": "1.3.0",
-  "description": "Web client for üWave servers.",
+  "description": "üWave Web Client with some adaptations for WLK.",
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
-  "repository": "u-wave/web",
+  "repository": "welovekpop/wlk.yt-client",
   "main": "lib/Uwave.js",
   "jsnext:main": "es/Uwave.js",
   "module": "es/Uwave.js",
