@@ -19,3 +19,4 @@ export users from './users';
 export votes from './votes';
 export waitlist from './waitlist';
 export wlk from '../_wlk/reducer';
+export mobile from '../mobile/reducers';
