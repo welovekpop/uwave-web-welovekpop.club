@@ -204,6 +204,7 @@ module.exports = {
   },
   plugins,
   module: {
+    noParse: /uwave-tutorial\/build/,
     rules: [
       {
         test: /\.(mp3|eot|ttf|woff|svg)$/,
@@ -267,13 +268,6 @@ module.exports = {
         use: [
           'html-loader',
           require.resolve('./tasks/utils/renderMarkdown'),
-        ],
-      },
-      // Treat the tutorial script as a raw file.
-      {
-        include: require.resolve('uwave-tutorial/build'),
-        use: [
-          { loader: 'file-loader', options: { name: 'tutorial_[hash:7].[ext]' } },
         ],
       },
     ].filter(Boolean),
