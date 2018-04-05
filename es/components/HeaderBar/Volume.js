@@ -57,7 +57,7 @@ var Volume = function (_React$Component) {
     }, void 0, _jsx(Slider, {
       min: 0,
       max: 100,
-      step: 5,
+      step: 1,
       value: this.props.volume,
       onChange: this.handleVolumeChange
     })));

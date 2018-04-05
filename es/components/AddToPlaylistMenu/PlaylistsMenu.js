@@ -30,8 +30,7 @@ var PlaylistsMenu = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleSelect = function (e, item) {
-      var playlistID = item.props.value;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleSelect = function (e, playlistID) {
       _this.props.onClose();
       _this.props.onSelect(find(_this.props.playlists, function (pl) {
         return pl._id === playlistID;
@@ -62,7 +61,9 @@ var PlaylistsMenu = function (_React$Component) {
     }), _ref), playlists.map(function (playlist) {
       return _jsx(MenuItem, {
         className: 'AddToPlaylistMenu-playlist',
-        onClick: _this2.handleSelect
+        onClick: function onClick(event) {
+          return _this2.handleSelect(event, playlist._id);
+        }
       }, playlist._id, !!playlist.active && _ref2, _jsx(ListItemText, {
         primary: playlist.name
       }), _jsx(ListItemText, {

@@ -1,8 +1,8 @@
-import withProps from 'recompose/withProps';
+import defaultProps from 'recompose/defaultProps';
 import Base from './BaseMediaList';
 import Row from './Row';
 
-var MediaList = withProps({
+var MediaList = defaultProps({
   listComponent: 'div',
   rowComponent: Row
 })(Base);
