@@ -15,6 +15,7 @@
   "dependencies": {
     "@f/cookies-enabled": "^1.1.1",
     "@u-wave/react-youtube": "^0.4.2",
+    "@wlk/tutorial": "^0.1.0",
     "array-find": "^1.0.0",
     "array-findindex": "^0.1.0",
     "bugsnag-js": "^3.0.7",
@@ -78,7 +79,6 @@
     "splitargs": "0.0.7",
     "u-wave-parse-chat-markup": "^2.1.0",
     "upper-case-first": "^1.1.2",
-    "uwave-tutorial": "soonshiny/uwave-tutorial",
     "whatwg-fetch": "^2.0.0",
     "yamlify": "^0.2.0"
   },
