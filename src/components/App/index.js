@@ -1,9 +1,13 @@
+/* global localStorage */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext } from 'react-dnd';
 import compose from 'recompose/compose';
 import toClass from 'recompose/toClass';
+import withState from 'recompose/withState';
+import mapProps from 'recompose/mapProps';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Snackbar from 'material-ui/Snackbar';
 
 import FooterBar from '../../containers/FooterBar';
 import HeaderBar from '../../containers/HeaderBar';
@@ -21,6 +25,30 @@ import SidePanels from '../../containers/SidePanels';
 import Dialogs from '../Dialogs';
 import AddToPlaylistMenu from '../../containers/AddToPlaylistMenu';
 import DragLayer from '../../containers/DragLayer';
+
+const MovedNotification = compose(
+  withState('seen', 'setSeen', () => {
+    try {
+      // eslint-disable-next-line no-underscore-dangle
+      return !localStorage._session || localStorage._session.length <= 30 ||
+        !!localStorage.wlkSawMoveMessage;
+    } catch (err) {
+      return false;
+    }
+  }),
+  mapProps(({ seen, setSeen, ...props }) => ({
+    ...props,
+    open: !seen,
+    onClose: () => {
+      try {
+        localStorage.wlkSawMoveMessage = '1';
+      } catch (err) {
+        // Nothing
+      }
+      setSeen(true);
+    },
+  })),
+)(Snackbar);
 
 const App = ({
   activeOverlay,
@@ -80,6 +108,9 @@ const App = ({
 
     <AddToPlaylistMenu />
     <DragLayer />
+    <MovedNotification
+      message="WLK was recently updated! You will need to log in again, because of some security improvements that have been made."
+    />
   </div>
 );
 
