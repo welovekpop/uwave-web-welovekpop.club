@@ -3,16 +3,15 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { CircularProgress } from 'material-ui/es/Progress';
 import { IDLE, LOADING, LOADED } from '../../../constants/LoadingStates';
-import Loader from '../../Loader';
 import MediaList from '../../MediaList';
-
 import AddToPlaylistAction from '../../MediaList/Actions/AddToPlaylist';
 
 var _ref2 = _jsx('div', {
   className: 'PlaylistPanel-loading'
-}, void 0, _jsx(Loader, {
-  size: 'large'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var SearchResults = function SearchResults(_ref) {
@@ -31,11 +30,11 @@ var SearchResults = function SearchResults(_ref) {
       media: results,
       onOpenPreviewMediaDialog: onOpenPreviewMediaDialog,
       makeActions: function makeActions(media, selection) {
-        return [_jsx(AddToPlaylistAction, {
+        return _jsx(React.Fragment, {}, void 0, _jsx(AddToPlaylistAction, {
           onAdd: function onAdd(position) {
             return onOpenAddMediaMenu(position, media, selection);
           }
-        }, 'add')];
+        }));
       }
     });
   } else {

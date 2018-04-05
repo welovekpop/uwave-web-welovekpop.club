@@ -2,25 +2,16 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/IconButton';
-import SearchIcon from 'material-ui/svg-icons/action/search';
-import CloseIcon from 'material-ui/svg-icons/navigation/close';
-
-var closeButtonStyle = {
-  width: 44,
-  height: 44,
-  padding: 10,
-  marginRight: -10
-};
+import IconButton from 'material-ui/es/IconButton';
+import SearchIcon from 'material-ui-icons/Search';
+import CloseIcon from 'material-ui-icons/Close';
 
 var _ref2 = _jsx('div', {
   className: 'PlaylistMenuRow-active-icon'
-}, void 0, _jsx(SearchIcon, {
-  color: '#fff'
-}));
+}, void 0, _jsx(SearchIcon, {}));
 
 var _ref3 = _jsx(CloseIcon, {
-  color: '#777'
+  nativeColor: '#777'
 });
 
 var SearchResultsRow = function SearchResultsRow(_ref) {
@@ -39,7 +30,7 @@ var SearchResultsRow = function SearchResultsRow(_ref) {
   }, void 0, _ref2, '"', query, '"'), _jsx('div', {
     className: 'PlaylistMenuRow-count'
   }, void 0, _jsx(IconButton, {
-    style: closeButtonStyle,
+    className: 'PlaylistMenuRow-closeButton',
     onClick: onClose
   }, void 0, _ref3))));
 };

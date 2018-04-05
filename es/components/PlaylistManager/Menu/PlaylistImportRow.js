@@ -3,21 +3,20 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import ImportIcon from 'material-ui/svg-icons/action/input';
+import { CircularProgress } from 'material-ui/es/Progress';
+import ImportIcon from 'material-ui-icons/Input';
 
-import Loader from '../../Loader';
+var enhance = translate();
 
 var _ref2 = _jsx('div', {
   className: 'PlaylistMenuRow-loading'
-}, void 0, _jsx(Loader, {
-  size: 'tiny'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var _ref3 = _jsx('div', {
   className: 'PlaylistMenuRow-active-icon'
-}, void 0, _jsx(ImportIcon, {
-  color: '#fff'
-}));
+}, void 0, _jsx(ImportIcon, {}));
 
 var PlaylistImportRow = function PlaylistImportRow(_ref) {
   var t = _ref.t,
@@ -49,5 +48,5 @@ PlaylistImportRow.propTypes = process.env.NODE_ENV !== "production" ? {
   onClick: PropTypes.func.isRequired
 } : {};
 
-export default translate()(PlaylistImportRow);
+export default enhance(PlaylistImportRow);
 //# sourceMappingURL=PlaylistImportRow.js.map

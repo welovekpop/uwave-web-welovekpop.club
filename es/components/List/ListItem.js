@@ -4,43 +4,39 @@ import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutPropert
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import mapProps from 'recompose/mapProps';
-import { ListItem as MuiListItem } from 'material-ui/List';
-import SelectedIcon from 'material-ui/svg-icons/navigation/chevron-right';
+import { ListItem as MuiListItem } from 'material-ui/es/List';
+import SelectedIcon from 'material-ui-icons/ChevronRight';
 
 /**
  * A ListItem component wrapper around material-ui's ListItem,
  * with a üWave skin.
  */
 
-var selectedStyle = {
-  backgroundColor: '#9d2053'
+var _ref2 = _jsx(SelectedIcon, {});
+
+var ListItem = function ListItem(_ref) {
+  var className = _ref.className,
+      children = _ref.children,
+      selected = _ref.selected,
+      props = _objectWithoutProperties(_ref, ['className', 'children', 'selected']);
+
+  return React.createElement(
+    MuiListItem,
+    _extends({
+      button: true
+    }, props, {
+      className: cx(className, selected && 'is-selected')
+    }),
+    children,
+    selected && _ref2
+  );
 };
 
-var _ref2 = _jsx(SelectedIcon, {
-  color: '#fff'
-});
-
-var enhance = mapProps(function (_ref) {
-  var selected = _ref.selected,
-      className = _ref.className,
-      style = _ref.style,
-      props = _objectWithoutProperties(_ref, ['selected', 'className', 'style']);
-
-  return _extends({
-    hoverColor: '#242424',
-    rightIcon: selected ? _ref2 : null
-  }, props, {
-    className: cx(className, selected && 'is-selected'),
-    style: selected ? _extends({}, selectedStyle, style) : style
-  });
-});
-
-var ListItem = enhance(MuiListItem);
-
-ListItem.propTypes = {
+ListItem.propTypes = process.env.NODE_ENV !== "production" ? {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
   selected: PropTypes.bool
-};
+} : {};
 
 export default ListItem;
 //# sourceMappingURL=ListItem.js.map

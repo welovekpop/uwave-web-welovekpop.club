@@ -4,8 +4,9 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/IconButton';
-import ImportIcon from 'material-ui/svg-icons/av/playlist-add';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import ImportIcon from 'material-ui-icons/PlaylistAdd';
 import MediaList from '../../components/MediaList';
 import AddToPlaylistAction from '../../components/MediaList/Actions/AddToPlaylist';
 import ImportPanelHeader from '../../components/PlaylistManager/Import/ImportPanelHeader';
@@ -18,8 +19,7 @@ var selectionOrOne = function selectionOrOne(media, selection) {
 };
 
 var _ref = _jsx(ImportIcon, {
-  color: '#555',
-  hoverColor: '#fff'
+  className: 'src-youtube-PlaylistPanel-importIcon'
 });
 
 var YouTubeImportPlaylistPanel = function (_React$Component) {
@@ -59,19 +59,20 @@ var YouTubeImportPlaylistPanel = function (_React$Component) {
       className: 'src-youtube-PlaylistPanel-header'
     }, void 0, _jsx('div', {
       className: 'src-youtube-PlaylistPanel-name'
-    }, void 0, importingPlaylist.name), _jsx(IconButton, {
-      onClick: this.handleImportFull,
-      tooltip: 'Import All (' + importingPlaylistItems.length + ')',
-      tooltipPosition: 'top-center'
-    }, void 0, _ref))), _jsx(MediaList, {
+    }, void 0, importingPlaylist.name), _jsx(Tooltip, {
+      title: 'Import All (' + importingPlaylistItems.length + ')',
+      placement: 'top'
+    }, void 0, _jsx(IconButton, {
+      onClick: this.handleImportFull
+    }, void 0, _ref)))), _jsx(MediaList, {
       className: 'ImportPanel-body',
       media: importingPlaylistItems,
       makeActions: function makeActions(media, selection) {
-        return [_jsx(AddToPlaylistAction, {
+        return _jsx(React.Fragment, {}, void 0, _jsx(AddToPlaylistAction, {
           onAdd: function onAdd(position) {
             return onOpenAddMediaMenu(selectionOrOne(media, selection), position);
           }
-        }, 'add')];
+        }, 'add'));
       }
     }));
   };

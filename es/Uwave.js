@@ -5,19 +5,21 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 // (newer & better XMLHttpRequest).
 import 'lie/polyfill';
 import 'whatwg-fetch';
-
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer as HotContainer } from 'react-hot-loader';
+import { create as createJss } from 'jss';
+import { jssPreset } from 'material-ui/es/styles';
+import JssProvider from 'react-jss/lib/JssProvider';
 import createLocale from './locale';
 import AppContainer from './containers/App';
 import { get as readSession } from './utils/Session';
+import generateClassName from './utils/generateClassName';
 import configureStore from './store/configureStore';
 import { initState, socketConnect, setSessionToken } from './actions/LoginActionCreators';
 import { languageSelector } from './selectors/settingSelectors';
 import * as api from './api';
-
 // Register default chat commands.
 import './utils/commands';
 
@@ -35,6 +37,7 @@ var Uwave = function () {
     this.sessionToken = null;
     this.renderTarget = null;
     this.aboutPageComponent = null;
+    this.jss = createJss(jssPreset());
 
     this.options = options;
     this.sessionToken = session;
@@ -103,6 +106,12 @@ var Uwave = function () {
       this.sessionToken = null;
     }
 
+    if (typeof window !== 'undefined') {
+      this.jss.setup({
+        insertionPoint: document.querySelector('#jss')
+      });
+    }
+
     this.store.dispatch(socketConnect());
     return Promise.all([localePromise, this.store.dispatch(initState())]).then(function (_ref) {
       var locale = _ref[0];
@@ -115,11 +124,14 @@ var Uwave = function () {
   Uwave.prototype.getComponent = function getComponent() {
     return _jsx(Provider, {
       store: this.store
+    }, void 0, _jsx(JssProvider, {
+      jss: this.jss,
+      generateClassName: generateClassName
     }, void 0, _jsx(AppContainer, {
       mediaSources: this.sources,
       locale: this.locale,
       uwave: this
-    }));
+    })));
   };
 
   Uwave.prototype.renderToDOM = function renderToDOM(target) {

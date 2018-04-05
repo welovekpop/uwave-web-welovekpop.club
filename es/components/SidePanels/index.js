@@ -4,38 +4,37 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
-
+import withState from 'recompose/withState';
+import Tabs, { Tab } from 'material-ui/es/Tabs';
 import Chat from '../Chat';
 import RoomUserList from '../../containers/RoomUserList';
 import WaitList from '../../containers/WaitList';
+import PanelContainer from './PanelContainer';
 
-import Tabs from '../Tabs';
-import Tab from '../Tabs/Tab';
-import PanelTemplate from './PanelTemplate';
-
-var contentContainerStyle = {
-  // This ensures that the `position:absolute`s on divs _inside_ container
-  // elements align correctly.
-  position: 'static'
-};
+var enhance = compose(translate(), withState('selected', 'setTab', 0), pure);
 
 var subHeaderStyle = {
   fontSize: '125%'
 };
 
+var tabClasses = {
+  root: 'SidePanel-tab',
+  label: 'SidePanel-tabLabel'
+};
+
 var getUsersLabel = function getUsersLabel(t, listenerCount) {
-  return [t('users.title'), _jsx('span', {
+  return _jsx(React.Fragment, {}, void 0, t('users.title'), _jsx('span', {
     style: subHeaderStyle
-  }, 'sub', listenerCount)];
+  }, 'sub', listenerCount));
 };
 
 var getWaitlistLabel = function getWaitlistLabel(t, size, position) {
   if (size > 0) {
     var posText = position !== -1 ? position + 1 + ' / ' + size : size;
 
-    return [t('waitlist.title'), _jsx('span', {
+    return _jsx(React.Fragment, {}, void 0, t('waitlist.title'), _jsx('span', {
       style: subHeaderStyle
-    }, 'sub', posText)];
+    }, 'sub', posText));
   }
   return t('waitlist.title');
 };
@@ -52,35 +51,43 @@ var SidePanels = function SidePanels(_ref) {
       listenerCount = _ref.listenerCount,
       waitlistSize = _ref.waitlistSize,
       waitlistPosition = _ref.waitlistPosition,
-      onChange = _ref.onChange;
-  return _jsx(Tabs, {
+      setTab = _ref.setTab;
+  return _jsx('div', {}, void 0, _jsx(Tabs, {
     value: selected,
-    onChange: onChange,
-    contentContainerStyle: contentContainerStyle,
-    tabTemplate: PanelTemplate
+    onChange: function onChange(event, value) {
+      return setTab(value);
+    },
+    fullWidth: true,
+    classes: {
+      root: 'SidePanel-tabs',
+      indicator: 'SidePanel-indicator'
+    }
   }, void 0, _jsx(Tab, {
-    className: 'SidePanel-tab',
-    label: t('chat.title'),
-    value: 'chat'
-  }, void 0, _ref2), _jsx(Tab, {
-    className: 'SidePanel-tab',
-    label: getUsersLabel(t, listenerCount),
-    value: 'room'
-  }, void 0, _ref3), _jsx(Tab, {
-    className: 'SidePanel-tab',
-    label: getWaitlistLabel(t, waitlistSize, waitlistPosition),
-    value: 'waitlist'
-  }, void 0, _ref4));
+    classes: tabClasses,
+    label: t('chat.title')
+  }), _jsx(Tab, {
+    classes: tabClasses,
+    label: getUsersLabel(t, listenerCount)
+  }), _jsx(Tab, {
+    classes: tabClasses,
+    label: getWaitlistLabel(t, waitlistSize, waitlistPosition)
+  })), _jsx('div', {}, void 0, _jsx(PanelContainer, {
+    selected: selected === 0
+  }, void 0, _ref2), _jsx(PanelContainer, {
+    selected: selected === 1
+  }, void 0, _ref3), _jsx(PanelContainer, {
+    selected: selected === 2
+  }, void 0, _ref4)));
 };
 
 SidePanels.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
-  selected: PropTypes.string.isRequired,
   listenerCount: PropTypes.number.isRequired,
   waitlistSize: PropTypes.number.isRequired,
   waitlistPosition: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
+  selected: PropTypes.number.isRequired,
+  setTab: PropTypes.func.isRequired
 } : {};
 
-export default compose(translate(), pure)(SidePanels);
+export default enhance(SidePanels);
 //# sourceMappingURL=index.js.map

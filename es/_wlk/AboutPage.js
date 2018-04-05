@@ -1,13 +1,11 @@
 import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
-
 import FacebookIcon from './icons/Facebook';
 import YouTubeIcon from './icons/YouTube';
 import InstagramIcon from './icons/Instagram';
 import GithubIcon from './icons/Github';
 import TwitterIcon from './icons/Twitter';
 import SlackIcon from './icons/Slack';
-
 import SocialMediaLink from './SocialMediaLink';
 
 import './AboutPage.css';
@@ -16,17 +14,13 @@ var _ref = _jsx('div', {
   className: 'wlk-AboutPage'
 }, void 0, _jsx('h1', {
   className: 'wlk-AboutPage-title'
-}, void 0, 'WE \u2665 KPOP'), _jsx('p', {}, void 0, 'WE \u2665 KPOP is a Korean music dedicated community founded in 2014 on plug.dj. It was reborn in 2016 on its own collaborative listening software', ' ', _jsx('a', {
-  href: 'https://github.com/u-wave',
-  target: '_blank',
-  rel: 'noopener noreferrer'
-}, void 0, '\xFCWave'), '.'), _jsx('p', {}, void 0, 'WE \u2665 KPOP can also be found on:'), _jsx('ul', {}, void 0, _jsx(SocialMediaLink, {
-  label: 'Facebook',
-  href: 'https://facebook.com/wlk.yt'
-}, void 0, _jsx(FacebookIcon, {})), _jsx(SocialMediaLink, {
+}, void 0, 'WE \u2665 KPOP'), _jsx('p', {}, void 0, 'WLK is a community dedicated to sharing the best South Korean music. Listen to what other people play live from YouTube and SoundCloud, share your opinion by talking to others and contribute to each day\'s unique playlist by hand-picking tracks yourself.'), _jsx('p', {}, void 0, 'WLK can also be found on:'), _jsx('ul', {}, void 0, _jsx(SocialMediaLink, {
   label: 'YouTube',
   href: 'https://youtube.com/c/welovekpopclub'
 }, void 0, _jsx(YouTubeIcon, {})), _jsx(SocialMediaLink, {
+  label: 'Facebook',
+  href: 'https://facebook.com/wlk.yt'
+}, void 0, _jsx(FacebookIcon, {})), _jsx(SocialMediaLink, {
   label: 'Instagram',
   href: 'https://instagram.com/wlk_official'
 }, void 0, _jsx(InstagramIcon, {})), _jsx(SocialMediaLink, {

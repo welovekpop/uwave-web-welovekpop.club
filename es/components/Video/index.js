@@ -1,5 +1,4 @@
 import _jsx from 'babel-runtime/helpers/jsx';
-import _extends from 'babel-runtime/helpers/extends';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
@@ -13,6 +12,7 @@ import VideoBackdrop from './VideoBackdrop';
 import VideoProgressBar from './VideoProgressBar';
 import VideoToolbar from './VideoToolbar';
 import MouseMoveCapture from './VideoMouseMoveCapture';
+import Player from '../Player';
 
 var defaultSourceTools = function defaultSourceTools() {
   return null;
@@ -86,7 +86,7 @@ var Video = function (_React$Component) {
 
   Video.prototype.render = function render() {
     var _props = this.props,
-        getAllMediaSources = _props.getAllMediaSources,
+        getMediaSource = _props.getMediaSource,
         isFullscreen = _props.isFullscreen,
         enabled = _props.enabled,
         size = _props.size,
@@ -104,29 +104,7 @@ var Video = function (_React$Component) {
     var shouldShowToolbar = this.state.shouldShowToolbar;
 
 
-    var props = {
-      enabled: enabled,
-      media: media,
-      seek: seek,
-      mode: size,
-      volume: isMuted ? 0 : volume
-    };
-
-    var sources = getAllMediaSources();
-    var players = Object.keys(sources).map(function (sourceType) {
-      if (sources[sourceType].Player) {
-        var Player = sources[sourceType].Player;
-
-        return React.createElement(Player, _extends({
-          key: sourceType
-        }, props, {
-          active: media.sourceType === sourceType
-        }));
-      }
-      return null;
-    }).filter(Boolean);
-
-    var currentSource = sources[media.sourceType];
+    var currentSource = getMediaSource(media.sourceType);
     var MediaSourceTools = currentSource && currentSource.VideoTools ? currentSource.VideoTools : defaultSourceTools;
 
     return React.createElement(
@@ -138,7 +116,14 @@ var Video = function (_React$Component) {
       _jsx(VideoBackdrop, {
         url: media.thumbnail
       }),
-      players,
+      _jsx(Player, {
+        enabled: enabled,
+        size: size,
+        volume: volume,
+        isMuted: isMuted,
+        media: media,
+        seek: seek
+      }),
       isFullscreen && _jsx(MouseMoveCapture, {
         active: shouldShowToolbar,
         onMouseMove: this.handleMouseMove
@@ -161,7 +146,7 @@ var Video = function (_React$Component) {
 }(React.Component);
 
 Video.propTypes = process.env.NODE_ENV !== "production" ? {
-  getAllMediaSources: PropTypes.func.isRequired,
+  getMediaSource: PropTypes.func.isRequired,
   isFullscreen: PropTypes.bool,
   enabled: PropTypes.bool,
   size: PropTypes.string,

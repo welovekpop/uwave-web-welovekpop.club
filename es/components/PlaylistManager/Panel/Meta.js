@@ -3,23 +3,20 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Checkbox from 'material-ui/Checkbox';
-import ActiveIcon from 'material-ui/svg-icons/toggle/check-box';
-import ActivateIcon from 'material-ui/svg-icons/toggle/check-box-outline-blank';
-
+import Checkbox from 'material-ui/es/Checkbox';
+import ActiveIcon from 'material-ui-icons/CheckBox';
+import ActivateIcon from 'material-ui-icons/CheckBoxOutlineBlank';
 import RenamePlaylistButton from './RenamePlaylistButton';
 import DeletePlaylistButton from './DeletePlaylistButton';
 import ShufflePlaylistButton from './ShufflePlaylistButton';
 import PlaylistFilter from './PlaylistFilter';
 
-var checkboxIconStyle = { fill: '#fff' };
+var enhance = translate();
 
-var _ref2 = _jsx(ActiveIcon, {
-  color: '#fff'
-});
+var _ref2 = _jsx(ActivateIcon, {});
 
-var _ref3 = _jsx(ActivateIcon, {
-  color: '#fff'
+var _ref3 = _jsx(ActiveIcon, {
+  nativeColor: '#fff'
 });
 
 var PlaylistMeta = function PlaylistMeta(_ref) {
@@ -41,12 +38,10 @@ var PlaylistMeta = function PlaylistMeta(_ref) {
     className: 'PlaylistMeta-active'
   }, void 0, _jsx(Checkbox, {
     checked: active,
-    onCheck: active ? null : onActivatePlaylist,
-    checkedIcon: _ref2,
-    uncheckedIcon: _ref3,
-    iconStyle: checkboxIconStyle,
-    label: active ? t('playlists.active') : t('playlists.activate')
-  })), _jsx(PlaylistFilter, {
+    onChange: active ? null : onActivatePlaylist,
+    icon: _ref2,
+    checkedIcon: _ref3
+  }), _jsx('span', {}, void 0, active ? t('playlists.active') : t('playlists.activate'))), _jsx(PlaylistFilter, {
     onFilter: onFilter
   }), _jsx(ShufflePlaylistButton, {
     onShuffle: onShufflePlaylist
@@ -73,5 +68,5 @@ PlaylistMeta.propTypes = process.env.NODE_ENV !== "production" ? {
   onFilter: PropTypes.func.isRequired
 } : {};
 
-export default translate()(PlaylistMeta);
+export default enhance(PlaylistMeta);
 //# sourceMappingURL=Meta.js.map

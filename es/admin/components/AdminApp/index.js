@@ -1,11 +1,22 @@
 import _jsx from 'babel-runtime/helpers/jsx';
-import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem } from '../../../components/List';
+import List, { ListItem, ListItemText } from '../../../components/List';
 import CurrentPage from './CurrentPage';
 
-import './index.css';
+import '../../index.css';
+
+var _ref2 = _jsx(ListItemText, {
+  primary: 'Main'
+});
+
+var _ref3 = _jsx(ListItemText, {
+  primary: 'Users'
+});
+
+var _ref4 = _jsx(ListItemText, {
+  primary: 'Bans'
+});
 
 var AdminApp = function AdminApp(_ref) {
   var currentView = _ref.currentView,
@@ -15,27 +26,24 @@ var AdminApp = function AdminApp(_ref) {
   }, void 0, _jsx('div', {
     className: 'AdminApp-menu'
   }, void 0, _jsx(List, {}, void 0, _jsx(ListItem, {
-    primaryText: 'Main',
-    className: cx('AdminApp-menuItem', currentView === 'main' && 'is-selected'),
     selected: currentView === 'main',
+    className: 'AdminApp-menuItem',
     onClick: function onClick() {
       return onTransition('main');
     }
-  }), _jsx(ListItem, {
-    primaryText: 'Users',
-    className: cx('AdminApp-menuItem', currentView === 'users' && 'is-selected'),
+  }, void 0, _ref2), _jsx(ListItem, {
     selected: currentView === 'users',
+    className: 'AdminApp-menuItem',
     onClick: function onClick() {
       return onTransition('users');
     }
-  }), _jsx(ListItem, {
-    primaryText: 'Bans',
-    className: cx('AdminApp-menuItem', currentView === 'bans' && 'is-selected'),
+  }, void 0, _ref3), _jsx(ListItem, {
     selected: currentView === 'bans',
+    className: 'AdminApp-menuItem',
     onClick: function onClick() {
       return onTransition('bans');
     }
-  }))), _jsx('div', {
+  }, void 0, _ref4))), _jsx('div', {
     className: 'AdminApp-page'
   }, void 0, _jsx(CurrentPage, {
     page: currentView

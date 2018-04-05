@@ -5,9 +5,10 @@ import compose from 'recompose/compose';
 import withState from 'recompose/withState';
 import withHandlers from 'recompose/withHandlers';
 import { translate } from 'react-i18next';
-import IconButton from 'material-ui/IconButton';
-import ShuffleIcon from 'material-ui/svg-icons/av/shuffle';
-import Loader from '../../Loader';
+import { CircularProgress } from 'material-ui/es/Progress';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import ShuffleIcon from 'material-ui-icons/Shuffle';
 
 var enhance = compose(withState('isLoading', 'setLoading', false), withHandlers({
   onClick: function onClick(props) {
@@ -22,24 +23,23 @@ var enhance = compose(withState('isLoading', 'setLoading', false), withHandlers(
   }
 }), translate());
 
-var _ref2 = _jsx(Loader, {
-  size: 'tiny'
+var _ref2 = _jsx(CircularProgress, {
+  size: '100%'
 });
 
-var _ref3 = _jsx(ShuffleIcon, {
-  color: '#555',
-  hoverColor: '#fff'
-});
+var _ref3 = _jsx(ShuffleIcon, {});
 
 var ShuffleButton = function ShuffleButton(_ref) {
   var t = _ref.t,
       isLoading = _ref.isLoading,
       onClick = _ref.onClick;
-  return _jsx(IconButton, {
-    onClick: onClick,
-    tooltip: t('playlists.shuffle'),
-    tooltipPosition: 'top-center'
-  }, void 0, isLoading ? _ref2 : _ref3);
+  return _jsx(Tooltip, {
+    title: t('playlists.shuffle'),
+    placement: 'top'
+  }, void 0, _jsx(IconButton, {
+    className: 'PlaylistMeta-iconButton',
+    onClick: onClick
+  }, void 0, isLoading ? _ref2 : _ref3));
 };
 
 ShuffleButton.propTypes = process.env.NODE_ENV !== "production" ? {

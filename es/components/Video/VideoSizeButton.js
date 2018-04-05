@@ -3,8 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { translate } from 'react-i18next';
-import IconButton from 'material-ui/IconButton';
-import SvgIcon from 'material-ui/SvgIcon';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import SvgIcon from 'material-ui/es/SvgIcon';
 // State-related imports
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -23,16 +24,17 @@ var VideoSizeButton = function VideoSizeButton(_ref) {
   var t = _ref.t,
       videoSize = _ref.videoSize,
       onToggleVideoSize = _ref.onToggleVideoSize;
-  return _jsx(IconButton, {
-    onClick: onToggleVideoSize,
-    tooltip: videoSize === 'large' ? t('settings.disableLargeVideo') : t('settings.enableLargeVideo'),
-    tooltipPosition: 'bottom-center'
+  return _jsx(Tooltip, {
+    title: videoSize === 'large' ? t('settings.disableLargeVideo') : t('settings.enableLargeVideo'),
+    placement: 'bottom'
+  }, void 0, _jsx(IconButton, {
+    onClick: onToggleVideoSize
   }, void 0, _jsx(SvgIcon, {
     viewBox: '6 6 24 24'
   }, void 0, _jsx('path', {
     d: paths[videoSize],
     fillRule: 'evenodd'
-  })));
+  }))));
 };
 
 VideoSizeButton.propTypes = process.env.NODE_ENV !== "production" ? {

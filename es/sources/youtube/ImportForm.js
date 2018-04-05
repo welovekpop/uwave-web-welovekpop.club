@@ -4,8 +4,7 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaylistIcon from 'material-ui/svg-icons/av/playlist-play';
-
+import PlaylistIcon from 'material-ui-icons/PlaylistPlay';
 import ImportSourceBlock from '../../components/PlaylistManager/Import/ImportSourceBlock';
 import Form from '../../components/Form';
 import FormGroup from '../../components/Form/Group';
@@ -15,13 +14,13 @@ import Button from '../../components/Form/Button';
 import { getChannelPlaylists, getImportablePlaylist } from './actions';
 
 var _ref = _jsx(PlaylistIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref2 = _jsx(FormGroup, {}, void 0, _jsx(Button, {}, void 0, 'Import From Channel'));
 
 var _ref3 = _jsx(PlaylistIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref4 = _jsx(FormGroup, {}, void 0, _jsx(Button, {}, void 0, 'Import Playlist'));

@@ -4,9 +4,10 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmailIcon from 'material-ui/svg-icons/communication/email';
-import PasswordIcon from 'material-ui/svg-icons/action/lock';
-import Paper from 'material-ui/Paper';
+import EmailIcon from 'material-ui-icons/Email';
+import PasswordIcon from 'material-ui-icons/Lock';
+import Paper from 'material-ui/es/Paper';
+import Typography from 'material-ui/es/Typography';
 import { translate } from 'react-i18next';
 import Form from '../../../components/Form';
 import FormGroup from '../../../components/Form/Group';
@@ -16,15 +17,15 @@ import Button from '../../../components/Form/Button';
 var enhance = translate();
 
 var _ref = _jsx(EmailIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref2 = _jsx(PasswordIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref3 = _jsx(PasswordIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var PasswordResetPage = function (_React$Component) {
@@ -72,9 +73,9 @@ var PasswordResetPage = function (_React$Component) {
 
     return _jsx(Paper, {
       className: 'PasswordReset'
-    }, void 0, _jsx('p', {}, void 0, t('resetPassword.introduction')), _jsx(Form, {
+    }, void 0, _jsx(Form, {
       onSubmit: this.handleSubmit
-    }, void 0, email &&
+    }, void 0, _jsx(FormGroup, {}, void 0, _jsx(Typography, {}, void 0, t('resetPassword.introduction'))), email &&
     // Not used at the moment, but we may show (parts of) the user's
     // email address on the reset page at some point.
     _jsx(FormGroup, {}, void 0, _jsx(TextField, {

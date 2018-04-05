@@ -7,14 +7,14 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import CreatePlaylistIcon from 'material-ui/svg-icons/content/add';
+import CreatePlaylistIcon from 'material-ui-icons/Add';
 import PromptDialog from '../Dialogs/PromptDialog';
 import PlaylistsMenu from './PlaylistsMenu';
 
 var enhance = translate();
 
 var _ref = _jsx(CreatePlaylistIcon, {
-  color: '#777'
+  nativeColor: '#777'
 });
 
 var AddToPlaylistMenu = function (_React$Component) {
@@ -49,7 +49,7 @@ var AddToPlaylistMenu = function (_React$Component) {
         t = _props.t,
         props = _objectWithoutProperties(_props, ['t']);
 
-    return _jsx('div', {}, void 0, !this.state.creating && React.createElement(PlaylistsMenu, _extends({}, props, {
+    return _jsx(React.Fragment, {}, void 0, !this.state.creating && React.createElement(PlaylistsMenu, _extends({}, props, {
       onCreatePlaylist: this.handleOpen
     })), this.state.creating && _jsx(PromptDialog, {
       title: t('dialogs.createPlaylist.nameInputTitle'),

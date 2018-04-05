@@ -3,14 +3,13 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import CloseIcon from 'material-ui-icons/Close';
 
-import IconButton from 'material-ui/IconButton';
-import CloseIcon from 'material-ui/svg-icons/navigation/close';
+var enhance = translate();
 
-var _ref2 = _jsx(CloseIcon, {
-  color: '#555',
-  hoverColor: '#fff'
-});
+var _ref2 = _jsx(CloseIcon, {});
 
 var ImportPanelHeader = function ImportPanelHeader(_ref) {
   var t = _ref.t,
@@ -21,11 +20,12 @@ var ImportPanelHeader = function ImportPanelHeader(_ref) {
     className: cx('ImportPanelHeader', className)
   }, void 0, _jsx('div', {
     className: 'ImportPanelHeader-content'
-  }, void 0, children), _jsx(IconButton, {
-    onClick: onClosePanel,
-    tooltip: t('close'),
-    tooltipPosition: 'top-center'
-  }, void 0, _ref2));
+  }, void 0, children), _jsx(Tooltip, {
+    title: t('close'),
+    placement: 'top'
+  }, void 0, _jsx(IconButton, {
+    onClick: onClosePanel
+  }, void 0, _ref2)));
 };
 
 ImportPanelHeader.propTypes = process.env.NODE_ENV !== "production" ? {
@@ -35,5 +35,5 @@ ImportPanelHeader.propTypes = process.env.NODE_ENV !== "production" ? {
   onClosePanel: PropTypes.func.isRequired
 } : {};
 
-export default translate()(ImportPanelHeader);
+export default enhance(ImportPanelHeader);
 //# sourceMappingURL=ImportPanelHeader.js.map

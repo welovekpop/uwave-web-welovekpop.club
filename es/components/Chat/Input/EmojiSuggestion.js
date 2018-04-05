@@ -1,22 +1,29 @@
-import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
 import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ListItemAvatar, ListItemText } from 'material-ui/es/List';
 import Suggestion from './Suggestion';
+
+var shortcode = function shortcode(emoji) {
+  return ':' + emoji.shortcode + ':';
+};
 
 var EmojiSuggestion = function EmojiSuggestion(_ref) {
   var emoji = _ref.value,
       props = _objectWithoutProperties(_ref, ['value']);
 
-  return React.createElement(Suggestion, _extends({}, props, {
-    value: emoji.shortcode,
-    primaryText: ':' + emoji.shortcode + ':',
-    leftAvatar: _jsx('span', {
+  return React.createElement(
+    Suggestion,
+    props,
+    _jsx(ListItemAvatar, {}, void 0, _jsx('span', {
       className: 'EmojiSuggestion-image',
       style: { backgroundImage: 'url(/assets/emoji/' + emoji.image + ')' }
+    })),
+    _jsx(ListItemText, {
+      primary: shortcode(emoji)
     })
-  }));
+  );
 };
 
 EmojiSuggestion.propTypes = process.env.NODE_ENV !== "production" ? {

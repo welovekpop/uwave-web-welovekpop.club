@@ -1,13 +1,13 @@
 import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../../components/Loader';
+import { CircularProgress } from 'material-ui/es/Progress';
 import ImportPanelHeader from '../../components/PlaylistManager/Import/ImportPanelHeader';
 
 var _ref2 = _jsx('div', {
   className: 'ImportPanel-loading'
-}, void 0, _jsx(Loader, {
-  size: 'large'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var LoadingPanel = function LoadingPanel(_ref) {

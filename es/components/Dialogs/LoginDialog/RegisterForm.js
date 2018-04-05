@@ -5,11 +5,12 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate, Interpolate } from 'react-i18next';
-import Checkbox from 'material-ui/Checkbox';
-import EmailIcon from 'material-ui/svg-icons/communication/email';
-import PasswordIcon from 'material-ui/svg-icons/action/lock';
-import UserIcon from 'material-ui/svg-icons/social/person';
-import Loader from '../../Loader';
+import { FormControlLabel } from 'material-ui/es/Form';
+import Checkbox from 'material-ui/es/Checkbox';
+import { CircularProgress } from 'material-ui/es/Progress';
+import EmailIcon from 'material-ui-icons/Email';
+import PasswordIcon from 'material-ui-icons/Lock';
+import UserIcon from 'material-ui-icons/Person';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
@@ -20,26 +21,24 @@ import Separator from './Separator';
 
 var enhance = translate();
 
-var _ref = _jsx(SocialLogin, {});
+var _ref = _jsx(React.Fragment, {}, void 0, _jsx(SocialLogin, {}), _jsx(Separator, {}));
 
-var _ref2 = _jsx(Separator, {});
-
-var _ref3 = _jsx(UserIcon, {
-  color: '#9f9d9e'
+var _ref2 = _jsx(UserIcon, {
+  nativeColor: '#9f9d9e'
 });
 
-var _ref4 = _jsx(EmailIcon, {
-  color: '#9f9d9e'
+var _ref3 = _jsx(EmailIcon, {
+  nativeColor: '#9f9d9e'
 });
 
-var _ref5 = _jsx(PasswordIcon, {
-  color: '#9f9d9e'
+var _ref4 = _jsx(PasswordIcon, {
+  nativeColor: '#9f9d9e'
 });
 
-var _ref6 = _jsx('div', {
+var _ref5 = _jsx('div', {
   className: 'Button-loading'
-}, void 0, _jsx(Loader, {
-  size: 'tiny'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var RegisterForm = function (_React$Component) {
@@ -102,7 +101,8 @@ var RegisterForm = function (_React$Component) {
   RegisterForm.prototype.render = function render() {
     var _props = this.props,
         t = _props.t,
-        error = _props.error;
+        error = _props.error,
+        supportsSocialAuth = _props.supportsSocialAuth;
     var _state = this.state,
         agreed = _state.agreed,
         busy = _state.busy;
@@ -111,39 +111,41 @@ var RegisterForm = function (_React$Component) {
     return _jsx(Form, {
       className: 'RegisterForm',
       onSubmit: this.handleSubmit
-    }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), _ref, _ref2, _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
+    }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), supportsSocialAuth && _ref, _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refUsername,
       className: 'RegisterForm-field',
       placeholder: t('login.username'),
-      icon: _ref3,
+      icon: _ref2,
       autoFocus: true
     })), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refEmail,
       className: 'RegisterForm-field',
       type: 'email',
       placeholder: t('login.email'),
-      icon: _ref4
+      icon: _ref3
     })), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refPassword,
       className: 'RegisterForm-field',
       type: 'password',
       placeholder: t('login.password'),
-      icon: _ref5
-    })), this.renderCaptcha(), _jsx(FormGroup, {}, void 0, _jsx(Checkbox, {
-      style: { float: 'left', width: 'auto' },
-      checked: agreed,
-      onCheck: this.handleTosCheckbox
-    }), _jsx(Interpolate, {
-      i18nKey: 'login.agree',
-      privacyPolicy: _jsx('a', {
-        target: '_blank',
-        rel: 'noreferrer noopener',
-        href: '/privacy.html'
-      }, void 0, t('login.privacyPolicy'))
+      icon: _ref4
+    })), this.renderCaptcha(), _jsx(FormGroup, {}, void 0, _jsx(FormControlLabel, {
+      control: _jsx(Checkbox, {
+        checked: agreed,
+        onChange: this.handleTosCheckbox
+      }),
+      label: _jsx(Interpolate, {
+        i18nKey: 'login.agree',
+        privacyPolicy: _jsx('a', {
+          target: '_blank',
+          rel: 'noreferrer noopener',
+          href: '/privacy.html'
+        }, void 0, t('login.privacyPolicy'))
+      })
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: 'RegisterForm-submit',
       disabled: busy || !agreed
-    }, void 0, busy ? _ref6 : t('login.register'))));
+    }, void 0, busy ? _ref5 : t('login.register'))));
   };
 
   return RegisterForm;
@@ -153,6 +155,7 @@ RegisterForm.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   useReCaptcha: PropTypes.bool,
   reCaptchaSiteKey: PropTypes.string,
+  supportsSocialAuth: PropTypes.bool,
   error: PropTypes.object,
 
   onRegister: PropTypes.func

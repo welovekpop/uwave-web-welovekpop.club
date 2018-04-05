@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import OverlayHeader from '../Overlay/Header';
+import OverlayContent from '../Overlay/Content';
 import HistoryList from './HistoryList';
 
 var enhance = translate();
@@ -25,8 +26,8 @@ var RoomHistory = function RoomHistory(_ref) {
     className: 'AppRow AppRow--top',
     title: t('history.title'),
     onCloseOverlay: onCloseOverlay
-  }), _jsx('div', {
-    className: 'RoomHistory-body AppRow AppRow--middle'
+  }), _jsx(OverlayContent, {
+    className: 'RoomHistory-body'
   }, void 0, React.createElement(HistoryList, _extends({
     onOpenAddMediaMenu: onOpenAddMediaMenu,
     onOpenPreviewMediaDialog: onOpenPreviewMediaDialog

@@ -2,9 +2,10 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import UpvoteIcon from 'material-ui/svg-icons/action/thumb-up';
-
+import UpvoteIcon from 'material-ui-icons/ThumbUp';
 import Button from './Button';
+
+var enhance = translate();
 
 var Upvote = function Upvote(_ref) {
   var t = _ref.t,
@@ -18,7 +19,7 @@ var Upvote = function Upvote(_ref) {
     onClick: onUpvote,
     count: count
   }, void 0, _jsx(UpvoteIcon, {
-    color: active ? '#4BB64B' : 'white'
+    className: active ? 'ResponseButton-icon--upvoted' : ''
   }));
 };
 
@@ -30,5 +31,5 @@ Upvote.propTypes = process.env.NODE_ENV !== "production" ? {
   active: PropTypes.bool
 } : {};
 
-export default translate()(Upvote);
+export default enhance(Upvote);
 //# sourceMappingURL=Upvote.js.map

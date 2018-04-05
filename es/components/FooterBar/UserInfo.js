@@ -3,20 +3,16 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import pure from 'recompose/pure';
-import SettingsIcon from 'material-ui/svg-icons/action/settings';
+import SettingsIcon from 'material-ui-icons/Settings';
 
 import Avatar from '../Avatar';
 
-var fullSizeStyle = {
-  width: '100%',
-  height: '100%'
-};
+var enhance = pure;
 
 var _ref2 = _jsx('div', {
   className: 'UserInfo-settings'
 }, void 0, _jsx(SettingsIcon, {
-  color: '#fff',
-  style: fullSizeStyle
+  className: 'UserInfo-settingsIcon'
 }));
 
 var UserInfo = function UserInfo(_ref) {
@@ -38,5 +34,5 @@ UserInfo.propTypes = process.env.NODE_ENV !== "production" ? {
   onClick: PropTypes.func
 } : {};
 
-export default pure(UserInfo);
+export default enhance(UserInfo);
 //# sourceMappingURL=UserInfo.js.map

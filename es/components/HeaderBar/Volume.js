@@ -5,19 +5,12 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Slider from 'material-ui/Slider';
-import VolumeDownIcon from 'material-ui/svg-icons/av/volume-down';
-import VolumeMuteIcon from 'material-ui/svg-icons/av/volume-mute';
-import VolumeOffIcon from 'material-ui/svg-icons/av/volume-off';
-import VolumeUpIcon from 'material-ui/svg-icons/av/volume-up';
-
-var sliderStyle = {
-  // The material-ui Slider has a 24px margin on top that we can't override,
-  // but we can compensate for it here.
-  // TODO Do this properly when/if material-ui gets a better styling solution.
-  marginTop: -21,
-  marginBottom: 3
-};
+import IconButton from 'material-ui/es/IconButton';
+import VolumeDownIcon from 'material-ui-icons/VolumeDown';
+import VolumeMuteIcon from 'material-ui-icons/VolumeMute';
+import VolumeOffIcon from 'material-ui-icons/VolumeOff';
+import VolumeUpIcon from 'material-ui-icons/VolumeUp';
+import Slider from './Slider';
 
 var Volume = function (_React$Component) {
   _inherits(Volume, _React$Component);
@@ -57,17 +50,15 @@ var Volume = function (_React$Component) {
     }
     return _jsx('div', {
       className: cx('VolumeSlider', this.props.className)
-    }, void 0, _jsx(VolumeIcon, {
-      color: '#fff',
+    }, void 0, _jsx(IconButton, {
       onClick: this.handleMuteClick
-    }), _jsx('div', {
+    }, void 0, _jsx(VolumeIcon, {})), _jsx('div', {
       className: 'VolumeSlider-slider'
     }, void 0, _jsx(Slider, {
-      name: 'volume',
       min: 0,
       max: 100,
+      step: 5,
       value: this.props.volume,
-      style: sliderStyle,
       onChange: this.handleVolumeChange
     })));
   };

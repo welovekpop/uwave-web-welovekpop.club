@@ -1,17 +1,15 @@
-import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
+import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
-
+import Dialog, { DialogContent } from 'material-ui/es/Dialog';
+import { CircularProgress } from 'material-ui/es/Progress';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import Button from '../../Form/Button';
-import Loader from '../../Loader';
 
 var _ref = _jsx('div', {
   className: 'ConfirmDialog-spacer'
@@ -19,8 +17,8 @@ var _ref = _jsx('div', {
 
 var _ref2 = _jsx('div', {
   className: 'Button-loading'
-}, void 0, _jsx(Loader, {
-  size: 'tiny'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var ConfirmDialog = function (_React$Component) {
@@ -62,33 +60,31 @@ var ConfirmDialog = function (_React$Component) {
         children = _props.children,
         cancelLabel = _props.cancelLabel,
         confirmLabel = _props.confirmLabel,
-        props = _objectWithoutProperties(_props, ['children', 'cancelLabel', 'confirmLabel']);
-
+        className = _props.className;
     var busy = this.state.busy;
 
 
-    return React.createElement(
-      Dialog,
-      _extends({}, props, {
-        onRequestClose: this.handleClose,
-        open: true
-      }),
-      _jsx(Form, {
-        onSubmit: this.handleSubmit
-      }, void 0, children, _jsx(FormGroup, {
-        className: 'ConfirmDialog-buttons'
-      }, void 0, _jsx('div', {
-        className: 'ConfirmDialog-button'
-      }, void 0, _jsx(Button, {
-        disabled: busy,
-        onClick: this.handleClose
-      }, void 0, cancelLabel)), _ref, _jsx('div', {
-        className: 'ConfirmDialog-button'
-      }, void 0, _jsx(Button, {
-        disabled: busy,
-        onClick: this.handleConfirm
-      }, void 0, busy ? _ref2 : confirmLabel))))
-    );
+    return _jsx(Dialog, {
+      className: cx('Dialog', className),
+      onClose: this.handleClose,
+      open: true
+    }, void 0, _jsx(DialogContent, {
+      className: 'Dialog-body'
+    }, void 0, _jsx(Form, {
+      onSubmit: this.handleSubmit
+    }, void 0, children, _jsx(FormGroup, {
+      className: 'ConfirmDialog-buttons FormGroup--noSpacing'
+    }, void 0, _jsx('div', {
+      className: 'ConfirmDialog-button'
+    }, void 0, _jsx(Button, {
+      disabled: busy,
+      onClick: this.handleClose
+    }, void 0, cancelLabel)), _ref, _jsx('div', {
+      className: 'ConfirmDialog-button'
+    }, void 0, _jsx(Button, {
+      disabled: busy,
+      onClick: this.handleConfirm
+    }, void 0, busy ? _ref2 : confirmLabel))))));
   };
 
   return ConfirmDialog;
@@ -101,6 +97,7 @@ ConfirmDialog.defaultProps = {
 export default ConfirmDialog;
 ConfirmDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   children: PropTypes.node,
+  className: PropTypes.string,
   confirmLabel: PropTypes.string,
   cancelLabel: PropTypes.string,
 

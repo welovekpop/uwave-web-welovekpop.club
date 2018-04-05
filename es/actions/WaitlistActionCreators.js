@@ -1,5 +1,6 @@
 import { WAITLIST_LOAD, WAITLIST_LOCK, WAITLIST_CLEAR, WAITLIST_UPDATE, WAITLIST_JOIN, WAITLIST_LEAVE, WAITLIST_MOVE, DO_JOIN_START, DO_JOIN_COMPLETE, DO_LEAVE_START, DO_LEAVE_COMPLETE, DO_LOCK_START, DO_LOCK_COMPLETE, DO_CLEAR_START, DO_CLEAR_COMPLETE } from '../constants/actionTypes/waitlist';
 import { del, post, put } from './RequestActionCreators';
+import { currentUserSelector } from '../selectors/userSelectors';
 
 export function setWaitList(data) {
   return {
@@ -31,12 +32,12 @@ export function updatedWaitlist(waitlist) {
   };
 }
 
-export function joinWaitlist(user) {
-  return function (dispatch) {
-    if (!user) {
-      return null;
-    }
-    // TODO don't post an object at all once the API server supports it
+// TODO split joining the waitlist and adding another user to the waitlist
+// into two different actions.
+export function joinWaitlist(otherUser) {
+  return function (dispatch, getState) {
+    var user = otherUser || currentUserSelector(getState());
+
     return dispatch(post('/waitlist', { userID: user._id }, {
       onStart: function onStart() {
         return { type: DO_JOIN_START };
@@ -69,11 +70,10 @@ export function joinedWaitlist(_ref2) {
   };
 }
 
-export function leaveWaitlist(user) {
-  return function (dispatch) {
-    if (!user) {
-      return null;
-    }
+export function leaveWaitlist(otherUser) {
+  return function (dispatch, getState) {
+    var user = otherUser || currentUserSelector(getState());
+
     return dispatch(del('/waitlist/' + user._id, {}, {
       onStart: function onStart() {
         return { type: DO_LEAVE_START };

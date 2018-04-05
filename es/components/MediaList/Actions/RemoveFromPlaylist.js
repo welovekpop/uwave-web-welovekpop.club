@@ -3,13 +3,10 @@ import _extends from 'babel-runtime/helpers/extends';
 import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import React from 'react';
 import PropTypes from 'prop-types';
-import DeleteIcon from 'material-ui/svg-icons/action/delete';
-
+import DeleteIcon from 'material-ui-icons/Delete';
 import Action from './Action';
 
-var _ref2 = _jsx(DeleteIcon, {
-  color: '#fff'
-});
+var _ref2 = _jsx(DeleteIcon, {});
 
 var RemoveFromPlaylist = function RemoveFromPlaylist(_ref) {
   var onRemove = _ref.onRemove,

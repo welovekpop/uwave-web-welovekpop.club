@@ -1,6 +1,4 @@
-import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
@@ -8,15 +6,15 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Dialog from 'material-ui/Dialog';
-import IconButton from 'material-ui/IconButton';
+import Dialog, { DialogTitle, DialogContent } from 'material-ui/es/Dialog';
+import IconButton from 'material-ui/es/IconButton';
 import uniqueId from 'lodash/uniqueId';
 import formatDuration from 'format-duration';
-import ArtistIcon from 'material-ui/svg-icons/hardware/headset';
-import TitleIcon from 'material-ui/svg-icons/image/music-note';
-import StartIcon from 'material-ui/svg-icons/av/play-arrow';
-import EndIcon from 'material-ui/svg-icons/av/stop';
-import SwapArtistTitleIcon from 'material-ui/svg-icons/action/swap-horiz';
+import ArtistIcon from 'material-ui-icons/Headset';
+import TitleIcon from 'material-ui-icons/MusicNote';
+import StartIcon from 'material-ui-icons/PlayArrow';
+import EndIcon from 'material-ui-icons/Stop';
+import SwapArtistTitleIcon from 'material-ui-icons/SwapHoriz';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import Button from '../../Form/Button';
@@ -34,23 +32,23 @@ var parseDuration = function parseDuration(str) {
 var enhance = translate();
 
 var _ref = _jsx(ArtistIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref2 = _jsx(SwapArtistTitleIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref3 = _jsx(TitleIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref4 = _jsx(StartIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref5 = _jsx(EndIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var EditMediaDialog = function (_React$Component) {
@@ -71,7 +69,7 @@ var EditMediaDialog = function (_React$Component) {
       title: _this.props.media.title,
       start: formatDuration(_this.props.media.start * 1000),
       end: formatDuration(_this.props.media.end * 1000)
-    }, _this.labelStart = uniqueId('editmedia'), _this.labelEnd = uniqueId('editmedia'), _this.handleSubmit = function (e) {
+    }, _this.title = uniqueId('editmedia'), _this.labelStart = uniqueId('editmedia'), _this.labelEnd = uniqueId('editmedia'), _this.handleSubmit = function (e) {
       e.preventDefault();
 
       var _this$props = _this.props,
@@ -136,9 +134,7 @@ var EditMediaDialog = function (_React$Component) {
         onCloseDialog = _props.onCloseDialog,
         bodyClassName = _props.bodyClassName,
         contentClassName = _props.contentClassName,
-        titleClassName = _props.titleClassName,
-        props = _objectWithoutProperties(_props, ['t', 'open', 'media', 'onCloseDialog', 'bodyClassName', 'contentClassName', 'titleClassName']);
-
+        titleClassName = _props.titleClassName;
     var _state = this.state,
         errors = _state.errors,
         artist = _state.artist,
@@ -204,7 +200,6 @@ var EditMediaDialog = function (_React$Component) {
       });
 
       content = _jsx(Form, {
-        className: 'EditMediaDialog',
         onSubmit: this.handleSubmit
       }, void 0, errors && errors.length > 0 && _jsx(FormGroup, {}, void 0, errors.map(function (error) {
         return _jsx('div', {}, void 0, t('dialogs.editMedia.errors.' + error));
@@ -234,18 +229,20 @@ var EditMediaDialog = function (_React$Component) {
         className: 'EditMediaDialog-submit'
       }, void 0, t('dialogs.editMedia.save'))));
     }
-    return React.createElement(
-      Dialog,
-      _extends({}, props, {
-        contentClassName: cx('Dialog', contentClassName),
-        bodyClassName: cx('Dialog-body', bodyClassName),
-        titleClassName: cx('Dialog-title', titleClassName),
-        title: t('dialogs.editMedia.title'),
-        open: open,
-        onRequestClose: onCloseDialog
-      }),
-      content
-    );
+
+    return _jsx(Dialog, {
+      classes: {
+        paper: cx('Dialog', 'EditMediaDialog', contentClassName)
+      },
+      open: open,
+      onClose: onCloseDialog,
+      'aria-labelledby': this.title
+    }, void 0, _jsx(DialogTitle, {
+      id: this.title,
+      className: cx('Dialog-title', titleClassName)
+    }, void 0, t('dialogs.editMedia.title')), _jsx(DialogContent, {
+      className: cx('Dialog-body', bodyClassName)
+    }, void 0, content));
   };
 
   return EditMediaDialog;

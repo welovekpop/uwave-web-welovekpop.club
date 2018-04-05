@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import withProps from 'recompose/withProps';
 import { translate } from 'react-i18next';
-import Toggle from './Toggle';
+import Switch from 'material-ui/es/Switch';
+import LabeledControl from './LabeledControl';
 
 var enhance = compose(withProps(function (props) {
   return {
@@ -34,27 +35,35 @@ var NotificationSettings = function NotificationSettings(_ref) {
     className: 'SettingsPanel-header'
   }, void 0, t('settings.notifications.title')), _jsx('p', {
     className: 'SettingsPanel-helpText'
-  }, void 0, t('settings.notifications.help')), _jsx(Toggle, {
+  }, void 0, t('settings.notifications.help')), _jsx(LabeledControl, {
     label: t('settings.notifications.userJoin'),
-    labelPosition: 'left',
-    toggled: settings.notifications.userJoin,
-    onToggle: onToggleUserJoin
-  }), _jsx(Toggle, {
+    id: 'uw-setting-userjoin'
+  }, void 0, _jsx(Switch, {
+    color: 'primary',
+    checked: settings.notifications.userJoin,
+    onChange: onToggleUserJoin
+  })), _jsx(LabeledControl, {
     label: t('settings.notifications.userLeave'),
-    labelPosition: 'left',
-    toggled: settings.notifications.userLeave,
-    onToggle: onToggleUserLeave
-  }), _jsx(Toggle, {
+    id: 'uw-setting-userleave'
+  }, void 0, _jsx(Switch, {
+    color: 'primary',
+    checked: settings.notifications.userLeave,
+    onChange: onToggleUserLeave
+  })), _jsx(LabeledControl, {
     label: t('settings.notifications.userNameChanged'),
-    labelPosition: 'left',
-    toggled: settings.notifications.userNameChanged,
-    onToggle: onToggleUserNameChanged
-  }), _jsx(Toggle, {
+    id: 'uw-setting-usernamechanged'
+  }, void 0, _jsx(Switch, {
+    color: 'primary',
+    checked: settings.notifications.userNameChanged,
+    onChange: onToggleUserNameChanged
+  })), _jsx(LabeledControl, {
     label: t('settings.notifications.skip'),
-    labelPosition: 'left',
-    toggled: settings.notifications.skip,
-    onToggle: onToggleSkip
-  }));
+    id: 'uw-setting-skip'
+  }, void 0, _jsx(Switch, {
+    color: 'primary',
+    checked: settings.notifications.skip,
+    onChange: onToggleSkip
+  })));
 };
 
 NotificationSettings.propTypes = process.env.NODE_ENV !== "production" ? {

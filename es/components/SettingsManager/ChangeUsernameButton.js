@@ -5,32 +5,19 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import IconButton from 'material-ui/IconButton';
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import IconButton from 'material-ui/es/IconButton';
+import EditIcon from 'material-ui-icons/ModeEdit';
 import PromptDialog from '../Dialogs/PromptDialog';
 import DialogCloseAnimation from '../DialogCloseAnimation';
 
-var changeNameButtonStyle = {
-  padding: 2,
-  height: 28,
-  width: 28,
-  marginLeft: 5,
-  verticalAlign: 'bottom'
-};
-
-var changeNameIconStyle = {
-  width: 24,
-  height: 24,
-  padding: 2
-};
+var enhance = translate();
 
 var _ref = _jsx(EditIcon, {
-  color: '#777',
-  hoverColor: '#fff'
+  className: 'ChangeUsernameButton-icon'
 });
 
 var _ref2 = _jsx(EditIcon, {
-  color: '#777'
+  nativeColor: '#777'
 });
 
 var ChangeUsernameButton = function (_React$Component) {
@@ -69,20 +56,19 @@ var ChangeUsernameButton = function (_React$Component) {
         t = _props.t,
         initialUsername = _props.initialUsername;
 
-    return _jsx('span', {}, void 0, _jsx(IconButton, {
-      style: changeNameButtonStyle,
-      iconStyle: changeNameIconStyle,
+    return _jsx(React.Fragment, {}, void 0, _jsx(IconButton, {
+      className: 'ChangeUsernameButton',
       onClick: this.handleOpen
     }, void 0, _ref), _jsx(DialogCloseAnimation, {
       delay: 450
-    }, void 0, this.state.changingUsername && _jsx(PromptDialog, {
+    }, void 0, this.state.changingUsername ? _jsx(PromptDialog, {
       title: t('settings.profile.username.change'),
       submitLabel: t('settings.profile.username.save'),
       icon: _ref2,
       value: initialUsername,
       onSubmit: this.handleSubmit,
       onCancel: this.handleClose
-    })));
+    }) : null));
   };
 
   return ChangeUsernameButton;
@@ -95,5 +81,5 @@ ChangeUsernameButton.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 
-export default translate()(ChangeUsernameButton);
+export default enhance(ChangeUsernameButton);
 //# sourceMappingURL=ChangeUsernameButton.js.map

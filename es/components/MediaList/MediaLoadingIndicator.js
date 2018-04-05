@@ -2,10 +2,9 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../Loader';
+import { CircularProgress } from 'material-ui/es/Progress';
 
-var _ref2 = _jsx(Loader, {
-  size: 'tiny',
+var _ref2 = _jsx(CircularProgress, {
   className: 'MediaLoadingIndicator-spinner'
 });
 

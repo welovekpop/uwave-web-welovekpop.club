@@ -2,13 +2,11 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CircularProgress } from 'material-ui/es/Progress';
 import MediaList from '../../MediaList';
-import Loader from '../../Loader';
-
 import PlaylistMeta from './Meta';
 import PlainItemRow from '../../MediaList/Row';
 import PlaylistItemRow from './PlaylistItemRow';
-
 import AddToPlaylistAction from '../../MediaList/Actions/AddToPlaylist';
 import RemoveFromPlaylistAction from '../../MediaList/Actions/RemoveFromPlaylist';
 import EditMediaAction from '../../MediaList/Actions/EditMedia';
@@ -53,8 +51,8 @@ var makeActions = function makeActions(_ref) {
 
 var _ref2 = _jsx('div', {
   className: 'PlaylistPanel-loading'
-}, void 0, _jsx(Loader, {
-  size: 'large'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var PlaylistPanel = function PlaylistPanel(props) {

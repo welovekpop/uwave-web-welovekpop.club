@@ -1,26 +1,23 @@
 import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-
-var menuItemStyle = {
-  WebkitAppearance: 'initial'
-};
+import List, { ListItem, ListItemText } from 'material-ui/es/List';
 
 var SkipReasonsList = function SkipReasonsList(_ref) {
   var reasons = _ref.reasons,
       onSelect = _ref.onSelect;
-  return _jsx(Menu, {
-    onItemClick: function onItemClick(event, item) {
-      return onSelect(item.props.value);
-    }
+  return _jsx(List, {
+    className: 'SkipReasonsList'
   }, void 0, reasons.map(function (reason) {
-    return _jsx(MenuItem, {
-      value: reason.name,
-      style: menuItemStyle,
-      primaryText: reason.label
-    }, reason.name);
+    return _jsx(ListItem, {
+      button: true,
+      onClick: function onClick() {
+        return onSelect(reason.name);
+      }
+    }, reason.name, _jsx(ListItemText, {
+      className: 'SkipReasonsList-label',
+      primary: reason.label
+    }));
   }));
 };
 

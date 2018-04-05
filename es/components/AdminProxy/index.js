@@ -2,12 +2,12 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import loadable from 'react-loadable';
-import Loader from '../Loader';
+import { CircularProgress } from 'material-ui/es/Progress';
 import Overlay from '../Overlay';
 import OverlayHeader from '../Overlay/Header';
 
-var _ref = _jsx(Loader, {
-  size: 'large'
+var _ref = _jsx(CircularProgress, {
+  size: '100%'
 });
 
 var AdminComponent = loadable({

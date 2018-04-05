@@ -1,10 +1,16 @@
 import _jsx from 'babel-runtime/helpers/jsx';
+import _extends from 'babel-runtime/helpers/extends';
+import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+/* global localStorage */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext } from 'react-dnd';
 import compose from 'recompose/compose';
 import toClass from 'recompose/toClass';
+import withState from 'recompose/withState';
+import mapProps from 'recompose/mapProps';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Snackbar from 'material-ui/es/Snackbar';
 
 import FooterBar from '../../containers/FooterBar';
 import HeaderBar from '../../containers/HeaderBar';
@@ -23,47 +29,76 @@ import Dialogs from '../Dialogs';
 import AddToPlaylistMenu from '../../containers/AddToPlaylistMenu';
 import DragLayer from '../../containers/DragLayer';
 
-var _ref2 = _jsx('div', {
+var MovedNotification = compose(withState('seen', 'setSeen', function () {
+  try {
+    // eslint-disable-next-line no-underscore-dangle
+    return !localStorage._session || localStorage._session.length <= 30 || !!localStorage.wlkSawMoveMessage;
+  } catch (err) {
+    return false;
+  }
+}), mapProps(function (_ref) {
+  var seen = _ref.seen,
+      setSeen = _ref.setSeen,
+      props = _objectWithoutProperties(_ref, ['seen', 'setSeen']);
+
+  return _extends({}, props, {
+    open: !seen,
+    onClose: function onClose() {
+      try {
+        localStorage.wlkSawMoveMessage = '1';
+      } catch (err) {
+        // Nothing
+      }
+      setSeen(true);
+    }
+  });
+}))(Snackbar);
+
+var _ref3 = _jsx('div', {
   className: 'AppRow AppRow--top'
 }, void 0, _jsx(HeaderBar, {
   className: 'App-header',
   title: '\xFCWave'
 }));
 
-var _ref3 = _jsx(ErrorArea, {});
+var _ref4 = _jsx(ErrorArea, {});
 
-var _ref4 = _jsx(FooterBar, {
+var _ref5 = _jsx(FooterBar, {
   className: 'AppRow AppRow--bottom'
 });
 
-var _ref5 = _jsx('div', {
+var _ref6 = _jsx('div', {
   className: 'AppColumn AppColumn--right'
 }, void 0, _jsx(SidePanels, {}));
 
-var _ref6 = _jsx(Dialogs, {});
+var _ref7 = _jsx(Dialogs, {});
 
-var _ref7 = _jsx(AddToPlaylistMenu, {});
+var _ref8 = _jsx(AddToPlaylistMenu, {});
 
-var _ref8 = _jsx(DragLayer, {});
+var _ref9 = _jsx(DragLayer, {});
 
-var App = function App(_ref) {
-  var activeOverlay = _ref.activeOverlay,
-      isConnected = _ref.isConnected,
-      settings = _ref.settings,
-      hasAboutPage = _ref.hasAboutPage,
-      onCloseOverlay = _ref.onCloseOverlay;
+var _ref10 = _jsx(MovedNotification, {
+  message: 'WLK was recently updated! You will need to log in again, because of some security improvements that have been made.'
+});
+
+var App = function App(_ref2) {
+  var activeOverlay = _ref2.activeOverlay,
+      isConnected = _ref2.isConnected,
+      settings = _ref2.settings,
+      hasAboutPage = _ref2.hasAboutPage,
+      onCloseOverlay = _ref2.onCloseOverlay;
   return _jsx('div', {
     className: 'App'
   }, void 0, _jsx('div', {
     className: 'AppColumn AppColumn--left'
-  }, void 0, _ref2, _jsx('div', {
+  }, void 0, _ref3, _jsx('div', {
     className: 'AppRow AppRow--middle'
   }, void 0, _jsx(Video, {
     enabled: settings.videoEnabled,
     size: settings.videoSize,
     isMuted: settings.muted,
     volume: settings.volume
-  }), _ref3, _jsx(ConnectionIndicator, {
+  }), _ref4, _jsx(ConnectionIndicator, {
     isConnected: isConnected
   })), _jsx(Overlays, {
     transitionName: 'Overlay',
@@ -78,7 +113,7 @@ var App = function App(_ref) {
     onCloseOverlay: onCloseOverlay
   }, 'roomHistory'), _jsx(SettingsManager, {
     onCloseOverlay: onCloseOverlay
-  }, 'settings')), _ref4), _ref5, _ref6, _ref7, _ref8);
+  }, 'settings')), _ref5), _ref6, _ref7, _ref8, _ref9, _ref10);
 };
 
 App.propTypes = process.env.NODE_ENV !== "production" ? {

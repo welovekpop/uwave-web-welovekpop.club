@@ -1,1 +1,0 @@
-{"version":3,"sources":["components/Tabs/Tab.js"],"names":["Tab"],"mappings":";;;;;;;;;;;iBAASA,G","file":"Tab.js","sourcesContent":["export { Tab as default } from 'material-ui/Tabs';\n"]}

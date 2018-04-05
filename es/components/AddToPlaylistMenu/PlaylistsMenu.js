@@ -6,49 +6,17 @@ import find from 'array-find';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Paper from 'material-ui/Paper';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import CreatePlaylistIcon from 'material-ui/svg-icons/content/add';
-// 😱
-import RenderToLayer from 'material-ui/internal/RenderToLayer';
-
-var MENU_HEIGHT = 320;
-var MENU_WIDTH = 280;
-
-var RANDOM_MUI_PADDING = 8;
-var SCROLLBAR_WIDTH = 7;
-
-var NEW_PLAYLIST = {};
-
-var positionInsideWindow = function positionInsideWindow(position, expectedHeight) {
-  var constrained = { x: position.x, y: position.y };
-  var h = Math.min(expectedHeight, MENU_HEIGHT);
-  var w = MENU_WIDTH;
-  if (position.y + h >= window.innerHeight) {
-    // position at the bottom of the screen
-    constrained.y = window.innerHeight - h;
-  }
-  if (position.x + w >= window.innerWidth) {
-    // position to the left-hand side of the anchor, instead of the right-hand side
-    constrained.x -= w;
-  }
-  return constrained;
-};
-
-var menuStyle = {
-  textAlign: 'left',
-  zIndex: 30
-};
-var menuItemStyle = {
-  WebkitAppearance: 'initial'
-};
+import Popover from 'material-ui/es/Popover';
+import { MenuList, MenuItem } from 'material-ui/es/Menu';
+import { ListItemIcon, ListItemText } from 'material-ui/es/List';
+import CreatePlaylistIcon from 'material-ui-icons/Add';
+import ActiveIcon from 'material-ui-icons/Check';
 
 var enhance = translate();
 
-var _ref = _jsx(CreatePlaylistIcon, {
-  color: '#fff'
-});
+var _ref = _jsx(ListItemIcon, {}, void 0, _jsx(CreatePlaylistIcon, {}));
+
+var _ref2 = _jsx(ListItemIcon, {}, void 0, _jsx(ActiveIcon, {}));
 
 var PlaylistsMenu = function (_React$Component) {
   _inherits(PlaylistsMenu, _React$Component);
@@ -64,59 +32,44 @@ var PlaylistsMenu = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleSelect = function (e, item) {
       var playlistID = item.props.value;
-      if (playlistID === NEW_PLAYLIST) {
-        _this.props.onCreatePlaylist();
-        return;
-      }
       _this.props.onClose();
       _this.props.onSelect(find(_this.props.playlists, function (pl) {
         return pl._id === playlistID;
       }));
-    }, _this.renderLayer = function () {
-      var _this$props = _this.props,
-          playlists = _this$props.playlists,
-          position = _this$props.position,
-          t = _this$props.t;
-
-      var fixedPosition = positionInsideWindow(position, (playlists.length + 1) * 48);
-      return _jsx('div', {
-        style: {
-          position: 'absolute',
-          left: fixedPosition.x,
-          top: fixedPosition.y,
-          width: MENU_WIDTH + RANDOM_MUI_PADDING + SCROLLBAR_WIDTH
-        }
-      }, void 0, _jsx(Paper, {}, void 0, _jsx(Menu, {
-        style: menuStyle,
-        maxHeight: MENU_HEIGHT,
-        width: MENU_WIDTH,
-        autoWidth: false,
-        onItemClick: _this.handleSelect
-      }, void 0, _jsx(MenuItem, {
-        style: menuItemStyle,
-        value: NEW_PLAYLIST,
-        leftIcon: _ref,
-        primaryText: t('playlists.new')
-      }), playlists.map(function (playlist) {
-        return _jsx(MenuItem, {
-          style: menuItemStyle,
-          value: playlist._id,
-          primaryText: playlist.name,
-          secondaryText: '' + (playlist.size || 0),
-          checked: !!playlist.active
-        }, playlist._id);
-      }))));
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   PlaylistsMenu.prototype.render = function render() {
-    var onClose = this.props.onClose;
+    var _this2 = this;
 
-    return _jsx(RenderToLayer, {
+    var _props = this.props,
+        t = _props.t,
+        playlists = _props.playlists,
+        position = _props.position,
+        onClose = _props.onClose,
+        onCreatePlaylist = _props.onCreatePlaylist;
+
+
+    return _jsx(Popover, {
       open: true,
-      componentClickAway: onClose,
-      render: this.renderLayer
-    });
+      anchorPosition: { left: position.x, top: position.y },
+      anchorReference: 'anchorPosition',
+      onClose: onClose
+    }, void 0, _jsx(MenuList, {}, void 0, _jsx(MenuItem, {
+      onClick: onCreatePlaylist
+    }, void 0, _jsx(ListItemText, {
+      primary: t('playlists.new')
+    }), _ref), playlists.map(function (playlist) {
+      return _jsx(MenuItem, {
+        className: 'AddToPlaylistMenu-playlist',
+        onClick: _this2.handleSelect
+      }, playlist._id, !!playlist.active && _ref2, _jsx(ListItemText, {
+        primary: playlist.name
+      }), _jsx(ListItemText, {
+        className: 'AddToPlaylistMenu-smallIcon',
+        primary: String(playlist.size || 0)
+      }));
+    })));
   };
 
   return PlaylistsMenu;

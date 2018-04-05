@@ -93,6 +93,7 @@ export default {
       "title": "Playlists",
       "new": "Create Playlist",
       "delete": "Delete Playlist",
+      "deleteActive": "The active playlist cannot be deleted.",
       "noPlaylists": "You don't have a playlist yet!",
       "noPlaylistsCreate": "You don't have a playlist yet! Click here to create one.",
       "empty": "This playlist is empty :(",
@@ -126,6 +127,7 @@ export default {
     },
     "booth": {
       "empty": "Nobody is playing!",
+      "videoDisabled": "Video playback is disabled.",
       "currentDJ": "played by: {{user}}",
       "skip": {
         "self": "Skip your turn",

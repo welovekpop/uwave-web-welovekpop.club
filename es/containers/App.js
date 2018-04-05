@@ -4,18 +4,21 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+import nest from 'recompose/nest';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider } from 'material-ui/es/styles';
 import { I18nextProvider } from 'react-i18next';
 import { Provider as BusProvider } from 'react-bus';
+import { Mobile, Desktop } from '../components/Responsive';
+import ClockProvider from '../components/ClockProvider';
 import { closeAll } from '../actions/OverlayActionCreators';
-import { createTimer, stopTimer } from '../actions/TickerActionCreators';
-
-import { settingsSelector, languageSelector, muiThemeSelector } from '../selectors/settingSelectors';
+import { settingsSelector, languageSelector, themeSelector } from '../selectors/settingSelectors';
 import { isConnectedSelector } from '../selectors/serverSelectors';
-import App from '../components/App';
+import DesktopApp from '../components/App';
+import MobileApp from '../mobile/components/App';
+
+var SimpleProviders = nest(BusProvider, ClockProvider);
 
 var mapStateToProps = createStructuredSelector({
   activeOverlay: function activeOverlay(state) {
@@ -24,18 +27,14 @@ var mapStateToProps = createStructuredSelector({
   isConnected: isConnectedSelector,
   settings: settingsSelector,
   language: languageSelector,
-  muiTheme: muiThemeSelector,
+  theme: themeSelector,
   hasAboutPage: function hasAboutPage(state, props) {
     return props.uwave.getAboutPageComponent() !== null;
   }
 });
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    createTimer: createTimer,
-    stopTimer: stopTimer,
-    onCloseOverlay: closeAll
-  }, dispatch);
+var mapDispatchToProps = {
+  onCloseOverlay: closeAll
 };
 
 var enhance = connect(mapStateToProps, mapDispatchToProps);
@@ -44,26 +43,24 @@ var AppContainer = function (_React$Component) {
   _inherits(AppContainer, _React$Component);
 
   function AppContainer() {
+    var _temp, _this, _ret;
+
     _classCallCheck(this, AppContainer);
 
-    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.renderApp = function () {
+      return _jsx(React.Fragment, {}, void 0, _jsx(Mobile, {}, void 0, React.createElement(MobileApp, _this.props)), _jsx(Desktop, {}, void 0, React.createElement(DesktopApp, _this.props)));
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   AppContainer.prototype.getChildContext = function getChildContext() {
     return {
-      timerCallbacks: this.timerCallbacks,
       mediaSources: this.props.mediaSources,
       uwave: this.props.uwave
     };
-  };
-
-  // TODO move this to constructor?
-
-
-  AppContainer.prototype.componentWillMount = function componentWillMount() {
-    // Start the clock! üWave stores the current time in the application state
-    // primarily to make sure that different timers in the UI update simultaneously.
-    this.timerCallbacks = this.props.createTimer();
   };
 
   AppContainer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
@@ -72,24 +69,18 @@ var AppContainer = function (_React$Component) {
     }
   };
 
-  AppContainer.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.timerCallbacks = [];
-    this.props.stopTimer();
-  };
-
   AppContainer.prototype.render = function render() {
     return _jsx(MuiThemeProvider, {
-      muiTheme: this.props.muiTheme
+      theme: this.props.theme
     }, void 0, _jsx(I18nextProvider, {
       i18n: this.props.locale
-    }, void 0, _jsx(BusProvider, {}, void 0, React.createElement(App, this.props))));
+    }, void 0, _jsx(SimpleProviders, {}, void 0, this.renderApp())));
   };
 
   return AppContainer;
 }(React.Component);
 
 AppContainer.childContextTypes = {
-  timerCallbacks: PropTypes.arrayOf(PropTypes.func),
   mediaSources: PropTypes.object,
   uwave: PropTypes.object
 };
@@ -97,10 +88,8 @@ AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   mediaSources: PropTypes.object.isRequired,
   uwave: PropTypes.object,
   language: PropTypes.string,
-  locale: PropTypes.object.isRequired,
-  muiTheme: PropTypes.object,
-  createTimer: PropTypes.func.isRequired,
-  stopTimer: PropTypes.func.isRequired
+  theme: PropTypes.object,
+  locale: PropTypes.object.isRequired
 } : {};
 
 

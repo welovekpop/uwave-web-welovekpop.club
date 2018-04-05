@@ -2,8 +2,8 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/IconButton';
-import AboutIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import IconButton from 'material-ui/es/IconButton';
+import AboutIcon from 'material-ui-icons/ArrowDropDown';
 import logo from '../../../assets/img/logo-white.png';
 
 var _ref2 = _jsx(AboutIcon, {});

@@ -3,7 +3,7 @@ import _typeof from 'babel-runtime/helpers/typeof';
 /* global window */
 import find from 'array-find';
 import { createSelector } from 'reselect';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { createMuiTheme } from 'material-ui/es/styles';
 import { availableLanguages } from '../locale';
 
 function getAvailableLanguage(languages) {
@@ -26,12 +26,10 @@ var settingsBaseSelector = function settingsBaseSelector(state) {
   return state.settings;
 };
 
-export var themeSelector = function themeSelector(state) {
+export var themeSelector = createSelector(function (state) {
   return state.theme;
-};
-
-export var muiThemeSelector = createSelector(themeSelector, function (theme) {
-  return getMuiTheme(theme);
+}, function (base) {
+  return createMuiTheme(base);
 });
 
 export var volumeSelector = createSelector(settingsBaseSelector, function (settings) {
@@ -48,6 +46,10 @@ export var languageSelector = createSelector(settingsBaseSelector, getDefaultLan
 
 export var videoSizeSelector = createSelector(settingsBaseSelector, function (settings) {
   return settings.videoSize;
+});
+
+export var videoEnabledSelector = createSelector(settingsBaseSelector, function (settings) {
+  return settings.videoEnabled;
 });
 
 // Settings with selected values (from selectors above) rather than "saved"

@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import CreatePlaylistIcon from 'material-ui/svg-icons/content/add';
+import CreatePlaylistIcon from 'material-ui-icons/Add';
 
 import PromptDialog from '../../Dialogs/PromptDialog';
 
@@ -14,12 +14,10 @@ var enhance = translate();
 
 var _ref = _jsx('div', {
   className: 'PlaylistMenuRow-active-icon'
-}, void 0, _jsx(CreatePlaylistIcon, {
-  color: '#fff'
-}));
+}, void 0, _jsx(CreatePlaylistIcon, {}));
 
 var _ref2 = _jsx(CreatePlaylistIcon, {
-  color: '#777'
+  nativeColor: '#777'
 });
 
 var NewPlaylist = function (_React$Component) {
@@ -54,7 +52,7 @@ var NewPlaylist = function (_React$Component) {
         t = _props.t,
         className = _props.className;
 
-    return _jsx('button', {
+    return _jsx(React.Fragment, {}, void 0, _jsx('button', {
       role: 'menuitem',
       className: cx('PlaylistMenuRow', 'PlaylistMenuRow--create', className),
       onClick: this.handleOpen
@@ -62,13 +60,13 @@ var NewPlaylist = function (_React$Component) {
       className: 'PlaylistMenuRow-content'
     }, void 0, _jsx('div', {
       className: 'PlaylistMenuRow-title'
-    }, void 0, _ref, t('playlists.new')), this.state.creating && _jsx(PromptDialog, {
+    }, void 0, _ref, t('playlists.new')))), this.state.creating && _jsx(PromptDialog, {
       title: t('dialogs.createPlaylist.nameInputTitle'),
       icon: _ref2,
       submitLabel: t('dialogs.createPlaylist.action'),
       onSubmit: this.handleSubmit,
       onCancel: this.handleClose
-    })));
+    }));
   };
 
   return NewPlaylist;

@@ -6,13 +6,14 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { FormGroup } from 'material-ui/es/Form';
+import Switch from 'material-ui/es/Switch';
 import Profile from './Profile';
 import LabeledControl from './LabeledControl';
 import LanguagePicker from './LanguagePicker';
 import LogoutButton from './LogoutButton';
 import NotificationSettings from './NotificationSettings';
 import Links from './Links';
-import Toggle from './Toggle';
 
 var enhance = translate();
 
@@ -52,8 +53,8 @@ var SettingsPanel = function (_React$Component) {
       _this.props.onSettingChange('videoSize', value ? 'large' : 'small');
     }, _this.handleMentionSoundChange = function (e, value) {
       _this.props.onSettingChange('mentionSound', value);
-    }, _this.handleLanguageChange = function (e, index, value) {
-      _this.props.onChangeLanguage(value);
+    }, _this.handleLanguageChange = function (event) {
+      _this.props.onChangeLanguage(event.target.value);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -76,25 +77,31 @@ var SettingsPanel = function (_React$Component) {
       className: 'SettingsPanel-column SettingsPanel-column--left'
     }, void 0, _jsx('h2', {
       className: 'SettingsPanel-header'
-    }, void 0, t('settings.title')), _jsx(Toggle, {
+    }, void 0, t('settings.title')), _jsx(FormGroup, {}, void 0, _jsx(LabeledControl, {
       label: t('settings.videoEnabled'),
-      toggled: settings.videoEnabled,
-      onToggle: this.handleVideoEnabledChange
-    }), _jsx(Toggle, {
+      id: 'uw-setting-videoenabled'
+    }, void 0, _jsx(Switch, {
+      color: 'primary',
+      checked: settings.videoEnabled,
+      onChange: this.handleVideoEnabledChange
+    })), _jsx(LabeledControl, {
       label: t('settings.videoSize'),
-      toggled: settings.videoSize === 'large',
-      onToggle: this.handleVideoSizeChange
-    }), _jsx(Toggle, {
+      id: 'uw-setting-videosize'
+    }, void 0, _jsx(Switch, {
+      color: 'primary',
+      checked: settings.videoSize === 'large',
+      onChange: this.handleVideoSizeChange
+    })), _jsx(LabeledControl, {
       label: t('settings.mentionSound'),
-      toggled: settings.mentionSound,
-      onToggle: this.handleMentionSoundChange
-    }), _jsx('div', {
-      className: 'SettingsPanel-toggle'
-    }, void 0, _jsx(LabeledControl, {
-      id: 'uw-setting-language',
-      label: t('settings.language')
+      id: 'uw-setting-mentionsound'
+    }, void 0, _jsx(Switch, {
+      color: 'primary',
+      checked: settings.mentionSound,
+      onChange: this.handleMentionSoundChange
+    })), _jsx(LabeledControl, {
+      label: t('settings.language'),
+      id: 'uw-setting-language'
     }, void 0, _jsx(LanguagePicker, {
-      id: 'uw-setting-language',
       value: settings.language,
       onChange: this.handleLanguageChange
     }))), _ref2, _ref3, _ref4, _jsx(LogoutButton, {

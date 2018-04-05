@@ -2,23 +2,19 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import assign from 'object-assign';
 import React from 'react';
 import PropTypes from 'prop-types';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import ListIcon from 'material-ui/svg-icons/action/list';
-
+import ListIcon from 'material-ui-icons/List';
 import transformStyle from '../../utils/transformStyle';
 
 var getItemStyles = function getItemStyles(offset) {
   return offset ? assign({ display: 'inline-block' }, transformStyle('translate(' + offset.x + 'px, ' + offset.y + 'px)')) : { display: 'none' };
 };
 
-var dragIconStyle = {
-  verticalAlign: 'bottom',
-  marginRight: 3
-};
+var _ref2 = _jsx(ListIcon, {
+  className: 'MediaDragPreview-icon'
+});
 
 var MediaDragPreview = function MediaDragPreview(_ref) {
-  var muiTheme = _ref.muiTheme,
-      items = _ref.items,
+  var items = _ref.items,
       currentOffset = _ref.currentOffset;
 
   if (!items || !items.media) {
@@ -27,14 +23,10 @@ var MediaDragPreview = function MediaDragPreview(_ref) {
   return _jsx('div', {
     className: 'MediaDragPreview',
     style: getItemStyles(currentOffset)
-  }, void 0, _jsx(ListIcon, {
-    color: muiTheme.palette.textColor,
-    style: dragIconStyle
-  }), items.media.length);
+  }, void 0, _ref2, items.media.length);
 };
 
 MediaDragPreview.propTypes = process.env.NODE_ENV !== "production" ? {
-  muiTheme: PropTypes.object.isRequired,
   items: PropTypes.object,
   currentOffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
@@ -42,5 +34,5 @@ MediaDragPreview.propTypes = process.env.NODE_ENV !== "production" ? {
   })
 } : {};
 
-export default muiThemeable()(MediaDragPreview);
+export default MediaDragPreview;
 //# sourceMappingURL=MediaDragPreview.js.map

@@ -6,15 +6,13 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import SearchIcon from 'material-ui/svg-icons/action/search';
+import SearchIcon from 'material-ui-icons/Search';
 
 var enhance = translate();
 
 var _ref = _jsx('div', {
   className: 'SearchBar-icon'
-}, void 0, _jsx(SearchIcon, {
-  color: '#fff'
-}));
+}, void 0, _jsx(SearchIcon, {}));
 
 var SearchBar = function (_React$Component) {
   _inherits(SearchBar, _React$Component);

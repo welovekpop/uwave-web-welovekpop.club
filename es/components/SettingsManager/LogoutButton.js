@@ -5,12 +5,16 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import FlatButton from 'material-ui/FlatButton';
-import LogoutIcon from 'material-ui/svg-icons/action/power-settings-new';
+import Button from 'material-ui/es/Button';
+import LogoutIcon from 'material-ui-icons/PowerSettingsNew';
 import ConfirmDialog from '../Dialogs/ConfirmDialog';
 import FormGroup from '../Form/Group';
 
-var _ref = _jsx(LogoutIcon, {});
+var enhance = translate();
+
+var _ref = _jsx(LogoutIcon, {
+  className: 'LogoutButton-icon'
+});
 
 var LogoutButton = function (_React$Component) {
   _inherits(LogoutButton, _React$Component);
@@ -43,12 +47,10 @@ var LogoutButton = function (_React$Component) {
   LogoutButton.prototype.render = function render() {
     var t = this.props.t;
 
-    return _jsx(FlatButton, {
-      label: t('settings.logout'),
-      labelPosition: 'after',
-      icon: _ref,
+    return _jsx(React.Fragment, {}, void 0, _jsx(Button, {
+      className: 'LogoutButton',
       onClick: this.handleOpen
-    }, void 0, this.state.showDialog && _jsx(ConfirmDialog, {
+    }, void 0, _ref, t('settings.logout')), this.state.showDialog && _jsx(ConfirmDialog, {
       title: t('dialogs.logout.title'),
       confirmLabel: t('dialogs.logout.action'),
       onConfirm: this.handleConfirm,
@@ -65,5 +67,5 @@ LogoutButton.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 
-export default translate()(LogoutButton);
+export default enhance(LogoutButton);
 //# sourceMappingURL=LogoutButton.js.map

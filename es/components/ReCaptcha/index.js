@@ -5,9 +5,7 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import loadScript from 'load-script2';
-
-import Loader from '../Loader';
-
+import { CircularProgress } from 'material-ui/es/Progress';
 import InternalCaptcha from './ReCaptcha';
 
 var GRECAPTCHA_API = 'https://www.google.com/recaptcha/api.js';
@@ -27,9 +25,8 @@ function loadReCaptcha(cb) {
   onloadCallbacks.push(cb);
 }
 
-var _ref = _jsx(Loader, {
-  className: 'ReCaptcha-spinner',
-  size: 'tiny'
+var _ref = _jsx(CircularProgress, {
+  className: 'ReCaptcha-spinner'
 });
 
 var ReCaptcha = function (_React$Component) {

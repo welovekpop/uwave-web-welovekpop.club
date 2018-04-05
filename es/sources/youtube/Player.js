@@ -15,18 +15,16 @@ var YouTubePlayer = function YouTubePlayer(_ref) {
 
   var modeClass = 'src-youtube-Player--' + mode;
 
-  // Wrapper span so the backdrop can be full-size…
-  return _jsx('span', {
+  return _jsx('div', {
+    className: cx('src-youtube-Player', modeClass, className),
     hidden: !active
-  }, void 0, _jsx('div', {
-    className: cx('src-youtube-Player', modeClass, className)
   }, void 0, enabled && _jsx(YouTubePlayerEmbed, {
     media: media,
     active: active,
     seek: Math.round(seek),
     volume: volume,
     controllable: mode === 'preview'
-  })));
+  }));
 };
 
 YouTubePlayer.propTypes = process.env.NODE_ENV !== "production" ? {

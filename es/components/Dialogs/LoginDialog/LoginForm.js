@@ -5,9 +5,9 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import EmailIcon from 'material-ui/svg-icons/communication/email';
-import PasswordIcon from 'material-ui/svg-icons/action/lock';
-import Loader from '../../Loader';
+import EmailIcon from 'material-ui-icons/Email';
+import PasswordIcon from 'material-ui-icons/Lock';
+import { CircularProgress } from 'material-ui/es/Progress';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
@@ -20,17 +20,17 @@ var enhance = translate();
 var _ref = _jsx(React.Fragment, {}, void 0, _jsx(SocialLogin, {}), _jsx(Separator, {}));
 
 var _ref2 = _jsx(EmailIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref3 = _jsx(PasswordIcon, {
-  color: '#9f9d9e'
+  nativeColor: '#9f9d9e'
 });
 
 var _ref4 = _jsx('div', {
   className: 'Button-loading'
-}, void 0, _jsx(Loader, {
-  size: 'tiny'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var LoginForm = function (_React$Component) {

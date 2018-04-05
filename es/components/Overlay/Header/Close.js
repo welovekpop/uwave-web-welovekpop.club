@@ -2,17 +2,12 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseBottomIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-import CloseTopIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
+import CloseBottomIcon from 'material-ui-icons/KeyboardArrowDown';
+import CloseTopIcon from 'material-ui-icons/KeyboardArrowUp';
 
 var icons = {
   bottom: CloseBottomIcon,
   top: CloseTopIcon
-};
-
-var fullSizeStyle = {
-  height: '100%',
-  width: '100%'
 };
 
 var Close = function Close(_ref) {
@@ -25,8 +20,6 @@ var Close = function Close(_ref) {
     className: cx('OverlayHeaderClose', className),
     onClick: onClose
   }, void 0, _jsx(CloseIcon, {
-    color: '#fff',
-    style: fullSizeStyle,
     className: 'OverlayHeaderClose-icon'
   }));
 };

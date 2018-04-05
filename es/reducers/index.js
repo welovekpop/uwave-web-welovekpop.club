@@ -40,4 +40,6 @@ import _waitlist from './waitlist';
 export { _waitlist as waitlist };
 import _wlk from '../_wlk/reducer';
 export { _wlk as wlk };
+import _mobile from '../mobile/reducers';
+export { _mobile as mobile };
 //# sourceMappingURL=index.js.map

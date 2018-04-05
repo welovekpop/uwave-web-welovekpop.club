@@ -5,7 +5,7 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import RenderToLayer from 'material-ui/internal/RenderToLayer';
+import Modal from 'material-ui/es/Modal';
 import UserCard from './UserCard';
 
 var UserCardWrapper = function (_React$Component) {
@@ -55,8 +55,6 @@ var UserCardWrapper = function (_React$Component) {
   };
 
   UserCardWrapper.prototype.render = function render() {
-    var _this2 = this;
-
     var _props = this.props,
         onClose = _props.onClose,
         position = _props.position,
@@ -67,24 +65,24 @@ var UserCardWrapper = function (_React$Component) {
         positionDiffY = _state.positionDiffY;
 
 
-    return _jsx(RenderToLayer, {
+    return _jsx(Modal, {
       open: true,
-      componentClickAway: onClose,
-      render: function render() {
-        return React.createElement(
-          'div',
-          {
-            style: {
-              position: 'absolute',
-              left: position.x + positionDiffX,
-              top: position.y + positionDiffY
-            },
-            ref: _this2.refContainer
-          },
-          React.createElement(UserCard, props)
-        );
-      }
-    });
+      BackdropProps: { invisible: true },
+      onClose: onClose
+    }, void 0, React.createElement(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: position.x + positionDiffX,
+          top: position.y + positionDiffY
+        },
+        ref: this.refContainer
+      },
+      _jsx('div', {
+        className: 'UserCardWrapper'
+      }, void 0, React.createElement(UserCard, props))
+    ));
   };
 
   return UserCardWrapper;

@@ -3,13 +3,10 @@ import _extends from 'babel-runtime/helpers/extends';
 import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-
+import EditIcon from 'material-ui-icons/ModeEdit';
 import Action from './Action';
 
-var _ref2 = _jsx(EditIcon, {
-  color: '#fff'
-});
+var _ref2 = _jsx(EditIcon, {});
 
 var EditMedia = function EditMedia(_ref) {
   var onEdit = _ref.onEdit,

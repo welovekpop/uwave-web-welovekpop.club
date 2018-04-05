@@ -1,18 +1,11 @@
 import _jsx from 'babel-runtime/helpers/jsx';
+import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import DownvoteIcon from 'material-ui/svg-icons/action/thumb-down';
-import UpvoteIcon from 'material-ui/svg-icons/action/thumb-up';
-import FavoritedIcon from 'material-ui/svg-icons/action/favorite';
-import FavoriteIcon from 'material-ui/svg-icons/action/favorite-border';
-
-import theme from '../../MuiTheme';
-
-var iconStyles = {
-  height: 36,
-  width: 36,
-  padding: '6px 12px 6px 0'
-};
+import DownvoteIcon from 'material-ui-icons/ThumbDown';
+import UpvoteIcon from 'material-ui-icons/ThumbUp';
+import FavoritedIcon from 'material-ui-icons/Favorite';
+import FavoriteIcon from 'material-ui-icons/FavoriteBorder';
 
 var Votes = function Votes(_ref) {
   var upvotes = _ref.upvotes,
@@ -30,8 +23,7 @@ var Votes = function Votes(_ref) {
   }, void 0, _jsx('div', {
     className: 'ResponseButton-content'
   }, void 0, _jsx(UpvoteIcon, {
-    style: iconStyles,
-    color: isUpvote ? '#4BB64B' : 'white'
+    className: cx('HistoryVotes-icon', isUpvote && 'ResponseButton-icon--upvoted')
   }), _jsx('span', {
     className: 'ResponseButton-count'
   }, void 0, upvotes.length))), _jsx('div', {
@@ -39,8 +31,7 @@ var Votes = function Votes(_ref) {
   }, void 0, _jsx('div', {
     className: 'ResponseButton-content'
   }, void 0, _jsx(CurrentFavoriteIcon, {
-    style: iconStyles,
-    color: theme.palette.primary1Color
+    className: 'HistoryVotes-icon ResponseButton-icon--favorite'
   }), _jsx('span', {
     className: 'ResponseButton-count'
   }, void 0, favorites.length))), _jsx('div', {
@@ -48,8 +39,7 @@ var Votes = function Votes(_ref) {
   }, void 0, _jsx('div', {
     className: 'ResponseButton-content'
   }, void 0, _jsx(DownvoteIcon, {
-    style: iconStyles,
-    color: isDownvote ? '#B64B4B' : 'white'
+    className: cx('HistoryVotes-icon', isDownvote && 'ResponseButton-icon--downvoted')
   }), _jsx('span', {
     className: 'ResponseButton-count'
   }, void 0, downvotes.length))));

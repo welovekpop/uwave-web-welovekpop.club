@@ -3,13 +3,10 @@ import _extends from 'babel-runtime/helpers/extends';
 import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
 import React from 'react';
 import PropTypes from 'prop-types';
-import MoveToLastIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-
+import MoveToLastIcon from 'material-ui-icons/KeyboardArrowDown';
 import Action from './Action';
 
-var _ref2 = _jsx(MoveToLastIcon, {
-  color: '#fff'
-});
+var _ref2 = _jsx(MoveToLastIcon, {});
 
 var MoveToLast = function MoveToLast(_ref) {
   var onLast = _ref.onLast,

@@ -1,6 +1,5 @@
 import * as PlaylistActionCreators from './actions/PlaylistActionCreators';
 import * as RequestActionCreators from './actions/RequestActionCreators';
-import Loader from './components/Loader';
 import MediaList from './components/MediaList';
 import VideoBackdrop from './components/Video/VideoBackdrop';
 import ImportPanelHeader from './components/PlaylistManager/Import/ImportPanelHeader';
@@ -15,7 +14,6 @@ export { _constants as constants };
 
 
 export var components = {
-  Loader: Loader,
   MediaList: MediaList,
   VideoBackdrop: VideoBackdrop,
   ImportPanelHeader: ImportPanelHeader,

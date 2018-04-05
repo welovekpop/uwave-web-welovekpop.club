@@ -4,27 +4,25 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
-import IconButton from 'material-ui/IconButton';
-import HistoryIcon from 'material-ui/svg-icons/action/history';
-
-var fullSize = { width: '100%', height: '100%' };
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import HistoryIcon from 'material-ui-icons/History';
 
 var _ref2 = _jsx(HistoryIcon, {
-  style: fullSize,
-  color: '#fff',
   className: 'HeaderHistoryButton-icon'
 });
 
 var HistoryButton = function HistoryButton(_ref) {
   var t = _ref.t,
       onClick = _ref.onClick;
-  return _jsx(IconButton, {
+  return _jsx(Tooltip, {
+    title: t('history.title'),
+    position: 'bottom'
+  }, void 0, _jsx(IconButton, {
+    'aria-label': t('history.title'),
     className: 'HeaderHistoryButton',
-    style: fullSize,
-    tooltip: t('history.title'),
-    tooltipPosition: 'bottom-center',
     onClick: onClick
-  }, void 0, _ref2);
+  }, void 0, _ref2));
 };
 
 HistoryButton.propTypes = process.env.NODE_ENV !== "production" ? {

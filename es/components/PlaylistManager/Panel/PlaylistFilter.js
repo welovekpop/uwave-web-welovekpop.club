@@ -7,8 +7,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import debounce from 'lodash/debounce';
-import IconButton from 'material-ui/IconButton';
-import FilterIcon from 'material-ui/svg-icons/action/search';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import FilterIcon from 'material-ui-icons/Search';
+
+var enhance = translate();
 
 var PlaylistFilter = function (_React$Component) {
   _inherits(PlaylistFilter, _React$Component);
@@ -62,14 +65,15 @@ var PlaylistFilter = function (_React$Component) {
     var isOpen = this.state.open;
     return _jsx('div', {
       className: 'PlaylistMediaFilter'
+    }, void 0, _jsx(Tooltip, {
+      title: t('playlists.filter'),
+      placement: 'top'
     }, void 0, _jsx(IconButton, {
-      onClick: this.handleClick,
-      tooltip: t('playlists.filter'),
-      tooltipPosition: 'top-center'
+      className: 'PlaylistMeta-iconButton',
+      onClick: this.handleClick
     }, void 0, _jsx(FilterIcon, {
-      color: isOpen ? '#fff' : '#555',
-      hoverColor: '#fff'
-    })), React.createElement('input', {
+      nativeColor: isOpen ? '#fff' : null
+    }))), React.createElement('input', {
       type: 'text',
       ref: this.refInput,
       className: cx('PlaylistMediaFilter-input', isOpen && 'is-open'),
@@ -87,5 +91,5 @@ PlaylistFilter.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 
-export default translate()(PlaylistFilter);
+export default enhance(PlaylistFilter);
 //# sourceMappingURL=PlaylistFilter.js.map

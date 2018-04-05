@@ -1,13 +1,7 @@
-import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
-import FlatButton from 'material-ui/FlatButton';
-
-var buttonProps = {
-  style: { WebkitAppearance: 'initial' },
-  target: '_blank'
-};
+import Button from 'material-ui/es/Button';
 
 var SocialMediaLink = function SocialMediaLink(_ref) {
   var href = _ref.href,
@@ -15,11 +9,12 @@ var SocialMediaLink = function SocialMediaLink(_ref) {
       children = _ref.children;
   return _jsx('li', {
     className: 'wlk-AboutPage-socialMedia'
-  }, void 0, React.createElement(FlatButton, _extends({}, buttonProps, {
-    href: href,
-    label: label,
-    icon: children
-  })));
+  }, void 0, _jsx(Button, {
+    target: '_blank',
+    href: href
+  }, void 0, _jsx('span', {
+    className: 'wlk-AboutPage-socialMediaIcon'
+  }, void 0, children), label));
 };
 
 SocialMediaLink.propTypes = process.env.NODE_ENV !== "production" ? {

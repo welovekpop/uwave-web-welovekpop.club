@@ -25,6 +25,7 @@ window.uw = uw;
 uw.build().then(function () {
   uw.renderToDOM(document.querySelector('#app'));
   document.querySelector('#app-loading').innerHTML = '';
+  document.querySelector('#jss').textContent = '';
 }).catch(function (err) {
   document.querySelector('.LoadingScreen-notice').textContent = 'Error: ' + err.message;
 

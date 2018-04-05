@@ -2,9 +2,10 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import DownvoteIcon from 'material-ui/svg-icons/action/thumb-down';
-
+import DownvoteIcon from 'material-ui-icons/ThumbDown';
 import Button from './Button';
+
+var enhance = translate();
 
 var Downvote = function Downvote(_ref) {
   var t = _ref.t,
@@ -18,7 +19,7 @@ var Downvote = function Downvote(_ref) {
     onClick: onDownvote,
     count: count
   }, void 0, _jsx(DownvoteIcon, {
-    color: active ? '#B64B4B' : 'white'
+    className: active ? 'ResponseButton-icon--downvoted' : ''
   }));
 };
 
@@ -30,5 +31,5 @@ Downvote.propTypes = process.env.NODE_ENV !== "production" ? {
   active: PropTypes.bool
 } : {};
 
-export default translate()(Downvote);
+export default enhance(Downvote);
 //# sourceMappingURL=Downvote.js.map

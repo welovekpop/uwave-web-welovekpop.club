@@ -8,20 +8,17 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
-import Popover from 'material-ui/Popover';
-import IconButton from 'material-ui/IconButton';
-import SkipIcon from 'material-ui/svg-icons/av/skip-next';
-import Loader from '../Loader';
+import Popover from 'material-ui/es/Popover';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import { CircularProgress } from 'material-ui/es/Progress';
+import SkipIcon from 'material-ui-icons/SkipNext';
 import SkipReasonsList from './SkipReasonsList';
 
-var fullSizeStyle = {
-  height: '100%',
-  width: '100%'
-};
-
-var popoverProps = {
-  anchorOrigin: { horizontal: 'middle', vertical: 'bottom' },
-  targetOrigin: { horizontal: 'middle', vertical: 'bottom' }
+var popoverPosition = {
+  marginThreshold: 0,
+  anchorOrigin: { horizontal: 'center', vertical: 'bottom' },
+  transformOrigin: { horizontal: 'center', vertical: 'bottom' }
 };
 
 // TODO not hardcode these maybe?
@@ -29,8 +26,7 @@ var reasons = ['genre', 'history', 'unavailable', 'nsfw', 'duration', 'downvotes
 
 var _ref = _jsx('span', {}, void 0, _jsx('div', {
   className: 'SkipButton is-loading'
-}, void 0, _jsx(Loader, {
-  size: 'tiny',
+}, void 0, _jsx(CircularProgress, {
   className: 'SkipButton-loader'
 })));
 
@@ -88,18 +84,19 @@ var SkipButton = function (_React$Component) {
       message = t('booth.skip.other', { user: this.props.currentDJ.username });
     }
 
-    return _jsx('span', {}, void 0, _jsx(IconButton, {
-      tooltip: message,
-      tooltipPosition: 'top-center',
-      style: fullSizeStyle,
+    return _jsx('span', {}, void 0, _jsx(Tooltip, {
+      title: message
+    }, void 0, _jsx(IconButton, {
+      className: 'SkipButton',
       onClick: this.handleOpen
-    }, void 0, _ref2), React.createElement(
+    }, void 0, _ref2)), React.createElement(
       Popover,
       _extends({
         open: this.state.isOpen,
         anchorEl: this.state.anchor,
-        onRequestClose: this.handleClose
-      }, popoverProps),
+        onClose: this.handleClose,
+        classes: { paper: 'SkipButton-list' }
+      }, popoverPosition),
       _jsx(SkipReasonsList, {
         reasons: reasons.map(function (name) {
           return {

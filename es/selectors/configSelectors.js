@@ -38,4 +38,15 @@ export var roleSelector = memoize(function (roleName) {
     return roles[roleName];
   });
 });
+
+// TODO configurable.
+export var roleColorsSelector = function roleColorsSelector() {
+  return {
+    admin: '#ff3b74',
+    manager: '#05daa5',
+    moderator: '#00b3dc',
+    special: '#fc911d',
+    default: ''
+  };
+};
 //# sourceMappingURL=configSelectors.js.map

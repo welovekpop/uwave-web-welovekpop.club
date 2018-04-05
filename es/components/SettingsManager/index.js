@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import OverlayHeader from '../Overlay/Header';
+import OverlayContent from '../Overlay/Content';
 import SettingsPanel from './SettingsPanel';
 
 var enhance = translate();
@@ -43,8 +44,8 @@ var SettingsManager = function (_React$Component) {
     }, void 0, _jsx(OverlayHeader, {
       title: t('settings.title'),
       onCloseOverlay: onCloseOverlay
-    }), _jsx('div', {
-      className: 'SettingsManager-body AppRow AppRow--middle'
+    }), _jsx(OverlayContent, {
+      className: 'SettingsManager-body'
     }, void 0, React.createElement(SettingsPanel, _extends({}, props, {
       onLogout: this.handleLogout
     }))));

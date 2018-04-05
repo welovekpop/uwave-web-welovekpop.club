@@ -2,6 +2,7 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayHeader from '../Overlay/Header';
+import OverlayContent from '../Overlay/Content';
 
 var About = function About(_ref) {
   var onCloseOverlay = _ref.onCloseOverlay,
@@ -12,8 +13,8 @@ var About = function About(_ref) {
     title: 'About',
     onCloseOverlay: onCloseOverlay,
     direction: 'top'
-  }), _jsx('div', {
-    className: 'AppRow AppRow--middle AboutPanel'
+  }), _jsx(OverlayContent, {
+    className: 'AboutPanel'
   }, void 0, _jsx(AboutPanel, {})));
 };
 

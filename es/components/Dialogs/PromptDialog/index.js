@@ -7,18 +7,18 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
-
+import Dialog, { DialogTitle, DialogContent } from 'material-ui/es/Dialog';
+import { CircularProgress } from 'material-ui/es/Progress';
+import uniqueId from 'lodash/uniqueId';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
 import Button from '../../Form/Button';
-import Loader from '../../Loader';
 
 var _ref = _jsx('div', {
   className: 'Button-loading'
-}, void 0, _jsx(Loader, {
-  size: 'tiny'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var PromptDialog = function (_React$Component) {
@@ -36,7 +36,7 @@ var PromptDialog = function (_React$Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
       busy: false,
       value: _this.props.value || ''
-    }, _this.handleSubmit = function (event) {
+    }, _this.title = uniqueId('title'), _this.handleSubmit = function (event) {
       event.preventDefault();
       var promise = _this.props.onSubmit(_this.input.value);
       if (promise && promise.then) {
@@ -62,10 +62,11 @@ var PromptDialog = function (_React$Component) {
         inputType = _props.inputType,
         placeholder = _props.placeholder,
         submitLabel = _props.submitLabel,
+        title = _props.title,
         bodyClassName = _props.bodyClassName,
         contentClassName = _props.contentClassName,
         titleClassName = _props.titleClassName,
-        props = _objectWithoutProperties(_props, ['children', 'icon', 'inputType', 'placeholder', 'submitLabel', 'bodyClassName', 'contentClassName', 'titleClassName']);
+        props = _objectWithoutProperties(_props, ['children', 'icon', 'inputType', 'placeholder', 'submitLabel', 'title', 'bodyClassName', 'contentClassName', 'titleClassName']);
 
     var _state = this.state,
         busy = _state.busy,
@@ -74,13 +75,22 @@ var PromptDialog = function (_React$Component) {
 
     return React.createElement(
       Dialog,
-      _extends({}, props, {
-        contentClassName: cx('Dialog', contentClassName),
-        bodyClassName: cx('Dialog-body', bodyClassName),
-        titleClassName: cx('Dialog-title', titleClassName),
-        onRequestClose: this.handleClose
+      _extends({
+        fullWidth: true
+      }, props, {
+        classes: {
+          paper: cx('Dialog', contentClassName)
+        },
+        onClose: this.handleClose,
+        'aria-labelledby': this.title
       }),
-      _jsx(Form, {
+      _jsx(DialogTitle, {
+        className: cx('Dialog-title', titleClassName),
+        id: this.title
+      }, void 0, title),
+      _jsx(DialogContent, {
+        className: cx('Dialog-body', bodyClassName)
+      }, void 0, _jsx(Form, {
         onSubmit: this.handleSubmit
       }, void 0, children, _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
         ref: this.refInput,
@@ -92,7 +102,7 @@ var PromptDialog = function (_React$Component) {
         onChange: this.handleInputChange
       })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
         disabled: busy
-      }, void 0, busy ? _ref : submitLabel)))
+      }, void 0, busy ? _ref : submitLabel))))
     );
   };
 
@@ -112,6 +122,7 @@ PromptDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   inputType: PropTypes.string,
   icon: PropTypes.node,
   value: PropTypes.string,
+  title: PropTypes.string,
   open: PropTypes.bool,
 
   bodyClassName: PropTypes.string,

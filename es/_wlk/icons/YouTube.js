@@ -1,7 +1,7 @@
 import _jsx from 'babel-runtime/helpers/jsx';
 import _extends from 'babel-runtime/helpers/extends';
 import React from 'react';
-import SvgIcon from 'material-ui/SvgIcon';
+import SvgIcon from 'material-ui/es/SvgIcon';
 
 // YouTube icon from the Font-Awesome icon font by Dave Gandy:
 // http://fontawesome.io/icon/youtube-play/

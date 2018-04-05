@@ -2,9 +2,10 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import IconButton from 'material-ui/IconButton';
-import EnterFullscreenIcon from 'material-ui/svg-icons/navigation/fullscreen';
-import ExitFullscreenIcon from 'material-ui/svg-icons/navigation/fullscreen-exit';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import EnterFullscreenIcon from 'material-ui-icons/Fullscreen';
+import ExitFullscreenIcon from 'material-ui-icons/FullscreenExit';
 
 import VideoSizeButton from './VideoSizeButton';
 
@@ -26,11 +27,12 @@ var VideoToolbar = function VideoToolbar(_ref3) {
       onFullscreenExit = _ref3.onFullscreenExit;
   return _jsx('div', {
     className: 'Video-overlay Video-toolbar'
-  }, void 0, children, _ref4, _jsx(IconButton, {
-    onClick: isFullscreen ? onFullscreenExit : onFullscreenEnter,
-    tooltip: isFullscreen ? t('settings.disableFullscreen') : t('settings.enableFullscreen'),
-    tooltipPosition: 'bottom-left'
-  }, void 0, renderFullscreenIcon(isFullscreen)));
+  }, void 0, children, _ref4, _jsx(Tooltip, {
+    title: isFullscreen ? t('settings.disableFullscreen') : t('settings.enableFullscreen'),
+    placement: 'bottom-end'
+  }, void 0, _jsx(IconButton, {
+    onClick: isFullscreen ? onFullscreenExit : onFullscreenEnter
+  }, void 0, renderFullscreenIcon(isFullscreen))));
 };
 
 VideoToolbar.propTypes = process.env.NODE_ENV !== "production" ? {

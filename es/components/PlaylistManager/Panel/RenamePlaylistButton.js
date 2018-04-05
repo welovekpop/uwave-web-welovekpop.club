@@ -5,18 +5,17 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import IconButton from 'material-ui/IconButton';
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import EditIcon from 'material-ui-icons/ModeEdit';
 import PromptDialog from '../../Dialogs/PromptDialog';
 
-var _ref = _jsx(EditIcon, {
-  color: '#555',
-  hoverColor: '#fff'
-});
+var enhance = translate();
+
+var _ref = _jsx(EditIcon, {});
 
 var _ref2 = _jsx(EditIcon, {
-  color: '#777'
+  nativeColor: '#777'
 });
 
 var RenamePlaylistButton = function (_React$Component) {
@@ -49,11 +48,13 @@ var RenamePlaylistButton = function (_React$Component) {
   RenamePlaylistButton.prototype.render = function render() {
     var t = this.props.t;
 
-    return _jsx(IconButton, {
-      onClick: this.handleOpen,
-      tooltip: t('playlists.rename'),
-      tooltipPosition: 'top-center'
-    }, void 0, _ref, this.state.renaming && _jsx(PromptDialog, {
+    return _jsx(React.Fragment, {}, void 0, _jsx(Tooltip, {
+      title: t('playlists.rename'),
+      placement: 'top'
+    }, void 0, _jsx(IconButton, {
+      className: 'PlaylistMeta-iconButton',
+      onClick: this.handleOpen
+    }, void 0, _ref)), this.state.renaming && _jsx(PromptDialog, {
       title: t('dialogs.renamePlaylist.nameInputTitle'),
       submitLabel: t('dialogs.renamePlaylist.action'),
       icon: _ref2,
@@ -73,5 +74,5 @@ RenamePlaylistButton.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 
-export default translate()(RenamePlaylistButton);
+export default enhance(RenamePlaylistButton);
 //# sourceMappingURL=RenamePlaylistButton.js.map

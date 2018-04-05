@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import withProps from 'recompose/withProps';
+import { ListItem, ListItemAvatar, ListItemText } from 'material-ui/es/List';
 import userCardable from '../../utils/userCardable';
 import Avatar from '../Avatar';
 import Username from '../Username';
@@ -23,16 +24,17 @@ var RoomUserRow = function RoomUserRow(_ref) {
   var className = _ref.className,
       user = _ref.user,
       onOpenCard = _ref.onOpenCard;
-  return _jsx('button', {
+  return _jsx(ListItem, {
+    button: true,
     className: cx('UserRow', 'UserRow--cardable', className),
     onClick: onOpenCard
-  }, void 0, _jsx('div', {}, void 0, _jsx(Avatar, {
+  }, void 0, _jsx(ListItemAvatar, {}, void 0, _jsx(Avatar, {
     className: 'UserRow-avatar',
     user: user
-  }), _jsx(Username, {
+  })), _jsx(ListItemText, {}, void 0, _jsx(Username, {
     className: 'UserRow-username',
     user: user
-  }), React.createElement(Votes, _extends({ className: 'UserRow-votes' }, user.votes))));
+  })), React.createElement(Votes, _extends({ className: 'UserRow-votes' }, user.votes)));
 };
 
 RoomUserRow.propTypes = process.env.NODE_ENV !== "production" ? {

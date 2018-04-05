@@ -5,12 +5,10 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
 import withHandlers from 'recompose/withHandlers';
-
+import { CircularProgress } from 'material-ui/es/Progress';
 import userCardable from '../../utils/userCardable';
 import Avatar from '../Avatar';
 import Username from '../Username';
-import Loader from '../Loader';
-
 import compile from './Markup/compile';
 import DeleteButton from './DeleteButton';
 import MessageTimestamp from './MessageTimestamp';
@@ -31,8 +29,8 @@ var enhance = compose(pure, userCardable(), withHandlers({
 
 var _ref2 = _jsx('div', {
   className: 'ChatMessage-avatar'
-}, void 0, _jsx(Loader, {
-  size: 'tiny'
+}, void 0, _jsx(CircularProgress, {
+  size: '100%'
 }));
 
 var Message = function Message(_ref) {

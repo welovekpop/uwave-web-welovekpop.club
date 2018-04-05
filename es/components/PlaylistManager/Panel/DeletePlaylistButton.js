@@ -5,11 +5,16 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import Tooltip from 'material-ui/es/Tooltip';
+import IconButton from 'material-ui/es/IconButton';
+import DeleteIcon from 'material-ui-icons/Delete';
 
 import ConfirmDialog from '../../Dialogs/ConfirmDialog';
 import FormGroup from '../../Form/Group';
+
+var enhance = translate();
+
+var _ref = _jsx(DeleteIcon, {});
 
 var DeletePlaylistButton = function (_React$Component) {
   _inherits(DeletePlaylistButton, _React$Component);
@@ -47,15 +52,14 @@ var DeletePlaylistButton = function (_React$Component) {
         t = _props.t,
         active = _props.active;
 
-    var hoverColor = active ? '#555' : '#fff';
-    return _jsx(IconButton, {
-      onClick: this.handleOpen,
-      tooltip: t('playlists.delete'),
-      tooltipPosition: 'top-center'
-    }, void 0, _jsx(DeleteIcon, {
-      color: '#555',
-      hoverColor: hoverColor
-    }), this.state.deleting && _jsx(ConfirmDialog, {
+    return _jsx(React.Fragment, {}, void 0, _jsx(Tooltip, {
+      title: active ? t('playlists.deleteActive') : t('playlists.delete'),
+      placement: 'top'
+    }, void 0, _jsx(IconButton, {
+      disabled: active,
+      className: 'PlaylistMeta-iconButton',
+      onClick: this.handleOpen
+    }, void 0, _ref)), this.state.deleting && _jsx(ConfirmDialog, {
       title: t('dialogs.deletePlaylist.title'),
       confirmLabel: t('dialogs.deletePlaylist.action'),
       onConfirm: this.handleConfirm,
@@ -74,5 +78,5 @@ DeletePlaylistButton.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 
-export default translate()(DeletePlaylistButton);
+export default enhance(DeletePlaylistButton);
 //# sourceMappingURL=DeletePlaylistButton.js.map

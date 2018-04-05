@@ -1,3 +1,4 @@
+import _extends from 'babel-runtime/helpers/extends';
 import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
@@ -5,13 +6,21 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import Popover from 'material-ui/Popover';
-import ArrowIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-
+import Popover from 'material-ui/es/Popover';
+import ArrowIcon from 'material-ui-icons/ArrowDropDown';
 import injectMediaSources from '../../../utils/injectMediaSources';
 import SourcePickerElement from './SourcePickerElement';
+
+var enhance = injectMediaSources();
+
+var popoverPosition = {
+  anchorOrigin: { vertical: 'bottom', horizontal: 'left' },
+  transformOrigin: { vertical: 'top', horizontal: 'left' }
+};
+
+var _ref = _jsx(ArrowIcon, {
+  className: 'SourcePicker-arrow'
+});
 
 var SourcePicker = function (_React$Component) {
   _inherits(SourcePicker, _React$Component);
@@ -67,7 +76,6 @@ var SourcePicker = function (_React$Component) {
     var _props2 = this.props,
         className = _props2.className,
         selected = _props2.selected,
-        muiTheme = _props2.muiTheme,
         getMediaSource = _props2.getMediaSource,
         getAllMediaSources = _props2.getAllMediaSources;
 
@@ -92,16 +100,17 @@ var SourcePicker = function (_React$Component) {
         name: selected,
         source: getMediaSource(selected),
         active: true
-      }), _jsx(ArrowIcon, {
-        color: muiTheme.palette.textColor,
-        style: { height: '100%' }
-      })),
-      _jsx(Popover, {
-        className: 'SourcePicker-list',
-        open: this.state.open,
-        anchorEl: this.state.anchor,
-        onRequestClose: this.handleClose
-      }, void 0, sources)
+      }), _ref),
+      React.createElement(
+        Popover,
+        _extends({
+          classes: { paper: 'SourcePicker-list' },
+          open: this.state.open,
+          anchorEl: this.state.anchor,
+          onClose: this.handleClose
+        }, popoverPosition),
+        sources
+      )
     );
   };
 
@@ -113,11 +122,10 @@ SourcePicker.propTypes = process.env.NODE_ENV !== "production" ? {
   selected: PropTypes.string,
   onChange: PropTypes.func,
 
-  muiTheme: PropTypes.object.isRequired,
   getMediaSource: PropTypes.func.isRequired,
   getAllMediaSources: PropTypes.func.isRequired
 } : {};
 
 
-export default compose(injectMediaSources(), muiThemeable())(SourcePicker);
+export default enhance(SourcePicker);
 //# sourceMappingURL=SourcePicker.js.map

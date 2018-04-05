@@ -2,6 +2,7 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import OverlayContent from '../Overlay/Content';
 import PlaylistMenu from '../../containers/PlaylistManagerMenu';
 import PlaylistPanel from '../../containers/PlaylistManagerPanel';
 import PlaylistImport from '../../containers/PlaylistImportManager';
@@ -52,9 +53,7 @@ var PlaylistManager = function PlaylistManager(_ref) {
   }, void 0, _jsx(PlaylistHeader, {
     className: 'PlaylistManager-header AppRow AppRow--top',
     onCloseOverlay: onCloseOverlay
-  }), _jsx('div', {
-    className: 'AppRow AppRow--middle'
-  }, void 0, _ref5, _jsx('div', {
+  }), _jsx(OverlayContent, {}, void 0, _ref5, _jsx('div', {
     className: 'PlaylistManager-panel'
   }, void 0, panel)));
 };

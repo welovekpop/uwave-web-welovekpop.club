@@ -1,5 +1,4 @@
-import { List } from 'material-ui/List';
-import ListItem from './ListItem';
-
-export { List, ListItem };
+export { default, ListItemText } from 'material-ui/List';
+import _ListItem from './ListItem';
+export { _ListItem as ListItem };
 //# sourceMappingURL=index.js.map
