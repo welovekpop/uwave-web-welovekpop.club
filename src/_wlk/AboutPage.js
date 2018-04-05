@@ -13,19 +13,20 @@ export default () => (
   <div className="wlk-AboutPage">
     <h1 className="wlk-AboutPage-title">WE ♥ KPOP</h1>
     <p>
-      WE ♥ KPOP is a Korean music dedicated community founded in 2014 on plug.dj.
-      It was reborn in 2016 on its own collaborative listening software{' '}
-      <a href="https://github.com/u-wave" target="_blank" rel="noopener noreferrer">üWave</a>.
+      WLK is a community dedicated to sharing the best South Korean music.
+      Listen to what other people play live from YouTube and SoundCloud,
+      share your opinion by talking to others and contribute to each day&#39;s
+      unique playlist by hand-picking tracks yourself.
     </p>
     <p>
-      WE ♥ KPOP can also be found on:
+      WLK can also be found on:
     </p>
     <ul>
-      <SocialMediaLink label="Facebook" href="https://facebook.com/wlk.yt">
-        <FacebookIcon />
-      </SocialMediaLink>
       <SocialMediaLink label="YouTube" href="https://youtube.com/c/welovekpopclub">
         <YouTubeIcon />
+      </SocialMediaLink>
+      <SocialMediaLink label="Facebook" href="https://facebook.com/wlk.yt">
+        <FacebookIcon />
       </SocialMediaLink>
       <SocialMediaLink label="Instagram" href="https://instagram.com/wlk_official">
         <InstagramIcon />
