@@ -1,12 +1,10 @@
 import React from 'react';
-
 import FacebookIcon from './icons/Facebook';
 import YouTubeIcon from './icons/YouTube';
 import InstagramIcon from './icons/Instagram';
 import GithubIcon from './icons/Github';
 import TwitterIcon from './icons/Twitter';
 import SlackIcon from './icons/Slack';
-
 import SocialMediaLink from './SocialMediaLink';
 
 import './AboutPage.css';

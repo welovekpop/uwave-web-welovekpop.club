@@ -1,3 +1,5 @@
+@import "../vars.css";
+
 .wlk-AboutPage {
   margin: 2em 10%;
   line-height: 1.5;
@@ -16,8 +18,14 @@
 }
 
 .wlk-AboutPage-socialMedia {
-  margin: 0 .8em;
+  margin: 0 0.8em;
   display: inline-block;
+  & a:visited {
+    color: var(--text-color);
+  }
+}
+.wlk-AboutPage-socialMediaIcon {
+  margin-right: 0.8em;
 }
 
 .wlk-AboutPage-separator {

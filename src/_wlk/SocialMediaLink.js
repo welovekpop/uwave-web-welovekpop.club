@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FlatButton from 'material-ui/FlatButton';
-
-const buttonProps = {
-  style: { WebkitAppearance: 'initial' },
-  target: '_blank',
-};
+import Button from 'material-ui/Button';
 
 const SocialMediaLink = ({ href, label, children }) => (
   <li className="wlk-AboutPage-socialMedia">
-    <FlatButton
-      {...buttonProps}
-      href={href}
-      label={label}
-      icon={children}
-    />
+    <Button target="_blank" href={href}>
+      <span className="wlk-AboutPage-socialMediaIcon">{children}</span>
+      {label}
+    </Button>
   </li>
 );
 
