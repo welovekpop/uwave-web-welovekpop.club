@@ -271,7 +271,7 @@ var Slider = function (_React$Component) {
           vertical = _this$props.vertical;
 
 
-      var percent = reverse ? 100 - calculatePercent(event, vertical) : calculatePercent(event, vertical);
+      var percent = normalizeValue(reverse ? 100 - calculatePercent(event, vertical) : calculatePercent(event, vertical), min, max);
 
       var newValue = roundToStep({
         currentValue: value,
@@ -359,7 +359,7 @@ var Slider = function (_React$Component) {
           vertical = _this$props3.vertical;
 
 
-      var percent = reverse ? 100 - calculatePercent(event, vertical) : calculatePercent(event, vertical);
+      var percent = normalizeValue(reverse ? 100 - calculatePercent(event, vertical) : calculatePercent(event, vertical), min, max);
 
       var newValue = roundToStep({
         currentValue: value,

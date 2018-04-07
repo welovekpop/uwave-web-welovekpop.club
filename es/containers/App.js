@@ -2,6 +2,7 @@ import _jsx from 'babel-runtime/helpers/jsx';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
+/* global bugsnag */
 import React from 'react';
 import PropTypes from 'prop-types';
 import nest from 'recompose/nest';
@@ -17,6 +18,7 @@ import { settingsSelector, languageSelector, themeSelector } from '../selectors/
 import { isConnectedSelector } from '../selectors/serverSelectors';
 import DesktopApp from '../components/App';
 import MobileApp from '../mobile/components/App';
+import FatalError from '../components/FatalError';
 
 var SimpleProviders = nest(BusProvider, ClockProvider);
 
@@ -51,7 +53,9 @@ var AppContainer = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.renderApp = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+      error: null
+    }, _this.renderApp = function () {
       return _jsx(React.Fragment, {}, void 0, _jsx(Mobile, {}, void 0, React.createElement(MobileApp, _this.props)), _jsx(Desktop, {}, void 0, React.createElement(DesktopApp, _this.props)));
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -69,7 +73,26 @@ var AppContainer = function (_React$Component) {
     }
   };
 
+  AppContainer.prototype.componentDidCatch = function componentDidCatch(error, info) {
+    this.setState({ error: error });
+
+    bugsnag.notify(error, {
+      metaData: {
+        componentStack: info.componentStack
+      }
+    });
+  };
+
   AppContainer.prototype.render = function render() {
+    if (this.state.error) {
+      // Let's hope the ThemeProvider works at least...
+      return _jsx(MuiThemeProvider, {
+        theme: this.props.theme
+      }, void 0, _jsx(FatalError, {
+        error: this.state.error
+      }));
+    }
+
     return _jsx(MuiThemeProvider, {
       theme: this.props.theme
     }, void 0, _jsx(I18nextProvider, {
