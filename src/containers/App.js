@@ -1,3 +1,4 @@
+/* global bugsnag */
 import React from 'react';
 import PropTypes from 'prop-types';
 import nest from 'recompose/nest';
@@ -69,8 +70,14 @@ class AppContainer extends React.Component {
     }
   }
 
-  componentDidCatch(error) {
+  componentDidCatch(error, info) {
     this.setState({ error });
+
+    bugsnag.notify(error, {
+      metaData: {
+        componentStack: info.componentStack,
+      },
+    });
   }
 
   renderApp = () => (
