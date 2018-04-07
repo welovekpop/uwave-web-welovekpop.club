@@ -18,7 +18,7 @@
     "@wlk/tutorial": "^0.1.0",
     "array-find": "^1.0.0",
     "array-findindex": "^0.1.0",
-    "bugsnag-js": "^3.0.7",
+    "bugsnag-js": "^4.5.0",
     "classnames": "^2.2.4",
     "connect-gzip-static": "^2.1.1",
     "debug": "^3.1.0",

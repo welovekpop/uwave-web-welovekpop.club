@@ -1,24 +1,23 @@
-/* global uw, __VERSION__ */
-import Bugsnag from 'bugsnag-js';
+/* global window, uw */
+import bugsnag from 'bugsnag-js';
+import { version } from '../../package.json';
 
-/**
- * Bugsnag error reporting.
- */
+const client = bugsnag({
+  apiKey: 'a3246545081c8decaf0185c7a7f8d402',
+  appVersion: version,
+  /**
+   * Add current user information.
+   */
+  beforeSend(report) {
+    const state = uw.store.getState();
+    const user = state.auth && state.auth.user;
+    if (user) {
+      report.user = {
+        id: user._id,
+        name: user.username,
+      };
+    }
+  },
+});
 
-Bugsnag.apiKey = 'a3246545081c8decaf0185c7a7f8d402';
-
-Bugsnag.appVersion = __VERSION__;
-
-/**
- * Add current user information.
- */
-Bugsnag.beforeNotify = () => {
-  const state = uw.store.getState();
-  const user = state.auth && state.auth.user;
-  if (user) {
-    Bugsnag.user = {
-      id: user._id,
-      name: user.username,
-    };
-  }
-};
+window.bugsnag = client;
