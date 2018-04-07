@@ -15,17 +15,6 @@ export default function uwaveWebClient(uw, options = {}) {
 
   const clientRouter = router();
 
-  const mobile = (req, res) => {
-    const transform = hstream({
-      title,
-      '#u-wave-config': JSON.stringify(clientOptions),
-    });
-
-    fs.createReadStream(path.join(basePath, 'm.html'), 'utf8')
-      .pipe(transform)
-      .pipe(res);
-  };
-
   return clientRouter
     .get('/', (req, res) => {
       res.setHeader('content-type', 'text/html');
@@ -57,7 +46,5 @@ export default function uwaveWebClient(uw, options = {}) {
     .get('/u-wave-web-config.json', (req, res) => {
       res.json(clientOptions);
     })
-    .get('/m', mobile)
-    .get('/m.html', mobile)
     .use(serveStatic(basePath));
 }
