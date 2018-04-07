@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/es/IconButton';
 import AboutIcon from 'material-ui-icons/ArrowDropDown';
-import logo from '../../../assets/img/logo-white.png';
+import logo from '../../../assets/img/logo-square.png';
 
 var _ref2 = _jsx(AboutIcon, {});
 
