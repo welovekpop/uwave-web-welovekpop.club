@@ -12,6 +12,7 @@ const client = bugsnag({
     const state = uw.store.getState();
     const user = state.auth && state.auth.user;
     if (user) {
+      // eslint-disable-next-line no-param-reassign
       report.user = {
         id: user._id,
         name: user.username,
