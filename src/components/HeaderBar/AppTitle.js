@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import AboutIcon from 'material-ui-icons/ArrowDropDown';
-import logo from '../../../assets/img/logo-white.png';
+import logo from '../../../assets/img/logo-square.png';
 
 const AppTitle = ({
   className,
