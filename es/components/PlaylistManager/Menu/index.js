@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -21,15 +21,14 @@ var Menu = function Menu(_ref) {
       onAddToPlaylist = _ref.onAddToPlaylist,
       showImportPanel = _ref.showImportPanel,
       onShowImportPanel = _ref.onShowImportPanel;
-
   var searchIsSelected = showSearchResults ? 'is-selected' : '';
   var importIsSelected = showImportPanel ? 'is-selected' : '';
   var isSelectingPlaylist = selected && !showSearchResults && !showImportPanel;
-  return _jsx('div', {
-    role: 'menu',
+  return _jsx("div", {
+    role: "menu",
     className: cx('PlaylistMenu', className)
   }, void 0, _jsx(PlaylistCreateRow, {
-    className: 'PlaylistMenu-row',
+    className: "PlaylistMenu-row",
     onCreatePlaylist: onCreatePlaylist
   }), searchQuery && _jsx(SearchResultsRow, {
     className: cx('PlaylistMenu-row', searchIsSelected),
@@ -39,7 +38,7 @@ var Menu = function Menu(_ref) {
     onClose: onCloseSearchResults
   }), playlists.map(function (pl) {
     return _jsx(PlaylistRow, {
-      className: 'PlaylistMenu-row',
+      className: "PlaylistMenu-row",
       playlist: pl,
       selected: isSelectingPlaylist && selected._id === pl._id,
       onClick: function onClick() {
@@ -68,6 +67,5 @@ Menu.propTypes = process.env.NODE_ENV !== "production" ? {
   onAddToPlaylist: PropTypes.func.isRequired,
   onShowImportPanel: PropTypes.func.isRequired
 } : {};
-
 export default Menu;
 //# sourceMappingURL=index.js.map

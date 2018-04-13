@@ -1,7 +1,9 @@
-import _jsx from "babel-runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 
-var _ref = _jsx("p", {
+var _ref =
+/*#__PURE__*/
+_jsx("p", {
   className: "LoginMethodSeparator"
 }, void 0, _jsx("span", {
   className: "LoginMethodSeparator-line"

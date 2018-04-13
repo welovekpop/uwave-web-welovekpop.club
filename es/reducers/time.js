@@ -1,20 +1,29 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import { SET_TIMER, OFFSET } from '../constants/actionTypes/time';
-
 var initialState = {
   timer: 0,
   offset: 0
 };
+export default function reduce(state, action) {
+  if (state === void 0) {
+    state = initialState;
+  }
 
-export default function reduce() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  if (action === void 0) {
+    action = {};
+  }
 
   switch (action.type) {
     case SET_TIMER:
-      return _extends({}, state, { timer: action.payload });
+      return _objectSpread({}, state, {
+        timer: action.payload
+      });
+
     case OFFSET:
-      return _extends({}, state, { offset: action.payload });
+      return _objectSpread({}, state, {
+        offset: action.payload
+      });
+
     default:
       return state;
   }

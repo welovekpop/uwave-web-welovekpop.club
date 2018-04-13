@@ -16,6 +16,7 @@ var selectionOrOne = function selectionOrOne(media, selection) {
       return item.media;
     });
   }
+
   return [media.media];
 };
 
@@ -26,6 +27,7 @@ var mapStateToProps = createStructuredSelector({
 var onOpenAddMediaMenu = function onOpenAddMediaMenu(position, media, selection) {
   return addMediaMenu(selectionOrOne(media, selection), position);
 };
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     onOpenAddMediaMenu: onOpenAddMediaMenu,
@@ -33,6 +35,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   }, dispatch);
 };
 
-var OverlayFromTop = withProps({ direction: 'top' })(Overlay);
+var OverlayFromTop = withProps({
+  direction: 'top'
+})(Overlay);
 export default connect(mapStateToProps, mapDispatchToProps)(nest(OverlayFromTop, RoomHistory));
 //# sourceMappingURL=RoomHistory.js.map

@@ -1,11 +1,10 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _extends from "@babel/runtime/helpers/extends";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withProps from 'recompose/withProps';
-import List from 'material-ui/es/List';
+import List from "material-ui/es/List";
 import Base from '../../../components/MediaList/BaseMediaList';
 import HistoryRow from './Row';
-
 var HistoryList = withProps({
   className: 'RoomHistory-list',
   listComponent: React.forwardRef(function (props, _ref) {
@@ -18,6 +17,5 @@ var HistoryList = withProps({
   }),
   rowComponent: HistoryRow
 })(Base);
-
 export default HistoryList;
 //# sourceMappingURL=HistoryList.js.map

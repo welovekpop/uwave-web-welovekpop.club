@@ -1,4 +1,4 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import assign from 'object-assign';
 import { createSelector } from 'reselect';
 import { reCaptchaSiteKeySelector } from './configSelectors';
@@ -10,7 +10,9 @@ var baseSelector = function baseSelector(state) {
 };
 
 var merge = function merge(dialog) {
-  return _extends({}, dialog.payload, { open: dialog.open });
+  return _objectSpread({}, dialog.payload, {
+    open: dialog.open
+  });
 };
 
 export var loginDialogSelector = createSelector(baseSelector, authErrorSelector, reCaptchaSiteKeySelector, supportsSocialAuthSelector, function (dialogs, error, siteKey, supportsSocialAuth) {
@@ -21,17 +23,14 @@ export var loginDialogSelector = createSelector(baseSelector, authErrorSelector,
     supportsSocialAuth: supportsSocialAuth
   });
 });
-
 export var editMediaDialogSelector = createSelector(baseSelector, function (dialogs) {
   return merge(dialogs.editMedia);
 });
-
 export var previewMediaDialogSelector = createSelector(baseSelector, volumeSelector, function (dialogs, volume) {
-  return _extends({}, merge(dialogs.previewMedia), {
+  return _objectSpread({}, merge(dialogs.previewMedia), {
     volume: volume
   });
 });
-
 export var isPreviewMediaDialogOpenSelector = createSelector(baseSelector, function (dialogs) {
   return dialogs.previewMedia && !!dialogs.previewMedia.open;
 });

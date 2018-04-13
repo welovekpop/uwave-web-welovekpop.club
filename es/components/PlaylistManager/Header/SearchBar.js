@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseSearchBar from '../../SearchBar';
@@ -13,7 +13,7 @@ var SearchBar = function SearchBar(_ref) {
     className: className,
     onSubmit: onSubmit
   }, void 0, _jsx(SourcePicker, {
-    className: 'SearchBar-source',
+    className: "SearchBar-source",
     selected: source,
     onChange: onSourceChange
   }));
@@ -25,6 +25,5 @@ SearchBar.propTypes = process.env.NODE_ENV !== "production" ? {
   onSubmit: PropTypes.func.isRequired,
   onSourceChange: PropTypes.func.isRequired
 } : {};
-
 export default SearchBar;
 //# sourceMappingURL=SearchBar.js.map

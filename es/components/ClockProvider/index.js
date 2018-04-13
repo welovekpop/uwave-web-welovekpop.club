@@ -1,31 +1,30 @@
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createTimer, stopTimer } from '../../actions/TickerActionCreators';
-
 var mapDispatchToProps = {
   createTimer: createTimer,
   stopTimer: stopTimer
 };
-
 var enhance = connect(null, mapDispatchToProps);
 
-var ClockProvider = function (_React$Component) {
-  _inherits(ClockProvider, _React$Component);
+var ClockProvider =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(ClockProvider, _React$Component);
 
   function ClockProvider() {
-    var _temp, _this, _ret;
+    var _temp, _this;
 
-    _classCallCheck(this, ClockProvider);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = { callbacks: [] }, _this.timerCallbacks = {
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
+      callbacks: []
+    }, _this.timerCallbacks = {
       add: function add(cb) {
         return _this.setState(function (s) {
           return {
@@ -42,16 +41,18 @@ var ClockProvider = function (_React$Component) {
           };
         });
       }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp) || _assertThisInitialized(_this);
   }
 
-  ClockProvider.prototype.getChildContext = function getChildContext() {
+  var _proto = ClockProvider.prototype;
+
+  _proto.getChildContext = function getChildContext() {
     return {
       timerCallbacks: this.timerCallbacks
     };
   };
 
-  ClockProvider.prototype.componentDidMount = function componentDidMount() {
+  _proto.componentDidMount = function componentDidMount() {
     var _this2 = this;
 
     // Start the clock! üWave stores the current time in the application state
@@ -63,11 +64,11 @@ var ClockProvider = function (_React$Component) {
     });
   };
 
-  ClockProvider.prototype.componentWillUnmount = function componentWillUnmount() {
+  _proto.componentWillUnmount = function componentWillUnmount() {
     this.props.stopTimer();
   };
 
-  ClockProvider.prototype.render = function render() {
+  _proto.render = function render() {
     return this.props.children;
   };
 
@@ -85,7 +86,5 @@ ClockProvider.propTypes = process.env.NODE_ENV !== "production" ? {
   stopTimer: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
 } : {};
-
-
 export default enhance(ClockProvider);
 //# sourceMappingURL=index.js.map

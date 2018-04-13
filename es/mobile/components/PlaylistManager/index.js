@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayHeader from '../../../components/Overlay/Header';
@@ -9,10 +9,10 @@ var PlaylistManager = function PlaylistManager(_ref) {
   var selectedPlaylist = _ref.selectedPlaylist,
       selectedItems = _ref.selectedItems,
       onCloseOverlay = _ref.onCloseOverlay;
-  return _jsx('div', {
-    className: 'PlaylistManager'
+  return _jsx("div", {
+    className: "PlaylistManager"
   }, void 0, _jsx(OverlayHeader, {
-    className: 'PlaylistHeader',
+    className: "PlaylistHeader",
     title: selectedPlaylist.name,
     onCloseOverlay: onCloseOverlay
   }), _jsx(OverlayContent, {}, void 0, _jsx(PlaylistPanel, {
@@ -27,6 +27,5 @@ PlaylistManager.propTypes = process.env.NODE_ENV !== "production" ? {
   selectedItems: PropTypes.array.isRequired,
   onCloseOverlay: PropTypes.func.isRequired
 } : {};
-
 export default PlaylistManager;
 //# sourceMappingURL=index.js.map

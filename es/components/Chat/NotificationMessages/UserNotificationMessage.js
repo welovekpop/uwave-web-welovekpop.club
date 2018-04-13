@@ -1,6 +1,6 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _extends from "@babel/runtime/helpers/extends";
+import _jsx from "@babel/runtime/helpers/jsx";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +12,6 @@ import userCardable from '../../../utils/userCardable';
 import Avatar from '../../Avatar';
 import Username from '../../Username';
 import MessageTimestamp from '../MessageTimestamp';
-
 var enhance = compose(translate(), pure, userCardable(), withHandlers({
   onClick: function onClick(props) {
     return function (event) {
@@ -27,22 +26,22 @@ var UserNotificationMessage = function UserNotificationMessage(_ref) {
       user = _ref.user,
       timestamp = _ref.timestamp,
       onClick = _ref.onClick,
-      props = _objectWithoutProperties(_ref, ['className', 'user', 'timestamp', 'onClick']);
+      props = _objectWithoutProperties(_ref, ["className", "user", "timestamp", "onClick"]);
 
-  return _jsx('div', {
+  return _jsx("div", {
     className: cx('ChatMessage', 'ChatMessage--userNotification', className)
   }, void 0, _jsx(Avatar, {
-    className: 'ChatMessage-avatar',
+    className: "ChatMessage-avatar",
     user: user
-  }), _jsx('div', {
-    className: 'ChatMessage-content'
-  }, void 0, _jsx('div', {
-    className: 'ChatMessage-hover'
+  }), _jsx("div", {
+    className: "ChatMessage-content"
+  }, void 0, _jsx("div", {
+    className: "ChatMessage-hover"
   }, void 0, _jsx(MessageTimestamp, {
     date: new Date(timestamp)
   })), React.createElement(Interpolate, _extends({
-    username: _jsx('button', {
-      className: 'ChatMessage-username ChatMessage-cardable',
+    username: _jsx("button", {
+      className: "ChatMessage-username ChatMessage-cardable",
       onClick: onClick
     }, void 0, _jsx(Username, {
       user: user
@@ -56,6 +55,5 @@ UserNotificationMessage.propTypes = process.env.NODE_ENV !== "production" ? {
   timestamp: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired
 } : {};
-
 export default enhance(UserNotificationMessage);
 //# sourceMappingURL=UserNotificationMessage.js.map

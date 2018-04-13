@@ -1,6 +1,6 @@
 import mentionSoundUrl from '../../assets/audio/mention.mp3';
+var mentionSound;
 
-var mentionSound = void 0;
 if (typeof window !== 'undefined' && window.Audio) {
   mentionSound = new window.Audio(mentionSoundUrl);
 }

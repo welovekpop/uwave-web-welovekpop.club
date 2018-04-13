@@ -1,6 +1,5 @@
-import { TRANSITION } from '../constants/ActionTypes';
+import { TRANSITION } from '../constants/ActionTypes'; // eslint-disable-next-line import/prefer-default-export
 
-// eslint-disable-next-line import/prefer-default-export
 export function transition(target) {
   return {
     type: TRANSITION,

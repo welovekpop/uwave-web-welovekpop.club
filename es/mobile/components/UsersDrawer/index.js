@@ -1,7 +1,7 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Drawer from 'material-ui/es/Drawer';
+import Drawer from "material-ui/es/Drawer";
 import UserList from './UserList';
 
 var UsersDrawer = function UsersDrawer(_ref) {
@@ -16,7 +16,7 @@ var UsersDrawer = function UsersDrawer(_ref) {
       onJoinWaitlist = _ref.onJoinWaitlist,
       onLeaveWaitlist = _ref.onLeaveWaitlist;
   return _jsx(Drawer, {
-    anchor: 'right',
+    anchor: "right",
     open: open,
     onClose: onDrawerClose
   }, void 0, _jsx(UserList, {
@@ -43,6 +43,5 @@ UsersDrawer.propTypes = process.env.NODE_ENV !== "production" ? {
   onJoinWaitlist: PropTypes.func.isRequired,
   onLeaveWaitlist: PropTypes.func.isRequired
 } : {};
-
 export default UsersDrawer;
 //# sourceMappingURL=index.js.map

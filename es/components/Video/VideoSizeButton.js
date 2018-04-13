@@ -1,18 +1,17 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { translate } from 'react-i18next';
-import Tooltip from 'material-ui/es/Tooltip';
-import IconButton from 'material-ui/es/IconButton';
-import SvgIcon from 'material-ui/es/SvgIcon';
-// State-related imports
+import Tooltip from "material-ui/es/Tooltip";
+import IconButton from "material-ui/es/IconButton";
+import SvgIcon from "material-ui/es/SvgIcon"; // State-related imports
+
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { videoSizeSelector } from '../../selectors/settingSelectors';
-import { toggleVideoSize } from '../../actions/PlaybackActionCreators';
+import { toggleVideoSize } from '../../actions/PlaybackActionCreators'; // Stolen from YouTube
 
-// Stolen from YouTube
 var paths = {
   // Currently small, show "enlarge" icon:
   small: 'm 28,11 0,14 -20,0 0,-14 z m -18,2 16,0 0,10 -16,0 0,-10 z',
@@ -26,14 +25,14 @@ var VideoSizeButton = function VideoSizeButton(_ref) {
       onToggleVideoSize = _ref.onToggleVideoSize;
   return _jsx(Tooltip, {
     title: videoSize === 'large' ? t('settings.disableLargeVideo') : t('settings.enableLargeVideo'),
-    placement: 'bottom'
+    placement: "bottom"
   }, void 0, _jsx(IconButton, {
     onClick: onToggleVideoSize
   }, void 0, _jsx(SvgIcon, {
-    viewBox: '6 6 24 24'
-  }, void 0, _jsx('path', {
+    viewBox: "6 6 24 24"
+  }, void 0, _jsx("path", {
     d: paths[videoSize],
-    fillRule: 'evenodd'
+    fillRule: "evenodd"
   }))));
 };
 
@@ -42,10 +41,10 @@ VideoSizeButton.propTypes = process.env.NODE_ENV !== "production" ? {
   videoSize: PropTypes.oneOf(['small', 'large']).isRequired,
   onToggleVideoSize: PropTypes.func.isRequired
 } : {};
-
 var mapStateToProps = createStructuredSelector({
   videoSize: videoSizeSelector
 });
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     onToggleVideoSize: function onToggleVideoSize() {

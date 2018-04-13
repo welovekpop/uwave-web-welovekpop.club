@@ -1,36 +1,43 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _extends from "@babel/runtime/helpers/extends";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from '../components/Overlay';
 import About from '../components/About';
 
-var AboutContainer = function (_React$Component) {
-  _inherits(AboutContainer, _React$Component);
+var AboutContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(AboutContainer, _React$Component);
 
   function AboutContainer() {
-    _classCallCheck(this, AboutContainer);
-
-    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+    return _React$Component.apply(this, arguments) || this;
   }
 
-  AboutContainer.prototype.getAboutPageComponent = function getAboutPageComponent() {
-    var uw = this.context.uwave;
-    if (uw) {
+  var _proto = AboutContainer.prototype;
+
+  _proto.getAboutPageComponent = function getAboutPageComponent() {
+    if (this.hasAboutPageComponent()) {
+      var uw = this.context.uwave;
       return uw.getAboutPageComponent();
     }
+
     return function () {
       return null;
     };
   };
 
-  AboutContainer.prototype.render = function render() {
+  _proto.hasAboutPageComponent = function hasAboutPageComponent() {
+    var uw = this.context.uwave;
+    return Boolean(uw && uw.getAboutPageComponent());
+  };
+
+  _proto.render = function render() {
     return _jsx(Overlay, {
-      direction: 'top'
+      direction: "top"
     }, void 0, React.createElement(About, _extends({}, this.props, {
+      hasAboutPage: this.hasAboutPageComponent(),
       render: this.getAboutPageComponent()
     })));
   };
@@ -41,5 +48,5 @@ var AboutContainer = function (_React$Component) {
 AboutContainer.contextTypes = {
   uwave: PropTypes.object
 };
-export default AboutContainer;
+export { AboutContainer as default };
 //# sourceMappingURL=About.js.map

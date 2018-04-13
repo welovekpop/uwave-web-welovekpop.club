@@ -6,7 +6,6 @@ import { openFavoriteMenu, doUpvote, doDownvote } from '../../actions/VoteAction
 import { historyIDSelector, mediaSelector, playbackVolumeSelector, timeElapsedSelector } from '../../selectors/boothSelectors';
 import { currentVoteStatsSelector } from '../../selectors/voteSelectors';
 import Video from '../components/Video';
-
 var mapStateToProps = createStructuredSelector({
   historyID: historyIDSelector,
   media: mediaSelector,
@@ -14,12 +13,10 @@ var mapStateToProps = createStructuredSelector({
   volume: playbackVolumeSelector,
   voteStats: currentVoteStatsSelector
 });
-
 var mapDispatchToProps = {
   onFavorite: openFavoriteMenu,
   onUpvote: doUpvote,
   onDownvote: doDownvote
 };
-
 export default compose(timed(), connect(mapStateToProps, mapDispatchToProps))(Video);
 //# sourceMappingURL=Video.js.map

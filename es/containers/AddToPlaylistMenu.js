@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { createPlaylist, addMedia, closeAddMediaMenu } from '../actions/PlaylistActionCreators';
 import { favoriteMedia } from '../actions/VoteActionCreators';
-
 import { isFavoriteSelector, isOpenSelector, positionSelector, mediaSelector, historyIDSelector } from '../selectors/addToPlaylistMenuSelectors';
 import { playlistsSelector } from '../selectors/playlistSelectors';
 import AddToPlaylistMenu from '../components/AddToPlaylistMenu';
@@ -29,7 +28,9 @@ var mapStateToProps = createStructuredSelector({
   historyID: historyIDSelector
 });
 
-var _ref2 = _jsx('span', {});
+var _ref2 =
+/*#__PURE__*/
+_jsx("span", {});
 
 var AddToPlaylistMenuContainer = function AddToPlaylistMenuContainer(_ref) {
   var isOpen = _ref.isOpen,
@@ -69,15 +70,12 @@ AddToPlaylistMenuContainer.propTypes = process.env.NODE_ENV !== "production" ? {
     y: PropTypes.number.isRequired
   }),
   playlists: PropTypes.arrayOf(PropTypes.object),
-
   media: PropTypes.arrayOf(PropTypes.object),
   historyID: PropTypes.string,
-
   onClose: PropTypes.func.isRequired,
   onCreatePlaylist: PropTypes.func.isRequired,
   onAddMedia: PropTypes.func.isRequired,
   onFavoriteMedia: PropTypes.func.isRequired
 } : {};
-
 export default connect(mapStateToProps, mapDispatchToProps)(AddToPlaylistMenuContainer);
 //# sourceMappingURL=AddToPlaylistMenu.js.map

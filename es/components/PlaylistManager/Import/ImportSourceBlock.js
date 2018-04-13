@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectMediaSources from '../../../utils/injectMediaSources';
@@ -8,10 +8,10 @@ var ImportSourceBlock = function ImportSourceBlock(_ref) {
       sourceType = _ref.sourceType,
       title = _ref.title,
       children = _ref.children;
-  return _jsx('div', {
-    className: 'ImportSourceBlock PlaylistImport-source'
-  }, void 0, _jsx('img', {
-    className: 'ImportSourceBlock-image',
+  return _jsx("div", {
+    className: "ImportSourceBlock PlaylistImport-source"
+  }, void 0, _jsx("img", {
+    className: "ImportSourceBlock-image",
     alt: title,
     title: title,
     src: getMediaSource(sourceType).logo
@@ -24,6 +24,5 @@ ImportSourceBlock.propTypes = process.env.NODE_ENV !== "production" ? {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 } : {};
-
 export default injectMediaSources()(ImportSourceBlock);
 //# sourceMappingURL=ImportSourceBlock.js.map

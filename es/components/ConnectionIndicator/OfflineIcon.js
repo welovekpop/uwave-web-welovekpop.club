@@ -1,17 +1,19 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgress } from 'material-ui/es/Progress';
+import { CircularProgress } from "material-ui/es/Progress";
 
-var _ref2 = _jsx(CircularProgress, {
+var _ref2 =
+/*#__PURE__*/
+_jsx(CircularProgress, {
   size: 32
 });
 
 var OfflineIcon = function OfflineIcon(_ref) {
   var style = _ref.style;
-  return _jsx('div', {
-    style: _extends({}, style, {
+  return _jsx("div", {
+    style: _objectSpread({}, style, {
       width: 32,
       height: 32,
       display: 'inline-block'
@@ -22,6 +24,5 @@ var OfflineIcon = function OfflineIcon(_ref) {
 OfflineIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   style: PropTypes.object
 } : {};
-
 export default OfflineIcon;
 //# sourceMappingURL=OfflineIcon.js.map

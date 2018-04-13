@@ -2,7 +2,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { resetPassword, login, register } from '../actions/LoginActionCreators';
 import { openResetPasswordDialog, closeLoginDialog } from '../actions/DialogActionCreators';
-
 import { loginDialogSelector } from '../selectors/dialogSelectors';
 import LoginDialog from '../components/Dialogs/LoginDialog';
 

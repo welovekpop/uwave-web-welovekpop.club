@@ -1,4 +1,4 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import { createSelector } from 'reselect';
 import { historyIDSelector, mediaSelector, startTimeSelector, djSelector } from './boothSelectors';
 import { currentUserSelector } from './userSelectors';
@@ -18,8 +18,8 @@ export var roomHistorySelector = createSelector(baseSelector, function (history)
 
 var addOwnVoteProps = function addOwnVoteProps(id) {
   return function (entry) {
-    return _extends({}, entry, {
-      stats: _extends({}, entry.stats, {
+    return _objectSpread({}, entry, {
+      stats: _objectSpread({}, entry.stats, {
         // No ID is provided for guest users.
         isDownvote: !!id && entry.stats.downvotes.indexOf(id) > -1,
         isFavorite: !!id && entry.stats.favorites.indexOf(id) > -1,
@@ -33,6 +33,7 @@ export var currentPlaySelector = createSelector(currentUserSelector, historyIDSe
   if (!historyID) {
     return null;
   }
+
   var entry = {
     _id: historyID,
     user: dj,
@@ -42,12 +43,13 @@ export var currentPlaySelector = createSelector(currentUserSelector, historyIDSe
   };
   return addOwnVoteProps(user ? user._id : null)(entry);
 });
-
 export var roomHistoryWithVotesSelector = createSelector(roomHistorySelector, currentUserSelector, currentPlaySelector, function (history, user, current) {
   var roomHistory = history.map(addOwnVoteProps(user ? user._id : null));
+
   if (current) {
     roomHistory.unshift(current);
   }
+
   return roomHistory;
 });
 //# sourceMappingURL=roomHistorySelectors.js.map

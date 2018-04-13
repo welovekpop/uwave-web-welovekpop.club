@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import withProps from 'recompose/withProps';
@@ -12,7 +12,7 @@ var addMediaActions = function addMediaActions(onOpenAddMediaMenu) {
       onAdd: function onAdd(position) {
         return onOpenAddMediaMenu(position, media, selection);
       }
-    }, 'add')];
+    }, "add")];
   };
 };
 
@@ -28,10 +28,8 @@ var HistoryList = withProps(function (props) {
     makeActions: props.onOpenAddMediaMenu ? addMediaActions(props.onOpenAddMediaMenu) : noActions
   };
 })(Base);
-
 HistoryList.propTypes = {
   onOpenAddMediaMenu: PropTypes.func.isRequired
 };
-
 export default HistoryList;
 //# sourceMappingURL=HistoryList.js.map

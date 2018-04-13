@@ -1,10 +1,9 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import UpvoteIcon from 'material-ui-icons/ThumbUp';
+import UpvoteIcon from '@material-ui/icons/ThumbUp';
 import Button from './Button';
-
 var enhance = translate();
 
 var Upvote = function Upvote(_ref) {
@@ -30,6 +29,5 @@ Upvote.propTypes = process.env.NODE_ENV !== "production" ? {
   disabled: PropTypes.bool,
   active: PropTypes.bool
 } : {};
-
 export default enhance(Upvote);
 //# sourceMappingURL=Upvote.js.map

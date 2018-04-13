@@ -1,7 +1,6 @@
 import Uwave from './Uwave';
-import * as youTubeSource from './sources/youtube';
-import * as soundCloudSource from './sources/soundcloud';
-
+import youTubeSource from './sources/youtube';
+import soundCloudSource from './sources/soundcloud';
 import AboutPage from './_wlk/AboutPage';
 
 function readApplicationConfig() {
@@ -12,23 +11,18 @@ function readApplicationConfig() {
   }
 }
 
-var uw = new Uwave(readApplicationConfig());
+var uw = new Uwave(readApplicationConfig()); // Configure the Media sources to be used by this üWave client instance.
 
-// Configure the Media sources to be used by this üWave client instance.
-uw.source('youtube', youTubeSource);
-uw.source('soundcloud', soundCloudSource);
-
+uw.source(youTubeSource());
+uw.source(soundCloudSource());
 uw.setAboutPageComponent(AboutPage);
-
 window.uw = uw;
-
 uw.build().then(function () {
   uw.renderToDOM(document.querySelector('#app'));
   document.querySelector('#app-loading').innerHTML = '';
   document.querySelector('#jss').textContent = '';
 }).catch(function (err) {
-  document.querySelector('.LoadingScreen-notice').textContent = 'Error: ' + err.message;
-
+  document.querySelector('.LoadingScreen-notice').textContent = "Error: " + err.message;
   setTimeout(function () {
     throw err;
   }, 0);

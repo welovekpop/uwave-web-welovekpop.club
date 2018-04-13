@@ -1,10 +1,10 @@
 import { get } from '../../actions/RequestActionCreators';
 import { LOAD_USERS_START, LOAD_USERS_COMPLETE } from '../constants/ActionTypes';
-
 export function loadUsersStart() {
-  return { type: LOAD_USERS_START };
+  return {
+    type: LOAD_USERS_START
+  };
 }
-
 export function loadUsersComplete(response) {
   return {
     type: LOAD_USERS_COMPLETE,
@@ -15,12 +15,15 @@ export function loadUsersComplete(response) {
     meta: response.meta
   };
 }
-
-export function loadUsers() {
-  var pagination = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+export function loadUsers(pagination) {
+  if (pagination === void 0) {
+    pagination = null;
+  }
 
   return get('/users', {
-    qs: pagination ? { page: pagination } : null,
+    qs: pagination ? {
+      page: pagination
+    } : null,
     onStart: loadUsersStart,
     onComplete: loadUsersComplete
   });

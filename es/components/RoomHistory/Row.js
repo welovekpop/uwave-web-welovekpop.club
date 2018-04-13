@@ -1,18 +1,15 @@
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { MEDIA } from '../../constants/DDItemTypes';
-
 import Actions from '../MediaList/Actions';
 import SongTitle from '../SongTitle';
 import TimeAgo from '../TimeAgo';
-
 import HistoryVotes from './Votes';
 
 var inSelection = function inSelection(selection, media) {
@@ -25,7 +22,6 @@ var mediaSource = {
   beginDrag: function beginDrag(_ref) {
     var selection = _ref.selection,
         media = _ref.media;
-
     return {
       media: inSelection(selection, media.media) ? selection : [media.media]
     };
@@ -41,36 +37,44 @@ var collect = function collect(connect) {
 
 var enhance = DragSource(MEDIA, mediaSource, collect);
 
-var HistoryRow = function (_React$Component) {
-  _inherits(HistoryRow, _React$Component);
+var HistoryRow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(HistoryRow, _React$Component);
 
   function HistoryRow() {
-    var _temp, _this, _ret;
+    var _temp, _this;
 
-    _classCallCheck(this, HistoryRow);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = { showActions: false }, _this.handleMouseEnter = function () {
-      _this.setState({ showActions: true });
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
+      showActions: false
+    }, _this.handleMouseEnter = function () {
+      _this.setState({
+        showActions: true
+      });
     }, _this.handleMouseLeave = function () {
-      _this.setState({ showActions: false });
+      _this.setState({
+        showActions: false
+      });
     }, _this.handleDoubleClick = function () {
       _this.props.onOpenPreviewMediaDialog(_this.props.media.media);
     }, _this.handleKeyPress = function (event) {
       if (event.code === 'Space') {
         _this.props.onClick();
       }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp) || _assertThisInitialized(_this);
   }
 
-  HistoryRow.prototype.componentDidMount = function componentDidMount() {
+  var _proto = HistoryRow.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     this.props.connectDragPreview(getEmptyImage());
   };
 
-  HistoryRow.prototype.render = function render() {
+  _proto.render = function render() {
     var _props = this.props,
         historyEntry = _props.media,
         className = _props.className,
@@ -84,19 +88,19 @@ var HistoryRow = function (_React$Component) {
         user = historyEntry.user,
         stats = historyEntry.stats;
     var showActions = this.state.showActions;
-
     var selectedClass = selected ? 'is-selected' : '';
-    var thumbnail = _jsx('div', {
-      className: 'MediaListRow-thumb'
-    }, void 0, _jsx('img', {
-      className: 'MediaListRow-image',
+
+    var thumbnail = _jsx("div", {
+      className: "MediaListRow-thumb"
+    }, void 0, _jsx("img", {
+      className: "MediaListRow-image",
       src: media.thumbnail,
-      alt: ''
+      alt: ""
     }));
-    return connectDragSource(
-    // See PlaylistManager/Panel/Row.js
+
+    return connectDragSource( // See PlaylistManager/Panel/Row.js
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    _jsx('div', {
+    _jsx("div", {
       className: cx('MediaListRow', 'HistoryRow', className, selectedClass),
       onMouseEnter: this.handleMouseEnter,
       onMouseLeave: this.handleMouseLeave,
@@ -104,16 +108,16 @@ var HistoryRow = function (_React$Component) {
       onKeyPress: this.handleKeyPress,
       onClick: onClick
     }, void 0, thumbnail, _jsx(SongTitle, {
-      className: 'HistoryRow-song',
-      size: 'mediaRow',
+      className: "HistoryRow-song",
+      size: "mediaRow",
       artist: media.artist,
       title: media.title
-    }), _jsx('div', {
-      className: 'HistoryRow-votes'
-    }, void 0, React.createElement(HistoryVotes, stats)), _jsx('div', {
-      className: 'HistoryRow-user'
-    }, void 0, user.username), _jsx('div', {
-      className: 'HistoryRow-time',
+    }), _jsx("div", {
+      className: "HistoryRow-votes"
+    }, void 0, React.createElement(HistoryVotes, stats)), _jsx("div", {
+      className: "HistoryRow-user"
+    }, void 0, user.username), _jsx("div", {
+      className: "HistoryRow-time",
       dateTime: timestamp
     }, void 0, _jsx(TimeAgo, {
       timestamp: timestamp
@@ -138,12 +142,9 @@ HistoryRow.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.object,
   selected: PropTypes.bool,
   selection: PropTypes.array,
-
   onOpenPreviewMediaDialog: PropTypes.func,
   onClick: PropTypes.func,
   makeActions: PropTypes.func
 } : {};
-
-
 export default enhance(HistoryRow);
 //# sourceMappingURL=Row.js.map

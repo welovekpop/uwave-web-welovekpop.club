@@ -1,12 +1,9 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
 import { selectPanel } from '../actions/PanelSelectActionCreators';
 import { listenerCountSelector } from '../selectors/userSelectors';
 import { sizeSelector as waitlistSizeSelector, positionSelector as waitlistPositionSelector } from '../selectors/waitlistSelectors';
-
 import SidePanels from '../components/SidePanels';
-
 var mapStateToProps = createStructuredSelector({
   selected: function selected(state) {
     return state.selectedPanel;

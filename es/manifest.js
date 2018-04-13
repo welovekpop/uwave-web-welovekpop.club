@@ -1,6 +1,5 @@
 import path from 'path';
 import theme from './theme';
-
 export default {
   name: 'üWave',
   short_name: 'üWave',

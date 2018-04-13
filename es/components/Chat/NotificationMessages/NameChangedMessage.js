@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import UserNotificationMessage from './UserNotificationMessage';
@@ -8,9 +8,9 @@ var UserNameChanged = function UserNameChanged(_ref) {
       timestamp = _ref.timestamp,
       newUsername = _ref.newUsername;
   return _jsx(UserNotificationMessage, {
-    type: 'userNameChanged',
-    className: 'ChatMessage--userNameChanged',
-    i18nKey: 'chat.userNameChanged',
+    type: "userNameChanged",
+    className: "ChatMessage--userNameChanged",
+    i18nKey: "chat.userNameChanged",
     user: user,
     timestamp: timestamp,
     newUsername: newUsername
@@ -22,6 +22,5 @@ UserNameChanged.propTypes = process.env.NODE_ENV !== "production" ? {
   newUsername: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired
 } : {};
-
 export default UserNameChanged;
 //# sourceMappingURL=NameChangedMessage.js.map

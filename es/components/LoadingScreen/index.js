@@ -1,14 +1,16 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
-import { CircularProgress } from 'material-ui/es/Progress';
+import { CircularProgress } from "material-ui/es/Progress";
 
-var _ref = _jsx('div', {
-  className: 'LoadingScreen'
+var _ref =
+/*#__PURE__*/
+_jsx("div", {
+  className: "LoadingScreen"
 }, void 0, _jsx(CircularProgress, {
-  className: 'LoadingScreen-loader'
-}), _jsx('p', {
-  className: 'LoadingScreen-notice'
-}, void 0, '\xFCWave requires JavaScript to run.'));
+  className: "LoadingScreen-loader"
+}), _jsx("p", {
+  className: "LoadingScreen-notice"
+}, void 0, "\xFCWave requires JavaScript to run."));
 
 var LoadingScreen = function LoadingScreen() {
   return _ref;

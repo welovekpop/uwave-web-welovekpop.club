@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,16 +10,16 @@ var Header = function Header(_ref) {
       children = _ref.children,
       onCloseOverlay = _ref.onCloseOverlay,
       _ref$direction = _ref.direction,
-      direction = _ref$direction === undefined ? 'bottom' : _ref$direction;
-  return _jsx('div', {
+      direction = _ref$direction === void 0 ? 'bottom' : _ref$direction;
+  return _jsx("div", {
     className: cx('OverlayHeader', className)
-  }, void 0, _jsx('div', {
-    className: 'OverlayHeader-title'
-  }, void 0, title.toUpperCase()), _jsx('div', {
-    className: 'OverlayHeader-content'
+  }, void 0, _jsx("div", {
+    className: "OverlayHeader-title"
+  }, void 0, title.toUpperCase()), _jsx("div", {
+    className: "OverlayHeader-content"
   }, void 0, children), _jsx(CloseButton, {
     direction: direction,
-    className: 'OverlayHeader-close',
+    className: "OverlayHeader-close",
     onClose: onCloseOverlay
   }));
 };
@@ -31,6 +31,5 @@ Header.propTypes = process.env.NODE_ENV !== "production" ? {
   direction: PropTypes.string,
   onCloseOverlay: PropTypes.func.isRequired
 } : {};
-
 export default Header;
 //# sourceMappingURL=index.js.map

@@ -1,70 +1,81 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _extends from "@babel/runtime/helpers/extends";
+import _jsx from "@babel/runtime/helpers/jsx";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-
 import NextMedia from './NextMedia';
 import UserInfo from './UserInfo';
 import SkipButton from './SkipButton';
 import WaitlistButton from './WaitlistButton';
 import ResponseBar from './Responses/Bar';
-
 import RandomizePlaylistsNotice from '../../_wlk/RandomizePlaylistsNotice';
-
 var enhance = translate();
 
-var _ref = _jsx(RandomizePlaylistsNotice, {});
+var _ref =
+/*#__PURE__*/
+_jsx(RandomizePlaylistsNotice, {});
 
-var _ref2 = _jsx('div', {
-  className: 'FooterBar-guest'
-}, void 0, 'You have to log in if you want to play!');
+var _ref2 =
+/*#__PURE__*/
+_jsx("div", {
+  className: "FooterBar-guest"
+}, void 0, "You have to log in if you want to play!");
 
-var FooterBar = function (_React$Component) {
-  _inherits(FooterBar, _React$Component);
+var FooterBar =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(FooterBar, _React$Component);
 
   function FooterBar(props) {
-    _classCallCheck(this, FooterBar);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.handleSkipTurn = _this.handleSkipTurn.bind(_this);
-    _this.handleJoinWaitlist = _this.handleJoinWaitlist.bind(_this);
-    _this.handleLeaveWaitlist = _this.handleLeaveWaitlist.bind(_this);
+    _this = _React$Component.call(this, props) || this;
+    _this.handleSkipTurn = _this.handleSkipTurn.bind(_assertThisInitialized(_this));
+    _this.handleJoinWaitlist = _this.handleJoinWaitlist.bind(_assertThisInitialized(_this));
+    _this.handleLeaveWaitlist = _this.handleLeaveWaitlist.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  FooterBar.prototype.handleSkipTurn = function handleSkipTurn(reason) {
+  var _proto = FooterBar.prototype;
+
+  _proto.handleSkipTurn = function handleSkipTurn(reason) {
     if (!this.props.showSkip) {
       return null;
     }
+
     if (!this.props.userIsDJ) {
       return this.props.onModSkip(reason);
     }
-    return this.props.onSkipTurn({ remove: false });
+
+    return this.props.onSkipTurn({
+      remove: false
+    });
   };
 
-  FooterBar.prototype.handleJoinWaitlist = function handleJoinWaitlist() {
+  _proto.handleJoinWaitlist = function handleJoinWaitlist() {
     if (this.props.user) {
       return this.props.joinWaitlist(this.props.user);
     }
+
     return null;
   };
 
-  FooterBar.prototype.handleLeaveWaitlist = function handleLeaveWaitlist() {
+  _proto.handleLeaveWaitlist = function handleLeaveWaitlist() {
     if (this.props.userIsDJ) {
-      return this.props.onSkipTurn({ remove: true });
+      return this.props.onSkipTurn({
+        remove: true
+      });
     } else if (this.props.user) {
       return this.props.leaveWaitlist(this.props.user);
     }
+
     return null;
   };
 
-  FooterBar.prototype.render = function render() {
+  _proto.render = function render() {
     var _props = this.props,
         t = _props.t,
         openLoginDialog = _props.openLoginDialog,
@@ -85,20 +96,19 @@ var FooterBar = function (_React$Component) {
         baseEta = _props2.baseEta,
         mediaEndTime = _props2.mediaEndTime,
         voteStats = _props2.voteStats;
-
     var className = cx('FooterBar', this.props.className);
 
     if (user && !user.isGuest) {
       var canVote = !userIsDJ && !!this.props.currentDJ;
-      return _jsx('div', {
+      return _jsx("div", {
         className: className
-      }, void 0, _jsx('div', {
-        className: 'FooterBar-user'
+      }, void 0, _jsx("div", {
+        className: "FooterBar-user"
       }, void 0, _jsx(UserInfo, {
         user: user,
         onClick: toggleSettings
-      })), _jsx('button', {
-        className: 'FooterBar-next',
+      })), _jsx("button", {
+        className: "FooterBar-next",
         onClick: togglePlaylistManager
       }, void 0, shouldRandomizePlaylists ? _ref : _jsx(NextMedia, {
         playlist: playlist,
@@ -107,15 +117,15 @@ var FooterBar = function (_React$Component) {
         userIsDJ: userIsDJ,
         baseEta: baseEta,
         mediaEndTime: mediaEndTime
-      })), _jsx('div', {
+      })), _jsx("div", {
         className: cx('FooterBar-responses', !showSkip && 'FooterBar-responses--spaced')
       }, void 0, React.createElement(ResponseBar, _extends({
         disabled: !canVote,
         onFavorite: onFavorite,
         onUpvote: onUpvote,
         onDownvote: onDownvote
-      }, voteStats))), this.props.showSkip && _jsx('div', {
-        className: 'FooterBar-skip'
+      }, voteStats))), this.props.showSkip && _jsx("div", {
+        className: "FooterBar-skip"
       }, void 0, _jsx(SkipButton, {
         userIsDJ: userIsDJ,
         currentDJ: this.props.currentDJ,
@@ -126,13 +136,14 @@ var FooterBar = function (_React$Component) {
         onClick: userInWaitlist ? this.handleLeaveWaitlist : this.handleJoinWaitlist
       }));
     }
-    return _jsx('div', {
+
+    return _jsx("div", {
       className: className
-    }, void 0, _jsx('button', {
-      className: 'FooterAuthButton FooterAuthButton--login',
+    }, void 0, _jsx("button", {
+      className: "FooterAuthButton FooterAuthButton--login",
       onClick: openLoginDialog
-    }, void 0, t('login.login').toUpperCase()), _jsx('button', {
-      className: 'FooterAuthButton FooterAuthButton--register',
+    }, void 0, t('login.login').toUpperCase()), _jsx("button", {
+      className: "FooterAuthButton FooterAuthButton--register",
       onClick: openRegisterDialog
     }, void 0, t('login.register').toUpperCase()), _ref2);
   };
@@ -158,7 +169,6 @@ FooterBar.propTypes = process.env.NODE_ENV !== "production" ? {
   waitlistIsLocked: PropTypes.bool.isRequired,
   voteStats: PropTypes.object,
   shouldRandomizePlaylists: PropTypes.bool,
-
   openLoginDialog: PropTypes.func,
   openRegisterDialog: PropTypes.func,
   togglePlaylistManager: PropTypes.func,
@@ -171,7 +181,5 @@ FooterBar.propTypes = process.env.NODE_ENV !== "production" ? {
   onUpvote: PropTypes.func,
   onDownvote: PropTypes.func
 } : {};
-
-
 export default enhance(FooterBar);
 //# sourceMappingURL=index.js.map

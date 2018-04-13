@@ -1,11 +1,16 @@
-import _Player from './Player';
-export { _Player as Player };
-import _logo from '../../../assets/img/youtube.png';
-export { _logo as logo };
-import _ImportForm from './ImportForm';
-export { _ImportForm as ImportForm };
-import _ImportPanel from './ImportPanel';
-export { _ImportPanel as ImportPanel };
-import _reducer from './reducer';
-export { _reducer as reducer };
+import Player from './Player';
+import logo from '../../../assets/img/youtube.png';
+import ImportForm from './ImportForm';
+import ImportPanel from './ImportPanel';
+import reducer from './reducer';
+export default function youtube() {
+  return {
+    name: 'youtube',
+    Player: Player,
+    logo: logo,
+    ImportForm: ImportForm,
+    ImportPanel: ImportPanel,
+    reducer: reducer
+  };
+}
 //# sourceMappingURL=index.js.map

@@ -155,6 +155,10 @@ export default {
       "connectionLost": "Server connection lost",
       "reconnecting": "Trying to reconnect..."
     },
+    "about": {
+      "about": "About",
+      "servers": "Servers"
+    },
     "settings": {
       "title": "Settings",
       "videoEnabled": "Play Audio/Video",

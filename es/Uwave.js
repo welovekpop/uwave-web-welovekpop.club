@@ -1,6 +1,4 @@
-import _typeof from 'babel-runtime/helpers/typeof';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _jsx from "@babel/runtime/helpers/jsx";
 // Polyfills for browsers that might not yet support Promises or the Fetch API
 // (newer & better XMLHttpRequest).
 import 'lie/polyfill';
@@ -10,7 +8,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer as HotContainer } from 'react-hot-loader';
 import { create as createJss } from 'jss';
-import { jssPreset } from 'material-ui/es/styles';
+import { jssPreset } from "material-ui/es/styles";
 import JssProvider from 'react-jss/lib/JssProvider';
 import createLocale from './locale';
 import AppContainer from './containers/App';
@@ -19,18 +17,23 @@ import generateClassName from './utils/generateClassName';
 import configureStore from './store/configureStore';
 import { initState, socketConnect, setSessionToken } from './actions/LoginActionCreators';
 import { languageSelector } from './selectors/settingSelectors';
-import * as api from './api';
-// Register default chat commands.
+import * as api from './api'; // Register default chat commands.
+
 import './utils/commands';
 
-var Uwave = function () {
-  function Uwave() {
+var Uwave =
+/*#__PURE__*/
+function () {
+  function Uwave(options, session) {
     var _this = this;
 
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var session = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : readSession();
+    if (options === void 0) {
+      options = {};
+    }
 
-    _classCallCheck(this, Uwave);
+    if (session === void 0) {
+      session = readSession();
+    }
 
     this.options = {};
     this.sources = {};
@@ -38,13 +41,11 @@ var Uwave = function () {
     this.renderTarget = null;
     this.aboutPageComponent = null;
     this.jss = createJss(jssPreset());
-
     this.options = options;
     this.sessionToken = session;
     this.ready = new Promise(function (resolve) {
       _this.resolveReady = resolve;
     });
-
     Object.assign(this, api.constants);
     Object.assign(this, api.components);
     Object.assign(this, api.actions);
@@ -55,6 +56,7 @@ var Uwave = function () {
       this.getComponent = function () {
         return _jsx(HotContainer, {}, void 0, getComponent.call(_this));
       };
+
       var uw = this;
       module.hot.accept('./containers/App', function () {
         if (uw.renderTarget) {
@@ -64,41 +66,52 @@ var Uwave = function () {
     }
   }
 
-  Uwave.prototype.use = function use(plugin) {
+  var _proto = Uwave.prototype;
+
+  _proto.use = function use(plugin) {
     plugin(this);
     return this;
   };
 
-  Uwave.prototype.source = function source(sourceType, sourcePlugin) {
-    var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  _proto.source = function source(sourcePlugin, opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
 
     var sourceFactory = sourcePlugin.default || sourcePlugin;
+    var type = typeof sourceFactory;
 
-    var type = typeof sourceFactory === 'undefined' ? 'undefined' : _typeof(sourceFactory);
     if (type !== 'function' && type !== 'object') {
-      throw new TypeError('Source plugin should be a function, got ' + type);
+      throw new TypeError("Source plugin should be a function, got " + type);
     }
 
     var source = type === 'function' ? sourceFactory(this, opts) : sourceFactory;
 
-    this.sources[sourceType] = source;
+    if (typeof source.name !== 'string') {
+      throw new TypeError('Source plugin did not provide a name');
+    }
 
+    this.sources[source.name] = source;
     return source;
   };
 
-  Uwave.prototype.setAboutPageComponent = function setAboutPageComponent(AboutPageComponent) {
+  _proto.setAboutPageComponent = function setAboutPageComponent(AboutPageComponent) {
     this.aboutPageComponent = AboutPageComponent;
   };
 
-  Uwave.prototype.getAboutPageComponent = function getAboutPageComponent() {
+  _proto.getAboutPageComponent = function getAboutPageComponent() {
     return this.aboutPageComponent;
   };
 
-  Uwave.prototype.build = function build() {
+  _proto.build = function build() {
     var _this2 = this;
 
-    this.store = configureStore({ config: this.options }, { mediaSources: this.sources, socketUrl: this.options.socketUrl });
-
+    this.store = configureStore({
+      config: this.options
+    }, {
+      mediaSources: this.sources,
+      socketUrl: this.options.socketUrl
+    });
     var localePromise = createLocale(languageSelector(this.store.getState()));
 
     if (this.sessionToken) {
@@ -115,13 +128,13 @@ var Uwave = function () {
     this.store.dispatch(socketConnect());
     return Promise.all([localePromise, this.store.dispatch(initState())]).then(function (_ref) {
       var locale = _ref[0];
-
       _this2.locale = locale;
+
       _this2.resolveReady();
     });
   };
 
-  Uwave.prototype.getComponent = function getComponent() {
+  _proto.getComponent = function getComponent() {
     return _jsx(Provider, {
       store: this.store
     }, void 0, _jsx(JssProvider, {
@@ -134,7 +147,7 @@ var Uwave = function () {
     })));
   };
 
-  Uwave.prototype.renderToDOM = function renderToDOM(target) {
+  _proto.renderToDOM = function renderToDOM(target) {
     if (!this.store) {
       this.build();
     }
@@ -146,5 +159,5 @@ var Uwave = function () {
   return Uwave;
 }();
 
-export default Uwave;
+export { Uwave as default };
 //# sourceMappingURL=Uwave.js.map

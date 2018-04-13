@@ -1,15 +1,14 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import withProps from 'recompose/withProps';
 import { translate } from 'react-i18next';
-import List, { ListSubheader } from 'material-ui/es/List';
-import Divider from 'material-ui/es/Divider';
-import Button from 'material-ui/es/Button';
-import CurrentDJIcon from 'material-ui-icons/PlayArrow';
+import List, { ListSubheader } from "material-ui/es/List";
+import Divider from "material-ui/es/Divider";
+import Button from "material-ui/es/Button";
+import CurrentDJIcon from '@material-ui/icons/PlayArrow';
 import UserRow from './UserRow';
 import WaitlistPosition from './WaitlistPosition';
-
 var JoinWaitlistButton = withProps({
   variant: 'raised',
   color: 'primary',
@@ -19,9 +18,13 @@ var JoinWaitlistButton = withProps({
   }
 })(Button);
 
-var _ref2 = _jsx(Divider, {});
+var _ref2 =
+/*#__PURE__*/
+_jsx(Divider, {});
 
-var _ref3 = _jsx(Divider, {});
+var _ref3 =
+/*#__PURE__*/
+_jsx(Divider, {});
 
 var UserList = function UserList(_ref) {
   var t = _ref.t,
@@ -32,12 +35,14 @@ var UserList = function UserList(_ref) {
       userIsLoggedIn = _ref.userIsLoggedIn,
       userInWaitlist = _ref.userInWaitlist,
       onJoinWaitlist = _ref.onJoinWaitlist;
-  return _jsx('div', {}, void 0, currentDJ && _ref2, _jsx(List, {
+  return _jsx("div", {}, void 0, currentDJ && _ref2, _jsx(List, {
     subheader: _jsx(ListSubheader, {}, void 0, t('waitlist.title'))
   }, void 0, currentDJ && _jsx(UserRow, {
     user: currentDJ,
     icon: _jsx(CurrentDJIcon, {
-      style: { margin: 5 }
+      style: {
+        margin: 5
+      }
     })
   }), waitlist.map(function (user, position) {
     return _jsx(UserRow, {
@@ -70,6 +75,5 @@ UserList.propTypes = process.env.NODE_ENV !== "production" ? {
   isLockedWaitlist: PropTypes.bool,
   onJoinWaitlist: PropTypes.func.isRequired
 } : {};
-
 export default translate()(UserList);
 //# sourceMappingURL=UserList.js.map

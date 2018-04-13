@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,26 +15,26 @@ var Progress = function Progress(_ref) {
       timeRemaining = _ref.timeRemaining;
 
   function animate(el) {
-    if (!el) return;
+    if (!el) return; // Set the width to the current progress without animating
 
-    // Set the width to the current progress without animating
     Object.assign(el.style, {
       transitionDuration: '0s'
-    }, transformStyle('scaleX(' + currentProgress + ')'));
+    }, transformStyle("scaleX(" + currentProgress + ")")); // Force browser to rerender the bar immediately
 
-    // Force browser to rerender the bar immediately
-    forceReflow(el);
-
-    // Set up the actual animation. Progress bar goes to 100% full
+    forceReflow(el); // Set up the actual animation. Progress bar goes to 100% full
     // in $timeRemaining seconds.
+
     Object.assign(el.style, {
-      transitionDuration: timeRemaining + 's'
+      transitionDuration: timeRemaining + "s"
     }, transformStyle('scaleX(1)'));
   }
 
-  return _jsx('div', {
+  return _jsx("div", {
     className: cx('Progress', className)
-  }, void 0, React.createElement('div', { className: 'Progress-fill', ref: animate }));
+  }, void 0, React.createElement("div", {
+    className: "Progress-fill",
+    ref: animate
+  }));
 };
 
 Progress.propTypes = process.env.NODE_ENV !== "production" ? {
@@ -42,6 +42,5 @@ Progress.propTypes = process.env.NODE_ENV !== "production" ? {
   currentProgress: PropTypes.number.isRequired,
   timeRemaining: PropTypes.number.isRequired
 } : {};
-
 export default Progress;
 //# sourceMappingURL=Progress.js.map

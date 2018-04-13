@@ -1,12 +1,11 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import withProps from 'recompose/withProps';
 import { translate } from 'react-i18next';
-import Switch from 'material-ui/es/Switch';
+import Switch from "material-ui/es/Switch";
 import LabeledControl from './LabeledControl';
-
 var enhance = compose(withProps(function (props) {
   return {
     onToggleUserJoin: function onToggleUserJoin(e, value) {
@@ -31,36 +30,36 @@ var NotificationSettings = function NotificationSettings(_ref) {
       onToggleUserLeave = _ref.onToggleUserLeave,
       onToggleUserNameChanged = _ref.onToggleUserNameChanged,
       onToggleSkip = _ref.onToggleSkip;
-  return _jsx('div', {}, void 0, _jsx('h2', {
-    className: 'SettingsPanel-header'
-  }, void 0, t('settings.notifications.title')), _jsx('p', {
-    className: 'SettingsPanel-helpText'
+  return _jsx("div", {}, void 0, _jsx("h2", {
+    className: "SettingsPanel-header"
+  }, void 0, t('settings.notifications.title')), _jsx("p", {
+    className: "SettingsPanel-helpText"
   }, void 0, t('settings.notifications.help')), _jsx(LabeledControl, {
     label: t('settings.notifications.userJoin'),
-    id: 'uw-setting-userjoin'
+    id: "uw-setting-userjoin"
   }, void 0, _jsx(Switch, {
-    color: 'primary',
+    color: "primary",
     checked: settings.notifications.userJoin,
     onChange: onToggleUserJoin
   })), _jsx(LabeledControl, {
     label: t('settings.notifications.userLeave'),
-    id: 'uw-setting-userleave'
+    id: "uw-setting-userleave"
   }, void 0, _jsx(Switch, {
-    color: 'primary',
+    color: "primary",
     checked: settings.notifications.userLeave,
     onChange: onToggleUserLeave
   })), _jsx(LabeledControl, {
     label: t('settings.notifications.userNameChanged'),
-    id: 'uw-setting-usernamechanged'
+    id: "uw-setting-usernamechanged"
   }, void 0, _jsx(Switch, {
-    color: 'primary',
+    color: "primary",
     checked: settings.notifications.userNameChanged,
     onChange: onToggleUserNameChanged
   })), _jsx(LabeledControl, {
     label: t('settings.notifications.skip'),
-    id: 'uw-setting-skip'
+    id: "uw-setting-skip"
   }, void 0, _jsx(Switch, {
-    color: 'primary',
+    color: "primary",
     checked: settings.notifications.skip,
     onChange: onToggleSkip
   })));
@@ -69,12 +68,12 @@ var NotificationSettings = function NotificationSettings(_ref) {
 NotificationSettings.propTypes = process.env.NODE_ENV !== "production" ? {
   t: PropTypes.func.isRequired,
   settings: PropTypes.object.isRequired,
-  onSettingChange: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
+  onSettingChange: PropTypes.func.isRequired,
+  // eslint-disable-line react/no-unused-prop-types
   onToggleUserJoin: PropTypes.func.isRequired,
   onToggleUserLeave: PropTypes.func.isRequired,
   onToggleUserNameChanged: PropTypes.func.isRequired,
   onToggleSkip: PropTypes.func.isRequired
 } : {};
-
 export default enhance(NotificationSettings);
 //# sourceMappingURL=NotificationSettings.js.map

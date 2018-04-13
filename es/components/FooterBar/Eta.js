@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,9 +12,8 @@ var Eta = function Eta(_ref) {
       base = _ref.base,
       currentTime = _ref.currentTime,
       endTime = _ref.endTime;
-
   var currentRemaining = endTime - currentTime;
-  return _jsx('span', {
+  return _jsx("span", {
     className: cx('Eta', className)
   }, void 0, formatDuration(base + currentRemaining));
 };
@@ -25,6 +24,5 @@ Eta.propTypes = process.env.NODE_ENV !== "production" ? {
   endTime: PropTypes.number,
   base: PropTypes.number
 } : {};
-
 export default compose(timed(), pure)(Eta);
 //# sourceMappingURL=Eta.js.map

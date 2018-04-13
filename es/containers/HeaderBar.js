@@ -8,21 +8,16 @@ import except from 'except';
 import { createStructuredSelector } from 'reselect';
 import { setVolume, mute, unmute } from '../actions/PlaybackActionCreators';
 import { toggleRoomHistory, toggleAbout } from '../actions/OverlayActionCreators';
-
 import { djSelector, mediaSelector, mediaProgressSelector, timeRemainingSelector } from '../selectors/boothSelectors';
 import { volumeSelector, isMutedSelector } from '../selectors/settingSelectors';
 import HeaderBar from '../components/HeaderBar';
-
 var mapStateToProps = createStructuredSelector({
   mediaProgress: mediaProgressSelector,
   mediaTimeRemaining: timeRemainingSelector,
   media: mediaSelector,
   dj: djSelector,
   volume: volumeSelector,
-  muted: isMutedSelector,
-  hasAboutPage: function hasAboutPage(state, props) {
-    return props.uwave.getAboutPageComponent() !== null;
-  }
+  muted: isMutedSelector
 });
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -35,8 +30,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   }, dispatch);
 };
 
-export default compose(getContext({ uwave: PropTypes.object }), connect(mapStateToProps, mapDispatchToProps),
-// Remove the "uwave" prop—it was only necessary for the selector.
+export default compose(getContext({
+  uwave: PropTypes.object
+}), connect(mapStateToProps, mapDispatchToProps), // Remove the "uwave" prop—it was only necessary for the selector.
 mapProps(function (props) {
   return except(props, 'uwave');
 }))(HeaderBar);

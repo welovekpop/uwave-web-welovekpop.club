@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import upperCaseFirst from 'upper-case-first';
@@ -8,6 +8,7 @@ var getLangKey = function getLangKey(updateType) {
   if (updateType === 'add') {
     return 'chat.rolesAdded';
   }
+
   return 'chat.rolesRemoved';
 };
 
@@ -17,8 +18,8 @@ var RoleUpdateMessage = function RoleUpdateMessage(_ref) {
       roles = _ref.roles,
       timestamp = _ref.timestamp;
   return _jsx(UserNotificationMessage, {
-    type: 'roleUpdate',
-    className: 'ChatMessage--roleUpdate',
+    type: "roleUpdate",
+    className: "ChatMessage--roleUpdate",
     i18nKey: getLangKey(updateType),
     user: user,
     roles: roles.map(upperCaseFirst).join(', '),
@@ -32,6 +33,5 @@ RoleUpdateMessage.propTypes = process.env.NODE_ENV !== "production" ? {
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
   timestamp: PropTypes.number.isRequired
 } : {};
-
 export default RoleUpdateMessage;
 //# sourceMappingURL=RoleUpdateMessage.js.map

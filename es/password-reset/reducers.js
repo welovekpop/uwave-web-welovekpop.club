@@ -1,6 +1,5 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import { SET_RESET_KEY, SET_RESET_SUCCESS } from './constants';
-
 import _auth from '../reducers/auth';
 export { _auth as auth };
 import _config from '../reducers/config';
@@ -9,21 +8,25 @@ import _errors from '../reducers/errors';
 export { _errors as errors };
 import _theme from '../reducers/theme';
 export { _theme as theme };
+export function passwordReset(state, action) {
+  if (state === void 0) {
+    state = {};
+  }
 
-
-export function passwordReset() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  if (action === void 0) {
+    action = {};
+  }
 
   if (action.error) return state;
 
   switch (action.type) {
     case SET_RESET_KEY:
-      return _extends({}, state, {
+      return _objectSpread({}, state, {
         key: action.payload
       });
+
     case SET_RESET_SUCCESS:
-      return _extends({}, state, {
+      return _objectSpread({}, state, {
         success: true
       });
 

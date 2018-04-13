@@ -1,36 +1,36 @@
-import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import DownvoteIcon from 'material-ui-icons/ThumbDown';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import UpvoteIcon from 'material-ui-icons/ThumbUp';
+import DownvoteIcon from '@material-ui/icons/ThumbDown';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import UpvoteIcon from '@material-ui/icons/ThumbUp';
 
-var _ref2 = _jsx(FavoriteIcon, {
-  className: 'UserRow-voteIcon UserRow-voteIcon--favorite'
+var _ref2 =
+/*#__PURE__*/
+_jsx(FavoriteIcon, {
+  className: "UserRow-voteIcon UserRow-voteIcon--favorite"
 });
 
-var _ref3 = _jsx(UpvoteIcon, {
-  className: 'UserRow-voteIcon UserRow-voteIcon--upvote'
+var _ref3 =
+/*#__PURE__*/
+_jsx(UpvoteIcon, {
+  className: "UserRow-voteIcon UserRow-voteIcon--upvote"
 });
 
-var _ref4 = _jsx(DownvoteIcon, {
-  className: 'UserRow-voteIcon UserRow-voteIcon--downvote'
+var _ref4 =
+/*#__PURE__*/
+_jsx(DownvoteIcon, {
+  className: "UserRow-voteIcon UserRow-voteIcon--downvote"
 });
 
 var Votes = function Votes(_ref) {
   var upvote = _ref.upvote,
       downvote = _ref.downvote,
       favorite = _ref.favorite,
-      props = _objectWithoutProperties(_ref, ['upvote', 'downvote', 'favorite']);
+      props = _objectWithoutProperties(_ref, ["upvote", "downvote", "favorite"]);
 
-  return React.createElement(
-    'div',
-    props,
-    favorite && _ref2,
-    upvote && _ref3,
-    downvote && _ref4
-  );
+  return React.createElement("div", props, favorite && _ref2, upvote && _ref3, downvote && _ref4);
 };
 
 Votes.propTypes = process.env.NODE_ENV !== "production" ? {
@@ -38,6 +38,5 @@ Votes.propTypes = process.env.NODE_ENV !== "production" ? {
   downvote: PropTypes.bool,
   favorite: PropTypes.bool
 } : {};
-
 export default Votes;
 //# sourceMappingURL=Votes.js.map

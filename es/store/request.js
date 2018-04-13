@@ -1,7 +1,6 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import assign from 'object-assign';
 import qsStringify from 'qs-stringify';
-
 import { REQUEST_START } from '../constants/actionTypes/request';
 import { requestComplete, requestCompleteError } from '../actions/RequestActionCreators';
 import { requestOptionsSelector } from '../selectors/configSelectors';
@@ -11,8 +10,10 @@ function isEmpty(object) {
   return !object || Object.keys(object).length === 0;
 }
 
-function makeUrl(path) {
-  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+function makeUrl(path, params) {
+  if (params === void 0) {
+    params = {};
+  }
 
   var uri = path;
 
@@ -30,8 +31,8 @@ function rejectNonOK(response) {
       if (!('errors' in res)) {
         throw new Error('An unknown error occurred.');
       }
-      var errors = res.errors;
 
+      var errors = res.errors;
       var error = assign(new Error(errors.map(function (err) {
         return err.title;
       }).join(', ')), {
@@ -41,15 +42,17 @@ function rejectNonOK(response) {
       throw error;
     });
   }
+
   return response;
 }
 
 var defaultOptions = {
   apiUrl: '/api'
 };
-
-export default function middleware() {
-  var middlewareOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+export default function middleware(middlewareOptions) {
+  if (middlewareOptions === void 0) {
+    middlewareOptions = {};
+  }
 
   return function (_ref) {
     var dispatch = _ref.dispatch,
@@ -60,7 +63,7 @@ export default function middleware() {
           return next(action);
         }
 
-        var opts = _extends({}, defaultOptions, middlewareOptions, requestOptionsSelector(getState()));
+        var opts = _objectSpread({}, defaultOptions, middlewareOptions, requestOptionsSelector(getState()));
 
         var token = tokenSelector(getState());
         var _action$payload = action.payload,
@@ -73,8 +76,6 @@ export default function middleware() {
             onStart = _action$meta.onStart,
             onComplete = _action$meta.onComplete,
             onError = _action$meta.onError;
-
-
         var completedMeta = {
           id: id,
           method: method,
@@ -82,9 +83,7 @@ export default function middleware() {
           qs: qs,
           data: data
         };
-
         var requestUrl = makeUrl(opts.apiUrl + url, qs);
-
         var requestOptions = {
           method: method,
           headers: {
@@ -95,7 +94,7 @@ export default function middleware() {
         };
 
         if (token && token !== 'cookie') {
-          requestOptions.headers.Authorization = 'JWT ' + token;
+          requestOptions.headers.Authorization = "JWT " + token;
         }
 
         if (method !== 'get') {
@@ -110,15 +109,18 @@ export default function middleware() {
           return res.json();
         }).then(function (res) {
           var responseValue = res;
+
           if (onComplete) {
             responseValue = dispatch(onComplete(responseValue));
           }
+
           dispatch(requestComplete(res, completedMeta));
           return responseValue;
         }).catch(function (error) {
           if (onError) {
             dispatch(onError(error));
           }
+
           dispatch(requestCompleteError(error, completedMeta));
           throw error;
         });

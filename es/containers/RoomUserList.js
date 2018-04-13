@@ -1,14 +1,12 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-
 import { userListSelector, guestCountSelector } from '../selectors/userSelectors';
 import { currentVotesSelector } from '../selectors/voteSelectors';
 import RoomUserList from '../components/RoomUserList';
-
 var userListWithVotesSelector = createSelector(userListSelector, currentVotesSelector, function (users, votes) {
   return users.map(function (user) {
-    return _extends({}, user, {
+    return _objectSpread({}, user, {
       votes: {
         upvote: votes.upvotes.indexOf(user._id) !== -1,
         downvote: votes.downvotes.indexOf(user._id) !== -1,
@@ -17,11 +15,9 @@ var userListWithVotesSelector = createSelector(userListSelector, currentVotesSel
     });
   });
 });
-
 var mapStateToProps = createStructuredSelector({
   users: userListWithVotesSelector,
   guests: guestCountSelector
 });
-
 export default connect(mapStateToProps)(RoomUserList);
 //# sourceMappingURL=RoomUserList.js.map

@@ -1,21 +1,31 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import { SOCKET_CONNECTED, SOCKET_DISCONNECTED } from '../constants/ActionTypes';
-
 var initialState = {
   connected: false
 };
+export default function serverReducer(state, action) {
+  if (state === void 0) {
+    state = initialState;
+  }
 
-export default function serverReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var type = action.type;
+  if (action === void 0) {
+    action = {};
+  }
 
+  var _action = action,
+      type = _action.type;
 
   switch (type) {
     case SOCKET_CONNECTED:
-      return _extends({}, state, { connected: true });
+      return _objectSpread({}, state, {
+        connected: true
+      });
+
     case SOCKET_DISCONNECTED:
-      return _extends({}, state, { connected: false });
+      return _objectSpread({}, state, {
+        connected: false
+      });
+
     default:
       return state;
   }

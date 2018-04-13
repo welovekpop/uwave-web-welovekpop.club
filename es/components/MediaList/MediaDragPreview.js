@@ -1,16 +1,22 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import assign from 'object-assign';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListIcon from 'material-ui-icons/List';
+import ListIcon from '@material-ui/icons/List';
 import transformStyle from '../../utils/transformStyle';
 
 var getItemStyles = function getItemStyles(offset) {
-  return offset ? assign({ display: 'inline-block' }, transformStyle('translate(' + offset.x + 'px, ' + offset.y + 'px)')) : { display: 'none' };
+  return offset ? assign({
+    display: 'inline-block'
+  }, transformStyle("translate(" + offset.x + "px, " + offset.y + "px)")) : {
+    display: 'none'
+  };
 };
 
-var _ref2 = _jsx(ListIcon, {
-  className: 'MediaDragPreview-icon'
+var _ref2 =
+/*#__PURE__*/
+_jsx(ListIcon, {
+  className: "MediaDragPreview-icon"
 });
 
 var MediaDragPreview = function MediaDragPreview(_ref) {
@@ -20,8 +26,9 @@ var MediaDragPreview = function MediaDragPreview(_ref) {
   if (!items || !items.media) {
     return null;
   }
-  return _jsx('div', {
-    className: 'MediaDragPreview',
+
+  return _jsx("div", {
+    className: "MediaDragPreview",
     style: getItemStyles(currentOffset)
   }, void 0, _ref2, items.media.length);
 };
@@ -33,6 +40,5 @@ MediaDragPreview.propTypes = process.env.NODE_ENV !== "production" ? {
     y: PropTypes.number.isRequired
   })
 } : {};
-
 export default MediaDragPreview;
 //# sourceMappingURL=MediaDragPreview.js.map

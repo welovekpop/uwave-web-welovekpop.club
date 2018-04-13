@@ -1,4 +1,4 @@
-import _extends from 'babel-runtime/helpers/extends';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
 import find from 'array-find';
 import ms from 'ms';
 import splitargs from 'splitargs';
@@ -12,16 +12,13 @@ import { muteTimeoutsSelector, mutedUserIDsSelector, currentUserMuteSelector } f
 import { settingsSelector } from '../selectors/settingSelectors';
 import { currentUserSelector, userListSelector, userHasRoleSelector, currentUserHasRoleSelector } from '../selectors/userSelectors';
 import { currentTimeSelector } from '../selectors/timeSelectors';
-
 import { getAvailableGroupMentions, resolveMentions, hasMention } from '../utils/chatMentions';
-
 export function receiveMotd(text) {
   return {
     type: RECEIVE_MOTD,
     payload: text
   };
 }
-
 var logIdx = Date.now();
 export function log(text) {
   logIdx += 1;
@@ -33,9 +30,10 @@ export function log(text) {
     }
   };
 }
-
-export function prepareMessage(state, user, text) {
-  var parseOpts = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+export function prepareMessage(state, user, text, parseOpts) {
+  if (parseOpts === void 0) {
+    parseOpts = {};
+  }
 
   var parsed = parseChatMarkup(text, parseOpts);
   resolveMentions(parsed, state);
@@ -48,29 +46,30 @@ export function prepareMessage(state, user, text) {
     }
   };
 }
-
 export function sendChat(text) {
   return function (dispatch, getState) {
     var state = getState();
     var sender = currentUserSelector(state);
     var hasRole = currentUserHasRoleSelector(state);
     var mute = currentUserMuteSelector(state);
+
     if (mute) {
-      var timeLeft = ms(mute.expiresAt - Date.now(), { long: true });
-      dispatch(log('You have been muted, and cannot chat for another ' + timeLeft + '.'));
+      var timeLeft = ms(mute.expiresAt - Date.now(), {
+        long: true
+      });
+      dispatch(log("You have been muted, and cannot chat for another " + timeLeft + "."));
       return;
     }
 
     var users = userListSelector(state);
     var message = prepareMessage(state, sender, text, {
-      mentions: [].concat(users.map(function (user) {
+      mentions: users.map(function (user) {
         return user.username;
-      }), getAvailableGroupMentions(hasRole))
+      }).concat(getAvailableGroupMentions(hasRole))
     });
     dispatch(message);
   };
 }
-
 export function inputMessage(text) {
   return function (dispatch, getState) {
     if (text[0] === '/') {
@@ -80,12 +79,15 @@ export function inputMessage(text) {
 
       if (command) {
         var result = execute(getState(), command, params);
+
         if (result) {
           dispatch(result);
         }
+
         return;
       }
     }
+
     dispatch(sendChat(text));
   };
 }
@@ -104,25 +106,25 @@ export function receive(message) {
       return user._id === message.userID;
     });
     var senderHasRole = userHasRoleSelector(state)(sender);
-    var mentions = [].concat(users.map(function (user) {
+    var mentions = users.map(function (user) {
       return user.username;
-    }), getAvailableGroupMentions(function (mention) {
-      return senderHasRole('chat.mention.' + mention);
+    }).concat(getAvailableGroupMentions(function (mention) {
+      return senderHasRole("chat.mention." + mention);
     }));
 
     if (isMuted(state, message.userID)) {
       return;
     }
 
-    var parsed = parseChatMarkup(message.text, { mentions: mentions });
+    var parsed = parseChatMarkup(message.text, {
+      mentions: mentions
+    });
     resolveMentions(parsed, state);
-
     var isMention = currentUser ? hasMention(parsed, currentUser._id) : false;
-
     dispatch({
       type: RECEIVE_MESSAGE,
       payload: {
-        message: _extends({}, message, {
+        message: _objectSpread({}, message, {
           user: sender
         }),
         isMention: isMention,
@@ -134,25 +136,27 @@ export function receive(message) {
       if (settings.mentionSound) {
         playMentionSound();
       }
-      flashDocumentTitle('\uD83D\uDCAC ' + sender.username);
+
+      flashDocumentTitle("\uD83D\uDCAC " + sender.username);
     }
   };
 }
-
 export function removeMessage(id) {
   return {
     type: REMOVE_MESSAGE,
-    payload: { _id: id }
+    payload: {
+      _id: id
+    }
   };
 }
-
 export function removeMessagesByUser(userID) {
   return {
     type: REMOVE_USER_MESSAGES,
-    payload: { userID: userID }
+    payload: {
+      userID: userID
+    }
   };
 }
-
 export function removeAllMessages() {
   return {
     type: REMOVE_ALL_MESSAGES
@@ -162,18 +166,18 @@ export function removeAllMessages() {
 function expireMute(userID) {
   return {
     type: UNMUTE_USER,
-    payload: { userID: userID }
+    payload: {
+      userID: userID
+    }
   };
 }
 
 export function muteUser(userID, _ref) {
   var moderatorID = _ref.moderatorID,
       expiresAt = _ref.expiresAt;
-
   return function (dispatch, getState) {
     var currentTime = currentTimeSelector(getState());
     var expireIn = expiresAt - currentTime;
-
     dispatch({
       type: MUTE_USER,
       payload: {
@@ -187,38 +191,40 @@ export function muteUser(userID, _ref) {
     });
   };
 }
-
 export function unmuteUser(userID, _ref2) {
   var moderatorID = _ref2.moderatorID;
-
   return function (dispatch, getState) {
     var muteTimeouts = muteTimeoutsSelector(getState());
+
     if (muteTimeouts && muteTimeouts[userID]) {
       clearTimeout(muteTimeouts[userID]);
     }
+
     dispatch({
       type: UNMUTE_USER,
-      payload: { userID: userID, moderatorID: moderatorID }
+      payload: {
+        userID: userID,
+        moderatorID: moderatorID
+      }
     });
   };
 }
-
 export function setMotdStart(motd) {
   return {
     type: SET_MOTD_START,
     payload: motd
   };
 }
-
 export function setMotdComplete(motd) {
   return {
     type: SET_MOTD_COMPLETE,
     payload: motd
   };
 }
-
 export function setMotd(text) {
-  return put('/motd', { motd: text }, {
+  return put('/motd', {
+    motd: text
+  }, {
     onStart: function onStart() {
       return setMotdStart(text);
     },
@@ -226,7 +232,7 @@ export function setMotd(text) {
       var data = _ref3.data;
       return function (dispatch) {
         dispatch(setMotdComplete(data.motd));
-        dispatch(log('Message of the Day is now: ' + data.motd));
+        dispatch(log("Message of the Day is now: " + data.motd));
       };
     },
     onError: function onError(error) {

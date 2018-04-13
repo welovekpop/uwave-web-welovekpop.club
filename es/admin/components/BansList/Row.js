@@ -1,13 +1,12 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import ms from 'ms';
-import Button from 'material-ui/es/Button';
-import { TableRow, TableCell } from 'material-ui/es/Table';
+import Button from "material-ui/es/Button";
+import { TableRow, TableCell } from "material-ui/es/Table";
 import Avatar from '../../../components/Avatar';
 import Username from '../../../components/Username/WithCard';
-
 var enhance = translate();
 var avatarStyle = {
   width: 48,
@@ -24,10 +23,12 @@ var BanRow = function BanRow(_ref) {
     user: ban.user
   })), _jsx(TableCell, {}, void 0, _jsx(Username, {
     user: ban.user
-  })), _jsx(TableCell, {}, void 0, ms(ban.duration, { long: true })), _jsx(TableCell, {}, void 0, ban.reason || _jsx('em', {}, void 0, t('admin.bans.noReason'))), _jsx(TableCell, {}, void 0, _jsx(Username, {
+  })), _jsx(TableCell, {}, void 0, ms(ban.duration, {
+    long: true
+  })), _jsx(TableCell, {}, void 0, ban.reason || _jsx("em", {}, void 0, t('admin.bans.noReason'))), _jsx(TableCell, {}, void 0, _jsx(Username, {
     user: ban.moderator
   })), _jsx(TableCell, {}, void 0, _jsx(Button, {
-    variant: 'raised',
+    variant: "raised",
     onClick: onUnbanUser
   }, void 0, t('admin.bans.unban'))));
 };
@@ -42,6 +43,5 @@ BanRow.propTypes = process.env.NODE_ENV !== "production" ? {
   }).isRequired,
   onUnbanUser: PropTypes.func.isRequired
 } : {};
-
 export default enhance(BanRow);
 //# sourceMappingURL=Row.js.map

@@ -1,34 +1,35 @@
-import _jsx from 'babel-runtime/helpers/jsx';
-import _extends from 'babel-runtime/helpers/extends';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _extends from "@babel/runtime/helpers/extends";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import cx from 'classnames';
 import isEqual from 'is-equal-shallow';
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectMediaSources from '../../utils/injectMediaSources';
-
 var enhance = injectMediaSources();
 
-var _ref = _jsx('div', {
-  className: 'Player'
+var _ref =
+/*#__PURE__*/
+_jsx("div", {
+  className: "Player"
 });
 
-var Player = function (_React$Component) {
-  _inherits(Player, _React$Component);
+var Player =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Player, _React$Component);
 
   function Player() {
-    _classCallCheck(this, Player);
-
-    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+    return _React$Component.apply(this, arguments) || this;
   }
 
-  Player.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
+  var _proto = Player.prototype;
+
+  _proto.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
     return !isEqual(nextProps, this.props);
   };
 
-  Player.prototype.render = function render() {
+  _proto.render = function render() {
     var _props = this.props,
         getAllMediaSources = _props.getAllMediaSources,
         enabled = _props.enabled,
@@ -37,7 +38,6 @@ var Player = function (_React$Component) {
         isMuted = _props.isMuted,
         media = _props.media,
         seek = _props.seek;
-
 
     if (!media) {
       return _ref;
@@ -50,13 +50,14 @@ var Player = function (_React$Component) {
       mode: size,
       volume: isMuted ? 0 : volume
     };
-
     var sources = getAllMediaSources();
     var players = Object.keys(sources).map(function (sourceType) {
       var SourcePlayer = sources[sourceType].Player;
+
       if (!SourcePlayer) {
         return null;
       }
+
       return React.createElement(SourcePlayer, _extends({
         key: sourceType
       }, props, {
@@ -65,9 +66,8 @@ var Player = function (_React$Component) {
     }).filter(function (player) {
       return player !== null;
     });
-
-    return _jsx('div', {
-      className: cx('Player', 'Player--' + media.sourceType, 'Player--' + size)
+    return _jsx("div", {
+      className: cx('Player', "Player--" + media.sourceType, "Player--" + size)
     }, void 0, players);
   };
 
@@ -83,7 +83,5 @@ Player.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.object,
   seek: PropTypes.number
 } : {};
-
-
 export default enhance(Player);
 //# sourceMappingURL=index.js.map

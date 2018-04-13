@@ -1,53 +1,59 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _extends from "@babel/runtime/helpers/extends";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import CreatePlaylistIcon from 'material-ui-icons/Add';
+import CreatePlaylistIcon from '@material-ui/icons/Add';
 import PromptDialog from '../Dialogs/PromptDialog';
 import PlaylistsMenu from './PlaylistsMenu';
-
 var enhance = translate();
 
-var _ref = _jsx(CreatePlaylistIcon, {
-  nativeColor: '#777'
+var _ref =
+/*#__PURE__*/
+_jsx(CreatePlaylistIcon, {
+  nativeColor: "#777"
 });
 
-var AddToPlaylistMenu = function (_React$Component) {
-  _inherits(AddToPlaylistMenu, _React$Component);
+var AddToPlaylistMenu =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(AddToPlaylistMenu, _React$Component);
 
   function AddToPlaylistMenu() {
-    var _temp, _this, _ret;
+    var _temp, _this;
 
-    _classCallCheck(this, AddToPlaylistMenu);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
       creating: false
     }, _this.handleOpen = function () {
-      _this.setState({ creating: true });
+      _this.setState({
+        creating: true
+      });
     }, _this.handleClose = function () {
-      _this.setState({ creating: false });
+      _this.setState({
+        creating: false
+      });
     }, _this.handleSubmit = function (playlistName) {
       return Promise.resolve(_this.props.onCreatePlaylist(playlistName)).then(function (playlist) {
         return _this.props.onSelect(playlist);
       }).then(function () {
         return _this.props.onClose();
       });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp) || _assertThisInitialized(_this);
   }
 
-  AddToPlaylistMenu.prototype.render = function render() {
+  var _proto = AddToPlaylistMenu.prototype;
+
+  _proto.render = function render() {
     var _props = this.props,
         t = _props.t,
-        props = _objectWithoutProperties(_props, ['t']);
+        props = _objectWithoutProperties(_props, ["t"]);
 
     return _jsx(React.Fragment, {}, void 0, !this.state.creating && React.createElement(PlaylistsMenu, _extends({}, props, {
       onCreatePlaylist: this.handleOpen
@@ -69,7 +75,5 @@ AddToPlaylistMenu.propTypes = process.env.NODE_ENV !== "production" ? {
   onSelect: PropTypes.func.isRequired,
   onCreatePlaylist: PropTypes.func.isRequired
 } : {};
-
-
 export default enhance(AddToPlaylistMenu);
 //# sourceMappingURL=index.js.map

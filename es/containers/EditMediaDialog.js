@@ -1,6 +1,6 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _extends from "@babel/runtime/helpers/extends";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -26,7 +26,7 @@ var EditMediaDialogContainer = function EditMediaDialogContainer(_ref) {
   var onUpdateMedia = _ref.onUpdateMedia,
       playlistID = _ref.playlistID,
       media = _ref.media,
-      props = _objectWithoutProperties(_ref, ['onUpdateMedia', 'playlistID', 'media']);
+      props = _objectWithoutProperties(_ref, ["onUpdateMedia", "playlistID", "media"]);
 
   return _jsx(DialogCloseAnimation, {
     delay: DIALOG_ANIMATION_DURATION
@@ -43,6 +43,5 @@ EditMediaDialogContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.object,
   onUpdateMedia: PropTypes.func.isRequired
 } : {};
-
 export default enhance(EditMediaDialogContainer);
 //# sourceMappingURL=EditMediaDialog.js.map

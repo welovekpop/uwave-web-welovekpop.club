@@ -13,29 +13,29 @@ import { setVoteStats } from './VoteActionCreators';
 import { setWaitList } from './WaitlistActionCreators';
 import { tokenSelector } from '../selectors/userSelectors';
 import startTutorial from '../_wlk/startTutorial';
-
 var debug = createDebug('uwave:actions:login');
-
 export function socketConnect() {
-  return { type: SOCKET_CONNECT };
+  return {
+    type: SOCKET_CONNECT
+  };
 }
-
 export function socketReconnect() {
-  return { type: SOCKET_RECONNECT };
+  return {
+    type: SOCKET_RECONNECT
+  };
 }
-
 export function setAuthenticationStrategies(strategies) {
   return {
     type: AUTH_STRATEGIES,
-    payload: { strategies: strategies }
+    payload: {
+      strategies: strategies
+    }
   };
 }
-
 export function loginComplete(_ref) {
   var token = _ref.token,
       socketToken = _ref.socketToken,
       user = _ref.user;
-
   return function (dispatch) {
     dispatch({
       type: LOGIN_COMPLETE,
@@ -48,16 +48,17 @@ export function loginComplete(_ref) {
     dispatch(closeLoginDialog());
   };
 }
-
 export function loadedState(state) {
   return function (dispatch, getState) {
     dispatch({
       type: INIT_STATE,
       payload: state
     });
+
     if (state.motd) {
       dispatch(receiveMotd(state.motd));
     }
+
     dispatch(setAuthenticationStrategies(state.authStrategies));
     dispatch(setUsers(state.users || []));
     dispatch(setPlaylists(state.playlists || []));
@@ -65,11 +66,13 @@ export function loadedState(state) {
       waitlist: state.waitlist,
       locked: state.waitlistLocked
     }));
+
     if (state.booth && state.booth.historyID) {
       // TODO don't set this when logging in _after_ entering the page?
       dispatch(advance(state.booth));
       dispatch(setVoteStats(state.booth.stats));
     }
+
     if (state.user) {
       var token = tokenSelector(getState());
       dispatch(loginComplete({
@@ -78,19 +81,20 @@ export function loadedState(state) {
         user: state.user
       }));
     }
+
     if (state.activePlaylist) {
       dispatch(activatePlaylistComplete(state.activePlaylist));
       dispatch(selectPlaylist(state.activePlaylist));
     }
   };
 }
-
 export function initState() {
   var beforeTime = Date.now();
-
   return get('/now', {
     onStart: function onStart() {
-      return { type: LOAD_ALL_PLAYLISTS_START };
+      return {
+        type: LOAD_ALL_PLAYLISTS_START
+      };
     },
     onComplete: function onComplete(state) {
       return function (dispatch) {
@@ -101,24 +105,29 @@ export function initState() {
     }
   });
 }
-
 export function setSessionToken(token) {
   return {
     type: SET_TOKEN,
-    payload: { token: token }
+    payload: {
+      token: token
+    }
   };
 }
 
 function loginStart() {
-  return { type: LOGIN_START };
+  return {
+    type: LOGIN_START
+  };
 }
 
 export function login(_ref2) {
   var email = _ref2.email,
       password = _ref2.password;
-
   var sessionType = Session.preferredSessionType();
-  return post('/auth/login?session=' + sessionType, { email: email, password: password }, {
+  return post("/auth/login?session=" + sessionType, {
+    email: email,
+    password: password
+  }, {
     onStart: loginStart,
     onComplete: function onComplete(res) {
       return function (dispatch) {
@@ -136,18 +145,21 @@ export function login(_ref2) {
     }
   });
 }
-
 export function register(_ref3) {
   var email = _ref3.email,
       username = _ref3.username,
       password = _ref3.password,
       grecaptcha = _ref3.grecaptcha;
-
   return post('/auth/register', {
-    email: email, username: username, password: password, grecaptcha: grecaptcha
+    email: email,
+    username: username,
+    password: password,
+    grecaptcha: grecaptcha
   }, {
     onStart: function onStart() {
-      return { type: REGISTER_START };
+      return {
+        type: REGISTER_START
+      };
     },
     onComplete: function onComplete(res) {
       return function (dispatch) {
@@ -155,12 +167,18 @@ export function register(_ref3) {
         debug('registered', user);
         dispatch({
           type: REGISTER_COMPLETE,
-          payload: { user: user }
+          payload: {
+            user: user
+          }
         });
-        dispatch(login({ email: email, password: password })).then(function () {
+        dispatch(login({
+          email: email,
+          password: password
+        })).then(function () {
           if (matchMedia('(min-width: 769px)').matches) {
             return startTutorial();
           }
+
           return null;
         });
       };
@@ -176,12 +194,16 @@ export function register(_ref3) {
 }
 
 function logoutStart() {
-  return { type: LOGOUT_START };
+  return {
+    type: LOGOUT_START
+  };
 }
 
 function logoutComplete() {
   return function (dispatch) {
-    dispatch({ type: LOGOUT_COMPLETE });
+    dispatch({
+      type: LOGOUT_COMPLETE
+    });
     dispatch(setPlaylists([]));
   };
 }
@@ -197,7 +219,6 @@ export function logout() {
     onComplete: logoutComplete
   });
 }
-
 export function resetPassword(email) {
   return post('/auth/password/reset', email, {
     onComplete: function onComplete() {
@@ -215,7 +236,6 @@ export function resetPassword(email) {
     }
   });
 }
-
 export function getSocketAuthToken() {
   return get('/auth/socket', {
     onComplete: function onComplete(res) {
@@ -238,17 +258,18 @@ function whenWindowClosed(window) {
     }, 50);
   });
 }
+
 function socialLogin(service) {
   return function (dispatch, getState) {
     var apiUrl = getState().config.apiUrl;
-
-    var loginWindow = window.open(apiUrl + '/auth/service/' + service);
+    var loginWindow = window.open(apiUrl + "/auth/service/" + service);
     return whenWindowClosed(loginWindow).then(function () {
       // Check login state after the window closed.
       dispatch(initState());
     });
   };
 }
+
 export function loginWithGoogle() {
   return socialLogin('google');
 }

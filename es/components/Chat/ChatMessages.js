@@ -1,8 +1,7 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _extends from "@babel/runtime/helpers/extends";
+import _jsx from "@babel/runtime/helpers/jsx";
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import Message from './Message';
@@ -10,22 +9,23 @@ import Motd from './Motd';
 import ScrollDownNotice from './ScrollDownNotice';
 import specialMessages from './specialMessages';
 
-var ChatMessages = function (_React$Component) {
-  _inherits(ChatMessages, _React$Component);
+var ChatMessages =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(ChatMessages, _React$Component);
 
   function ChatMessages() {
-    var _temp, _this, _ret;
+    var _temp, _this;
 
-    _classCallCheck(this, ChatMessages);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
       isScrolledToBottom: true
     }, _this.onExternalScroll = function (direction) {
       var el = _this.container;
+
       if (direction === 'start') {
         el.scrollTop = 0;
       } else if (direction === 'end') {
@@ -43,32 +43,31 @@ var ChatMessages = function (_React$Component) {
       });
     }, _this.handleScrollToBottom = function (event) {
       event.preventDefault();
+
       _this.scrollToBottom();
     }, _this.refContainer = function (container) {
       _this.container = container;
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp) || _assertThisInitialized(_this);
   }
 
-  ChatMessages.prototype.componentDidMount = function componentDidMount() {
+  var _proto = ChatMessages.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     var bus = this.props.bus;
-
-
     this.scrollToBottom();
     this.shouldScrollToBottom = false;
+    bus.on('chat:scroll', this.onExternalScroll); // A window resize may affect the available space.
 
-    bus.on('chat:scroll', this.onExternalScroll);
-
-    // A window resize may affect the available space.
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', this.handleResize);
     }
   };
 
-  ChatMessages.prototype.componentWillReceiveProps = function componentWillReceiveProps() {
+  _proto.componentWillReceiveProps = function componentWillReceiveProps() {
     this.shouldScrollToBottom = this.isScrolledToBottom();
   };
 
-  ChatMessages.prototype.componentDidUpdate = function componentDidUpdate() {
+  _proto.componentDidUpdate = function componentDidUpdate() {
     // Keep the chat scrolled to the bottom after a new message is addded.
     if (this.shouldScrollToBottom) {
       this.scrollToBottom();
@@ -76,10 +75,8 @@ var ChatMessages = function (_React$Component) {
     }
   };
 
-  ChatMessages.prototype.componentWillUnmount = function componentWillUnmount() {
+  _proto.componentWillUnmount = function componentWillUnmount() {
     var bus = this.props.bus;
-
-
     bus.off('chat:scroll', this.onExternalScroll);
 
     if (typeof window !== 'undefined') {
@@ -87,32 +84,36 @@ var ChatMessages = function (_React$Component) {
     }
   };
 
-  ChatMessages.prototype.scrollToBottom = function scrollToBottom() {
+  _proto.scrollToBottom = function scrollToBottom() {
     var el = this.container;
     el.scrollTop = el.scrollHeight;
   };
 
-  ChatMessages.prototype.isScrolledToBottom = function isScrolledToBottom() {
+  _proto.isScrolledToBottom = function isScrolledToBottom() {
     var el = this.container;
     var lastMessage = el.lastElementChild;
+
     if (lastMessage) {
       var neededSize = el.scrollTop + el.offsetHeight + lastMessage.offsetHeight;
       return neededSize >= el.scrollHeight - 20;
     }
+
     return true;
   };
 
-  ChatMessages.prototype.renderMotd = function renderMotd() {
+  _proto.renderMotd = function renderMotd() {
     if (!this.props.motd) {
       return null;
     }
+
     return _jsx(Motd, {
       compileOptions: this.props.compileOptions
     }, void 0, this.props.motd);
   };
 
-  ChatMessages.prototype.renderMessage = function renderMessage(msg) {
+  _proto.renderMessage = function renderMessage(msg) {
     var SpecialMessage = specialMessages[msg.type];
+
     if (SpecialMessage) {
       return React.createElement(SpecialMessage, _extends({
         key: msg._id
@@ -127,30 +128,22 @@ var ChatMessages = function (_React$Component) {
     }, msg));
   };
 
-  ChatMessages.prototype.render = function render() {
+  _proto.render = function render() {
     var isScrolledToBottom = this.state.isScrolledToBottom;
-
-
-    return React.createElement(
-      'div',
-      {
-        ref: this.refContainer,
-        className: 'ChatMessages',
-        onScroll: this.handleScroll
-      },
-      _jsx(ScrollDownNotice, {
-        show: !isScrolledToBottom,
-        onClick: this.handleScrollToBottom
-      }),
-      this.renderMotd(),
-      this.props.messages.map(this.renderMessage, this)
-    );
+    return React.createElement("div", {
+      ref: this.refContainer,
+      className: "ChatMessages",
+      onScroll: this.handleScroll
+    }, _jsx(ScrollDownNotice, {
+      show: !isScrolledToBottom,
+      onClick: this.handleScrollToBottom
+    }), this.renderMotd(), this.props.messages.map(this.renderMessage, this));
   };
 
   return ChatMessages;
 }(React.Component);
 
-export default ChatMessages;
+export { ChatMessages as default };
 ChatMessages.propTypes = process.env.NODE_ENV !== "production" ? {
   bus: PropTypes.object.isRequired,
   messages: PropTypes.array,

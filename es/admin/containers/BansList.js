@@ -14,7 +14,6 @@ var mapDispatchToProps = {
   onLoadBans: loadBans,
   onUnbanUser: unbanUserAndReload
 };
-
 export default compose(connect(mapStateToProps, mapDispatchToProps), lifecycle({
   componentDidMount: function componentDidMount() {
     this.props.onLoadBans();

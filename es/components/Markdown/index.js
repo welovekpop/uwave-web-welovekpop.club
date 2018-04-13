@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseMarkdown from 'react-markdown';
@@ -14,6 +14,5 @@ var Markdown = function Markdown(_ref) {
 Markdown.propTypes = process.env.NODE_ENV !== "production" ? {
   source: PropTypes.string.isRequired
 } : {};
-
 export default Markdown;
 //# sourceMappingURL=index.js.map

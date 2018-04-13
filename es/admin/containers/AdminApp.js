@@ -8,18 +8,15 @@ import AdminApp from '../components/AdminApp';
 import adminReducer from '../reducers';
 import { transition } from '../actions/view';
 import { currentViewSelector } from '../selectors/viewSelectors';
-
 var mapStateToProps = createStructuredSelector({
   currentView: currentViewSelector
 });
-
 var mapDispatchToProps = {
   onTransition: transition
 };
 
 function hasAdminState(store) {
   var state = store.getState();
-
   return state && !!state.admin;
 }
 
@@ -33,13 +30,14 @@ function mountAdminReducerOnce(store) {
   }
 }
 
-var enhance = compose(getContext({ store: PropTypes.object }), lifecycle({
+var enhance = compose(getContext({
+  store: PropTypes.object
+}), lifecycle({
   componentWillMount: function componentWillMount() {
     if (this.props.store) {
       mountAdminReducerOnce(this.props.store);
     }
   }
 }), connect(mapStateToProps, mapDispatchToProps));
-
 export default enhance(AdminApp);
 //# sourceMappingURL=AdminApp.js.map

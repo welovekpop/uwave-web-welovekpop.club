@@ -1,17 +1,21 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/es/IconButton';
-import SearchIcon from 'material-ui-icons/Search';
-import CloseIcon from 'material-ui-icons/Close';
+import IconButton from "material-ui/es/IconButton";
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 
-var _ref2 = _jsx('div', {
-  className: 'PlaylistMenuRow-active-icon'
+var _ref2 =
+/*#__PURE__*/
+_jsx("div", {
+  className: "PlaylistMenuRow-active-icon"
 }, void 0, _jsx(SearchIcon, {}));
 
-var _ref3 = _jsx(CloseIcon, {
-  nativeColor: '#777'
+var _ref3 =
+/*#__PURE__*/
+_jsx(CloseIcon, {
+  nativeColor: "#777"
 });
 
 var SearchResultsRow = function SearchResultsRow(_ref) {
@@ -19,18 +23,18 @@ var SearchResultsRow = function SearchResultsRow(_ref) {
       query = _ref.query,
       onClick = _ref.onClick,
       onClose = _ref.onClose;
-  return _jsx('div', {
-    role: 'menuitem',
+  return _jsx("div", {
+    role: "menuitem",
     className: cx('PlaylistMenuRow', 'PlaylistMenuRow--search', className)
-  }, void 0, _jsx('div', {
-    className: 'PlaylistMenuRow-content'
-  }, void 0, _jsx('button', {
-    className: 'PlaylistMenuRow-title',
+  }, void 0, _jsx("div", {
+    className: "PlaylistMenuRow-content"
+  }, void 0, _jsx("button", {
+    className: "PlaylistMenuRow-title",
     onClick: onClick
-  }, void 0, _ref2, '"', query, '"'), _jsx('div', {
-    className: 'PlaylistMenuRow-count'
+  }, void 0, _ref2, "\"", query, "\""), _jsx("div", {
+    className: "PlaylistMenuRow-count"
   }, void 0, _jsx(IconButton, {
-    className: 'PlaylistMenuRow-closeButton',
+    className: "PlaylistMenuRow-closeButton",
     onClick: onClose
   }, void 0, _ref3))));
 };
@@ -41,6 +45,5 @@ SearchResultsRow.propTypes = process.env.NODE_ENV !== "production" ? {
   onClick: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired
 } : {};
-
 export default SearchResultsRow;
 //# sourceMappingURL=SearchResultsRow.js.map

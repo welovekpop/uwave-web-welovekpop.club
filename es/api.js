@@ -8,11 +8,8 @@ import Form from './components/Form';
 import FormGroup from './components/Form/Group';
 import TextField from './components/Form/TextField';
 import FormButton from './components/Form/Button';
-
 import * as _constants from './constants';
 export { _constants as constants };
-
-
 export var components = {
   MediaList: MediaList,
   VideoBackdrop: VideoBackdrop,
@@ -23,7 +20,6 @@ export var components = {
   TextField: TextField,
   FormButton: FormButton
 };
-
 export var actions = {
   playlists: PlaylistActionCreators,
   request: RequestActionCreators

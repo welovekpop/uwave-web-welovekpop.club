@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,9 +12,8 @@ var WaitList = function WaitList(_ref) {
       _onMoveUser = _ref.onMoveUser,
       _onRemoveUser = _ref.onRemoveUser,
       canMoveUsers = _ref.canMoveUsers;
-
   var Row = canMoveUsers ? ModRow : SimpleRow;
-  return _jsx('div', {
+  return _jsx("div", {
     className: cx('UserList', 'UserList--queue', 'WaitList', className)
   }, void 0, _jsx(List, {
     itemRenderer: function itemRenderer(index, key) {
@@ -31,7 +30,7 @@ var WaitList = function WaitList(_ref) {
       }, key);
     },
     length: users.length,
-    type: 'uniform'
+    type: "uniform"
   }));
 };
 
@@ -42,6 +41,5 @@ WaitList.propTypes = process.env.NODE_ENV !== "production" ? {
   onMoveUser: PropTypes.func.isRequired,
   onRemoveUser: PropTypes.func.isRequired
 } : {};
-
 export default WaitList;
 //# sourceMappingURL=index.js.map

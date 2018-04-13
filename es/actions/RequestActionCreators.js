@@ -1,21 +1,23 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
 import { REQUEST_START, REQUEST_COMPLETE } from '../constants/actionTypes/request';
-
 var requestID = 0;
-function request(method, url) {
-  var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-  var onStart = opts.onStart,
-      onComplete = opts.onComplete,
-      onError = opts.onError,
-      requestOpts = _objectWithoutProperties(opts, ['onStart', 'onComplete', 'onError']);
+function request(method, url, opts) {
+  if (opts === void 0) {
+    opts = {};
+  }
+
+  var _opts = opts,
+      onStart = _opts.onStart,
+      onComplete = _opts.onComplete,
+      onError = _opts.onError,
+      requestOpts = _objectWithoutProperties(_opts, ["onStart", "onComplete", "onError"]);
 
   requestID += 1;
-
   return {
     type: REQUEST_START,
-    payload: _extends({}, requestOpts, {
+    payload: _objectSpread({}, requestOpts, {
       method: method,
       url: url
     }),
@@ -35,7 +37,6 @@ export function requestComplete(response, meta) {
     meta: meta
   };
 }
-
 export function requestCompleteError(error, meta) {
   return {
     type: REQUEST_COMPLETE,
@@ -44,23 +45,34 @@ export function requestCompleteError(error, meta) {
     meta: meta
   };
 }
-
 export var get = function get(url, opts) {
   return request('get', url, opts);
 };
+export var post = function post(url, data, opts) {
+  if (opts === void 0) {
+    opts = {};
+  }
 
-export var post = function post(url, data) {
-  var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  return request('post', url, _extends({ data: data }, opts));
+  return request('post', url, _objectSpread({
+    data: data
+  }, opts));
 };
+export var put = function put(url, data, opts) {
+  if (opts === void 0) {
+    opts = {};
+  }
 
-export var put = function put(url, data) {
-  var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  return request('put', url, _extends({ data: data }, opts));
+  return request('put', url, _objectSpread({
+    data: data
+  }, opts));
 };
+export var del = function del(url, data, opts) {
+  if (opts === void 0) {
+    opts = {};
+  }
 
-export var del = function del(url, data) {
-  var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  return request('delete', url, _extends({ data: data }, opts));
+  return request('delete', url, _objectSpread({
+    data: data
+  }, opts));
 };
 //# sourceMappingURL=RequestActionCreators.js.map

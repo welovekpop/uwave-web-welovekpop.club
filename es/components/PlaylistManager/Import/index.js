@@ -1,5 +1,5 @@
-import _jsx from 'babel-runtime/helpers/jsx';
-import _extends from 'babel-runtime/helpers/extends';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _extends from "@babel/runtime/helpers/extends";
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectMediaSources from '../../../utils/injectMediaSources';
@@ -34,21 +34,18 @@ var PlaylistImport = function PlaylistImport(_ref) {
       }, sourceType));
     }
   });
-
-  return _jsx('div', {
-    className: 'PlaylistImport'
+  return _jsx("div", {
+    className: "PlaylistImport"
   }, void 0, forms);
 };
 
 PlaylistImport.propTypes = process.env.NODE_ENV !== "production" ? {
   selectedSourceType: PropTypes.string,
   sourceStates: PropTypes.object,
-
   getMediaSource: PropTypes.func.isRequired,
   getAllMediaSources: PropTypes.func.isRequired,
   onShowImportPanel: PropTypes.func.isRequired,
   onHideImportPanel: PropTypes.func.isRequired
 } : {};
-
 export default injectMediaSources()(PlaylistImport);
 //# sourceMappingURL=index.js.map

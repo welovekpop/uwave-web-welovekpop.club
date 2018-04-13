@@ -1,6 +1,6 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _jsx from 'babel-runtime/helpers/jsx';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _extends from "@babel/runtime/helpers/extends";
+import _jsx from "@babel/runtime/helpers/jsx";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,6 @@ import { translate } from 'react-i18next';
 import OverlayHeader from '../../../components/Overlay/Header';
 import OverlayContent from '../../../components/Overlay/Content';
 import HistoryList from './HistoryList';
-
 var enhance = translate();
 
 var RoomHistory = function RoomHistory(_ref) {
@@ -17,17 +16,17 @@ var RoomHistory = function RoomHistory(_ref) {
       onCloseOverlay = _ref.onCloseOverlay,
       onOpenAddMediaMenu = _ref.onOpenAddMediaMenu,
       onOpenPreviewMediaDialog = _ref.onOpenPreviewMediaDialog,
-      props = _objectWithoutProperties(_ref, ['t', 'className', 'onCloseOverlay', 'onOpenAddMediaMenu', 'onOpenPreviewMediaDialog']);
+      props = _objectWithoutProperties(_ref, ["t", "className", "onCloseOverlay", "onOpenAddMediaMenu", "onOpenPreviewMediaDialog"]);
 
-  return _jsx('div', {
+  return _jsx("div", {
     className: cx('RoomHistory', className)
   }, void 0, _jsx(OverlayHeader, {
-    direction: 'top',
-    className: 'AppRow AppRow--top',
+    direction: "top",
+    className: "AppRow AppRow--top",
     title: t('history.title'),
     onCloseOverlay: onCloseOverlay
   }), _jsx(OverlayContent, {
-    className: 'RoomHistory-body'
+    className: "RoomHistory-body"
   }, void 0, React.createElement(HistoryList, _extends({
     onOpenAddMediaMenu: onOpenAddMediaMenu,
     onOpenPreviewMediaDialog: onOpenPreviewMediaDialog
@@ -41,6 +40,5 @@ RoomHistory.propTypes = process.env.NODE_ENV !== "production" ? {
   onOpenAddMediaMenu: PropTypes.func.isRequired,
   onOpenPreviewMediaDialog: PropTypes.func.isRequired
 } : {};
-
 export default enhance(RoomHistory);
 //# sourceMappingURL=index.js.map

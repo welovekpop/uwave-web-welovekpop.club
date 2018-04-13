@@ -1,7 +1,8 @@
-import { ERROR_DISMISS } from '../constants/actionTypes/errors';
+import { ERROR_DISMISS } from '../constants/actionTypes/errors'; // eslint-disable-next-line import/prefer-default-export
 
-// eslint-disable-next-line import/prefer-default-export
 export function dismiss() {
-  return { type: ERROR_DISMISS };
+  return {
+    type: ERROR_DISMISS
+  };
 }
 //# sourceMappingURL=ErrorActionCreators.js.map

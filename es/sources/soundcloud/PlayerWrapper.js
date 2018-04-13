@@ -7,12 +7,12 @@ var PlayerWrapper = function PlayerWrapper(props) {
   if (props.mode === 'preview') {
     return React.createElement(PreviewPlayer, props);
   }
+
   return React.createElement(Player, props);
 };
 
 PlayerWrapper.propTypes = process.env.NODE_ENV !== "production" ? {
   mode: PropTypes.string.isRequired
 } : {};
-
 export default PlayerWrapper;
 //# sourceMappingURL=PlayerWrapper.js.map

@@ -1,13 +1,12 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog, { DialogTitle, DialogContent } from 'material-ui/es/Dialog';
+import Dialog, { DialogTitle, DialogContent } from "material-ui/es/Dialog";
 import PreviewPlayer from '../../Video/Player';
-
 var TITLE = 'preview-media-title';
 
 function getTitle(media) {
-  return media.artist + ' \u2013 ' + media.title;
+  return media.artist + " \u2013 " + media.title;
 }
 
 var PreviewMediaDialog = function PreviewMediaDialog(_ref) {
@@ -26,14 +25,14 @@ var PreviewMediaDialog = function PreviewMediaDialog(_ref) {
     open: open,
     onClose: onCloseDialog,
     maxWidth: false,
-    'aria-labelledby': TITLE
+    "aria-labelledby": TITLE
   }, void 0, _jsx(DialogTitle, {
     id: TITLE,
-    className: 'Dialog-title'
+    className: "Dialog-title"
   }, void 0, open ? getTitle(media) : 'Preview Media'), _jsx(DialogContent, {
-    className: 'Dialog-body PreviewMediaDialog-content'
+    className: "Dialog-body PreviewMediaDialog-content"
   }, void 0, open && _jsx(PreviewPlayer, {
-    mode: 'preview',
+    mode: "preview",
     media: media,
     volume: volume
   })));
@@ -43,9 +42,7 @@ PreviewMediaDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   open: PropTypes.bool,
   media: PropTypes.object,
   volume: PropTypes.number,
-
   onCloseDialog: PropTypes.func.isRequired
 } : {};
-
 export default PreviewMediaDialog;
 //# sourceMappingURL=index.js.map

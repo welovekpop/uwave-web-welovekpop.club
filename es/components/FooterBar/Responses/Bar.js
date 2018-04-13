@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import pure from 'recompose/pure';
@@ -8,7 +8,7 @@ import Downvote from './Downvote';
 
 var ResponseBar = function ResponseBar(_ref) {
   var _ref$disabled = _ref.disabled,
-      disabled = _ref$disabled === undefined ? false : _ref$disabled,
+      disabled = _ref$disabled === void 0 ? false : _ref$disabled,
       isUpvote = _ref.isUpvote,
       upvotesCount = _ref.upvotesCount,
       onUpvote = _ref.onUpvote,
@@ -18,8 +18,8 @@ var ResponseBar = function ResponseBar(_ref) {
       isFavorite = _ref.isFavorite,
       favoritesCount = _ref.favoritesCount,
       onFavorite = _ref.onFavorite;
-  return _jsx('div', {
-    className: 'AudienceResponse'
+  return _jsx("div", {
+    className: "AudienceResponse"
   }, void 0, _jsx(Upvote, {
     disabled: disabled,
     onUpvote: onUpvote,
@@ -43,15 +43,12 @@ ResponseBar.propTypes = process.env.NODE_ENV !== "production" ? {
   isUpvote: PropTypes.bool,
   isFavorite: PropTypes.bool,
   isDownvote: PropTypes.bool,
-
   upvotesCount: PropTypes.number.isRequired,
   favoritesCount: PropTypes.number.isRequired,
   downvotesCount: PropTypes.number.isRequired,
-
   onUpvote: PropTypes.func.isRequired,
   onFavorite: PropTypes.func.isRequired,
   onDownvote: PropTypes.func.isRequired
 } : {};
-
 export default pure(ResponseBar);
 //# sourceMappingURL=Bar.js.map

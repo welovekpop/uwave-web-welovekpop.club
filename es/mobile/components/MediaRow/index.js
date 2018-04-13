@@ -1,7 +1,7 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem, ListItemText } from 'material-ui/es/List';
+import { ListItem, ListItemText } from "material-ui/es/List";
 
 var MediaRow = function MediaRow(_ref) {
   var media = _ref.media;
@@ -14,6 +14,5 @@ var MediaRow = function MediaRow(_ref) {
 MediaRow.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.object.isRequired
 } : {};
-
 export default MediaRow;
 //# sourceMappingURL=index.js.map

@@ -1,5 +1,10 @@
-import _Player from './PlayerWrapper';
-export { _Player as Player };
-import _logo from '../../../assets/img/soundcloud.png';
-export { _logo as logo };
+import Player from './PlayerWrapper';
+import logo from '../../../assets/img/soundcloud.png';
+export default function soundcloud() {
+  return {
+    name: 'soundcloud',
+    Player: Player,
+    logo: logo
+  };
+}
 //# sourceMappingURL=index.js.map

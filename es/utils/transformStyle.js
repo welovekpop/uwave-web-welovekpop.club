@@ -4,7 +4,6 @@
  * @param {string} transform CSS transform value.
  * @return {Object}
  */
-
 export default function transformStyle(transform) {
   return {
     transform: transform,

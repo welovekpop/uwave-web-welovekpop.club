@@ -1,14 +1,14 @@
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+
 /* global bugsnag */
 import React from 'react';
 import PropTypes from 'prop-types';
 import nest from 'recompose/nest';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { MuiThemeProvider } from 'material-ui/es/styles';
+import { MuiThemeProvider } from "material-ui/es/styles";
 import { I18nextProvider } from 'react-i18next';
 import { Provider as BusProvider } from 'react-bus';
 import { Mobile, Desktop } from '../components/Responsive';
@@ -19,9 +19,7 @@ import { isConnectedSelector } from '../selectors/serverSelectors';
 import DesktopApp from '../components/App';
 import MobileApp from '../mobile/components/App';
 import FatalError from '../components/FatalError';
-
 var SimpleProviders = nest(BusProvider, ClockProvider);
-
 var mapStateToProps = createStructuredSelector({
   activeOverlay: function activeOverlay(state) {
     return state.activeOverlay;
@@ -29,53 +27,51 @@ var mapStateToProps = createStructuredSelector({
   isConnected: isConnectedSelector,
   settings: settingsSelector,
   language: languageSelector,
-  theme: themeSelector,
-  hasAboutPage: function hasAboutPage(state, props) {
-    return props.uwave.getAboutPageComponent() !== null;
-  }
+  theme: themeSelector
 });
-
 var mapDispatchToProps = {
   onCloseOverlay: closeAll
 };
-
 var enhance = connect(mapStateToProps, mapDispatchToProps);
 
-var AppContainer = function (_React$Component) {
-  _inherits(AppContainer, _React$Component);
+var AppContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(AppContainer, _React$Component);
 
   function AppContainer() {
-    var _temp, _this, _ret;
+    var _temp, _this;
 
-    _classCallCheck(this, AppContainer);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
       error: null
     }, _this.renderApp = function () {
       return _jsx(React.Fragment, {}, void 0, _jsx(Mobile, {}, void 0, React.createElement(MobileApp, _this.props)), _jsx(Desktop, {}, void 0, React.createElement(DesktopApp, _this.props)));
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp) || _assertThisInitialized(_this);
   }
 
-  AppContainer.prototype.getChildContext = function getChildContext() {
+  var _proto = AppContainer.prototype;
+
+  _proto.getChildContext = function getChildContext() {
     return {
       mediaSources: this.props.mediaSources,
       uwave: this.props.uwave
     };
   };
 
-  AppContainer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+  _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     if (this.props.language !== nextProps.language) {
       this.props.locale.changeLanguage(nextProps.language);
     }
   };
 
-  AppContainer.prototype.componentDidCatch = function componentDidCatch(error, info) {
-    this.setState({ error: error });
-
+  _proto.componentDidCatch = function componentDidCatch(error, info) {
+    this.setState({
+      error: error
+    });
     bugsnag.notify(error, {
       metaData: {
         componentStack: info.componentStack
@@ -83,7 +79,7 @@ var AppContainer = function (_React$Component) {
     });
   };
 
-  AppContainer.prototype.render = function render() {
+  _proto.render = function render() {
     if (this.state.error) {
       // Let's hope the ThemeProvider works at least...
       return _jsx(MuiThemeProvider, {
@@ -114,7 +110,5 @@ AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
   theme: PropTypes.object,
   locale: PropTypes.object.isRequired
 } : {};
-
-
 export default enhance(AppContainer);
 //# sourceMappingURL=App.js.map

@@ -1,8 +1,8 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgress } from 'material-ui/es/Progress';
+import { CircularProgress } from "material-ui/es/Progress";
 import MediaList from '../../MediaList';
 import PlaylistMeta from './Meta';
 import PlainItemRow from '../../MediaList/Row';
@@ -25,34 +25,35 @@ var makeActions = function makeActions(_ref) {
       onAdd: function onAdd(position) {
         return onOpenAddMediaMenu(position, media, selection);
       }
-    }, 'add'),
-    // Don't show the "move to first" action on the first item in the playlist.
+    }, "add"), // Don't show the "move to first" action on the first item in the playlist.
     // If the playlist is filtered we don't know if the first item to show is
     // also the first in the playlist, so just show it always in that case.
     (index > 0 || isFiltered) && _jsx(MoveToFirstAction, {
       onFirst: function onFirst() {
         return onMoveToFirst(media, selection);
       }
-    }, 'first'), index === 0 && !isFiltered && _jsx(MoveToLastAction, {
+    }, "first"), index === 0 && !isFiltered && _jsx(MoveToLastAction, {
       onLast: function onLast() {
         return onMoveToLast(media, selection);
       }
-    }, 'last'), _jsx(EditMediaAction, {
+    }, "last"), _jsx(EditMediaAction, {
       onEdit: function onEdit() {
         return onEditMedia(media);
       }
-    }, 'edit'), _jsx(RemoveFromPlaylistAction, {
+    }, "edit"), _jsx(RemoveFromPlaylistAction, {
       onRemove: function onRemove() {
         return onRemoveFromPlaylist(media, selection);
       }
-    }, 'remove')];
+    }, "remove")];
   };
 };
 
-var _ref2 = _jsx('div', {
-  className: 'PlaylistPanel-loading'
+var _ref2 =
+/*#__PURE__*/
+_jsx("div", {
+  className: "PlaylistPanel-loading"
 }, void 0, _jsx(CircularProgress, {
-  size: '100%'
+  size: "100%"
 }));
 
 var PlaylistPanel = function PlaylistPanel(props) {
@@ -70,28 +71,29 @@ var PlaylistPanel = function PlaylistPanel(props) {
       onFilterPlaylistItems = props.onFilterPlaylistItems,
       onMoveMedia = props.onMoveMedia,
       onOpenPreviewMediaDialog = props.onOpenPreviewMediaDialog;
+  var list;
 
-
-  var list = void 0;
   if (loading) {
     list = _ref2;
   } else {
     list = _jsx(MediaList, {
-      className: 'PlaylistPanel-media',
+      className: "PlaylistPanel-media",
       size: media.length,
       media: media,
       rowComponent: isFiltered ? PlainItemRow : PlaylistItemRow,
-      rowProps: { onMoveMedia: onMoveMedia },
+      rowProps: {
+        onMoveMedia: onMoveMedia
+      },
       onOpenPreviewMediaDialog: onOpenPreviewMediaDialog,
       makeActions: makeActions(props),
       onRequestPage: onLoadPlaylistPage
     });
   }
 
-  return _jsx('div', {
+  return _jsx("div", {
     className: cx('PlaylistPanel', className)
   }, void 0, _jsx(PlaylistMeta, {
-    className: 'PlaylistPanel-meta',
+    className: "PlaylistPanel-meta",
     id: playlist._id,
     name: playlist.name,
     active: playlist.active,
@@ -120,6 +122,5 @@ PlaylistPanel.propTypes = process.env.NODE_ENV !== "production" ? {
   onMoveMedia: PropTypes.func.isRequired,
   onOpenPreviewMediaDialog: PropTypes.func.isRequired
 } : {};
-
 export default PlaylistPanel;
 //# sourceMappingURL=index.js.map

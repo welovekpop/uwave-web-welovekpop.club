@@ -1,13 +1,10 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
 import { openPreviewMediaDialog } from '../actions/DialogActionCreators';
 import { addMediaMenu } from '../actions/PlaylistActionCreators';
-
 import { searchQuerySelector, searchResultsSelector, searchLoadingStateSelector } from '../selectors/searchSelectors';
 import SearchResults from '../components/PlaylistManager/Panel/SearchResults';
-
 var mapStateToProps = createStructuredSelector({
   query: searchQuerySelector,
   results: searchResultsSelector,
@@ -18,6 +15,7 @@ var selectionOrOne = function selectionOrOne(media, selection) {
   if (selection.isSelected(media)) {
     return selection.get();
   }
+
   return [media];
 };
 

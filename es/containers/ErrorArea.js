@@ -1,9 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { dismiss } from '../actions/ErrorActionCreators';
 import { firstErrorSelector } from '../selectors/errorSelectors';
-
 import ErrorArea from '../components/ErrorArea';
 
 var mapStateToProps = function mapStateToProps(state) {

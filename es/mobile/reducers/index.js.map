@@ -1,1 +1,1 @@
-{"version":3,"sources":["mobile/reducers/index.js"],"names":["default"],"mappings":"AAAA,SAASA,OAAT,QAAwB,UAAxB","file":"index.js","sourcesContent":["export { default } from './mobile';\n"]}
+{"version":3,"sources":["mobile/reducers/index.js"],"names":["default"],"mappings":"AAAA,SAASA,OAAT,QAAwB,UAAxB","sourcesContent":["export { default } from './mobile';\n"],"file":"index.js"}

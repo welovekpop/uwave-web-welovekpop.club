@@ -4,7 +4,6 @@ import LeaveMessage from './NotificationMessages/LeaveMessage';
 import NameChangedMessage from './NotificationMessages/NameChangedMessage';
 import SkipMessage from './NotificationMessages/SkipMessage';
 import RoleUpdateMessage from './NotificationMessages/RoleUpdateMessage';
-
 export default {
   log: LogMessage,
   userJoin: JoinMessage,

@@ -1,10 +1,9 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import pure from 'recompose/pure';
 import RoleColor from '../RoleColor';
-
 var enhance = pure;
 
 var Username = function Username(_ref) {
@@ -23,6 +22,5 @@ Username.propTypes = process.env.NODE_ENV !== "production" ? {
     roles: PropTypes.arrayOf(PropTypes.string)
   }).isRequired
 } : {};
-
 export default enhance(Username);
 //# sourceMappingURL=index.js.map

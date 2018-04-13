@@ -1,7 +1,6 @@
-import _jsx from 'babel-runtime/helpers/jsx';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+import _jsx from "@babel/runtime/helpers/jsx";
+import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import cx from 'classnames';
 import isEqual from 'is-equal-shallow';
 import React from 'react';
@@ -20,28 +19,31 @@ var defaultSourceTools = function defaultSourceTools() {
 
 var enhance = injectMediaSources();
 
-var _ref = _jsx('div', {
-  className: 'Video'
+var _ref =
+/*#__PURE__*/
+_jsx("div", {
+  className: "Video"
 });
 
-var Video = function (_React$Component) {
-  _inherits(Video, _React$Component);
+var Video =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Video, _React$Component);
 
   function Video() {
-    var _temp, _this, _ret;
+    var _temp, _this;
 
-    _classCallCheck(this, Video);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
       shouldShowToolbar: false
     }, _this.handleFullscreenEnter = function () {
       if (screenfull.enabled) {
         screenfull.request(_this.element);
       }
+
       _this.props.onFullscreenEnter();
     }, _this.handleFullscreenChange = function () {
       if (!screenfull.isFullscreen) {
@@ -51,25 +53,33 @@ var Video = function (_React$Component) {
       if (_this.timer) {
         clearTimeout(_this.timer);
       } else {
-        _this.setState({ shouldShowToolbar: true });
+        _this.setState({
+          shouldShowToolbar: true
+        });
       }
+
       _this.timer = setTimeout(_this.handleMouseMoveEnd, 5000);
     }, _this.handleMouseMoveEnd = function () {
       clearTimeout(_this.timer);
       _this.timer = null;
-      _this.setState({ shouldShowToolbar: false });
+
+      _this.setState({
+        shouldShowToolbar: false
+      });
     }, _this.refElement = function (element) {
       _this.element = element;
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp) || _assertThisInitialized(_this);
   }
 
-  Video.prototype.componentDidMount = function componentDidMount() {
+  var _proto = Video.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     if (screenfull.enabled) {
       screenfull.on('change', this.handleFullscreenChange);
     }
   };
 
-  Video.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+  _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     if (this.props.isFullscreen && !nextProps.isFullscreen && screenfull.enabled) {
       // Checking for `enabled` here, because our props have probably changed
       // _after_ exiting fullscreen mode (see `this.handleFullscreenChange`).
@@ -80,11 +90,11 @@ var Video = function (_React$Component) {
     }
   };
 
-  Video.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
+  _proto.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
     return !isEqual(nextProps, this.props);
   };
 
-  Video.prototype.render = function render() {
+  _proto.render = function render() {
     var _props = this.props,
         getMediaSource = _props.getMediaSource,
         isFullscreen = _props.isFullscreen,
@@ -96,50 +106,38 @@ var Video = function (_React$Component) {
         seek = _props.seek,
         onFullscreenExit = _props.onFullscreenExit;
 
-
     if (!media) {
       return _ref;
     }
 
     var shouldShowToolbar = this.state.shouldShowToolbar;
-
-
     var currentSource = getMediaSource(media.sourceType);
     var MediaSourceTools = currentSource && currentSource.VideoTools ? currentSource.VideoTools : defaultSourceTools;
-
-    return React.createElement(
-      'div',
-      {
-        ref: this.refElement,
-        className: cx('Video', 'Video--' + media.sourceType, 'Video--' + size)
-      },
-      _jsx(VideoBackdrop, {
-        url: media.thumbnail
-      }),
-      _jsx(Player, {
-        enabled: enabled,
-        size: size,
-        volume: volume,
-        isMuted: isMuted,
-        media: media,
-        seek: seek
-      }),
-      isFullscreen && _jsx(MouseMoveCapture, {
-        active: shouldShowToolbar,
-        onMouseMove: this.handleMouseMove
-      }),
-      isFullscreen && _jsx(VideoProgressBar, {
-        media: media,
-        seek: seek
-      }),
-      (!isFullscreen || shouldShowToolbar) && _jsx(VideoToolbar, {
-        isFullscreen: isFullscreen,
-        onFullscreenEnter: this.handleFullscreenEnter,
-        onFullscreenExit: onFullscreenExit
-      }, void 0, _jsx(MediaSourceTools, {
-        media: media
-      }))
-    );
+    return React.createElement("div", {
+      ref: this.refElement,
+      className: cx('Video', "Video--" + media.sourceType, "Video--" + size)
+    }, _jsx(VideoBackdrop, {
+      url: media.thumbnail
+    }), _jsx(Player, {
+      enabled: enabled,
+      size: size,
+      volume: volume,
+      isMuted: isMuted,
+      media: media,
+      seek: seek
+    }), isFullscreen && _jsx(MouseMoveCapture, {
+      active: shouldShowToolbar,
+      onMouseMove: this.handleMouseMove
+    }), isFullscreen && _jsx(VideoProgressBar, {
+      media: media,
+      seek: seek
+    }), (!isFullscreen || shouldShowToolbar) && _jsx(VideoToolbar, {
+      isFullscreen: isFullscreen,
+      onFullscreenEnter: this.handleFullscreenEnter,
+      onFullscreenExit: onFullscreenExit
+    }, void 0, _jsx(MediaSourceTools, {
+      media: media
+    })));
   };
 
   return Video;
@@ -157,7 +155,5 @@ Video.propTypes = process.env.NODE_ENV !== "production" ? {
   onFullscreenEnter: PropTypes.func.isRequired,
   onFullscreenExit: PropTypes.func.isRequired
 } : {};
-
-
 export default enhance(Video);
 //# sourceMappingURL=index.js.map

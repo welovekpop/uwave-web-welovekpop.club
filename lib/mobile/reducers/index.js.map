@@ -1,1 +1,1 @@
-{"version":3,"sources":["mobile/reducers/index.js"],"names":["default"],"mappings":";;;;;;;;;;;2CAASA,O","file":"index.js","sourcesContent":["export { default } from './mobile';\n"]}
+{"version":3,"sources":["mobile/reducers/index.js"],"names":[],"mappings":";;;;;;;;;;;;AAAA","file":"index.js","sourcesContent":["export { default } from './mobile';\n"]}

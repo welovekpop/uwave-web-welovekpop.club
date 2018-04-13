@@ -9,7 +9,6 @@ import { currentUserSelector } from '../selectors/userSelectors';
 import { settingsSelector } from '../selectors/settingSelectors';
 import Overlay from '../components/Overlay';
 import SettingsManager from '../components/SettingsManager';
-
 var mapStateToProps = createStructuredSelector({
   settings: settingsSelector,
   user: currentUserSelector

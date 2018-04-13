@@ -7,7 +7,6 @@ var baseSelector = function baseSelector(state) {
 export var selectedSourceTypeSelector = createSelector(baseSelector, function (imports) {
   return imports.sourceType;
 });
-
 export var showImportPanelSelector = createSelector(baseSelector, function (imports) {
   return imports.showPanel;
 });

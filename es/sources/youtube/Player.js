@@ -1,4 +1,4 @@
-import _jsx from 'babel-runtime/helpers/jsx';
+import _jsx from "@babel/runtime/helpers/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,10 +12,8 @@ var YouTubePlayer = function YouTubePlayer(_ref) {
       media = _ref.media,
       seek = _ref.seek,
       volume = _ref.volume;
-
-  var modeClass = 'src-youtube-Player--' + mode;
-
-  return _jsx('div', {
+  var modeClass = "src-youtube-Player--" + mode;
+  return _jsx("div", {
     className: cx('src-youtube-Player', modeClass, className),
     hidden: !active
   }, void 0, enabled && _jsx(YouTubePlayerEmbed, {
@@ -36,6 +34,5 @@ YouTubePlayer.propTypes = process.env.NODE_ENV !== "production" ? {
   seek: PropTypes.number,
   volume: PropTypes.number
 } : {};
-
 export default YouTubePlayer;
 //# sourceMappingURL=Player.js.map
