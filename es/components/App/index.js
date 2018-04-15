@@ -1,6 +1,6 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
-import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 
 /* global localStorage */
 import React from 'react';

@@ -1,6 +1,7 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
+import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withProps from 'recompose/withProps';
@@ -11,18 +12,17 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { TableRow, TableCell as MuiTableCell } from "material-ui/es/Table";
 import Avatar from '../../../components/Avatar';
 import Username from '../../../components/Username/WithCard';
+import UserRole from '../../../components/UserRole';
 import formatJoinDate from '../../../utils/formatJoinDate';
-var avatarStyle = {
-  width: 48,
-  paddingRight: 0
-};
 var actionsStyle = {
   width: 48,
   paddingLeft: 0,
   paddingRight: 0
 };
-var TableCell = withProps({
-  className: 'AdminUserRow-cell'
+var TableCell = withProps(function (props) {
+  return {
+    className: cx('AdminUserRow-cell', props.className)
+  };
 })(MuiTableCell);
 
 var _ref =
@@ -75,12 +75,16 @@ function (_React$Component) {
     return _jsx(TableRow, {
       className: "AdminUserRow"
     }, void 0, _jsx(TableCell, {
-      style: avatarStyle
+      className: "AdminUserRow-avatar"
     }, void 0, _jsx(Avatar, {
       user: user
     })), _jsx(TableCell, {}, void 0, _jsx(Username, {
       user: user
-    })), _jsx(TableCell, {}, void 0, formatJoinDate(user.createdAt)), _ref, _jsx(TableCell, {}, void 0, user.roles.join(', ')), _jsx(TableCell, {
+    })), _jsx(TableCell, {}, void 0, formatJoinDate(user.createdAt, 'date')), _ref, _jsx(TableCell, {}, void 0, user.roles.length > 0 &&
+    /* Only show the primary role here for space reasons. */
+    _jsx(UserRole, {
+      roleName: user.roles[0]
+    })), _jsx(TableCell, {
       style: actionsStyle
     }, void 0, _jsx(IconButton, {
       onClick: this.handleOpenMenu,

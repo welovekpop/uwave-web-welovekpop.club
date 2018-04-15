@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { OPEN_ADD_MEDIA_MENU, CLOSE_ADD_MEDIA_MENU } from '../constants/actionTypes/playlists';
 var initialState = {
   open: false,

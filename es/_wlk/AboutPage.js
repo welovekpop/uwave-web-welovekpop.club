@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import FacebookIcon from './icons/Facebook';
 import YouTubeIcon from './icons/YouTube';

@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { createSelector } from 'reselect';
 import naturalCmp from 'natural-compare';
 import values from 'object-values';

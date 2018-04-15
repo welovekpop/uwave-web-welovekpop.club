@@ -1,8 +1,9 @@
-import _extends from "@babel/runtime/helpers/extends";
-import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+import _extends from "@babel/runtime/helpers/builtin/extends";
+import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import MuiButton from "material-ui/es/Button";
 
 var Button = function Button(_ref) {
   var children = _ref.children,
@@ -10,8 +11,11 @@ var Button = function Button(_ref) {
       text = _ref.text,
       props = _objectWithoutProperties(_ref, ["children", "className", "text"]);
 
-  return React.createElement("button", _extends({
-    className: cx('Button', className)
+  return React.createElement(MuiButton, _extends({
+    variant: "raised",
+    color: "primary",
+    className: cx('Button', className),
+    type: "submit"
   }, props), text || children);
 };
 

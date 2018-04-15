@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 // Polyfills for browsers that might not yet support Promises or the Fetch API
 // (newer & better XMLHttpRequest).
 import 'lie/polyfill';

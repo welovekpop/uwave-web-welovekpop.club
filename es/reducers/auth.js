@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { AUTH_STRATEGIES, RESET_PASSWORD_COMPLETE, REGISTER_COMPLETE, LOGIN_COMPLETE, SET_TOKEN, LOGOUT_COMPLETE } from '../constants/actionTypes/auth';
 var initialState = {
   strategies: ['local'],

@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import EditMediaDialog from '../../containers/EditMediaDialog';
 import LoginDialog from '../../containers/LoginDialog';

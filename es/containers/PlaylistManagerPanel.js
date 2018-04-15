@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';

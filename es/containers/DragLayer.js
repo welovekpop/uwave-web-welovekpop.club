@@ -1,5 +1,5 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragLayer } from 'react-dnd';

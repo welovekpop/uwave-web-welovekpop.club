@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { ADVANCE } from '../constants/actionTypes/booth';
 import { LOAD_VOTES, FAVORITE, UPVOTE, DOWNVOTE, DO_FAVORITE_START, DO_FAVORITE_COMPLETE } from '../constants/actionTypes/votes';
 var initialState = {

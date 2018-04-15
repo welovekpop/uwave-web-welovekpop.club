@@ -1,10 +1,11 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
-import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
+import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { MenuItem } from "material-ui/es/Menu";
 import CreatePlaylistIcon from '@material-ui/icons/Add';
 import PromptDialog from '../../Dialogs/PromptDialog';
 var enhance = translate();
@@ -58,15 +59,12 @@ function (_React$Component) {
     var _props = this.props,
         t = _props.t,
         className = _props.className;
-    return _jsx(React.Fragment, {}, void 0, _jsx("button", {
-      role: "menuitem",
+    return _jsx(React.Fragment, {}, void 0, _jsx(MenuItem, {
       className: cx('PlaylistMenuRow', 'PlaylistMenuRow--create', className),
       onClick: this.handleOpen
     }, void 0, _jsx("div", {
-      className: "PlaylistMenuRow-content"
-    }, void 0, _jsx("div", {
       className: "PlaylistMenuRow-title"
-    }, void 0, _ref, t('playlists.new')))), this.state.creating && _jsx(PromptDialog, {
+    }, void 0, _ref, t('playlists.new'))), this.state.creating && _jsx(PromptDialog, {
       title: t('dialogs.createPlaylist.nameInputTitle'),
       icon: _ref2,
       submitLabel: t('dialogs.createPlaylist.action'),

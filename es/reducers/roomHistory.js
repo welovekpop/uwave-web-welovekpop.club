@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { ADVANCE, LOAD_HISTORY_COMPLETE } from '../constants/actionTypes/booth';
 var initialState = [];
 

@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from "material-ui/es/Progress";

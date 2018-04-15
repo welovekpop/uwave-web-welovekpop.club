@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { OPEN_EDIT_MEDIA_DIALOG, CLOSE_EDIT_MEDIA_DIALOG, OPEN_PREVIEW_MEDIA_DIALOG, CLOSE_PREVIEW_MEDIA_DIALOG, OPEN_LOGIN_DIALOG, CLOSE_LOGIN_DIALOG } from '../constants/actionTypes/dialogs';
 var initialState = {
   editMedia: {

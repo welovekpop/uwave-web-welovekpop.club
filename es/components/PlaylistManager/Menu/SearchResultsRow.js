@@ -1,8 +1,9 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from "material-ui/es/IconButton";
+import { ListItem } from "material-ui/es/List";
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -23,11 +24,9 @@ var SearchResultsRow = function SearchResultsRow(_ref) {
       query = _ref.query,
       onClick = _ref.onClick,
       onClose = _ref.onClose;
-  return _jsx("div", {
+  return _jsx(ListItem, {
     role: "menuitem",
     className: cx('PlaylistMenuRow', 'PlaylistMenuRow--search', className)
-  }, void 0, _jsx("div", {
-    className: "PlaylistMenuRow-content"
   }, void 0, _jsx("button", {
     className: "PlaylistMenuRow-title",
     onClick: onClick
@@ -36,7 +35,7 @@ var SearchResultsRow = function SearchResultsRow(_ref) {
   }, void 0, _jsx(IconButton, {
     className: "PlaylistMenuRow-closeButton",
     onClick: onClose
-  }, void 0, _ref3))));
+  }, void 0, _ref3)));
 };
 
 SearchResultsRow.propTypes = process.env.NODE_ENV !== "production" ? {

@@ -1,6 +1,6 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';

@@ -1,13 +1,12 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import nest from 'recompose/nest';
 import withProps from 'recompose/withProps';
 import { openPreviewMediaDialog } from '../../actions/DialogActionCreators';
 import { addMediaMenu } from '../../actions/PlaylistActionCreators';
 import { roomHistoryWithVotesSelector } from '../../selectors/roomHistorySelectors';
 import Overlay from '../../components/Overlay';
-import RoomHistory from '../components/RoomHistory';
+import createLazyOverlay from '../../components/LazyOverlay';
 
 var selectionOrOne = function selectionOrOne(media, selection) {
   // History entries store the played media on their `.media` property
@@ -35,8 +34,19 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   }, dispatch);
 };
 
-var OverlayFromTop = withProps({
-  direction: 'top'
-})(Overlay);
-export default connect(mapStateToProps, mapDispatchToProps)(nest(OverlayFromTop, RoomHistory));
+var enhance = connect(mapStateToProps, mapDispatchToProps);
+var RoomHistory = createLazyOverlay({
+  loader: function loader() {
+    return import('../components/RoomHistory'
+    /* webpackChunkName: "historyMobile" */
+    );
+  },
+  title: function title(t) {
+    return t('history.title');
+  },
+  OverlayComponent: withProps({
+    direction: 'top'
+  })(Overlay)
+});
+export default enhance(RoomHistory);
 //# sourceMappingURL=RoomHistory.js.map

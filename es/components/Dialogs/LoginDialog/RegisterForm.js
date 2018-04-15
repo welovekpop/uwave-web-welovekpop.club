@@ -1,6 +1,6 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate, Interpolate } from 'react-i18next';
@@ -119,10 +119,13 @@ function (_React$Component) {
     var _props = this.props,
         t = _props.t,
         error = _props.error,
-        supportsSocialAuth = _props.supportsSocialAuth;
+        supportsSocialAuth = _props.supportsSocialAuth,
+        useReCaptcha = _props.useReCaptcha;
     var _state = this.state,
         agreed = _state.agreed,
-        busy = _state.busy;
+        busy = _state.busy,
+        captchaResponse = _state.captchaResponse;
+    var captchaOk = !useReCaptcha || !!captchaResponse;
     return _jsx(Form, {
       className: "RegisterForm",
       onSubmit: this.handleSubmit
@@ -159,7 +162,7 @@ function (_React$Component) {
       })
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: "RegisterForm-submit",
-      disabled: busy || !agreed
+      disabled: busy || !agreed || !captchaOk
     }, void 0, busy ? _ref5 : t('login.register'))));
   };
 

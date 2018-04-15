@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,7 +15,9 @@ var Button = function Button(_ref) {
     _jsx(Tooltip, {
       title: tooltip,
       placement: "top"
-    }, void 0, _jsx("div", {}, void 0, _jsx("button", {
+    }, void 0, _jsx("div", {
+      className: "ResponseButton-wrap"
+    }, void 0, _jsx("button", {
       className: cx('ResponseButton', disabled && 'ResponseButton--disabled'),
       disabled: disabled,
       onClick: onClick

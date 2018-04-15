@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { SET_TIMER, OFFSET } from '../constants/actionTypes/time';
 var initialState = {
   timer: 0,

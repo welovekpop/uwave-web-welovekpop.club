@@ -1,5 +1,5 @@
-import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 

@@ -1,4 +1,4 @@
-import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import path from 'path';
 import defaultFs from 'fs';
 import hstream from 'hstream';

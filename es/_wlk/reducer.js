@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { SHOULD_RANDOMIZE } from './constants';
 var initialState = {
   shouldRandomize: false

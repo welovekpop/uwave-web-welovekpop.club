@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { SHOW_IMPORT_PANEL, SHOW_IMPORT_SOURCE_PANEL, HIDE_IMPORT_SOURCE_PANEL } from '../constants/actionTypes/imports';
 import { SELECT_PLAYLIST } from '../constants/actionTypes/playlists';
 import { SHOW_SEARCH_RESULTS } from '../constants/actionTypes/search';

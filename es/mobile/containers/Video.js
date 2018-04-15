@@ -18,5 +18,6 @@ var mapDispatchToProps = {
   onUpvote: doUpvote,
   onDownvote: doDownvote
 };
-export default compose(timed(), connect(mapStateToProps, mapDispatchToProps))(Video);
+var enhance = compose(timed(), connect(mapStateToProps, mapDispatchToProps));
+export default enhance(Video);
 //# sourceMappingURL=Video.js.map

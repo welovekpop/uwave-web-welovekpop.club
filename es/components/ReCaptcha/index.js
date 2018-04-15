@@ -1,7 +1,7 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _extends from "@babel/runtime/helpers/extends";
-import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _extends from "@babel/runtime/helpers/builtin/extends";
+import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import loadScript from 'load-script2';
 import { CircularProgress } from "material-ui/es/Progress";
@@ -10,17 +10,15 @@ var GRECAPTCHA_API = 'https://www.google.com/recaptcha/api.js';
 var onloadCallbackName = 'grecaptchaOnload__$';
 var onloadCallbacks = [];
 
-if (typeof window !== 'undefined') {
-  window[onloadCallbackName] = function () {
-    onloadCallbacks.forEach(function (fn) {
-      return fn(window.grecaptcha);
-    });
-  };
-}
-
 function loadReCaptcha(cb) {
   loadScript(GRECAPTCHA_API + "?onload=" + onloadCallbackName + "&render=explicit");
   onloadCallbacks.push(cb);
+}
+
+function onload() {
+  onloadCallbacks.forEach(function (fn) {
+    return fn(window.grecaptcha);
+  });
 }
 
 var _ref =
@@ -52,6 +50,10 @@ function (_React$Component) {
     var _this2 = this;
 
     if (!this.state.grecaptcha) {
+      if (typeof window[onloadCallbackName] !== 'function') {
+        window[onloadCallbackName] = onload;
+      }
+
       loadReCaptcha(function (grecaptcha) {
         _this2.setState({
           grecaptcha: grecaptcha

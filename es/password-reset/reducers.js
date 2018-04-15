@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { SET_RESET_KEY, SET_RESET_SUCCESS } from './constants';
 import _auth from '../reducers/auth';
 export { _auth as auth };

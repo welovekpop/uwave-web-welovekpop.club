@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import except from 'except';
 import { RECEIVE_MOTD, RECEIVE_MESSAGE, SEND_MESSAGE, LOG, REMOVE_MESSAGE, REMOVE_USER_MESSAGES, REMOVE_ALL_MESSAGES, MUTE_USER, UNMUTE_USER } from '../constants/ActionTypes';
 import reduceNotifications from './chat/notifications';

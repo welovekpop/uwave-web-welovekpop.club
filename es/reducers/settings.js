@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import merge from 'deepmerge';
 import compose from 'recompose/compose';
 import { LOAD_SETTINGS, CHANGE_SETTING } from '../constants/actionTypes/settings'; // Some people have >100% volumes stored in their localStorage settings

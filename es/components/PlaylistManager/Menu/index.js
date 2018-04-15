@@ -1,13 +1,14 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MenuList } from "material-ui/es/Menu";
 import PlaylistRow from './Row';
 import PlaylistCreateRow from './NewPlaylist';
 import SearchResultsRow from './SearchResultsRow';
 import PlaylistImportRow from './PlaylistImportRow';
 
-var Menu = function Menu(_ref) {
+var PlaylistMenu = function PlaylistMenu(_ref) {
   var className = _ref.className,
       playlists = _ref.playlists,
       selected = _ref.selected,
@@ -24,8 +25,7 @@ var Menu = function Menu(_ref) {
   var searchIsSelected = showSearchResults ? 'is-selected' : '';
   var importIsSelected = showImportPanel ? 'is-selected' : '';
   var isSelectingPlaylist = selected && !showSearchResults && !showImportPanel;
-  return _jsx("div", {
-    role: "menu",
+  return _jsx(MenuList, {
     className: cx('PlaylistMenu', className)
   }, void 0, _jsx(PlaylistCreateRow, {
     className: "PlaylistMenu-row",
@@ -52,7 +52,7 @@ var Menu = function Menu(_ref) {
   }));
 };
 
-Menu.propTypes = process.env.NODE_ENV !== "production" ? {
+PlaylistMenu.propTypes = process.env.NODE_ENV !== "production" ? {
   className: PropTypes.string,
   playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
   selected: PropTypes.object,
@@ -67,5 +67,5 @@ Menu.propTypes = process.env.NODE_ENV !== "production" ? {
   onAddToPlaylist: PropTypes.func.isRequired,
   onShowImportPanel: PropTypes.func.isRequired
 } : {};
-export default Menu;
+export default PlaylistMenu;
 //# sourceMappingURL=index.js.map

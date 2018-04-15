@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { SOCKET_CONNECTED, SOCKET_DISCONNECTED } from '../constants/ActionTypes';
 var initialState = {
   connected: false

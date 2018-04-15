@@ -1,10 +1,11 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import { CircularProgress } from "material-ui/es/Progress";
+import { MenuItem } from "material-ui/es/Menu";
 import ActiveIcon from '@material-ui/icons/Check';
 import { MEDIA } from '../../../constants/DDItemTypes';
 var playlistTarget = {
@@ -27,6 +28,10 @@ var collect = function collect(connect, monitor) {
 };
 
 var enhance = DropTarget(MEDIA, playlistTarget, collect);
+var itemClasses = {
+  root: 'PlaylistMenuRow',
+  selected: 'is-selected'
+};
 
 var _ref2 =
 /*#__PURE__*/
@@ -55,14 +60,12 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var _props = this.props,
-        className = _props.className,
         playlist = _props.playlist,
         selected = _props.selected,
         onClick = _props.onClick,
         connectDropTarget = _props.connectDropTarget,
         isOver = _props.isOver;
     var activeClass = playlist.active && 'is-active';
-    var selectedClass = selected && 'is-selected';
     var droppableClass = isOver && 'is-droppable';
     var icon;
 
@@ -72,12 +75,11 @@ function (_React$Component) {
       icon = _ref3;
     }
 
-    return connectDropTarget(_jsx("button", {
-      role: "menuitem",
-      className: cx('PlaylistMenuRow', activeClass, selectedClass, droppableClass, className),
+    return connectDropTarget(_jsx("div", {}, void 0, _jsx(MenuItem, {
+      selected: selected,
+      className: cx(activeClass, droppableClass),
+      classes: itemClasses,
       onClick: onClick
-    }, void 0, _jsx("div", {
-      className: "PlaylistMenuRow-content"
     }, void 0, _jsx("div", {
       className: "PlaylistMenuRow-title"
     }, void 0, icon, playlist.name), _jsx("div", {
@@ -89,7 +91,6 @@ function (_React$Component) {
 }(React.Component);
 
 PlaylistRow.propTypes = process.env.NODE_ENV !== "production" ? {
-  className: PropTypes.string,
   playlist: PropTypes.object,
   selected: PropTypes.bool,
   isOver: PropTypes.bool.isRequired,

@@ -1,9 +1,10 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { CircularProgress } from "material-ui/es/Progress";
+import { MenuItem } from "material-ui/es/Menu";
 import ImportIcon from '@material-ui/icons/Input';
 var enhance = translate();
 
@@ -34,15 +35,12 @@ var PlaylistImportRow = function PlaylistImportRow(_ref) {
     icon = _ref3;
   }
 
-  return _jsx("button", {
-    role: "menuitem",
+  return _jsx(MenuItem, {
     className: cx('PlaylistMenuRow', 'PlaylistMenuRow--import', className),
     onClick: onClick
   }, void 0, _jsx("div", {
-    className: "PlaylistMenuRow-content"
-  }, void 0, _jsx("div", {
     className: "PlaylistMenuRow-title"
-  }, void 0, icon, t('playlists.import.title'))));
+  }, void 0, icon, t('playlists.import.title')));
 };
 
 PlaylistImportRow.propTypes = process.env.NODE_ENV !== "production" ? {

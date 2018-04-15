@@ -1,4 +1,4 @@
-import _extends from "@babel/runtime/helpers/extends";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withProps from 'recompose/withProps';

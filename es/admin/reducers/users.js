@@ -1,6 +1,7 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
-import { LOAD_USERS_START, LOAD_USERS_COMPLETE } from '../constants/ActionTypes';
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import { SET_USERS_FILTER, LOAD_USERS_START, LOAD_USERS_COMPLETE } from '../constants/ActionTypes';
 var initialState = {
+  filter: null,
   currentPage: 0,
   totalPages: 0,
   totalUsers: 0,
@@ -12,14 +13,19 @@ export default function reducer(state, action) {
   }
 
   switch (action.type) {
+    case SET_USERS_FILTER:
+      return _objectSpread({}, state, {
+        filter: action.payload.filter
+      });
+
     case LOAD_USERS_START:
       return state;
 
     case LOAD_USERS_COMPLETE:
       return _objectSpread({}, state, {
         currentPage: action.payload.page,
-        totalUsers: action.meta.total,
-        totalPages: Math.ceil(action.meta.total / action.meta.pageSize),
+        totalUsers: action.meta.results,
+        totalPages: Math.ceil(action.meta.results / action.meta.pageSize),
         users: action.payload.users
       });
 

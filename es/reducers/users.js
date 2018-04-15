@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import except from 'except';
 import indexBy from 'index-by';
 import { combineReducers } from 'redux';

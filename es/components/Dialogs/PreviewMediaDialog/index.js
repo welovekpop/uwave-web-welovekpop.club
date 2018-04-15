@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog, { DialogTitle, DialogContent } from "material-ui/es/Dialog";
@@ -24,6 +24,7 @@ var PreviewMediaDialog = function PreviewMediaDialog(_ref) {
     },
     open: open,
     onClose: onCloseDialog,
+    disableEnforceFocus: true,
     maxWidth: false,
     "aria-labelledby": TITLE
   }, void 0, _jsx(DialogTitle, {

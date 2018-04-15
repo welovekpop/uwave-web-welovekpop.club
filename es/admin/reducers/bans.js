@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import { LOAD_BANS_START, LOAD_BANS_COMPLETE } from '../constants/ActionTypes';
 var initialState = {
   currentPage: {

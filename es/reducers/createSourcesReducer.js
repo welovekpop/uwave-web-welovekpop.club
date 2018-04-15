@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 var initialState = {}; // A reducer that calls each known Media Source's reducer.
 
 function reduceSources(state, action, sources) {

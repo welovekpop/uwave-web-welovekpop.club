@@ -1,5 +1,5 @@
-import _jsx from "@babel/runtime/helpers/jsx";
-import _extends from "@babel/runtime/helpers/extends";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectMediaSources from '../../../utils/injectMediaSources';

@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
 import find from 'array-find';
 import ms from 'ms';
 import splitargs from 'splitargs';

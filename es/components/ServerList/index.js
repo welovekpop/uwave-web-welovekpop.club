@@ -1,4 +1,4 @@
-import _jsx from "@babel/runtime/helpers/jsx";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import { CircularProgress } from "material-ui/es/Progress";
 import loadable from 'react-loadable';
