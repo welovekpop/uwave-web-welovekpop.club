@@ -5,6 +5,7 @@ const { DefinePlugin, ProgressPlugin } = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const ExtractCssPlugin = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+const HtmlSiblingChunksPlugin = require('html-webpack-include-sibling-chunks-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ManifestPlugin = require('webpack-pwa-manifest');
 
@@ -58,6 +59,7 @@ const plugins = [
   new CopyPlugin([
     { from: '../assets/favicon.ico', to: 'favicon.ico' },
   ]),
+  new HtmlSiblingChunksPlugin(),
   new HtmlPlugin({
     chunks: ['bugsnag', 'app'],
     template: './index.html',
@@ -79,7 +81,7 @@ const plugins = [
   new ManifestPlugin(require('./src/manifest').default),
 ];
 
-const optimization = {};
+let optimization;
 
 if (nodeEnv === 'production') {
   const CompressionPlugin = require('compression-webpack-plugin');
@@ -89,17 +91,26 @@ if (nodeEnv === 'production') {
 
   const compressible = /\.(js|css|svg|mp3)$/;
 
-  optimization.minimizer = [new UglifyJsPlugin({
-    parallel: true,
-    sourceMap: true,
-    uglifyOptions: {
-      toplevel: true,
-      compress: {
-        pure_getters: true,
-        unsafe: true,
-      },
+  optimization = {
+    runtimeChunk: 'single',
+    splitChunks: {
+      automaticNameDelimiter: '-',
+      chunks: 'all',
     },
-  })];
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions: {
+          toplevel: true,
+          compress: {
+            pure_getters: true,
+            unsafe: true,
+          },
+        },
+      }),
+    ],
+  };
 
   plugins.push(
     new ExtractCssPlugin({
