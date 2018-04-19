@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { SHOULD_RANDOMIZE } from './constants';
 var initialState = {
   shouldRandomize: false
@@ -14,7 +14,7 @@ export default function wlkReducer(state, action) {
 
   switch (action.type) {
     case SHOULD_RANDOMIZE:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         shouldRandomize: action.payload
       });
 

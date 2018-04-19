@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { OPEN_EDIT_MEDIA_DIALOG, CLOSE_EDIT_MEDIA_DIALOG, OPEN_PREVIEW_MEDIA_DIALOG, CLOSE_PREVIEW_MEDIA_DIALOG, OPEN_LOGIN_DIALOG, CLOSE_LOGIN_DIALOG } from '../constants/actionTypes/dialogs';
 var initialState = {
   editMedia: {
@@ -16,16 +16,16 @@ var initialState = {
 };
 
 var openDialog = function openDialog(state, name, payload, open) {
-  var _objectSpread2;
+  var _extends2;
 
   if (open === void 0) {
     open = true;
   }
 
-  return _objectSpread({}, state, (_objectSpread2 = {}, _objectSpread2[name] = {
+  return _extends({}, state, (_extends2 = {}, _extends2[name] = {
     open: open,
     payload: payload
-  }, _objectSpread2));
+  }, _extends2));
 };
 
 var closeDialog = function closeDialog(state, name) {

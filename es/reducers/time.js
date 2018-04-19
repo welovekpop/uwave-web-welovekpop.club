@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { SET_TIMER, OFFSET } from '../constants/actionTypes/time';
 var initialState = {
   timer: 0,
@@ -15,12 +15,12 @@ export default function reduce(state, action) {
 
   switch (action.type) {
     case SET_TIMER:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         timer: action.payload
       });
 
     case OFFSET:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         offset: action.payload
       });
 

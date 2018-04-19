@@ -17,7 +17,8 @@ import generateClassName from './utils/generateClassName';
 import configureStore from './store/configureStore';
 import { initState, socketConnect, setSessionToken } from './actions/LoginActionCreators';
 import { languageSelector } from './selectors/settingSelectors';
-import * as api from './api'; // Register default chat commands.
+import * as api from './api';
+import preloadDesktop from './utils/preloadDesktop'; // Register default chat commands.
 
 import './utils/commands';
 
@@ -122,6 +123,12 @@ function () {
     if (typeof window !== 'undefined') {
       this.jss.setup({
         insertionPoint: document.querySelector('#jss')
+      });
+    }
+
+    if (typeof matchMedia !== 'undefined' && matchMedia('(min-width: 768px)')) {
+      this.ready.then(function () {
+        preloadDesktop();
       });
     }
 

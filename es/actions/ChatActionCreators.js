@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import find from 'array-find';
 import ms from 'ms';
 import splitargs from 'splitargs';
@@ -124,7 +124,7 @@ export function receive(message) {
     dispatch({
       type: RECEIVE_MESSAGE,
       payload: {
-        message: _objectSpread({}, message, {
+        message: _extends({}, message, {
           user: sender
         }),
         isMention: isMention,

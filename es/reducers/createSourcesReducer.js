@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 var initialState = {}; // A reducer that calls each known Media Source's reducer.
 
 function reduceSources(state, action, sources) {
@@ -7,7 +7,7 @@ function reduceSources(state, action, sources) {
   }
 
   return Object.keys(sources).reduce(function (newState, sourceName) {
-    var _objectSpread2;
+    var _extends2;
 
     var source = sources[sourceName];
 
@@ -15,7 +15,7 @@ function reduceSources(state, action, sources) {
       return newState;
     }
 
-    return _objectSpread({}, newState, (_objectSpread2 = {}, _objectSpread2[sourceName] = source.reducer(newState[sourceName], action), _objectSpread2));
+    return _extends({}, newState, (_extends2 = {}, _extends2[sourceName] = source.reducer(newState[sourceName], action), _extends2));
   }, state);
 }
 

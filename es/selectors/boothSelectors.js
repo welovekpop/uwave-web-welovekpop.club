@@ -32,6 +32,8 @@ export var timeRemainingSelector = createSelector(mediaDurationSelector, timeEla
 });
 export var mediaProgressSelector = createSelector(mediaDurationSelector, timeElapsedSelector, function (duration, elapsed) {
   return duration // Ensure that the result is between 0 and 1
+  // It can be outside this range if a network or server hiccup
+  // results in an advance event getting delayed.
   ? Math.max(0, Math.min(1, elapsed / duration)) : 0;
 });
 export var djSelector = createSelector(baseSelector, usersSelector, function (booth, users) {
@@ -46,8 +48,16 @@ export var canSkipSelector = createSelector(historyIDSelector, isCurrentDJSelect
   }
 
   return isCurrentDJ ? hasRole('booth.skip.self') : hasRole('booth.skip.other');
+}); // Playback should be muted when the user requested it,
+// and when a media preview dialog is open. (Otherwise their audio will interfere.)
+
+var playbackMutedSelector = createSelector(isMutedSelector, isPreviewMediaDialogOpenSelector, function (isMuted, isPreviewMediaDialogOpen) {
+  return isMuted || isPreviewMediaDialogOpen;
 });
-export var playbackVolumeSelector = createSelector(volumeSelector, isMutedSelector, isPreviewMediaDialogOpenSelector, function (volume, isMuted, isPreviewMediaDialogOpen) {
-  return isMuted || isPreviewMediaDialogOpen ? 0 : volume;
+export var playbackVolumeSelector = createSelector(volumeSelector, playbackMutedSelector, function (volume, isMuted) {
+  return isMuted ? 0 : volume;
+});
+export var mobilePlaybackVolumeSelector = createSelector(playbackMutedSelector, function (isMuted) {
+  return isMuted ? 0 : 100;
 });
 //# sourceMappingURL=boothSelectors.js.map

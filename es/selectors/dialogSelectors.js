@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import assign from 'object-assign';
 import { createSelector } from 'reselect';
 import { reCaptchaSiteKeySelector } from './configSelectors';
@@ -10,7 +10,7 @@ var baseSelector = function baseSelector(state) {
 };
 
 var merge = function merge(dialog) {
-  return _objectSpread({}, dialog.payload, {
+  return _extends({}, dialog.payload, {
     open: dialog.open
   });
 };
@@ -27,7 +27,7 @@ export var editMediaDialogSelector = createSelector(baseSelector, function (dial
   return merge(dialogs.editMedia);
 });
 export var previewMediaDialogSelector = createSelector(baseSelector, volumeSelector, function (dialogs, volume) {
-  return _objectSpread({}, merge(dialogs.previewMedia), {
+  return _extends({}, merge(dialogs.previewMedia), {
     volume: volume
   });
 });

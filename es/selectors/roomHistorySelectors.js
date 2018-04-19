@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { createSelector } from 'reselect';
 import { historyIDSelector, mediaSelector, startTimeSelector, djSelector } from './boothSelectors';
 import { currentUserSelector } from './userSelectors';
@@ -18,8 +18,8 @@ export var roomHistorySelector = createSelector(baseSelector, function (history)
 
 var addOwnVoteProps = function addOwnVoteProps(id) {
   return function (entry) {
-    return _objectSpread({}, entry, {
-      stats: _objectSpread({}, entry.stats, {
+    return _extends({}, entry, {
+      stats: _extends({}, entry.stats, {
         // No ID is provided for guest users.
         isDownvote: !!id && entry.stats.downvotes.indexOf(id) > -1,
         isFavorite: !!id && entry.stats.favorites.indexOf(id) > -1,

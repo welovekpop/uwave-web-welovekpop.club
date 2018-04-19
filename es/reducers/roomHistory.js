@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { ADVANCE, LOAD_HISTORY_COMPLETE } from '../constants/actionTypes/booth';
 var initialState = [];
 
@@ -6,7 +6,7 @@ var normalize = function normalize(entry) {
   return {
     _id: entry._id || entry.historyID,
     user: entry.user,
-    media: _objectSpread({}, entry.media.media, entry.media),
+    media: _extends({}, entry.media.media, entry.media),
     timestamp: new Date(entry.timestamp || entry.playedAt).getTime(),
     stats: entry.stats || {
       upvotes: entry.upvotes || [],

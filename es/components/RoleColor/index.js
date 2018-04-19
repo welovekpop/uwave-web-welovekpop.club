@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -15,7 +15,7 @@ var enhance = compose(connect(createStructuredSelector({
       roles = _ref.roles,
       props = _objectWithoutProperties(_ref, ["colors", "role", "roles"]);
 
-  return _objectSpread({}, props, {
+  return _extends({}, props, {
     style: {
       color: (role ? colors[role] : colors[find(roles, function (r) {
         return colors[r];

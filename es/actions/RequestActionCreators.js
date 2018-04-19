@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import { REQUEST_START, REQUEST_COMPLETE } from '../constants/actionTypes/request';
 var requestID = 0;
@@ -17,7 +17,7 @@ function request(method, url, opts) {
   requestID += 1;
   return {
     type: REQUEST_START,
-    payload: _objectSpread({}, requestOpts, {
+    payload: _extends({}, requestOpts, {
       method: method,
       url: url
     }),
@@ -53,7 +53,7 @@ export var post = function post(url, data, opts) {
     opts = {};
   }
 
-  return request('post', url, _objectSpread({
+  return request('post', url, _extends({
     data: data
   }, opts));
 };
@@ -62,7 +62,7 @@ export var put = function put(url, data, opts) {
     opts = {};
   }
 
-  return request('put', url, _objectSpread({
+  return request('put', url, _extends({
     data: data
   }, opts));
 };
@@ -71,7 +71,7 @@ export var del = function del(url, data, opts) {
     opts = {};
   }
 
-  return request('delete', url, _objectSpread({
+  return request('delete', url, _extends({
     data: data
   }, opts));
 };

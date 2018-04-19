@@ -1,4 +1,3 @@
-import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import path from 'path';
 import defaultFs from 'fs';
 import hstream from 'hstream';
@@ -10,10 +9,9 @@ export default function uwaveWebClient(uw, options = {}) {
     basePath = path.join(__dirname, '../../public'),
     fs = defaultFs,
     // Should only be used by the dev server.
-    title = 'üWave'
-  } = options,
-        clientOptions = _objectWithoutProperties(options, ["basePath", "fs", "title"]);
-
+    title = 'üWave',
+    ...clientOptions
+  } = options;
   const clientRouter = router();
   return clientRouter.get('/', (req, res) => {
     res.setHeader('content-type', 'text/html');

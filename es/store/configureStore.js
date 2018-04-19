@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -41,7 +41,7 @@ export default function createUwaveStore(initialState, options) {
   // debugging :)
   enableLogging && logger].filter(Boolean);
 
-  var currentReducers = _objectSpread({}, reducers, {
+  var currentReducers = _extends({}, reducers, {
     sources: createSourcesReducer(options)
   });
 
@@ -59,16 +59,16 @@ export default function createUwaveStore(initialState, options) {
     // changed. See /tasks/watch.js for more on Hot Reloading!
     // This is only used when debugging, not in a deployed app.
     module.hot.accept('../reducers', function () {
-      store.replaceReducer(combineReducers(_objectSpread({}, reducers, {
+      store.replaceReducer(combineReducers(_extends({}, reducers, {
         sources: createSourcesReducer(options)
       })));
     });
   }
 
   store.mount = function (name, reducer) {
-    var _objectSpread2;
+    var _extends2;
 
-    currentReducers = _objectSpread({}, currentReducers, (_objectSpread2 = {}, _objectSpread2[name] = reducer, _objectSpread2));
+    currentReducers = _extends({}, currentReducers, (_extends2 = {}, _extends2[name] = reducer, _extends2));
     store.replaceReducer(combineReducers(currentReducers));
   };
 

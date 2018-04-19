@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -75,7 +75,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 var mergeProps = function mergeProps(state, _ref2, props) {
   var dispatch = _ref2.dispatch;
-  return _objectSpread({}, props, state, bindActionCreators({
+  return _extends({}, props, state, bindActionCreators({
     onShufflePlaylist: shufflePlaylist.bind(null, state.playlist._id),
     onActivatePlaylist: activatePlaylist.bind(null, state.playlist._id),
     onRenamePlaylist: renamePlaylist.bind(null, state.playlist._id),

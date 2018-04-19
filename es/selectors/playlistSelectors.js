@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { createSelector } from 'reselect';
 import naturalCmp from 'natural-compare';
 import values from 'object-values';
@@ -26,7 +26,7 @@ var activeMediaSelector = createSelector(playlistItemsSelector, activePlaylistID
 
 function mergePlaylistItems(playlist, playlistItems) {
   if (playlist) {
-    return _objectSpread({}, playlist, {
+    return _extends({}, playlist, {
       media: playlistItems
     });
   }

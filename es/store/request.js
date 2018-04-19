@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import assign from 'object-assign';
 import qsStringify from 'qs-stringify';
 import { REQUEST_START } from '../constants/actionTypes/request';
@@ -63,7 +63,7 @@ export default function middleware(middlewareOptions) {
           return next(action);
         }
 
-        var opts = _objectSpread({}, defaultOptions, middlewareOptions, requestOptionsSelector(getState()));
+        var opts = _extends({}, defaultOptions, middlewareOptions, requestOptionsSelector(getState()));
 
         var token = tokenSelector(getState());
         var _action$payload = action.payload,

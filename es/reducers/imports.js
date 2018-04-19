@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { SHOW_IMPORT_PANEL, SHOW_IMPORT_SOURCE_PANEL, HIDE_IMPORT_SOURCE_PANEL } from '../constants/actionTypes/imports';
 import { SELECT_PLAYLIST } from '../constants/actionTypes/playlists';
 import { SHOW_SEARCH_RESULTS } from '../constants/actionTypes/search';
@@ -21,23 +21,23 @@ export default function reduce(state, action) {
 
   switch (type) {
     case SHOW_IMPORT_PANEL:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         showPanel: true
       });
 
     case SELECT_PLAYLIST:
     case SHOW_SEARCH_RESULTS:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         showPanel: false
       });
 
     case SHOW_IMPORT_SOURCE_PANEL:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         sourceType: payload.sourceType
       });
 
     case HIDE_IMPORT_SOURCE_PANEL:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         sourceType: null
       });
 

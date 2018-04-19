@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { SET_RESET_KEY, SET_RESET_SUCCESS } from './constants';
 import _auth from '../reducers/auth';
 export { _auth as auth };
@@ -21,12 +21,12 @@ export function passwordReset(state, action) {
 
   switch (action.type) {
     case SET_RESET_KEY:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         key: action.payload
       });
 
     case SET_RESET_SUCCESS:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         success: true
       });
 

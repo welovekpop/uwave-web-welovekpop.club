@@ -1,5 +1,5 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from "material-ui/es/Progress";
@@ -13,7 +13,7 @@ _jsx(CircularProgress, {
 var OfflineIcon = function OfflineIcon(_ref) {
   var style = _ref.style;
   return _jsx("div", {
-    style: _objectSpread({}, style, {
+    style: _extends({}, style, {
       width: 32,
       height: 32,
       display: 'inline-block'

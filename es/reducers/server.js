@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { SOCKET_CONNECTED, SOCKET_DISCONNECTED } from '../constants/ActionTypes';
 var initialState = {
   connected: false
@@ -17,12 +17,12 @@ export default function serverReducer(state, action) {
 
   switch (type) {
     case SOCKET_CONNECTED:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         connected: true
       });
 
     case SOCKET_DISCONNECTED:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         connected: false
       });
 

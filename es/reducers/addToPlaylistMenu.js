@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { OPEN_ADD_MEDIA_MENU, CLOSE_ADD_MEDIA_MENU } from '../constants/actionTypes/playlists';
 var initialState = {
   open: false,
@@ -26,7 +26,7 @@ export default function reduce(state, action) {
 
   switch (type) {
     case OPEN_ADD_MEDIA_MENU:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         open: true,
         type: meta.type,
         position: meta.position,

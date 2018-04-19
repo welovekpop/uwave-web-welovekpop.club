@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { LOAD_BANS_START, LOAD_BANS_COMPLETE } from '../constants/ActionTypes';
 var initialState = {
   currentPage: {
@@ -21,7 +21,7 @@ export default function reducer(state, action) {
       return state;
 
     case LOAD_BANS_COMPLETE:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         bans: action.payload.bans
       });
 

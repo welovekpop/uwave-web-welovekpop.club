@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 
 /* global window */
 import find from 'array-find';
@@ -51,7 +51,7 @@ export var videoEnabledSelector = createSelector(settingsBaseSelector, function 
 // values (from localStorage).
 
 export var settingsSelector = createSelector(settingsBaseSelector, volumeSelector, isMutedSelector, videoSizeSelector, languageSelector, function (base, volume, muted, videoSize, language) {
-  return _objectSpread({}, base, {
+  return _extends({}, base, {
     volume: volume,
     muted: muted,
     videoSize: videoSize,

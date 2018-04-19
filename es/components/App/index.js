@@ -1,5 +1,5 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 
 /* global localStorage */
@@ -39,7 +39,7 @@ var MovedNotification = compose(withState('seen', 'setSeen', function () {
       setSeen = _ref.setSeen,
       props = _objectWithoutProperties(_ref, ["seen", "setSeen"]);
 
-  return _objectSpread({}, props, {
+  return _extends({}, props, {
     open: !seen,
     onClose: function onClose() {
       try {

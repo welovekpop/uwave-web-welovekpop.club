@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import except from 'except';
 import { RECEIVE_MOTD, RECEIVE_MESSAGE, SEND_MESSAGE, LOG, REMOVE_MESSAGE, REMOVE_USER_MESSAGES, REMOVE_ALL_MESSAGES, MUTE_USER, UNMUTE_USER } from '../constants/ActionTypes';
 import reduceNotifications from './chat/notifications';
@@ -30,7 +30,7 @@ function removeInFlightMessage(messages, remove) {
 }
 
 export default function reduce(state, action) {
-  var _objectSpread2;
+  var _extends2;
 
   if (state === void 0) {
     state = initialState;
@@ -48,7 +48,7 @@ export default function reduce(state, action) {
 
   switch (type) {
     case RECEIVE_MOTD:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         motd: payload
       });
 
@@ -66,21 +66,21 @@ export default function reduce(state, action) {
           // Will be resolved when the message is received instead.
           isMention: false
         };
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           messages: messages.concat([inFlightMessage])
         });
       }
 
     case RECEIVE_MESSAGE:
       {
-        var message = _objectSpread({}, payload.message, {
+        var message = _extends({}, payload.message, {
           type: 'chat',
           inFlight: false,
           parsedText: payload.parsed,
           isMention: payload.isMention
         });
 
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           messages: removeInFlightMessage(messages, message).concat([message])
         });
       }
@@ -92,41 +92,41 @@ export default function reduce(state, action) {
           _id: "log-" + payload._id,
           text: payload.text
         };
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           messages: messages.concat([logMessage])
         });
       }
 
     case REMOVE_MESSAGE:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         messages: state.messages.filter(function (msg) {
           return msg._id !== payload._id;
         })
       });
 
     case REMOVE_USER_MESSAGES:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         messages: state.messages.filter(function (msg) {
           return msg.userID !== payload.userID;
         })
       });
 
     case REMOVE_ALL_MESSAGES:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         messages: []
       });
 
     case MUTE_USER:
-      return _objectSpread({}, state, {
-        mutedUsers: _objectSpread({}, state.mutedUsers, (_objectSpread2 = {}, _objectSpread2[payload.userID] = {
+      return _extends({}, state, {
+        mutedUsers: _extends({}, state.mutedUsers, (_extends2 = {}, _extends2[payload.userID] = {
           mutedBy: payload.moderatorID,
           expiresAt: payload.expiresAt,
           expirationTimer: payload.expirationTimer
-        }, _objectSpread2))
+        }, _extends2))
       });
 
     case UNMUTE_USER:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         mutedUsers: except(state.mutedUsers, payload.userID)
       });
 
@@ -135,7 +135,7 @@ export default function reduce(state, action) {
         var nextMessages = reduceNotifications(messages, action);
 
         if (nextMessages !== messages) {
-          return _objectSpread({}, state, {
+          return _extends({}, state, {
             messages: nextMessages
           });
         }

@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import assign from 'object-assign';
 import except from 'except';
 import escapeStringRegExp from 'escape-string-regexp';
@@ -18,7 +18,7 @@ var initialState = {
 
 function deselectAll(playlists) {
   return mapObj(playlists, function (playlist) {
-    return playlist.selected ? _objectSpread({}, playlist, {
+    return playlist.selected ? _extends({}, playlist, {
       selected: false
     }) : playlist;
   });
@@ -55,10 +55,10 @@ function updatePlaylist(state, playlistID, modify) {
   var playlist = state.playlists[playlistID];
 
   if (playlist) {
-    var _objectSpread2;
+    var _extends2;
 
-    return _objectSpread({}, state, {
-      playlists: _objectSpread({}, state.playlists, (_objectSpread2 = {}, _objectSpread2[playlistID] = modify(playlist), _objectSpread2))
+    return _extends({}, state, {
+      playlists: _extends({}, state.playlists, (_extends2 = {}, _extends2[playlistID] = modify(playlist), _extends2))
     });
   }
 
@@ -72,18 +72,18 @@ function updatePlaylistItems(state, playlistID, modify) {
   var media = state.playlistItems[playlistID];
 
   if (playlist) {
-    var _objectSpread3;
+    var _extends3;
 
     var nextFilter = state.currentFilter;
 
     if (state.selectedPlaylistID === playlistID && nextFilter) {
-      nextFilter = _objectSpread({}, nextFilter, {
+      nextFilter = _extends({}, nextFilter, {
         items: modify(nextFilter.items || [], playlist)
       });
     }
 
-    return _objectSpread({}, state, {
-      playlistItems: _objectSpread({}, state.playlistItems, (_objectSpread3 = {}, _objectSpread3[playlistID] = modify(media || [], playlist), _objectSpread3)),
+    return _extends({}, state, {
+      playlistItems: _extends({}, state.playlistItems, (_extends3 = {}, _extends3[playlistID] = modify(media || [], playlist), _extends3)),
       currentFilter: nextFilter
     });
   }
@@ -102,7 +102,7 @@ function setPlaylistLoading(state, id, loading) {
   }
 
   return updatePlaylist(state, id, function (playlist) {
-    return _objectSpread({}, playlist, {
+    return _extends({}, playlist, {
       loading: loading
     });
   });
@@ -161,7 +161,7 @@ export default function reduce(state, action) {
 
   switch (type) {
     case LOAD_ALL_PLAYLISTS_COMPLETE:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         playlists: indexBy(payload.playlists, '_id')
       });
 
@@ -175,10 +175,10 @@ export default function reduce(state, action) {
         return setPlaylistLoading(state, meta.playlistID, false);
       }
 
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         // set `active` property on all playlists
         playlists: mapObj(state.playlists, function (playlist) {
-          return _objectSpread({}, playlist, {
+          return _extends({}, playlist, {
             loading: playlist._id === payload.playlistID ? false : playlist.loading,
             active: playlist._id === payload.playlistID
           });
@@ -187,10 +187,10 @@ export default function reduce(state, action) {
       });
 
     case SELECT_PLAYLIST:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         // set `selected` property on playlists
         playlists: mapObj(state.playlists, function (playlist) {
-          return _objectSpread({}, playlist, {
+          return _extends({}, playlist, {
             selected: playlist._id === payload.playlistID
           });
         }),
@@ -200,7 +200,7 @@ export default function reduce(state, action) {
     case SEARCH_START:
       // We deselect playlists when doing a search, so the UI can switch to the
       // search results view instead.
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         playlists: deselectAll(state.playlists),
         selectedPlaylistID: null
       });
@@ -209,9 +209,9 @@ export default function reduce(state, action) {
       // Select the active playlist when search results are closed while they
       // were focused.
       if (state.selectedPlaylistID) return state;
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         playlists: mapObj(state.playlists, function (playlist) {
-          return _objectSpread({}, playlist, {
+          return _extends({}, playlist, {
             selected: playlist.active
           });
         }),
@@ -238,7 +238,7 @@ export default function reduce(state, action) {
       }
 
       return updatePlaylistAndItems(state, payload.playlistID, function (playlist) {
-        return _objectSpread({}, playlist, {
+        return _extends({}, playlist, {
           loading: false
         });
       }, function (items) {
@@ -252,12 +252,12 @@ export default function reduce(state, action) {
       }
 
       if (!payload.filter) {
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           currentFilter: null
         });
       }
 
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         currentFilter: {
           playlistID: payload.playlistID,
           filter: payload.filter,
@@ -275,8 +275,8 @@ export default function reduce(state, action) {
         var _state = state,
             currentFilter = _state.currentFilter;
         var items = mergePlaylistPage(meta.size, currentFilter.items, payload.media, meta);
-        return _objectSpread({}, state, {
-          currentFilter: _objectSpread({}, currentFilter, {
+        return _extends({}, state, {
+          currentFilter: _extends({}, currentFilter, {
             items: items
           })
         });
@@ -307,7 +307,7 @@ export default function reduce(state, action) {
           selected: true,
           creating: true
         };
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           playlists: assign(deselectAll(state.playlists), (_assign = {}, _assign[meta.tempId] = newPlaylist, _assign)),
           selectedPlaylistID: meta.tempId
         });
@@ -315,13 +315,13 @@ export default function reduce(state, action) {
 
     case CREATE_PLAYLIST_COMPLETE:
       if (error) {
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           playlists: except(state.playlists, "" + meta.tempId)
         });
       }
 
-      return _objectSpread({}, state, {
-        playlists: assign(deselectAll(except(state.playlists, "" + meta.tempId)), (_assign2 = {}, _assign2[payload.playlist._id] = _objectSpread({}, payload.playlist, {
+      return _extends({}, state, {
+        playlists: assign(deselectAll(except(state.playlists, "" + meta.tempId)), (_assign2 = {}, _assign2[payload.playlist._id] = _extends({}, payload.playlist, {
           selected: true
         }), _assign2)),
         selectedPlaylistID: payload.playlist._id
@@ -340,7 +340,7 @@ export default function reduce(state, action) {
 
         if (renamedPlaylist) {
           return updatePlaylist(state, payload.playlistID, function (playlist) {
-            return _objectSpread({}, playlist, {
+            return _extends({}, playlist, {
               name: payload.name,
               loading: false
             });
@@ -358,7 +358,7 @@ export default function reduce(state, action) {
         return setPlaylistLoading(state, meta.playlistID, false);
       }
 
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         // When deleting the selected playlist, select the active playlist instead.
         selectedPlaylistID: state.selectedPlaylistID === payload.playlistID ? state.activePlaylistID : state.selectedPlaylistID,
         playlists: except(state.playlists, payload.playlistID)
@@ -373,7 +373,7 @@ export default function reduce(state, action) {
       }
 
       return updatePlaylistAndItems(state, payload.playlistID, function (playlist) {
-        return _objectSpread({}, playlist, {
+        return _extends({}, playlist, {
           loading: false,
           size: payload.newSize
         });
@@ -385,7 +385,7 @@ export default function reduce(state, action) {
 
     case DO_FAVORITE_COMPLETE:
       return updatePlaylistAndItems(state, payload.playlistID, function (playlist) {
-        return _objectSpread({}, playlist, {
+        return _extends({}, playlist, {
           size: payload.newSize
         });
       }, function (items) {
@@ -397,7 +397,7 @@ export default function reduce(state, action) {
     case UPDATE_MEDIA_START:
       return updatePlaylistItems(state, payload.playlistID, function (items) {
         return items.map(function (media) {
-          return media && media._id === payload.mediaID ? _objectSpread({}, media, {
+          return media && media._id === payload.mediaID ? _extends({}, media, {
             loading: true
           }) : media;
         });
@@ -406,7 +406,7 @@ export default function reduce(state, action) {
     case UPDATE_MEDIA_COMPLETE:
       return updatePlaylistItems(state, payload.playlistID, function (items) {
         return items.map(function (media) {
-          return media && media._id === payload.mediaID ? _objectSpread({}, media, payload.media, {
+          return media && media._id === payload.mediaID ? _extends({}, media, payload.media, {
             loading: false
           }) : media;
         });
@@ -417,7 +417,7 @@ export default function reduce(state, action) {
         var isMovingMedia = indexBy(payload.medias, '_id');
         return updatePlaylistItems(state, payload.playlistID, function (items) {
           return items.map(function (media) {
-            return media && _objectSpread({}, media, {
+            return media && _extends({}, media, {
               loading: isMovingMedia[media._id] || media.loading
             });
           });
@@ -434,7 +434,7 @@ export default function reduce(state, action) {
         var isRemovingMedia = indexBy(payload.medias, '_id');
         return updatePlaylistItems(state, payload.playlistID, function (items) {
           return items.map(function (media) {
-            return media && _objectSpread({}, media, {
+            return media && _extends({}, media, {
               loading: isRemovingMedia[media._id] || media.loading
             });
           });
@@ -445,7 +445,7 @@ export default function reduce(state, action) {
       {
         var isRemovedMedia = indexBy(payload.removedMedia, '_id');
         return updatePlaylistAndItems(state, payload.playlistID, function (playlist) {
-          return _objectSpread({}, playlist, {
+          return _extends({}, playlist, {
             size: payload.newSize
           });
         }, function (items) {

@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 var formatters = {
   date: {
     year: 'numeric',
@@ -11,7 +11,7 @@ var formatters = {
   }
 };
 
-var all = _objectSpread({}, formatters.date, formatters.time);
+var all = _extends({}, formatters.date, formatters.time);
 
 export default function formatJoinDate(date, only) {
   var format = only ? formatters[only] : all;

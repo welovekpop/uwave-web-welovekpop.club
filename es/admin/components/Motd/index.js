@@ -28,7 +28,8 @@ var enhance = compose(withState('newMotd', 'setMotd', function (props) {
     };
   },
   onSubmit: function onSubmit(props) {
-    return function () {
+    return function (event) {
+      event.preventDefault();
       props.onSetMotd(props.newMotd);
       props.setExpanded(false);
     };
@@ -42,6 +43,14 @@ function autoFocus(el) {
 var _ref2 =
 /*#__PURE__*/
 _jsx(EditIcon, {});
+
+var _ref3 =
+/*#__PURE__*/
+_jsx(CardActions, {}, void 0, _jsx(Button, {
+  type: "submit",
+  variant: "raised",
+  color: "primary"
+}, void 0, "Save"));
 
 var Motd = function Motd(_ref) {
   var canChangeMotd = _ref.canChangeMotd,
@@ -61,6 +70,8 @@ var Motd = function Motd(_ref) {
   }), _jsx(CardContent, {}, void 0, parsedMotd), _jsx(Collapse, {
     "in": expanded,
     unmountOnExit: true
+  }, void 0, _jsx("form", {
+    onSubmit: onSubmit
   }, void 0, _jsx(CardContent, {
     style: {
       paddingTop: 0
@@ -71,11 +82,7 @@ var Motd = function Motd(_ref) {
     onChange: onChange,
     value: newMotd,
     ref: autoFocus
-  })), _jsx(CardActions, {}, void 0, _jsx(Button, {
-    variant: "raised",
-    color: "primary",
-    onClick: onSubmit
-  }, void 0, "Save"))));
+  })), _ref3)));
 };
 
 Motd.propTypes = process.env.NODE_ENV !== "production" ? {

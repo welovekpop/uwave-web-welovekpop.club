@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { ADVANCE, ENTER_FULLSCREEN, EXIT_FULLSCREEN } from '../constants/actionTypes/booth';
 var initialState = {
   historyID: null,
@@ -23,7 +23,7 @@ export default function reduce(state, action) {
   switch (type) {
     case ADVANCE:
       if (payload) {
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           historyID: payload.historyID,
           media: payload.media,
           djID: payload.userID,
@@ -31,7 +31,7 @@ export default function reduce(state, action) {
         });
       }
 
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         historyID: null,
         media: null,
         djID: null,
@@ -39,12 +39,12 @@ export default function reduce(state, action) {
       });
 
     case ENTER_FULLSCREEN:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         isFullscreen: true
       });
 
     case EXIT_FULLSCREEN:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         isFullscreen: false
       });
 

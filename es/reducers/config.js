@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { INIT_STATE } from '../constants/actionTypes/auth';
 var initialState = {};
 export default function reduce(state, action) {
@@ -17,7 +17,7 @@ export default function reduce(state, action) {
   switch (type) {
     case INIT_STATE:
       if (payload.roles) {
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           roles: payload.roles
         });
       }

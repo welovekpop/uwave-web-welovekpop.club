@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import { ADVANCE } from '../constants/actionTypes/booth';
 import { LOAD_VOTES, FAVORITE, UPVOTE, DOWNVOTE, DO_FAVORITE_START, DO_FAVORITE_COMPLETE } from '../constants/actionTypes/votes';
 var initialState = {
@@ -24,14 +24,14 @@ export default function reduce(state, action) {
       return initialState;
 
     case LOAD_VOTES:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         upvotes: payload.upvotes,
         downvotes: payload.downvotes,
         favorites: payload.favorites
       });
 
     case UPVOTE:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         upvotes: state.upvotes.concat([payload.userID]),
         downvotes: state.downvotes.filter(function (vote) {
           return vote !== payload.userID;
@@ -39,7 +39,7 @@ export default function reduce(state, action) {
       });
 
     case DOWNVOTE:
-      return _objectSpread({}, state, {
+      return _extends({}, state, {
         upvotes: state.upvotes.filter(function (vote) {
           return vote !== payload.userID;
         }),
@@ -48,7 +48,7 @@ export default function reduce(state, action) {
 
     case FAVORITE:
       if (state.favorites.indexOf(payload.userID) === -1) {
-        return _objectSpread({}, state, {
+        return _extends({}, state, {
           favorites: state.favorites.concat([payload.userID])
         });
       }

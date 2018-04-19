@@ -1,4 +1,4 @@
-import _objectSpread from "@babel/runtime/helpers/builtin/objectSpread";
+import _extends from "@babel/runtime/helpers/builtin/extends";
 import except from 'except';
 import indexBy from 'index-by';
 import { combineReducers } from 'redux';
@@ -7,9 +7,9 @@ import { LOAD_ONLINE_USERS, USER_JOIN, USER_LEAVE, CHANGE_USERNAME, USER_ADD_ROL
 
 function updateUser(state, userID, update) {
   if (state[userID]) {
-    var _objectSpread2;
+    var _extends2;
 
-    return _objectSpread({}, state, (_objectSpread2 = {}, _objectSpread2[userID] = update(state[userID]), _objectSpread2));
+    return _extends({}, state, (_extends2 = {}, _extends2[userID] = update(state[userID]), _extends2));
   }
 
   return state;
@@ -36,7 +36,7 @@ function guestsReducer(state, action) {
 }
 
 function usersReducer(state, action) {
-  var _objectSpread3;
+  var _extends3;
 
   if (state === void 0) {
     state = {};
@@ -57,31 +57,31 @@ function usersReducer(state, action) {
       // the current user is sometimes excluded from the state. it looks like this
       // approach could cause problems, too, though.
       // TODO maybe replace state instead anyway and merge in the current user?
-      return _objectSpread({}, state, indexBy(payload.users, '_id'));
+      return _extends({}, state, indexBy(payload.users, '_id'));
 
     case USER_JOIN:
-      return _objectSpread({}, state, (_objectSpread3 = {}, _objectSpread3[payload.user._id] = payload.user, _objectSpread3));
+      return _extends({}, state, (_extends3 = {}, _extends3[payload.user._id] = payload.user, _extends3));
 
     case USER_LEAVE:
       return except(state, payload.userID);
 
     case CHANGE_USERNAME:
       return updateUser(state, payload.userID, function (user) {
-        return _objectSpread({}, user, {
+        return _extends({}, user, {
           username: payload.username
         });
       });
 
     case USER_ADD_ROLES:
       return updateUser(state, payload.userID, function (user) {
-        return _objectSpread({}, user, {
+        return _extends({}, user, {
           roles: user.roles.concat(payload.roles)
         });
       });
 
     case USER_REMOVE_ROLES:
       return updateUser(state, payload.userID, function (user) {
-        return _objectSpread({}, user, {
+        return _extends({}, user, {
           roles: user.roles.filter(function (role) {
             return payload.roles.indexOf(role) === -1;
           })
