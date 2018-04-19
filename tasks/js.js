@@ -1,7 +1,8 @@
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const { relative } = require('path');
-const { colors, log } = require('gulp-util');
+const chalk = require('chalk');
+const log = require('fancy-log');
 const babel = require('gulp-babel');
 const yaml = require('gulp-yaml');
 const newer = require('gulp-newer');
@@ -37,8 +38,8 @@ const rewriteMuiImports = (rx, replace) => () => ({
   },
 });
 
-gulp.task('js:locales', () =>
-  gulp.src('locale/*.yaml')
+function jsLocales() {
+  return gulp.src('locale/*.yaml')
     .pipe(yaml({ space: 2 }))
     .pipe(through.obj((file, enc, cb) => {
       /* eslint-disable no-param-reassign */
@@ -54,9 +55,10 @@ gulp.task('js:locales', () =>
       file.contents = Buffer.from(`module.exports = ${file.jsonText};`);
       cb(null, file);
     }))
-    .pipe(gulp.dest('lib/locale')));
+    .pipe(gulp.dest('lib/locale'));
+}
 
-gulp.task('js:babel', ['js:locales'], () => {
+function jsBabel() {
   // We'll always compile this in production mode so other people using the
   // client as a library get the optimised versions of components.
   // Save the environment value so we can restore it later.
@@ -67,7 +69,7 @@ gulp.task('js:babel', ['js:locales'], () => {
     .pipe(newer(destCommonjs))
     .pipe(through.obj((file, enc, cb) => {
       const path = relative(`${__dirname}/../`, file.path);
-      log(`Compiling '${colors.cyan(path)}'...`);
+      log(`Compiling '${chalk.cyan(path)}'...`);
       cb(null, file);
     }))
     .pipe(sourcemaps.init())
@@ -100,4 +102,9 @@ gulp.task('js:babel', ['js:locales'], () => {
     .on('end', () => {
       process.env.BABEL_ENV = oldEnv;
     });
-});
+}
+
+module.exports = {
+  locales: jsLocales,
+  babel: jsBabel,
+};

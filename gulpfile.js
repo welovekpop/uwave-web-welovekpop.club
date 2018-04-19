@@ -1,25 +1,32 @@
 /* eslint-disable global-require */
 const gulp = require('gulp');
-const { env } = require('gulp-util');
-const runSeq = require('run-sequence');
 const webpack = require('webpack');
+const rimraf = require('rimraf');
+const env = require('./tasks/env');
+const js = require('./tasks/js');
+const serve = require('./tasks/serve');
 
-require('./tasks/js');
-require('./tasks/serve');
-
-gulp.task('set-watching', () => {
+function setWatching(done) {
   env.watch = true;
-});
+  done();
+}
 
-gulp.task('start', (cb) => {
-  runSeq('set-watching', 'serve', cb);
-});
+function cleanPublic(done) {
+  rimraf('public', done);
+}
+function cleanEs(done) {
+  rimraf('es', done);
+}
+function cleanLib(done) {
+  rimraf('lib', done);
+}
+const clean = gulp.parallel(cleanPublic, cleanEs, cleanLib);
 
-gulp.task('build', ['js:babel']);
+const start = gulp.series(setWatching, serve.serve);
 
-gulp.task('default', ['build']);
+const build = gulp.parallel(js.locales, js.babel);
 
-gulp.task('prod', ['build'], (done) => {
+function prod(done) {
   // Load this later because it adds require compile hooks.
   // Those don't need to run on the above imports.
   const wpConfig = require('./webpack.config');
@@ -36,4 +43,14 @@ gulp.task('prod', ['build'], (done) => {
       done();
     }
   });
-});
+}
+
+module.exports = {
+  setWatching,
+  serve: serve.serve,
+  start,
+  build,
+  clean,
+  default: build,
+  prod: gulp.series(cleanPublic, build, prod),
+};

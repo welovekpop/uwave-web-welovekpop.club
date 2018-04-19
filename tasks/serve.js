@@ -1,7 +1,8 @@
 /* eslint-disable global-require */
 require('loud-rejection/register');
 const gulp = require('gulp');
-const { colors, env, log } = require('gulp-util');
+const log = require('fancy-log');
+const chalk = require('chalk');
 const emojione = require('u-wave-web-emojione');
 const recaptchaTestKeys = require('recaptcha-test-keys');
 const express = require('express');
@@ -11,6 +12,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const nodemon = require('nodemon');
 const explain = require('explain-error');
+const env = require('./env');
 
 function tryResolve(file, message) {
   try {
@@ -41,7 +43,7 @@ const devServerTask = (done) => {
   monitor.once('start', done);
   monitor.on('log', (msg) => {
     clearLine();
-    log(colors.grey('apiServer'), msg.colour);
+    log(chalk.grey('apiServer'), msg.colour);
   });
 };
 
@@ -54,21 +56,32 @@ const apiServerTask = () => {
   require(apiDevServer); // eslint-disable-line import/no-dynamic-require
 };
 
-gulp.task('apiServer', (done) => {
+function apiServer(done) {
   if (env.watch) {
     devServerTask(done);
   } else {
     apiServerTask();
     done();
   }
-});
-
-// pass --no-api to use an already running API server (on `localhost:${--server-port}`).
-const serveDeps = [];
-if (env.api !== false) {
-  serveDeps.push('apiServer');
 }
-gulp.task('serve', serveDeps, (done) => {
+
+function addHotReloadingClient(entry) {
+  const CLIENT = ['react-hot-loader/patch', 'webpack-hot-middleware/client'];
+  if (Array.isArray(entry)) {
+    return [...CLIENT, ...entry];
+  }
+  return [...CLIENT, entry];
+}
+
+function waitForBuild(devMiddleware) {
+  return (req, res, next) => {
+    devMiddleware.waitUntilValid(() => {
+      next();
+    });
+  };
+}
+
+function serve(done) {
   const port = env.port || 6041;
   const serverPort = env.serverPort || 6042;
   const watch = env.watch || false;
@@ -88,17 +101,9 @@ gulp.task('serve', serveDeps, (done) => {
   if (watch) {
     Object.keys(wpConfig.entry).forEach((chunk) => {
       const entry = wpConfig.entry[chunk];
-      if (Array.isArray(entry)) {
-        wpConfig.entry[chunk].unshift('webpack-hot-middleware/client');
-      } else {
-        wpConfig.entry[chunk] = [
-          'webpack-hot-middleware/client',
-          wpConfig.entry[chunk],
-        ];
-      }
+      wpConfig.entry[chunk] = addHotReloadingClient(entry);
     });
 
-    wpConfig.entry.app.unshift('react-hot-loader/patch');
     wpConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
     const compiler = webpack(wpConfig);
     const dev = webpackDevMiddleware(compiler, {
@@ -107,14 +112,7 @@ gulp.task('serve', serveDeps, (done) => {
       serverSideRender: true,
     });
 
-    // Delay responding to HTTP requests until the first build is complete.
-    app.use((req, res, next) => {
-      dev.waitUntilValid(() => {
-        next();
-      });
-    });
-
-    app.use(createWebClient(null, {
+    const webClient = createWebClient(null, {
       apiUrl,
       socketUrl,
       emoji: emojione.emoji,
@@ -123,8 +121,11 @@ gulp.task('serve', serveDeps, (done) => {
       // Point u-wave-web middleware to the virtual webpack filesystem.
       fs: dev.fileSystem,
       recaptcha: { key: recaptchaTestKeys.sitekey },
-    }));
+    });
 
+    // Delay responding to HTTP requests until the first build is complete.
+    app.use(waitForBuild(dev));
+    app.use(webClient);
     app.use(dev);
     app.use(webpackHotMiddleware(compiler, {
       log,
@@ -135,12 +136,19 @@ gulp.task('serve', serveDeps, (done) => {
       done();
     });
   } else {
-    app.use(createWebClient(null, {
+    const webClient = createWebClient(null, {
       apiUrl,
       socketUrl,
       emoji: emojione.emoji,
       recaptcha: { key: recaptchaTestKeys.sitekey },
-    }));
+    });
+
+    app.use(webClient);
     done();
   }
-});
+}
+
+// pass --no-api to use an already running API server (on `localhost:${--server-port}`).
+exports.serve = env.api !== false
+  ? gulp.series(apiServer, serve)
+  : serve;
