@@ -5,7 +5,9 @@ import loadable from 'react-loadable';
 
 var _ref =
 /*#__PURE__*/
-_jsx(CircularProgress, {});
+_jsx("div", {
+  className: "ServerList ServerList--loading"
+}, void 0, _jsx(CircularProgress, {}));
 
 var ServerList = loadable({
   loader: function loader() {
@@ -18,7 +20,9 @@ var ServerList = loadable({
   },
   render: function render(loaded, props) {
     var Container = loaded.Container;
-    return React.createElement(Container, props);
+    return _jsx("div", {
+      className: "ServerList"
+    }, void 0, React.createElement(Container, props));
   }
 });
 export default ServerList;

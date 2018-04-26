@@ -8,6 +8,7 @@ import Drawer from "material-ui/es/Drawer";
 import { MenuList, MenuItem } from "material-ui/es/Menu";
 import { ListItemIcon, ListSubheader, ListItemText } from "material-ui/es/List";
 import Divider from "material-ui/es/Divider";
+import Typography from "material-ui/es/Typography";
 import ActiveIcon from '@material-ui/icons/Check';
 import UserCard from '../../../components/UserCard/UserCard';
 var enhance = compose(translate(), withHandlers({
@@ -35,6 +36,9 @@ var enhance = compose(translate(), withHandlers({
     };
   }
 }));
+var paperProps = {
+  className: 'DrawerMenu'
+};
 
 var _ref2 =
 /*#__PURE__*/
@@ -57,7 +61,8 @@ var DrawerMenu = function DrawerMenu(_ref) {
       onDrawerClose = _ref.onDrawerClose;
   return _jsx(Drawer, {
     open: open,
-    onClose: onDrawerClose
+    onClose: onDrawerClose,
+    PaperProps: paperProps
   }, void 0, user && _jsx(UserCard, {
     user: user
   }), _jsx(MenuList, {}, void 0, hasAboutPage && _jsx(MenuItem, {
@@ -76,8 +81,11 @@ var DrawerMenu = function DrawerMenu(_ref) {
         onDrawerClose();
       }
     }, playlist._id, playlist.active && _ref3, _jsx(ListItemText, {
-      primary: playlist.name
-    }));
+      noTypography: true
+    }, void 0, _jsx(Typography, {
+      noWrap: true,
+      variant: "subheading"
+    }, void 0, playlist.name)));
   })));
 };
 

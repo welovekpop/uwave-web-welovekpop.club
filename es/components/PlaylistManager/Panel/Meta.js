@@ -11,6 +11,7 @@ import DeletePlaylistButton from './DeletePlaylistButton';
 import ShufflePlaylistButton from './ShufflePlaylistButton';
 import PlaylistFilter from './PlaylistFilter';
 var enhance = translate();
+var ID = 'playlist-meta-active';
 
 var _ref2 =
 /*#__PURE__*/
@@ -34,13 +35,16 @@ var PlaylistMeta = function PlaylistMeta(_ref) {
       onNotDeletable = _ref.onNotDeletable,
       onFilter = _ref.onFilter;
   return _jsx("div", {
-    className: cx('PlaylistMeta', className, active ? 'PlaylistMeta--active' : '')
+    className: cx('PlaylistMeta', className, active && 'PlaylistMeta--active')
   }, void 0, _jsx("div", {
     className: "PlaylistMeta-name"
-  }, void 0, name), _jsx("div", {
-    className: "PlaylistMeta-active"
+  }, void 0, name), _jsx("label", {
+    htmlFor: ID,
+    className: cx('PlaylistMeta-active', active && 'is-active')
   }, void 0, _jsx(Checkbox, {
+    id: ID,
     checked: active,
+    disabled: active,
     onChange: active ? null : onActivatePlaylist,
     icon: _ref2,
     checkedIcon: _ref3

@@ -107,7 +107,9 @@ export default {
       },
       "search": {
         "action": "Search",
-        "results": "Search: {{query}}"
+        "results": "Search: {{query}}",
+        "noResults": "No results found",
+        "noResultsSub": "Perhaps try another query?"
       }
     },
     "eta": {

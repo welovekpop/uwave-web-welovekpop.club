@@ -2,6 +2,7 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import IconButton from "material-ui/es/IconButton";
 import CloseBottomIcon from '@material-ui/icons/KeyboardArrowDown';
 import CloseTopIcon from '@material-ui/icons/KeyboardArrowUp';
 var icons = {
@@ -14,7 +15,7 @@ var Close = function Close(_ref) {
       onClose = _ref.onClose,
       direction = _ref.direction;
   var CloseIcon = icons[direction];
-  return _jsx("button", {
+  return _jsx(IconButton, {
     className: cx('OverlayHeaderClose', className),
     onClick: onClose
   }, void 0, _jsx(CloseIcon, {

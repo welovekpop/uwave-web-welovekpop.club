@@ -1,11 +1,12 @@
-import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _extends from "@babel/runtime/helpers/builtin/extends";
+import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import Player from '../../../components/Player';
+import VideoBackdrop from '../../../components/Video/VideoBackdrop';
 import VoteButtons from './VoteButtons';
 
 var Video =
@@ -35,18 +36,22 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var _props = this.props,
+        media = _props.media,
         voteStats = _props.voteStats,
         onUpvote = _props.onUpvote,
         onDownvote = _props.onDownvote,
         onFavorite = _props.onFavorite,
-        props = _objectWithoutProperties(_props, ["voteStats", "onUpvote", "onDownvote", "onFavorite"]);
+        props = _objectWithoutProperties(_props, ["media", "voteStats", "onUpvote", "onDownvote", "onFavorite"]);
 
     var showVoteButtons = this.state.showVoteButtons;
     return _jsx("div", {
       className: "Video"
-    }, void 0, _jsx("div", {
+    }, void 0, _jsx(VideoBackdrop, {
+      url: media.thumbnail
+    }), _jsx("div", {
       className: "Video-player"
     }, void 0, React.createElement(Player, _extends({}, props, {
+      media: media,
       size: "large"
     }))), _jsx("button", {
       className: "Video-buttonTrigger",
@@ -65,6 +70,9 @@ function (_React$Component) {
 }(React.Component);
 
 Video.propTypes = process.env.NODE_ENV !== "production" ? {
+  media: PropTypes.shape({
+    thumbnail: PropTypes.string.isRequired
+  }).isRequired,
   voteStats: PropTypes.shape({
     isUpvote: PropTypes.bool,
     isFavorite: PropTypes.bool,

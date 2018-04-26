@@ -3,6 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Drawer from "material-ui/es/Drawer";
 import UserList from './UserList';
+var paperProps = {
+  className: 'UsersDrawer'
+};
 
 var UsersDrawer = function UsersDrawer(_ref) {
   var currentDJ = _ref.currentDJ,
@@ -18,7 +21,8 @@ var UsersDrawer = function UsersDrawer(_ref) {
   return _jsx(Drawer, {
     anchor: "right",
     open: open,
-    onClose: onDrawerClose
+    onClose: onDrawerClose,
+    PaperProps: paperProps
   }, void 0, _jsx(UserList, {
     currentDJ: currentDJ,
     users: users,

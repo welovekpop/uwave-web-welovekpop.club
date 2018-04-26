@@ -64,10 +64,6 @@ function (_React$Component) {
       error: null,
       needsTap: false
     }, _this.handleError = function (error) {
-      console.error({
-        error: error
-      });
-
       _this.setState({
         error: error,
         needsTap: error.name === 'NotAllowedError'

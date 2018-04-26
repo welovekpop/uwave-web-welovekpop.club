@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { openPreviewMediaDialog } from '../actions/DialogActionCreators';
 import { addMediaMenu } from '../actions/PlaylistActionCreators';
 import { searchQuerySelector, searchResultsSelector, searchLoadingStateSelector } from '../selectors/searchSelectors';
-import SearchResults from '../components/PlaylistManager/Panel/SearchResults';
+import SearchResults from '../components/PlaylistManager/SearchResults';
 var mapStateToProps = createStructuredSelector({
   query: searchQuerySelector,
   results: searchResultsSelector,
