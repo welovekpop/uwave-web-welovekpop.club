@@ -35,7 +35,7 @@ var Links = function Links(_ref) {
   return _jsx("div", {}, void 0, _jsx("h2", {
     className: "SettingsPanel-header"
   }, void 0, t('settings.links.title')), _jsx(Link, {
-    href: "https://github.com/u-wave"
+    href: "http://u-wave.net"
   }, void 0, _ref2, t('settings.links.website')), _jsx(Link, {
     href: "https://github.com/u-wave/web"
   }, void 0, _ref3, t('settings.links.source')), _jsx(Link, {

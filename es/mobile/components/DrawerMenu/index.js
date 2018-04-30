@@ -36,8 +36,8 @@ var enhance = compose(translate(), withHandlers({
     };
   }
 }));
-var paperProps = {
-  className: 'DrawerMenu'
+var classes = {
+  paper: 'DrawerMenu'
 };
 
 var _ref2 =
@@ -62,7 +62,7 @@ var DrawerMenu = function DrawerMenu(_ref) {
   return _jsx(Drawer, {
     open: open,
     onClose: onDrawerClose,
-    PaperProps: paperProps
+    classes: classes
   }, void 0, user && _jsx(UserCard, {
     user: user
   }), _jsx(MenuList, {}, void 0, hasAboutPage && _jsx(MenuItem, {

@@ -46,7 +46,7 @@ function (_React$Component) {
     var showVoteButtons = this.state.showVoteButtons;
     return _jsx("div", {
       className: "Video"
-    }, void 0, _jsx(VideoBackdrop, {
+    }, void 0, media && _jsx(VideoBackdrop, {
       url: media.thumbnail
     }), _jsx("div", {
       className: "Video-player"
@@ -72,7 +72,7 @@ function (_React$Component) {
 Video.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.shape({
     thumbnail: PropTypes.string.isRequired
-  }).isRequired,
+  }),
   voteStats: PropTypes.shape({
     isUpvote: PropTypes.bool,
     isFavorite: PropTypes.bool,

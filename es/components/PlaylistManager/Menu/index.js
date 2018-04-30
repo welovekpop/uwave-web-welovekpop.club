@@ -26,7 +26,8 @@ var PlaylistMenu = function PlaylistMenu(_ref) {
   var importIsSelected = showImportPanel ? 'is-selected' : '';
   var isSelectingPlaylist = selected && !showSearchResults && !showImportPanel;
   return _jsx(MenuList, {
-    className: cx('PlaylistMenu', className)
+    className: cx('PlaylistMenu', className),
+    disablePadding: true
   }, void 0, _jsx(PlaylistCreateRow, {
     className: "PlaylistMenu-row",
     onCreatePlaylist: onCreatePlaylist

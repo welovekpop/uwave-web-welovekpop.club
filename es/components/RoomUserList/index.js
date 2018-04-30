@@ -23,6 +23,7 @@ var RoomUserList = function RoomUserList(_ref) {
   }, void 0, _jsx(List, {
     itemsRenderer: function itemsRenderer(children, _ref2) {
       return React.createElement(MuiList, {
+        disablePadding: true,
         ref: function ref(list) {
           _ref2(list && ReactDOM.findDOMNode(list)); // eslint-disable-line react/no-find-dom-node
 
