@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[28],{342:function(e){e.exports={a:"1.8.2"}},615:function(e,a,n){"use strict";n.r(a);var o=n(343),s=n.n(o),t=n(342),u=s()({apiKey:"a3246545081c8decaf0185c7a7f8d402",appVersion:t.a,beforeSend:function(e){var a=uw.store.getState(),n=a.auth&&a.auth.user;n&&(e.user={id:n._id,name:n.username})}});window.bugsnag=u}},[[615,20,23]]]);
+//# sourceMappingURL=bugsnag_70f7f82.js.map
