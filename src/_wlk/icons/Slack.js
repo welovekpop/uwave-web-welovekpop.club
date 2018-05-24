@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgIcon from 'material-ui/SvgIcon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 // Slack icon from the Font-Awesome icon font by Dave Gandy:
 // http://fontawesome.io/icon/slack/
