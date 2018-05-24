@@ -2,9 +2,12 @@ import find from 'array-find';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Popover from 'material-ui/Popover';
-import { MenuList, MenuItem } from 'material-ui/Menu';
-import { ListItemIcon, ListItemText } from 'material-ui/List';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import CreatePlaylistIcon from '@material-ui/icons/Add';
 import ActiveIcon from '@material-ui/icons/Check';
 
@@ -60,7 +63,9 @@ class PlaylistsMenu extends React.Component {
                   <ActiveIcon />
                 </ListItemIcon>
               )}
-              <ListItemText primary={playlist.name} />
+              <ListItemText disableTypography className="AddToPlaylistMenu-playlistName">
+                <Typography noWrap variant="subheading">{playlist.name}</Typography>
+              </ListItemText>
               <ListItemText className="AddToPlaylistMenu-smallIcon" primary={String(playlist.size || 0)} />
             </MenuItem>
           ))}

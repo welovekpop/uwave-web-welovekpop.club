@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createDebug from 'debug';
 import { translate } from 'react-i18next';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import ErrorIcon from '@material-ui/icons/Error';
 import SongInfo from './SongInfo';
 import soundcloudLogo from '../../../assets/img/soundcloud-inline.png';
@@ -40,6 +40,7 @@ class SoundCloudPlayer extends React.Component {
     media: PropTypes.object,
     seek: PropTypes.number,
     volume: PropTypes.number,
+    onPlay: PropTypes.func,
   };
 
   state = {
@@ -93,6 +94,9 @@ class SoundCloudPlayer extends React.Component {
       if (res && res.then) res.catch(this.handleError);
       debug('currentTime', this.props.seek);
       this.audio.addEventListener('canplaythrough', doSeek, false);
+      if (this.props.onPlay) {
+        this.audio.addEventListener('play', this.props.onPlay, false);
+      }
     } else {
       this.stop();
     }
