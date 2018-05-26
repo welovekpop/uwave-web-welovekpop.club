@@ -36,9 +36,9 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        isDragging = _props.isDragging,
-        items = _props.items;
+    var _this$props = this.props,
+        isDragging = _this$props.isDragging,
+        items = _this$props.items;
 
     if (!isDragging || !items) {
       return null;

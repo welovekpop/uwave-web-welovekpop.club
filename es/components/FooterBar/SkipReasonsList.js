@@ -1,7 +1,9 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import List, { ListItem, ListItemText } from "material-ui/es/List";
+import List from "@material-ui/core/es/List";
+import ListItem from "@material-ui/core/es/ListItem";
+import ListItemText from "@material-ui/core/es/ListItemText";
 
 var SkipReasonsList = function SkipReasonsList(_ref) {
   var reasons = _ref.reasons,

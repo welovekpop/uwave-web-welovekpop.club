@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LinearProgress } from "material-ui/es/Progress";
+import LinearProgress from "@material-ui/core/es/LinearProgress";
 
 var VideoProgressBar = function VideoProgressBar(_ref) {
   var media = _ref.media,

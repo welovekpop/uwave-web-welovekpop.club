@@ -2,7 +2,7 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgress } from "material-ui/es/Progress";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
 import MediaList from '../../MediaList';
 import PlaylistMeta from './Meta';
 import PlainItemRow from '../../MediaList/Row';

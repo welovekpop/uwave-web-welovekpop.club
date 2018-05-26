@@ -4,12 +4,12 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate, Interpolate } from 'react-i18next';
-import { FormControlLabel } from "material-ui/es/Form";
-import Checkbox from "material-ui/es/Checkbox";
-import { CircularProgress } from "material-ui/es/Progress";
-import EmailIcon from '@material-ui/icons/Email';
-import PasswordIcon from '@material-ui/icons/Lock';
-import UserIcon from '@material-ui/icons/Person';
+import FormControlLabel from "@material-ui/core/es/FormControlLabel";
+import Checkbox from "@material-ui/core/es/Checkbox";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
+import EmailIcon from "@material-ui/icons/es/Email";
+import PasswordIcon from "@material-ui/icons/es/Lock";
+import UserIcon from "@material-ui/icons/es/Person";
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
@@ -116,15 +116,15 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        error = _props.error,
-        supportsSocialAuth = _props.supportsSocialAuth,
-        useReCaptcha = _props.useReCaptcha;
-    var _state = this.state,
-        agreed = _state.agreed,
-        busy = _state.busy,
-        captchaResponse = _state.captchaResponse;
+    var _this$props = this.props,
+        t = _this$props.t,
+        error = _this$props.error,
+        supportsSocialAuth = _this$props.supportsSocialAuth,
+        useReCaptcha = _this$props.useReCaptcha;
+    var _this$state = this.state,
+        agreed = _this$state.agreed,
+        busy = _this$state.busy,
+        captchaResponse = _this$state.captchaResponse;
     var captchaOk = !useReCaptcha || !!captchaResponse;
     return _jsx(Form, {
       className: "RegisterForm",

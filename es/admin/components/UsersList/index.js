@@ -1,9 +1,14 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next'; // eslint-disable-next-line
-
-import Table, { TableBody, TableHead, TableFooter, TableCell, TableRow, TablePagination } from "material-ui/es/Table";
+import { translate } from 'react-i18next';
+import Table from "@material-ui/core/es/Table";
+import TableHead from "@material-ui/core/es/TableHead";
+import TableBody from "@material-ui/core/es/TableBody";
+import TableFooter from "@material-ui/core/es/TableFooter";
+import TablePagination from "@material-ui/core/es/TablePagination";
+import TableRow from "@material-ui/core/es/TableRow";
+import TableCell from "@material-ui/core/es/TableCell";
 import UserRow from './Row';
 import Header from './Header';
 var enhance = translate();

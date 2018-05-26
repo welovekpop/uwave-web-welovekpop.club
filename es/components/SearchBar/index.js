@@ -5,7 +5,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/es/Search";
 var enhance = translate();
 
 var _ref =
@@ -50,9 +50,9 @@ function (_React$Component) {
   var _proto = SearchBar.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        children = _props.children;
+    var _this$props = this.props,
+        t = _this$props.t,
+        children = _this$props.children;
     var focused = this.state.focused;
     return _jsx("div", {
       className: cx('SearchBar', focused ? 'is-focused' : '', this.props.className)

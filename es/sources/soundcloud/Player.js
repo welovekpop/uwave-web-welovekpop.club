@@ -6,10 +6,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createDebug from 'debug';
 import { translate } from 'react-i18next';
-import Paper from "material-ui/es/Paper";
-import Button from "material-ui/es/Button";
-import Typography from "material-ui/es/Typography";
-import ErrorIcon from '@material-ui/icons/Error';
+import Paper from "@material-ui/core/es/Paper";
+import Button from "@material-ui/core/es/Button";
+import Typography from "@material-ui/core/es/Typography";
+import ErrorIcon from "@material-ui/icons/es/Error";
 import SongInfo from './SongInfo';
 import soundcloudLogo from '../../../assets/img/soundcloud-inline.png';
 var debug = createDebug('uwave:component:video:soundcloud');
@@ -129,6 +129,10 @@ function (_React$Component) {
       if (res && res.then) res.catch(this.handleError);
       debug('currentTime', this.props.seek);
       this.audio.addEventListener('canplaythrough', doSeek, false);
+
+      if (this.props.onPlay) {
+        this.audio.addEventListener('play', this.props.onPlay, false);
+      }
     } else {
       this.stop();
     }
@@ -146,12 +150,12 @@ function (_React$Component) {
       return null;
     }
 
-    var _props = this.props,
-        t = _props.t,
-        media = _props.media;
-    var _state = this.state,
-        error = _state.error,
-        needsTap = _state.needsTap;
+    var _this$props = this.props,
+        t = _this$props.t,
+        media = _this$props.media;
+    var _this$state = this.state,
+        error = _this$state.error,
+        needsTap = _this$state.needsTap;
     var sourceData = media.sourceData;
 
     if (!sourceData) {
@@ -224,7 +228,8 @@ SoundCloudPlayer.propTypes = process.env.NODE_ENV !== "production" ? {
   enabled: PropTypes.bool,
   media: PropTypes.object,
   seek: PropTypes.number,
-  volume: PropTypes.number
+  volume: PropTypes.number,
+  onPlay: PropTypes.func
 } : {};
 export default enhance(SoundCloudPlayer);
 //# sourceMappingURL=Player.js.map

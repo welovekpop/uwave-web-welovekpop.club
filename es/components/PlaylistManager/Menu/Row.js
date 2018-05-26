@@ -4,9 +4,9 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
-import { CircularProgress } from "material-ui/es/Progress";
-import { MenuItem } from "material-ui/es/Menu";
-import ActiveIcon from '@material-ui/icons/Check';
+import CircularProgress from "@material-ui/core/es/CircularProgress";
+import MenuItem from "@material-ui/core/es/MenuItem";
+import ActiveIcon from "@material-ui/icons/es/Check";
 import { MEDIA } from '../../../constants/DDItemTypes';
 var playlistTarget = {
   drop: function drop(_ref, monitor) {
@@ -59,12 +59,12 @@ function (_React$Component) {
   var _proto = PlaylistRow.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        playlist = _props.playlist,
-        selected = _props.selected,
-        onClick = _props.onClick,
-        connectDropTarget = _props.connectDropTarget,
-        isOver = _props.isOver;
+    var _this$props = this.props,
+        playlist = _this$props.playlist,
+        selected = _this$props.selected,
+        onClick = _this$props.onClick,
+        connectDropTarget = _this$props.connectDropTarget,
+        isOver = _this$props.isOver;
     var activeClass = playlist.active && 'is-active';
     var droppableClass = isOver && 'is-droppable';
     var icon;

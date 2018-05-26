@@ -1,7 +1,8 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem, ListItemText } from "material-ui/es/List";
+import ListItem from "@material-ui/core/es/ListItem";
+import ListItemText from "@material-ui/core/es/ListItemText";
 
 var MediaRow = function MediaRow(_ref) {
   var media = _ref.media;

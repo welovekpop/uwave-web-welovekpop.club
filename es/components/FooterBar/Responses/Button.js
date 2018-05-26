@@ -2,7 +2,7 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from "material-ui/es/Tooltip";
+import Tooltip from "@material-ui/core/es/Tooltip";
 /* eslint-disable */
 
 var Button = function Button(_ref) {

@@ -2,10 +2,10 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from "material-ui/es/IconButton";
-import { ListItem } from "material-ui/es/List";
-import SearchIcon from '@material-ui/icons/Search';
-import CloseIcon from '@material-ui/icons/Close';
+import IconButton from "@material-ui/core/es/IconButton";
+import ListItem from "@material-ui/core/es/ListItem";
+import SearchIcon from "@material-ui/icons/es/Search";
+import CloseIcon from "@material-ui/icons/es/Close";
 
 var _ref2 =
 /*#__PURE__*/

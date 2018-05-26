@@ -2,7 +2,8 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItemAvatar, ListItemText } from "material-ui/es/List";
+import ListItemAvatar from "@material-ui/core/es/ListItemAvatar";
+import ListItemText from "@material-ui/core/es/ListItemText";
 import Suggestion from './Suggestion';
 
 var shortcode = function shortcode(emoji) {

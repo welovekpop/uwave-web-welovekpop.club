@@ -1,7 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { SHOW_IMPORT_PANEL } from '../constants/actionTypes/imports';
-import { SELECT_PLAYLIST } from '../constants/actionTypes/playlists';
-import { SET_SEARCH_SOURCE, SHOW_SEARCH_RESULTS, SEARCH_START, SEARCH_COMPLETE, SEARCH_DELETE } from '../constants/actionTypes/search';
+import { SHOW_IMPORT_PANEL, SELECT_PLAYLIST, SET_SEARCH_SOURCE, SHOW_SEARCH_RESULTS, SEARCH_START, SEARCH_COMPLETE, SEARCH_DELETE } from '../constants/ActionTypes';
 import { IDLE, LOADING, LOADED } from '../constants/LoadingStates';
 var initialState = {
   sourceType: 'youtube',

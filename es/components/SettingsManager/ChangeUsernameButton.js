@@ -4,8 +4,8 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import IconButton from "material-ui/es/IconButton";
-import EditIcon from '@material-ui/icons/ModeEdit';
+import IconButton from "@material-ui/core/es/IconButton";
+import EditIcon from "@material-ui/icons/es/ModeEdit";
 import PromptDialog from '../Dialogs/PromptDialog';
 import DialogCloseAnimation from '../DialogCloseAnimation';
 var enhance = translate();
@@ -49,7 +49,7 @@ function (_React$Component) {
         return null;
       }
 
-      return _this.props.onChangeUsername(name).then(_this.closeDialog.bind(_assertThisInitialized(_this)));
+      return _this.props.onChangeUsername(name).then(_this.closeDialog.bind(_assertThisInitialized(_assertThisInitialized(_this))));
     }, _temp) || _assertThisInitialized(_this);
   }
 
@@ -62,9 +62,9 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        initialUsername = _props.initialUsername;
+    var _this$props = this.props,
+        t = _this$props.t,
+        initialUsername = _this$props.initialUsername;
     return _jsx(React.Fragment, {}, void 0, _jsx(IconButton, {
       className: "ChangeUsernameButton",
       onClick: this.handleOpen

@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { OPEN_EDIT_MEDIA_DIALOG, CLOSE_EDIT_MEDIA_DIALOG, OPEN_PREVIEW_MEDIA_DIALOG, CLOSE_PREVIEW_MEDIA_DIALOG, OPEN_LOGIN_DIALOG, CLOSE_LOGIN_DIALOG } from '../constants/actionTypes/dialogs';
+import { OPEN_EDIT_MEDIA_DIALOG, CLOSE_EDIT_MEDIA_DIALOG, OPEN_PREVIEW_MEDIA_DIALOG, CLOSE_PREVIEW_MEDIA_DIALOG, OPEN_LOGIN_DIALOG, CLOSE_LOGIN_DIALOG } from '../constants/ActionTypes';
 var initialState = {
   editMedia: {
     open: false,

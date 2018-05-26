@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from "material-ui/es/Button";
+import Button from "@material-ui/core/es/Button";
 
 var SocialMediaLink = function SocialMediaLink(_ref) {
   var href = _ref.href,

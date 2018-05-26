@@ -2,9 +2,9 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import DownvoteIcon from '@material-ui/icons/ThumbDown';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import UpvoteIcon from '@material-ui/icons/ThumbUp';
+import DownvoteIcon from "@material-ui/icons/es/ThumbDown";
+import FavoriteIcon from "@material-ui/icons/es/Favorite";
+import UpvoteIcon from "@material-ui/icons/es/ThumbUp";
 
 var _ref2 =
 /*#__PURE__*/

@@ -16,7 +16,11 @@ function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.handleYTPause = function (event) {
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.handleYTPlay = function () {
+      if (_this.props.onPlay) {
+        _this.props.onPlay();
+      }
+    }, _this.handleYTPause = function (event) {
       if (!_this.props.controllable && _this.props.active) {
         event.target.playVideo();
       }
@@ -28,12 +32,12 @@ function (_React$Component) {
   var _proto = YouTubePlayerEmbed.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        active = _props.active,
-        media = _props.media,
-        seek = _props.seek,
-        volume = _props.volume,
-        controllable = _props.controllable;
+    var _this$props = this.props,
+        active = _this$props.active,
+        media = _this$props.media,
+        seek = _this$props.seek,
+        volume = _this$props.volume,
+        controllable = _this$props.controllable;
     return React.createElement(YouTube, {
       ref: this.refPlayer,
       video: active ? media.sourceID : null,
@@ -49,7 +53,8 @@ function (_React$Component) {
       annotations: false,
       startSeconds: (seek || 0) + (media.start || 0),
       endSeconds: media.end || media.duration,
-      onPause: this.handleYTPause
+      onPause: this.handleYTPause,
+      onPlaying: this.handleYTPlay
     });
   };
 
@@ -65,6 +70,7 @@ YouTubePlayerEmbed.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.object,
   seek: PropTypes.number,
   volume: PropTypes.number,
-  controllable: PropTypes.bool
+  controllable: PropTypes.bool,
+  onPlay: PropTypes.func
 } : {};
 //# sourceMappingURL=PlayerEmbed.js.map

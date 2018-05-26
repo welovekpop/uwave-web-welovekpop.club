@@ -11,7 +11,8 @@ var YouTubePlayer = function YouTubePlayer(_ref) {
       mode = _ref.mode,
       media = _ref.media,
       seek = _ref.seek,
-      volume = _ref.volume;
+      volume = _ref.volume,
+      onPlay = _ref.onPlay;
   var modeClass = "src-youtube-Player--" + mode;
   return _jsx("div", {
     className: cx('src-youtube-Player', modeClass, className),
@@ -21,7 +22,8 @@ var YouTubePlayer = function YouTubePlayer(_ref) {
     active: active,
     seek: Math.round(seek),
     volume: volume,
-    controllable: mode === 'preview'
+    controllable: mode === 'preview',
+    onPlay: onPlay
   }));
 };
 
@@ -32,7 +34,8 @@ YouTubePlayer.propTypes = process.env.NODE_ENV !== "production" ? {
   enabled: PropTypes.bool,
   media: PropTypes.object,
   seek: PropTypes.number,
-  volume: PropTypes.number
+  volume: PropTypes.number,
+  onPlay: PropTypes.func
 } : {};
 export default YouTubePlayer;
 //# sourceMappingURL=Player.js.map

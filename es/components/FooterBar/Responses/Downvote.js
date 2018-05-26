@@ -2,7 +2,7 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import DownvoteIcon from '@material-ui/icons/ThumbDown';
+import DownvoteIcon from "@material-ui/icons/es/ThumbDown";
 import Button from './Button';
 var enhance = translate();
 

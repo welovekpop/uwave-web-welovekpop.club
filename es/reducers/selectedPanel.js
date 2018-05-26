@@ -1,4 +1,4 @@
-import { SELECT_PANEL } from '../constants/actionTypes/panel';
+import { SELECT_PANEL } from '../constants/ActionTypes';
 var initialState = 'chat';
 export default function reduce(state, action) {
   if (state === void 0) {

@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from "material-ui/es/Tooltip";
+import Tooltip from "@material-ui/core/es/Tooltip";
 
 var shortcode = function shortcode(name) {
   return ":" + name + ":";

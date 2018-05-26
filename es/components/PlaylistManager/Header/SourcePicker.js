@@ -5,8 +5,8 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Popover from "material-ui/es/Popover";
-import ArrowIcon from '@material-ui/icons/ArrowDropDown';
+import Popover from "@material-ui/core/es/Popover";
+import ArrowIcon from "@material-ui/icons/es/ArrowDropDown";
 import injectMediaSources from '../../../utils/injectMediaSources';
 import SourcePickerElement from './SourcePickerElement';
 var enhance = injectMediaSources();
@@ -60,9 +60,9 @@ function (_React$Component) {
   _proto.createElement = function createElement(sourceName) {
     var _this2 = this;
 
-    var _props = this.props,
-        selected = _props.selected,
-        getMediaSource = _props.getMediaSource;
+    var _this$props = this.props,
+        selected = _this$props.selected,
+        getMediaSource = _this$props.getMediaSource;
     return _jsx("button", {
       className: "SourcePicker-item",
       onClick: function onClick() {
@@ -83,11 +83,11 @@ function (_React$Component) {
   _proto.render = function render() {
     var _this3 = this;
 
-    var _props2 = this.props,
-        className = _props2.className,
-        selected = _props2.selected,
-        getMediaSource = _props2.getMediaSource,
-        getAllMediaSources = _props2.getAllMediaSources;
+    var _this$props2 = this.props,
+        className = _this$props2.className,
+        selected = _this$props2.selected,
+        getMediaSource = _this$props2.getMediaSource,
+        getAllMediaSources = _this$props2.getAllMediaSources;
     var sourceNames = Object.keys(getAllMediaSources());
     var sources = sourceNames.filter(function (name) {
       return name !== selected;

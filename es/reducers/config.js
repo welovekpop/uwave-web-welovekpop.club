@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { INIT_STATE } from '../constants/actionTypes/auth';
+import { INIT_STATE } from '../constants/ActionTypes';
 var initialState = {};
 export default function reduce(state, action) {
   if (state === void 0) {

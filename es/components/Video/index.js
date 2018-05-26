@@ -95,16 +95,16 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        getMediaSource = _props.getMediaSource,
-        isFullscreen = _props.isFullscreen,
-        enabled = _props.enabled,
-        size = _props.size,
-        volume = _props.volume,
-        isMuted = _props.isMuted,
-        media = _props.media,
-        seek = _props.seek,
-        onFullscreenExit = _props.onFullscreenExit;
+    var _this$props = this.props,
+        getMediaSource = _this$props.getMediaSource,
+        isFullscreen = _this$props.isFullscreen,
+        enabled = _this$props.enabled,
+        size = _this$props.size,
+        volume = _this$props.volume,
+        isMuted = _this$props.isMuted,
+        media = _this$props.media,
+        seek = _this$props.seek,
+        onFullscreenExit = _this$props.onFullscreenExit;
 
     if (!media) {
       return _ref;

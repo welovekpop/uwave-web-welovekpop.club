@@ -3,10 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withProps from 'recompose/withProps';
 import { translate } from 'react-i18next';
-import List, { ListSubheader } from "material-ui/es/List";
-import Divider from "material-ui/es/Divider";
-import Button from "material-ui/es/Button";
-import CurrentDJIcon from '@material-ui/icons/PlayArrow';
+import List from "@material-ui/core/es/List";
+import ListSubheader from "@material-ui/core/es/ListSubheader";
+import Divider from "@material-ui/core/es/Divider";
+import Button from "@material-ui/core/es/Button";
+import CurrentDJIcon from "@material-ui/icons/es/PlayArrow";
 import UserRow from './UserRow';
 import WaitlistPosition from './WaitlistPosition';
 var JoinWaitlistButton = withProps({

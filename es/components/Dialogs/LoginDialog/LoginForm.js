@@ -4,9 +4,9 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import EmailIcon from '@material-ui/icons/Email';
-import PasswordIcon from '@material-ui/icons/Lock';
-import { CircularProgress } from "material-ui/es/Progress";
+import EmailIcon from "@material-ui/icons/es/Email";
+import PasswordIcon from "@material-ui/icons/es/Lock";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
@@ -84,10 +84,10 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        error = _props.error,
-        supportsSocialAuth = _props.supportsSocialAuth;
+    var _this$props = this.props,
+        t = _this$props.t,
+        error = _this$props.error,
+        supportsSocialAuth = _this$props.supportsSocialAuth;
     var busy = this.state.busy;
     return _jsx(Form, {
       className: "LoginForm",

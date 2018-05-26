@@ -141,14 +141,14 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _state = this.state,
-        focused = _state.focused,
-        value = _state.value;
-    var _props = this.props,
-        t = _props.t,
-        mentionableUsers = _props.mentionableUsers,
-        mentionableGroups = _props.mentionableGroups,
-        availableEmoji = _props.availableEmoji;
+    var _this$state = this.state,
+        focused = _this$state.focused,
+        value = _this$state.value;
+    var _this$props = this.props,
+        t = _this$props.t,
+        mentionableUsers = _this$props.mentionableUsers,
+        mentionableGroups = _this$props.mentionableGroups,
+        availableEmoji = _this$props.availableEmoji;
     var focusClass = focused ? 'is-focused' : '';
     return _jsx("div", {
       className: cx('ChatInput', focusClass)

@@ -34,10 +34,10 @@ function (_React$Component) {
     var About = this.getAboutPageComponent();
     if (!About) return null;
 
-    var _props = this.props,
-        t = _props.t,
-        onCloseOverlay = _props.onCloseOverlay,
-        props = _objectWithoutProperties(_props, ["t", "onCloseOverlay"]);
+    var _this$props = this.props,
+        t = _this$props.t,
+        onCloseOverlay = _this$props.onCloseOverlay,
+        props = _objectWithoutProperties(_this$props, ["t", "onCloseOverlay"]);
 
     return _jsx(Overlay, {}, void 0, _jsx(OverlayHeader, {
       title: t('about.about'),

@@ -3,7 +3,7 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaylistIcon from '@material-ui/icons/PlaylistPlay';
+import PlaylistIcon from "@material-ui/icons/es/PlaylistPlay";
 import ImportSourceBlock from '../../components/PlaylistManager/Import/ImportSourceBlock';
 import Form from '../../components/Form';
 import FormGroup from '../../components/Form/Group';

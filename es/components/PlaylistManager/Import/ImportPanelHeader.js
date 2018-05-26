@@ -3,9 +3,9 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import CloseIcon from '@material-ui/icons/Close';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import CloseIcon from "@material-ui/icons/es/Close";
 var enhance = translate();
 
 var _ref2 =

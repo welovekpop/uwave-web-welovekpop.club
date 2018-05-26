@@ -3,9 +3,9 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import ImportIcon from '@material-ui/icons/PlaylistAdd';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import ImportIcon from "@material-ui/icons/es/PlaylistAdd";
 import MediaList from '../../components/MediaList';
 import AddToPlaylistAction from '../../components/MediaList/Actions/AddToPlaylist';
 import ImportPanelHeader from '../../components/PlaylistManager/Import/ImportPanelHeader';
@@ -47,11 +47,11 @@ function (_React$Component) {
   var _proto = YouTubeImportPlaylistPanel.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        importingPlaylist = _props.importingPlaylist,
-        importingPlaylistItems = _props.importingPlaylistItems,
-        onOpenAddMediaMenu = _props.onOpenAddMediaMenu,
-        onClosePanel = _props.onClosePanel;
+    var _this$props2 = this.props,
+        importingPlaylist = _this$props2.importingPlaylist,
+        importingPlaylistItems = _this$props2.importingPlaylistItems,
+        onOpenAddMediaMenu = _this$props2.onOpenAddMediaMenu,
+        onClosePanel = _this$props2.onClosePanel;
     return _jsx("div", {
       className: "ImportPanel src-youtube-PlaylistPanel"
     }, void 0, _jsx(ImportPanelHeader, {

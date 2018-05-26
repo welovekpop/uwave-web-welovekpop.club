@@ -5,8 +5,8 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { MenuItem } from "material-ui/es/Menu";
-import CreatePlaylistIcon from '@material-ui/icons/Add';
+import MenuItem from "@material-ui/core/es/MenuItem";
+import CreatePlaylistIcon from "@material-ui/icons/es/Add";
 import PromptDialog from '../../Dialogs/PromptDialog';
 var enhance = translate();
 
@@ -43,7 +43,7 @@ function (_React$Component) {
     }, _this.handleClose = function () {
       _this.closeDialog();
     }, _this.handleSubmit = function (playlistName) {
-      return Promise.resolve(_this.props.onCreatePlaylist(playlistName)).then(_this.closeDialog.bind(_assertThisInitialized(_this)));
+      return Promise.resolve(_this.props.onCreatePlaylist(playlistName)).then(_this.closeDialog.bind(_assertThisInitialized(_assertThisInitialized(_this))));
     }, _temp) || _assertThisInitialized(_this);
   }
 
@@ -56,9 +56,9 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        className = _props.className;
+    var _this$props = this.props,
+        t = _this$props.t,
+        className = _this$props.className;
     return _jsx(React.Fragment, {}, void 0, _jsx(MenuItem, {
       className: cx('PlaylistMenuRow', 'PlaylistMenuRow--create', className),
       onClick: this.handleOpen

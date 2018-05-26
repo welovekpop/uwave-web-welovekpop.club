@@ -33,9 +33,9 @@ function (_React$Component) {
     var _this;
 
     _this = _React$Component.call(this, props) || this;
-    _this.handleSkipTurn = _this.handleSkipTurn.bind(_assertThisInitialized(_this));
-    _this.handleJoinWaitlist = _this.handleJoinWaitlist.bind(_assertThisInitialized(_this));
-    _this.handleLeaveWaitlist = _this.handleLeaveWaitlist.bind(_assertThisInitialized(_this));
+    _this.handleSkipTurn = _this.handleSkipTurn.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleJoinWaitlist = _this.handleJoinWaitlist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleLeaveWaitlist = _this.handleLeaveWaitlist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -76,26 +76,26 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        openLoginDialog = _props.openLoginDialog,
-        openRegisterDialog = _props.openRegisterDialog,
-        togglePlaylistManager = _props.togglePlaylistManager,
-        toggleSettings = _props.toggleSettings,
-        onFavorite = _props.onFavorite,
-        onUpvote = _props.onUpvote,
-        onDownvote = _props.onDownvote;
-    var _props2 = this.props,
-        user = _props2.user,
-        userIsDJ = _props2.userIsDJ,
-        userInWaitlist = _props2.userInWaitlist,
-        shouldRandomizePlaylists = _props2.shouldRandomizePlaylists,
-        playlist = _props2.playlist,
-        nextMedia = _props2.nextMedia,
-        showSkip = _props2.showSkip,
-        baseEta = _props2.baseEta,
-        mediaEndTime = _props2.mediaEndTime,
-        voteStats = _props2.voteStats;
+    var _this$props = this.props,
+        t = _this$props.t,
+        openLoginDialog = _this$props.openLoginDialog,
+        openRegisterDialog = _this$props.openRegisterDialog,
+        togglePlaylistManager = _this$props.togglePlaylistManager,
+        toggleSettings = _this$props.toggleSettings,
+        onFavorite = _this$props.onFavorite,
+        onUpvote = _this$props.onUpvote,
+        onDownvote = _this$props.onDownvote;
+    var _this$props2 = this.props,
+        user = _this$props2.user,
+        userIsDJ = _this$props2.userIsDJ,
+        userInWaitlist = _this$props2.userInWaitlist,
+        shouldRandomizePlaylists = _this$props2.shouldRandomizePlaylists,
+        playlist = _this$props2.playlist,
+        nextMedia = _this$props2.nextMedia,
+        showSkip = _this$props2.showSkip,
+        baseEta = _this$props2.baseEta,
+        mediaEndTime = _this$props2.mediaEndTime,
+        voteStats = _this$props2.voteStats;
     var className = cx('FooterBar', this.props.className);
 
     if (user && !user.isGuest) {

@@ -75,14 +75,14 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        historyEntry = _props.media,
-        className = _props.className,
-        selection = _props.selection,
-        selected = _props.selected,
-        connectDragSource = _props.connectDragSource,
-        makeActions = _props.makeActions,
-        onClick = _props.onClick;
+    var _this$props = this.props,
+        historyEntry = _this$props.media,
+        className = _this$props.className,
+        selection = _this$props.selection,
+        selected = _this$props.selected,
+        connectDragSource = _this$props.connectDragSource,
+        makeActions = _this$props.makeActions,
+        onClick = _this$props.onClick;
     var media = historyEntry.media,
         timestamp = historyEntry.timestamp,
         user = historyEntry.user,

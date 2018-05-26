@@ -6,7 +6,7 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import CreatePlaylistIcon from '@material-ui/icons/Add';
+import CreatePlaylistIcon from "@material-ui/icons/es/Add";
 import PromptDialog from '../Dialogs/PromptDialog';
 import PlaylistsMenu from './PlaylistsMenu';
 var enhance = translate();
@@ -51,9 +51,9 @@ function (_React$Component) {
   var _proto = AddToPlaylistMenu.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        props = _objectWithoutProperties(_props, ["t"]);
+    var _this$props = this.props,
+        t = _this$props.t,
+        props = _objectWithoutProperties(_this$props, ["t"]);
 
     return _jsx(React.Fragment, {}, void 0, !this.state.creating && React.createElement(PlaylistsMenu, _extends({}, props, {
       onCreatePlaylist: this.handleOpen

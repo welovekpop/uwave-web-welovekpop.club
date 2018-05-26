@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { ADVANCE, ENTER_FULLSCREEN, EXIT_FULLSCREEN } from '../constants/actionTypes/booth';
+import { ADVANCE, ENTER_FULLSCREEN, EXIT_FULLSCREEN } from '../constants/ActionTypes';
 var initialState = {
   historyID: null,
   media: null,

@@ -3,7 +3,7 @@ import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/es/Delete";
 import Action from './Action';
 
 var _ref2 =

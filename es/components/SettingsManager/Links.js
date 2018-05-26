@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withProps from 'recompose/withProps';
 import { translate } from 'react-i18next';
-import Button from "material-ui/es/Button";
-import LicenseIcon from '@material-ui/icons/Copyright';
+import Button from "@material-ui/core/es/Button";
+import LicenseIcon from "@material-ui/icons/es/Copyright";
 import GithubIcon from './GithubIcon';
 var enhance = translate();
 var Link = withProps({

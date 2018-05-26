@@ -5,10 +5,10 @@ import compose from 'recompose/compose';
 import withState from 'recompose/withState';
 import withHandlers from 'recompose/withHandlers';
 import { translate } from 'react-i18next';
-import { CircularProgress } from "material-ui/es/Progress";
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import ShuffleIcon from '@material-ui/icons/Shuffle';
+import CircularProgress from "@material-ui/core/es/CircularProgress";
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import ShuffleIcon from "@material-ui/icons/es/Shuffle";
 var enhance = compose(withState('isLoading', 'setLoading', false), withHandlers({
   onClick: function onClick(props) {
     return function () {

@@ -3,7 +3,7 @@ import cx from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import MuiList from "material-ui/es/List";
+import MuiList from "@material-ui/core/es/List";
 import List from 'react-list';
 import RoomUserRow from './Row';
 import GuestsRow from './GuestsRow';

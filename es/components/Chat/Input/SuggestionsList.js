@@ -1,8 +1,8 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from "material-ui/es/Paper";
-import List from "material-ui/es/List";
+import Paper from "@material-ui/core/es/Paper";
+import List from "@material-ui/core/es/List";
 
 var SuggestionsList = function SuggestionsList(_ref) {
   var children = _ref.children;

@@ -2,8 +2,8 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Card from "material-ui/es/Card/Card";
-import CardHeader from "material-ui/es/Card/CardHeader";
+import Card from "@material-ui/core/es/Card/Card";
+import CardHeader from "@material-ui/core/es/CardHeader";
 import OfflineIcon from './OfflineIcon';
 var enhance = translate();
 

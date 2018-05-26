@@ -2,17 +2,28 @@ import _extends from "@babel/runtime/helpers/builtin/extends";
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
-// Copy-pasted from https://github.com/mui-org/material-ui/pull/10665
 
 /* eslint-disable */
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import withStyles from "material-ui/es/styles/withStyles";
-import ButtonBase from "material-ui/es/ButtonBase";
-import { fade } from "material-ui/es/styles/colorManipulator";
-import clamp from 'lodash/clamp';
+import withStyles from "@material-ui/core/es/styles/withStyles";
+import ButtonBase from "@material-ui/core/es/ButtonBase";
+import { fade } from "@material-ui/core/es/styles/colorManipulator";
+
+function clamp(value, min, max) {
+  if (min === void 0) {
+    min = 0;
+  }
+
+  if (max === void 0) {
+    max = 100;
+  }
+
+  return Math.min(Math.max(value, min), max);
+}
+
 export var style = function style(theme) {
   var commonTransitionsOptions = {
     duration: theme.transitions.duration.short,
@@ -400,13 +411,17 @@ function (_React$Component) {
   };
 
   _proto.emitChange = function emitChange(event, rawValue, callback) {
-    var _props = this.props,
-        min = _props.min,
-        max = _props.max,
-        previousValue = _props.value,
-        onChange = _props.onChange;
-    var step = this.props.step || Math.abs((max - min) / 100);
-    var value = roundToStep(rawValue, step);
+    var _this$props4 = this.props,
+        step = _this$props4.step,
+        previousValue = _this$props4.value,
+        onChange = _this$props4.onChange;
+    var value = rawValue;
+
+    if (step) {
+      value = roundToStep(rawValue, step);
+    } else {
+      value = Number(rawValue.toFixed(3));
+    }
 
     if (typeof onChange === 'function' && value !== previousValue) {
       onChange(event, value);
@@ -470,15 +485,15 @@ function (_React$Component) {
         _this3 = this;
 
     var currentState = this.state.currentState;
-    var _props2 = this.props,
-        Component = _props2.component,
-        classes = _props2.classes,
-        value = _props2.value,
-        min = _props2.min,
-        max = _props2.max,
-        vertical = _props2.vertical,
-        reverse = _props2.reverse,
-        disabled = _props2.disabled;
+    var _this$props5 = this.props,
+        Component = _this$props5.component,
+        classes = _this$props5.classes,
+        value = _this$props5.value,
+        min = _this$props5.min,
+        max = _this$props5.max,
+        vertical = _this$props5.vertical,
+        reverse = _this$props5.reverse,
+        disabled = _this$props5.disabled;
     var percent = clamp((value - min) * 100 / (max - min));
     var commonClasses = (_commonClasses = {}, _commonClasses[classes.disabled] = disabled, _commonClasses[classes.jumped] = !disabled && currentState === 'jumped', _commonClasses[classes.focused] = !disabled && currentState === 'focused', _commonClasses[classes.activated] = !disabled && currentState === 'activated', _commonClasses);
     var containerClasses = classNames(classes.container, (_classNames = {}, _classNames[classes.vertical] = vertical, _classNames[classes.reverse] = reverse, _classNames[classes.disabled] = disabled, _classNames));

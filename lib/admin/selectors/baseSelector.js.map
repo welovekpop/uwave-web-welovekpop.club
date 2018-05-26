@@ -1,1 +1,1 @@
-{"version":3,"sources":["admin/selectors/baseSelector.js"],"names":["state","admin"],"mappings":";;;;;;;eAAgB,kBAAUA,KAAV,EAAiB;AAC/B,SAAOA,MAAMC,KAAb;AACD,C,EACD","file":"baseSelector.js","sourcesContent":["export default state => state.admin;\n"]}
+{"version":3,"sources":["admin/selectors/baseSelector.js"],"names":["state","admin"],"mappings":";;;;;;;eAAgB,kBAAUA,KAAV,EAAiB;AAC/B,SAAOA,MAAMC,KAAb;AACD,C","file":"baseSelector.js","sourcesContent":["export default state => state.admin;\n"]}

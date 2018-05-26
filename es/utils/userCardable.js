@@ -45,10 +45,10 @@ export default function userCardable() {
       var _proto = CardableComponent.prototype;
 
       _proto.render = function render() {
-        var _state = this.state,
-            open = _state.open,
-            position = _state.position,
-            user = _state.user;
+        var _this$state = this.state,
+            open = _this$state.open,
+            position = _this$state.position,
+            user = _this$state.user;
         return React.createElement("div", {
           ref: this.refContainer
         }, open && _jsx(UserCard, {

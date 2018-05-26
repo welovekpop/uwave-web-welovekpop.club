@@ -3,10 +3,10 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmailIcon from '@material-ui/icons/Email';
-import PasswordIcon from '@material-ui/icons/Lock';
-import Paper from "material-ui/es/Paper";
-import Typography from "material-ui/es/Typography";
+import EmailIcon from "@material-ui/icons/es/Email";
+import PasswordIcon from "@material-ui/icons/es/Lock";
+import Paper from "@material-ui/core/es/Paper";
+import Typography from "@material-ui/core/es/Typography";
 import { translate } from 'react-i18next';
 import Form from '../../../components/Form';
 import FormGroup from '../../../components/Form/Group';
@@ -71,9 +71,9 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        email = _props.email;
+    var _this$props = this.props,
+        t = _this$props.t,
+        email = _this$props.email;
     var isValid = this.isValid();
     return _jsx(Paper, {
       className: "PasswordReset"

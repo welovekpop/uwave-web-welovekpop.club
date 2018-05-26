@@ -4,7 +4,7 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from "material-ui/es/Modal";
+import Modal from "@material-ui/core/es/Modal";
 import UserCard from './UserCard';
 
 var UserCardWrapper =
@@ -58,14 +58,14 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        onClose = _props.onClose,
-        position = _props.position,
-        props = _objectWithoutProperties(_props, ["onClose", "position"]);
+    var _this$props = this.props,
+        onClose = _this$props.onClose,
+        position = _this$props.position,
+        props = _objectWithoutProperties(_this$props, ["onClose", "position"]);
 
-    var _state = this.state,
-        positionDiffX = _state.positionDiffX,
-        positionDiffY = _state.positionDiffY;
+    var _this$state = this.state,
+        positionDiffX = _this$state.positionDiffX,
+        positionDiffY = _this$state.positionDiffY;
     return _jsx(Modal, {
       open: true,
       BackdropProps: {

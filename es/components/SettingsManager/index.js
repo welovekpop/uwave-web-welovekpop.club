@@ -34,11 +34,11 @@ function (_React$Component) {
   var _proto = SettingsManager.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        className = _props.className,
-        onCloseOverlay = _props.onCloseOverlay,
-        props = _objectWithoutProperties(_props, ["t", "className", "onCloseOverlay"]);
+    var _this$props = this.props,
+        t = _this$props.t,
+        className = _this$props.className,
+        onCloseOverlay = _this$props.onCloseOverlay,
+        props = _objectWithoutProperties(_this$props, ["t", "className", "onCloseOverlay"]);
 
     return _jsx("div", {
       className: cx('SettingsManager', className)

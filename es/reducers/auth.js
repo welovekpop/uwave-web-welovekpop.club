@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { AUTH_STRATEGIES, RESET_PASSWORD_COMPLETE, REGISTER_COMPLETE, LOGIN_COMPLETE, SET_TOKEN, LOGOUT_COMPLETE } from '../constants/actionTypes/auth';
+import { INIT_STATE, AUTH_STRATEGIES, RESET_PASSWORD_COMPLETE, REGISTER_COMPLETE, LOGIN_COMPLETE, SET_TOKEN, LOGOUT_COMPLETE } from '../constants/ActionTypes';
 var initialState = {
   strategies: ['local'],
   token: null,
@@ -21,6 +21,11 @@ export default function reduce(state, action) {
       isError = _action.error;
 
   switch (type) {
+    case INIT_STATE:
+      return _extends({}, state, {
+        strategies: payload.authStrategies
+      });
+
     case AUTH_STRATEGIES:
       return _extends({}, state, {
         strategies: payload.strategies

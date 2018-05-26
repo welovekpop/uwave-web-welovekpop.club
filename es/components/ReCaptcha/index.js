@@ -4,7 +4,7 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import loadScript from 'load-script2';
-import { CircularProgress } from "material-ui/es/Progress";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
 import InternalCaptcha from './ReCaptcha';
 var GRECAPTCHA_API = 'https://www.google.com/recaptcha/api.js';
 var onloadCallbackName = 'grecaptchaOnload__$';

@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { SET_TIMER, OFFSET } from '../constants/actionTypes/time';
+import { SET_TIMER, OFFSET } from '../constants/ActionTypes';
 var initialState = {
   timer: 0,
   offset: 0

@@ -4,8 +4,8 @@ import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWitho
 import React from 'react';
 import PropTypes from 'prop-types';
 import getContext from 'recompose/getContext';
-import Select from "material-ui/es/Select";
-import { MenuItem } from "material-ui/es/Menu";
+import Select from "@material-ui/core/es/Select";
+import MenuItem from "@material-ui/core/es/MenuItem";
 
 var getResourceName = function getResourceName(i18n, language) {
   return i18n.t("locales." + language);

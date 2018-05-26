@@ -28,11 +28,11 @@ function (_React$Component) {
   var _proto = TextField.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        type = _props.type,
-        icon = _props.icon,
-        className = _props.className,
-        props = _objectWithoutProperties(_props, ["type", "icon", "className"]);
+    var _this$props = this.props,
+        type = _this$props.type,
+        icon = _this$props.icon,
+        className = _this$props.className,
+        props = _objectWithoutProperties(_this$props, ["type", "icon", "className"]);
 
     return _jsx("div", {
       className: cx('TextField', className)

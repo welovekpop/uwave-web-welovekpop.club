@@ -4,9 +4,9 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import DeleteIcon from "@material-ui/icons/es/Delete";
 import ConfirmDialog from '../../Dialogs/ConfirmDialog';
 import FormGroup from '../../Form/Group';
 var enhance = translate();
@@ -40,7 +40,7 @@ function (_React$Component) {
     }, _this.handleClose = function () {
       _this.closeDialog();
     }, _this.handleConfirm = function (name) {
-      return _this.props.onDelete(name).then(_this.closeDialog.bind(_assertThisInitialized(_this)));
+      return _this.props.onDelete(name).then(_this.closeDialog.bind(_assertThisInitialized(_assertThisInitialized(_this))));
     }, _temp) || _assertThisInitialized(_this);
   }
 
@@ -53,9 +53,9 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        active = _props.active;
+    var _this$props = this.props,
+        t = _this$props.t,
+        active = _this$props.active;
     return _jsx(React.Fragment, {}, void 0, _jsx(Tooltip, {
       title: active ? t('playlists.deleteActive') : t('playlists.delete'),
       placement: "top"

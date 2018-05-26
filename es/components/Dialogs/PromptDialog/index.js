@@ -6,8 +6,10 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog, { DialogTitle, DialogContent } from "material-ui/es/Dialog";
-import { CircularProgress } from "material-ui/es/Progress";
+import Dialog from "@material-ui/core/es/Dialog";
+import DialogTitle from "@material-ui/core/es/DialogTitle";
+import DialogContent from "@material-ui/core/es/DialogContent";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
 import uniqueId from 'lodash/uniqueId';
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
@@ -69,21 +71,21 @@ function (_React$Component) {
   var _proto = PromptDialog.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        children = _props.children,
-        icon = _props.icon,
-        inputType = _props.inputType,
-        placeholder = _props.placeholder,
-        submitLabel = _props.submitLabel,
-        title = _props.title,
-        bodyClassName = _props.bodyClassName,
-        contentClassName = _props.contentClassName,
-        titleClassName = _props.titleClassName,
-        props = _objectWithoutProperties(_props, ["children", "icon", "inputType", "placeholder", "submitLabel", "title", "bodyClassName", "contentClassName", "titleClassName"]);
+    var _this$props = this.props,
+        children = _this$props.children,
+        icon = _this$props.icon,
+        inputType = _this$props.inputType,
+        placeholder = _this$props.placeholder,
+        submitLabel = _this$props.submitLabel,
+        title = _this$props.title,
+        bodyClassName = _this$props.bodyClassName,
+        contentClassName = _this$props.contentClassName,
+        titleClassName = _this$props.titleClassName,
+        props = _objectWithoutProperties(_this$props, ["children", "icon", "inputType", "placeholder", "submitLabel", "title", "bodyClassName", "contentClassName", "titleClassName"]);
 
-    var _state = this.state,
-        busy = _state.busy,
-        value = _state.value;
+    var _this$state = this.state,
+        busy = _this$state.busy,
+        value = _this$state.value;
     return React.createElement(Dialog, _extends({
       fullWidth: true
     }, props, {

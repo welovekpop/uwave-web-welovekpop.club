@@ -1,7 +1,7 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
 import merge from 'deepmerge';
 import compose from 'recompose/compose';
-import { LOAD_SETTINGS, CHANGE_SETTING } from '../constants/actionTypes/settings'; // Some people have >100% volumes stored in their localStorage settings
+import { LOAD_SETTINGS, CHANGE_SETTING } from '../constants/ActionTypes'; // Some people have >100% volumes stored in their localStorage settings
 // because of a bug in üWave 1.4. This ensures that _everyone's_ volume
 // is between 0 and 100.
 

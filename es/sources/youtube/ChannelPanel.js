@@ -34,10 +34,10 @@ function (_React$Component) {
   var _proto = ChannelPanel.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        importingChannelTitle = _props.importingChannelTitle,
-        importablePlaylists = _props.importablePlaylists,
-        onClosePanel = _props.onClosePanel;
+    var _this$props = this.props,
+        importingChannelTitle = _this$props.importingChannelTitle,
+        importablePlaylists = _this$props.importablePlaylists,
+        onClosePanel = _this$props.onClosePanel;
     return _jsx("div", {
       className: "ImportPanel ChannelPanel"
     }, void 0, _jsx(ImportPanelHeader, {

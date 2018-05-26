@@ -1,1 +1,1 @@
-{"version":3,"sources":["constants/DDItemTypes.js"],"names":["MEDIA","WAITLIST_USER"],"mappings":";;;;;;AAAO,IAAIA,QAAQ,UAAZ;;AACA,IAAIC,gBAAgB,kBAApB,C,CACP","file":"DDItemTypes.js","sourcesContent":["export const MEDIA = 'dd/MEDIA';\nexport const WAITLIST_USER = 'dd/WAITLIST_USER';\n"]}
+{"version":3,"sources":["constants/DDItemTypes.js"],"names":["MEDIA","WAITLIST_USER"],"mappings":";;;;;;AAAO,IAAIA,QAAQ,UAAZ;;AACA,IAAIC,gBAAgB,kBAApB","file":"DDItemTypes.js","sourcesContent":["export const MEDIA = 'dd/MEDIA';\nexport const WAITLIST_USER = 'dd/WAITLIST_USER';\n"]}

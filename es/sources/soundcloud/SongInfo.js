@@ -1,8 +1,8 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import ArtistIcon from '@material-ui/icons/Headset';
-import TitleIcon from '@material-ui/icons/MusicNote';
+import ArtistIcon from "@material-ui/icons/es/Headset";
+import TitleIcon from "@material-ui/icons/es/MusicNote";
 var iconStyles = {
   float: 'left',
   marginRight: 3

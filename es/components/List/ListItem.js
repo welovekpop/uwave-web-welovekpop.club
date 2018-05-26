@@ -4,8 +4,8 @@ import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWitho
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem as MuiListItem } from "material-ui/es/List";
-import SelectedIcon from '@material-ui/icons/ChevronRight';
+import MuiListItem from "@material-ui/core/es/ListItem";
+import SelectedIcon from "@material-ui/icons/es/ChevronRight";
 /**
  * A ListItem component wrapper around material-ui's ListItem,
  * with a üWave skin.

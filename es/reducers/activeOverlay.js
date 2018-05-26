@@ -1,4 +1,4 @@
-import { OPEN_OVERLAY, CLOSE_OVERLAY, TOGGLE_OVERLAY } from '../constants/actionTypes/overlay';
+import { OPEN_OVERLAY, CLOSE_OVERLAY, TOGGLE_OVERLAY } from '../constants/ActionTypes';
 var initialState = null;
 export default function reduce(state, action) {
   if (state === void 0) {

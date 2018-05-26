@@ -3,7 +3,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import pure from 'recompose/pure';
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from "@material-ui/icons/es/Settings";
 import Avatar from '../Avatar';
 var enhance = pure;
 

@@ -4,11 +4,11 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from "material-ui/es/IconButton";
-import VolumeDownIcon from '@material-ui/icons/VolumeDown';
-import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
-import VolumeOffIcon from '@material-ui/icons/VolumeOff';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import IconButton from "@material-ui/core/es/IconButton";
+import VolumeDownIcon from "@material-ui/icons/es/VolumeDown";
+import VolumeMuteIcon from "@material-ui/icons/es/VolumeMute";
+import VolumeOffIcon from "@material-ui/icons/es/VolumeOff";
+import VolumeUpIcon from "@material-ui/icons/es/VolumeUp";
 import Slider from './Slider';
 
 var Volume =

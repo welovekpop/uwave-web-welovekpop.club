@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import withProps from 'recompose/withProps';
 import { translate } from 'react-i18next';
-import Switch from "material-ui/es/Switch";
+import Switch from "@material-ui/core/es/Switch";
 import LabeledControl from './LabeledControl';
 var enhance = compose(withProps(function (props) {
   return {

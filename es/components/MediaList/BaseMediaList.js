@@ -106,11 +106,11 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        media = _props.media,
-        size = _props.size,
-        onRequestPage = _props.onRequestPage;
+    var _this$props = this.props,
+        className = _this$props.className,
+        media = _this$props.media,
+        size = _this$props.size,
+        onRequestPage = _this$props.onRequestPage;
 
     var list = _jsx(BaseList, {
       itemsRenderer: this.renderList,

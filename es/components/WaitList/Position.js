@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import MuiAvatar from "material-ui/es/Avatar";
+import MuiAvatar from "@material-ui/core/es/Avatar";
 
 var Position = function Position(_ref) {
   var position = _ref.position;

@@ -1,6 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { ADVANCE } from '../constants/actionTypes/booth';
-import { LOAD_VOTES, FAVORITE, UPVOTE, DOWNVOTE, DO_FAVORITE_START, DO_FAVORITE_COMPLETE } from '../constants/actionTypes/votes';
+import { ADVANCE, LOAD_VOTES, FAVORITE, UPVOTE, DOWNVOTE, DO_FAVORITE_START, DO_FAVORITE_COMPLETE } from '../constants/ActionTypes';
 var initialState = {
   upvotes: [],
   downvotes: [],
@@ -21,6 +20,14 @@ export default function reduce(state, action) {
 
   switch (type) {
     case ADVANCE:
+      if (payload && payload.stats) {
+        return _extends({}, state, {
+          upvotes: payload.stats.upvotes,
+          downvotes: payload.stats.downvotes,
+          favorites: payload.stats.favorites
+        });
+      }
+
       return initialState;
 
     case LOAD_VOTES:

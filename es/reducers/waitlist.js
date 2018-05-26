@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { WAITLIST_LOAD, WAITLIST_LOCK, WAITLIST_CLEAR, WAITLIST_UPDATE, WAITLIST_JOIN, WAITLIST_LEAVE } from '../constants/actionTypes/waitlist';
+import { INIT_STATE, WAITLIST_LOAD, WAITLIST_LOCK, WAITLIST_CLEAR, WAITLIST_UPDATE, WAITLIST_JOIN, WAITLIST_LEAVE } from '../constants/ActionTypes';
 var initialState = {
   waitlist: [],
   locked: false
@@ -18,6 +18,12 @@ export default function reduce(state, action) {
       payload = _action.payload;
 
   switch (type) {
+    case INIT_STATE:
+      return _extends({}, state, {
+        waitlist: payload.waitlist,
+        locked: payload.waitlistLocked
+      });
+
     case WAITLIST_LOAD:
       return _extends({}, state, {
         waitlist: payload.waitlist,

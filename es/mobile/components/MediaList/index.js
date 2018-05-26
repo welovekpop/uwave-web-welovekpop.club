@@ -2,7 +2,7 @@ import _extends from "@babel/runtime/helpers/builtin/extends";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withProps from 'recompose/withProps';
-import List from "material-ui/es/List";
+import List from "@material-ui/core/es/List";
 import Base from '../../../components/MediaList/BaseMediaList';
 import MediaRow from './Row';
 var MediaList = withProps({

@@ -2,10 +2,10 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import EnterFullscreenIcon from '@material-ui/icons/Fullscreen';
-import ExitFullscreenIcon from '@material-ui/icons/FullscreenExit';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import EnterFullscreenIcon from "@material-ui/icons/es/Fullscreen";
+import ExitFullscreenIcon from "@material-ui/icons/es/FullscreenExit";
 import VideoSizeButton from './VideoSizeButton';
 
 var _ref =

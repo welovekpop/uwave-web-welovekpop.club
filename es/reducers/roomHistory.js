@@ -1,5 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
-import { ADVANCE, LOAD_HISTORY_COMPLETE } from '../constants/actionTypes/booth';
+import { ADVANCE, LOAD_HISTORY_COMPLETE } from '../constants/ActionTypes';
 var initialState = [];
 
 var normalize = function normalize(entry) {

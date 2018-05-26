@@ -1,9 +1,11 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card, { CardContent, CardActions } from "material-ui/es/Card";
-import Button from "material-ui/es/Button";
-import Typography from "material-ui/es/Typography";
+import Card from "@material-ui/core/es/Card";
+import CardContent from "@material-ui/core/es/CardContent";
+import CardActions from "@material-ui/core/es/CardActions";
+import Button from "@material-ui/core/es/Button";
+import Typography from "@material-ui/core/es/Typography";
 
 function reload() {
   window.location.reload();

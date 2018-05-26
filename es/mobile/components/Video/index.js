@@ -22,6 +22,9 @@ function (_React$Component) {
     }
 
     return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
+      sourceType: undefined,
+      // eslint-disable-line react/no-unused-state
+      enableOverlay: false,
       showVoteButtons: false
     }, _this.handleClick = function () {
       _this.setState(function (s) {
@@ -29,21 +32,43 @@ function (_React$Component) {
           showVoteButtons: !s.showVoteButtons
         };
       });
+    }, _this.handlePlay = function () {
+      _this.setState({
+        enableOverlay: true
+      });
     }, _temp) || _assertThisInitialized(_this);
   }
+
+  Video.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, prevState) {
+    var _ref = nextProps.media || {},
+        sourceType = _ref.sourceType; // Switching to a different source type may require an autoplay tap again.
+    // Disable the vote buttons until the media source reports playback started.
+
+
+    if (sourceType !== prevState.sourceType) {
+      return {
+        enableOverlay: sourceType === undefined,
+        sourceType: sourceType
+      };
+    }
+
+    return null;
+  };
 
   var _proto = Video.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        media = _props.media,
-        voteStats = _props.voteStats,
-        onUpvote = _props.onUpvote,
-        onDownvote = _props.onDownvote,
-        onFavorite = _props.onFavorite,
-        props = _objectWithoutProperties(_props, ["media", "voteStats", "onUpvote", "onDownvote", "onFavorite"]);
+    var _this$props = this.props,
+        media = _this$props.media,
+        voteStats = _this$props.voteStats,
+        onUpvote = _this$props.onUpvote,
+        onDownvote = _this$props.onDownvote,
+        onFavorite = _this$props.onFavorite,
+        props = _objectWithoutProperties(_this$props, ["media", "voteStats", "onUpvote", "onDownvote", "onFavorite"]);
 
-    var showVoteButtons = this.state.showVoteButtons;
+    var _this$state = this.state,
+        enableOverlay = _this$state.enableOverlay,
+        showVoteButtons = _this$state.showVoteButtons;
     return _jsx("div", {
       className: "Video"
     }, void 0, media && _jsx(VideoBackdrop, {
@@ -52,8 +77,9 @@ function (_React$Component) {
       className: "Video-player"
     }, void 0, React.createElement(Player, _extends({}, props, {
       media: media,
-      size: "large"
-    }))), _jsx("button", {
+      size: "large",
+      onPlay: this.handlePlay
+    }))), enableOverlay && _jsx("button", {
       className: "Video-buttonTrigger",
       onClick: this.handleClick,
       "aria-label": "Show vote buttons"
@@ -71,6 +97,7 @@ function (_React$Component) {
 
 Video.propTypes = process.env.NODE_ENV !== "production" ? {
   media: PropTypes.shape({
+    sourceType: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired
   }),
   voteStats: PropTypes.shape({

@@ -2,7 +2,7 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import assign from 'object-assign';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListIcon from '@material-ui/icons/List';
+import ListIcon from "@material-ui/icons/es/List";
 import transformStyle from '../../utils/transformStyle';
 
 var getItemStyles = function getItemStyles(offset) {

@@ -3,9 +3,9 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { CircularProgress } from "material-ui/es/Progress";
-import { MenuItem } from "material-ui/es/Menu";
-import ImportIcon from '@material-ui/icons/Input';
+import CircularProgress from "@material-ui/core/es/CircularProgress";
+import MenuItem from "@material-ui/core/es/MenuItem";
+import ImportIcon from "@material-ui/icons/es/Input";
 var enhance = translate();
 
 var _ref2 =

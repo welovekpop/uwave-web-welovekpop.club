@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _extends from "@babel/runtime/helpers/builtin/extends";
 import React from 'react';
-import SvgIcon from "material-ui/es/SvgIcon";
+import SvgIcon from "@material-ui/core/es/SvgIcon";
 /* eslint-disable max-len */
 
 var _ref =

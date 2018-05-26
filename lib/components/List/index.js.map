@@ -1,1 +1,1 @@
-{"version":3,"sources":["components/List/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;AAAA;;AACA","file":"index.js","sourcesContent":["export { default, ListItemText } from 'material-ui/List';\nexport ListItem from './ListItem';\n"]}
+{"version":3,"sources":["components/List/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;AAAA;;AAEA;;AAEA","file":"index.js","sourcesContent":["export default from '@material-ui/core/List';\nexport ListItemText from '@material-ui/core/ListItemText';\nexport ListItem from './ListItem';\n"]}

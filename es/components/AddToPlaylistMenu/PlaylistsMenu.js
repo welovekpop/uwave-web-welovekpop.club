@@ -5,11 +5,14 @@ import find from 'array-find';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Popover from "material-ui/es/Popover";
-import { MenuList, MenuItem } from "material-ui/es/Menu";
-import { ListItemIcon, ListItemText } from "material-ui/es/List";
-import CreatePlaylistIcon from '@material-ui/icons/Add';
-import ActiveIcon from '@material-ui/icons/Check';
+import Popover from "@material-ui/core/es/Popover";
+import Typography from "@material-ui/core/es/Typography";
+import MenuList from "@material-ui/core/es/MenuList";
+import MenuItem from "@material-ui/core/es/MenuItem";
+import ListItemIcon from "@material-ui/core/es/ListItemIcon";
+import ListItemText from "@material-ui/core/es/ListItemText";
+import CreatePlaylistIcon from "@material-ui/icons/es/Add";
+import ActiveIcon from "@material-ui/icons/es/Check";
 var enhance = translate();
 
 var _ref =
@@ -46,12 +49,12 @@ function (_React$Component) {
   _proto.render = function render() {
     var _this2 = this;
 
-    var _props = this.props,
-        t = _props.t,
-        playlists = _props.playlists,
-        position = _props.position,
-        onClose = _props.onClose,
-        onCreatePlaylist = _props.onCreatePlaylist;
+    var _this$props = this.props,
+        t = _this$props.t,
+        playlists = _this$props.playlists,
+        position = _this$props.position,
+        onClose = _this$props.onClose,
+        onCreatePlaylist = _this$props.onCreatePlaylist;
     return _jsx(Popover, {
       open: true,
       anchorPosition: {
@@ -71,8 +74,12 @@ function (_React$Component) {
           return _this2.handleSelect(event, playlist._id);
         }
       }, playlist._id, !!playlist.active && _ref2, _jsx(ListItemText, {
-        primary: playlist.name
-      }), _jsx(ListItemText, {
+        disableTypography: true,
+        className: "AddToPlaylistMenu-playlistName"
+      }, void 0, _jsx(Typography, {
+        noWrap: true,
+        variant: "subheading"
+      }, void 0, playlist.name)), _jsx(ListItemText, {
         className: "AddToPlaylistMenu-smallIcon",
         primary: String(playlist.size || 0)
       }));

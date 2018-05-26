@@ -3,7 +3,7 @@ import _extends from "@babel/runtime/helpers/builtin/extends";
 /* global window */
 import find from 'array-find';
 import { createSelector } from 'reselect';
-import { createMuiTheme } from "material-ui/es/styles";
+import { createMuiTheme } from "@material-ui/core/es/styles";
 import { availableLanguages } from '../locale';
 
 function getAvailableLanguage(languages) {

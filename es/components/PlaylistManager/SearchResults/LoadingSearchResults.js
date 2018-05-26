@@ -1,6 +1,6 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
-import { CircularProgress } from "material-ui/es/Progress";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
 
 var _ref =
 /*#__PURE__*/

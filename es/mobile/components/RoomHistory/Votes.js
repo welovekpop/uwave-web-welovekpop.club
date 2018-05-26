@@ -2,10 +2,10 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import DownvoteIcon from '@material-ui/icons/ThumbDown';
-import UpvoteIcon from '@material-ui/icons/ThumbUp';
-import FavoritedIcon from '@material-ui/icons/Favorite';
-import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
+import DownvoteIcon from "@material-ui/icons/es/ThumbDown";
+import UpvoteIcon from "@material-ui/icons/es/ThumbUp";
+import FavoritedIcon from "@material-ui/icons/es/Favorite";
+import FavoriteIcon from "@material-ui/icons/es/FavoriteBorder";
 
 var Votes = function Votes(_ref) {
   var upvotes = _ref.upvotes,

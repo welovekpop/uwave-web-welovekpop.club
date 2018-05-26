@@ -71,10 +71,10 @@ function (_React$Component) {
   var _proto = PlaylistItemRow.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        connectDropTarget = _props.connectDropTarget,
-        isOver = _props.isOver,
-        props = _objectWithoutProperties(_props, ["connectDropTarget", "isOver"]);
+    var _this$props = this.props,
+        connectDropTarget = _this$props.connectDropTarget,
+        isOver = _this$props.isOver,
+        props = _objectWithoutProperties(_this$props, ["connectDropTarget", "isOver"]);
 
     var insertingAbove = this.state.insertingAbove;
     var dropIndicator = _ref;

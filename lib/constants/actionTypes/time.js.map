@@ -1,1 +1,1 @@
-{"version":3,"sources":["constants/actionTypes/time.js"],"names":["SET_TIMER","OFFSET"],"mappings":";;;;;;AAAO,IAAIA,YAAY,gBAAhB;;AACA,IAAIC,SAAS,aAAb,C,CACP","file":"time.js","sourcesContent":["export const SET_TIMER = 'tick/SET_TIMER';\nexport const OFFSET = 'tick/OFFSET';\n"]}
+{"version":3,"sources":["constants/actionTypes/time.js"],"names":["SET_TIMER","OFFSET"],"mappings":";;;;;;AAAO,IAAIA,YAAY,gBAAhB;;AACA,IAAIC,SAAS,aAAb","file":"time.js","sourcesContent":["export const SET_TIMER = 'tick/SET_TIMER';\nexport const OFFSET = 'tick/OFFSET';\n"]}

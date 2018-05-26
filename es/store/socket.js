@@ -1,8 +1,6 @@
 import createDebug from 'debug';
 import WebSocket from 'reconnecting-websocket';
-import { LOGIN_COMPLETE, LOGOUT_START, SOCKET_CONNECT, SOCKET_RECONNECT, SOCKET_DISCONNECTED, SOCKET_CONNECTED } from '../constants/actionTypes/auth';
-import { SEND_MESSAGE } from '../constants/actionTypes/chat';
-import { DO_UPVOTE, DO_DOWNVOTE } from '../constants/actionTypes/votes';
+import { LOGIN_COMPLETE, LOGOUT_START, SOCKET_CONNECT, SOCKET_RECONNECT, SOCKET_DISCONNECTED, SOCKET_CONNECTED, SEND_MESSAGE, DO_UPVOTE, DO_DOWNVOTE } from '../constants/ActionTypes';
 import { SHOULD_RANDOMIZE } from '../_wlk/constants';
 import { getSocketAuthToken } from '../actions/LoginActionCreators';
 import { advance as _advance, skipped } from '../actions/BoothActionCreators';

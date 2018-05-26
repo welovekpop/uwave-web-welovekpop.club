@@ -5,9 +5,7 @@ import escapeStringRegExp from 'escape-string-regexp';
 import findIndex from 'array-findindex';
 import indexBy from 'index-by';
 import mapObj from 'object.map';
-import { LOAD_ALL_PLAYLISTS_COMPLETE, LOAD_PLAYLIST_START, LOAD_PLAYLIST_COMPLETE, PLAYLIST_CYCLED, SELECT_PLAYLIST, ACTIVATE_PLAYLIST_START, ACTIVATE_PLAYLIST_COMPLETE, CREATE_PLAYLIST_START, CREATE_PLAYLIST_COMPLETE, RENAME_PLAYLIST_START, RENAME_PLAYLIST_COMPLETE, DELETE_PLAYLIST_START, DELETE_PLAYLIST_COMPLETE, ADD_MEDIA_START, ADD_MEDIA_COMPLETE, REMOVE_MEDIA_START, REMOVE_MEDIA_COMPLETE, MOVE_MEDIA_START, MOVE_MEDIA_COMPLETE, UPDATE_MEDIA_START, UPDATE_MEDIA_COMPLETE, FILTER_PLAYLIST_ITEMS, FILTER_PLAYLIST_ITEMS_COMPLETE } from '../constants/actionTypes/playlists';
-import { DO_FAVORITE_COMPLETE } from '../constants/actionTypes/votes';
-import { SEARCH_START, SEARCH_DELETE } from '../constants/actionTypes/search';
+import { INIT_STATE, LOAD_ALL_PLAYLISTS_COMPLETE, LOAD_PLAYLIST_START, LOAD_PLAYLIST_COMPLETE, PLAYLIST_CYCLED, SELECT_PLAYLIST, ACTIVATE_PLAYLIST_START, ACTIVATE_PLAYLIST_COMPLETE, CREATE_PLAYLIST_START, CREATE_PLAYLIST_COMPLETE, RENAME_PLAYLIST_START, RENAME_PLAYLIST_COMPLETE, DELETE_PLAYLIST_START, DELETE_PLAYLIST_COMPLETE, ADD_MEDIA_START, ADD_MEDIA_COMPLETE, REMOVE_MEDIA_START, REMOVE_MEDIA_COMPLETE, MOVE_MEDIA_START, MOVE_MEDIA_COMPLETE, UPDATE_MEDIA_START, UPDATE_MEDIA_COMPLETE, FILTER_PLAYLIST_ITEMS, FILTER_PLAYLIST_ITEMS_COMPLETE, DO_FAVORITE_COMPLETE, SEARCH_START, SEARCH_DELETE } from '../constants/ActionTypes';
 var initialState = {
   playlists: {},
   playlistItems: {},
@@ -143,7 +141,7 @@ function filterCachedPlaylistItems(state, playlistID, filter) {
 }
 
 export default function reduce(state, action) {
-  var _assign2;
+  var _extends4, _assign2;
 
   if (state === void 0) {
     state = initialState;
@@ -160,6 +158,24 @@ export default function reduce(state, action) {
       error = _action.error;
 
   switch (type) {
+    case INIT_STATE:
+      // Probably not signed in.
+      if (!payload.playlists) return state;
+      return _extends({}, state, {
+        playlists: indexBy(payload.playlists.map(function (playlist) {
+          return _extends({}, playlist, {
+            active: playlist._id === payload.activePlaylist,
+            selected: playlist._id === payload.activePlaylist
+          });
+        }), '_id'),
+        // Preload the first item in the active playlist so it can be shown in
+        // the footer bar immediately. Else it would flash "This playlist is empty"
+        // for a moment.
+        playlistItems: payload.activePlaylist && payload.firstActivePlaylistItem ? _extends({}, state.playlistItems, (_extends4 = {}, _extends4[payload.activePlaylist] = [payload.firstActivePlaylistItem], _extends4)) : state.playlistItems,
+        activePlaylistID: payload.activePlaylist,
+        selectedPlaylistID: payload.activePlaylist
+      });
+
     case LOAD_ALL_PLAYLISTS_COMPLETE:
       return _extends({}, state, {
         playlists: indexBy(payload.playlists, '_id')

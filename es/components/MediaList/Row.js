@@ -71,14 +71,14 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        media = _props.media,
-        selection = _props.selection,
-        selected = _props.selected,
-        connectDragSource = _props.connectDragSource,
-        makeActions = _props.makeActions,
-        onClick = _props.onClick;
+    var _this$props = this.props,
+        className = _this$props.className,
+        media = _this$props.media,
+        selection = _this$props.selection,
+        selected = _this$props.selected,
+        connectDragSource = _this$props.connectDragSource,
+        makeActions = _this$props.makeActions,
+        onClick = _this$props.onClick;
     var selectedClass = selected ? 'is-selected' : '';
     var loadingClass = media.loading ? 'is-loading' : '';
     var duration = 'start' in media // playlist item

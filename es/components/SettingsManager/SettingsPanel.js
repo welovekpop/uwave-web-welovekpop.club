@@ -5,8 +5,8 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { FormGroup } from "material-ui/es/Form";
-import Switch from "material-ui/es/Switch";
+import FormGroup from "@material-ui/core/es/FormGroup";
+import Switch from "@material-ui/core/es/Switch";
 import Profile from './Profile';
 import LabeledControl from './LabeledControl';
 import LanguagePicker from './LanguagePicker';
@@ -69,13 +69,13 @@ function (_React$Component) {
   var _proto = SettingsPanel.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        className = _props.className,
-        settings = _props.settings,
-        user = _props.user,
-        onChangeUsername = _props.onChangeUsername,
-        onLogout = _props.onLogout;
+    var _this$props = this.props,
+        t = _this$props.t,
+        className = _this$props.className,
+        settings = _this$props.settings,
+        user = _this$props.user,
+        onChangeUsername = _this$props.onChangeUsername,
+        onLogout = _this$props.onLogout;
     return _jsx("div", {
       className: cx('SettingsPanel', className)
     }, void 0, user && _jsx(Profile, {

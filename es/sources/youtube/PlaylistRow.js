@@ -4,8 +4,8 @@ import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWitho
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from "material-ui/es/IconButton";
-import ImportIcon from '@material-ui/icons/PlaylistAdd';
+import IconButton from "@material-ui/core/es/IconButton";
+import ImportIcon from "@material-ui/icons/es/PlaylistAdd";
 
 var _ref2 =
 /*#__PURE__*/

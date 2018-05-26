@@ -1,6 +1,6 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
-import { REQUEST_START, REQUEST_COMPLETE } from '../constants/actionTypes/request';
+import { REQUEST_START, REQUEST_COMPLETE } from '../constants/ActionTypes';
 var requestID = 0;
 
 function request(method, url, opts) {

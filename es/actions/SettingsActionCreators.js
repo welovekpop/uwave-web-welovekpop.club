@@ -1,5 +1,5 @@
 import setPath from 'lodash/set';
-import { LOAD_SETTINGS, CHANGE_SETTING } from '../constants/actionTypes/settings';
+import { LOAD_SETTINGS, CHANGE_SETTING } from '../constants/ActionTypes';
 export function loadSettings(obj) {
   return {
     type: LOAD_SETTINGS,

@@ -4,9 +4,9 @@ import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisIni
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import EditIcon from '@material-ui/icons/ModeEdit';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import EditIcon from "@material-ui/icons/es/ModeEdit";
 import PromptDialog from '../../Dialogs/PromptDialog';
 var enhance = translate();
 
@@ -41,7 +41,7 @@ function (_React$Component) {
     }, _this.handleClose = function () {
       _this.closeDialog();
     }, _this.handleSubmit = function (name) {
-      return _this.props.onRename(name).then(_this.closeDialog.bind(_assertThisInitialized(_this)));
+      return _this.props.onRename(name).then(_this.closeDialog.bind(_assertThisInitialized(_assertThisInitialized(_this))));
     }, _temp) || _assertThisInitialized(_this);
   }
 

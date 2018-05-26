@@ -1,6 +1,6 @@
-import { LOAD_ONLINE_USERS, USER_JOIN, USER_LEAVE, CHANGE_USERNAME, USER_ADD_ROLES, USER_REMOVE_ROLES, RECEIVE_GUEST_COUNT, DO_CHANGE_USERNAME_START, DO_CHANGE_USERNAME_COMPLETE } from '../constants/actionTypes/users';
-import { currentUserSelector, usersSelector } from '../selectors/userSelectors';
 import { put } from './RequestActionCreators';
+import { LOAD_ONLINE_USERS, USER_JOIN, USER_LEAVE, CHANGE_USERNAME, USER_ADD_ROLES, USER_REMOVE_ROLES, RECEIVE_GUEST_COUNT, DO_CHANGE_USERNAME_START, DO_CHANGE_USERNAME_COMPLETE } from '../constants/ActionTypes';
+import { currentUserSelector, usersSelector } from '../selectors/userSelectors';
 export function setUsers(users) {
   return {
     type: LOAD_ONLINE_USERS,

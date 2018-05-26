@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import HistoryIcon from '@material-ui/icons/History';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import HistoryIcon from "@material-ui/icons/es/History";
 
 var _ref2 =
 /*#__PURE__*/

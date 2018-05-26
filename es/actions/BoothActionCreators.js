@@ -1,4 +1,4 @@
-import { ADVANCE, BOOTH_SKIP, LOAD_HISTORY_START, LOAD_HISTORY_COMPLETE } from '../constants/actionTypes/booth';
+import { ADVANCE, BOOTH_SKIP, LOAD_HISTORY_START, LOAD_HISTORY_COMPLETE } from '../constants/ActionTypes';
 import { flattenPlaylistItem } from './PlaylistActionCreators';
 import { get, post } from './RequestActionCreators';
 import { historyIDSelector, isCurrentDJSelector } from '../selectors/boothSelectors';

@@ -6,10 +6,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withProps from 'recompose/withProps';
 import uniqueId from 'lodash/uniqueId';
-import IconButton from "material-ui/es/IconButton";
-import Menu, { MenuItem } from "material-ui/es/Menu";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { TableRow, TableCell as MuiTableCell } from "material-ui/es/Table";
+import IconButton from "@material-ui/core/es/IconButton";
+import Menu from "@material-ui/core/es/Menu";
+import MenuItem from "@material-ui/core/es/MenuItem";
+import MoreVertIcon from "@material-ui/icons/es/MoreVert";
+import TableRow from "@material-ui/core/es/TableRow";
+import MuiTableCell from "@material-ui/core/es/TableCell";
 import Avatar from '../../../components/Avatar';
 import Username from '../../../components/Username/WithCard';
 import UserRole from '../../../components/UserRole';
@@ -69,9 +71,9 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var user = this.props.user;
-    var _state = this.state,
-        open = _state.open,
-        anchorEl = _state.anchorEl;
+    var _this$state = this.state,
+        open = _this$state.open,
+        anchorEl = _this$state.anchorEl;
     return _jsx(TableRow, {
       className: "AdminUserRow"
     }, void 0, _jsx(TableCell, {

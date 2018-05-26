@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import compose from 'recompose/compose';
 import withHandlers from 'recompose/withHandlers';
-import Drawer from "material-ui/es/Drawer";
-import { MenuList, MenuItem } from "material-ui/es/Menu";
-import { ListItemIcon, ListSubheader, ListItemText } from "material-ui/es/List";
-import Divider from "material-ui/es/Divider";
-import Typography from "material-ui/es/Typography";
-import ActiveIcon from '@material-ui/icons/Check';
+import Drawer from "@material-ui/core/es/Drawer";
+import MenuList from "@material-ui/core/es/MenuList";
+import MenuItem from "@material-ui/core/es/MenuItem";
+import ListItemIcon from "@material-ui/core/es/ListItemIcon";
+import ListItemText from "@material-ui/core/es/ListItemText";
+import ListSubheader from "@material-ui/core/es/ListSubheader";
+import Divider from "@material-ui/core/es/Divider";
+import Typography from "@material-ui/core/es/Typography";
+import ActiveIcon from "@material-ui/icons/es/Check";
 import UserCard from '../../../components/UserCard/UserCard';
 var enhance = compose(translate(), withHandlers({
   // Prevent defaults for react-tap-event-plugin:
@@ -81,7 +84,7 @@ var DrawerMenu = function DrawerMenu(_ref) {
         onDrawerClose();
       }
     }, playlist._id, playlist.active && _ref3, _jsx(ListItemText, {
-      noTypography: true
+      disableTypography: true
     }, void 0, _jsx(Typography, {
       noWrap: true,
       variant: "subheading"

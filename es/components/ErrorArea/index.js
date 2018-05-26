@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Snackbar from "material-ui/es/Snackbar";
+import Snackbar from "@material-ui/core/es/Snackbar";
 
 var ErrorArea = function ErrorArea(_ref) {
   var error = _ref.error,
@@ -9,7 +9,7 @@ var ErrorArea = function ErrorArea(_ref) {
   return _jsx("div", {
     className: "ErrorArea"
   }, void 0, _jsx(Snackbar, {
-    SnackbarContentProps: {
+    ContentProps: {
       className: 'ErrorArea-snackbar'
     },
     open: !!error,

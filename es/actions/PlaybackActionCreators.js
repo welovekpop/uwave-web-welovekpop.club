@@ -1,6 +1,6 @@
 import { set } from './SettingsActionCreators';
 import { settingsSelector } from '../selectors/settingSelectors';
-import { ENTER_FULLSCREEN, EXIT_FULLSCREEN } from '../constants/actionTypes/booth';
+import { ENTER_FULLSCREEN, EXIT_FULLSCREEN } from '../constants/ActionTypes';
 export function setVolume(volume) {
   return set('volume', volume);
 }

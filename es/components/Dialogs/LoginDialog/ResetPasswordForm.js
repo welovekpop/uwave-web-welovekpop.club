@@ -4,8 +4,8 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { CircularProgress } from "material-ui/es/Progress";
-import EmailIcon from '@material-ui/icons/Email';
+import CircularProgress from "@material-ui/core/es/CircularProgress";
+import EmailIcon from "@material-ui/icons/es/Email";
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import TextField from '../../Form/TextField';
@@ -70,13 +70,13 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        error = _props.error,
-        onCloseDialog = _props.onCloseDialog;
-    var _state = this.state,
-        busy = _state.busy,
-        done = _state.done;
+    var _this$props = this.props,
+        t = _this$props.t,
+        error = _this$props.error,
+        onCloseDialog = _this$props.onCloseDialog;
+    var _this$state = this.state,
+        busy = _this$state.busy,
+        done = _this$state.done;
 
     if (done) {
       return _jsx("div", {}, void 0, _jsx("p", {}, void 0, t('login.passwordResetSent')), _jsx("p", {}, void 0, _jsx(Button, {

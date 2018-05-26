@@ -2,8 +2,8 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from "material-ui/es/Button";
-import ScrollDownIcon from '@material-ui/icons/ArrowDownward';
+import Button from "@material-ui/core/es/Button";
+import ScrollDownIcon from "@material-ui/icons/es/ArrowDownward";
 
 var _ref2 =
 /*#__PURE__*/

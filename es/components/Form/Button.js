@@ -3,7 +3,7 @@ import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWitho
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import MuiButton from "material-ui/es/Button";
+import MuiButton from "@material-ui/core/es/Button";
 
 var Button = function Button(_ref) {
   var children = _ref.children,

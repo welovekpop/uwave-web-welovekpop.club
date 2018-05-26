@@ -1,7 +1,9 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog, { DialogTitle, DialogContent } from "material-ui/es/Dialog";
+import Dialog from "@material-ui/core/es/Dialog";
+import DialogTitle from "@material-ui/core/es/DialogTitle";
+import DialogContent from "@material-ui/core/es/DialogContent";
 import PreviewPlayer from '../../Video/Player';
 var TITLE = 'preview-media-title';
 

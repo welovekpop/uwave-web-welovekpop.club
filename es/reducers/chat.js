@@ -1,6 +1,6 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
 import except from 'except';
-import { RECEIVE_MOTD, RECEIVE_MESSAGE, SEND_MESSAGE, LOG, REMOVE_MESSAGE, REMOVE_USER_MESSAGES, REMOVE_ALL_MESSAGES, MUTE_USER, UNMUTE_USER } from '../constants/ActionTypes';
+import { INIT_STATE, RECEIVE_MOTD, RECEIVE_MESSAGE, SEND_MESSAGE, LOG, REMOVE_MESSAGE, REMOVE_USER_MESSAGES, REMOVE_ALL_MESSAGES, MUTE_USER, UNMUTE_USER } from '../constants/ActionTypes';
 import reduceNotifications from './chat/notifications';
 var initialState = {
   /**
@@ -47,6 +47,11 @@ export default function reduce(state, action) {
       messages = _state.messages;
 
   switch (type) {
+    case INIT_STATE:
+      return _extends({}, state, {
+        motd: payload.motd
+      });
+
     case RECEIVE_MOTD:
       return _extends({}, state, {
         motd: payload

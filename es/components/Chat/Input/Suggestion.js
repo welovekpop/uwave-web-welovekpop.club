@@ -3,7 +3,7 @@ import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWitho
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem } from "material-ui/es/List";
+import ListItem from "@material-ui/core/es/ListItem";
 
 var Suggestion = function Suggestion(_ref) {
   var children = _ref.children,

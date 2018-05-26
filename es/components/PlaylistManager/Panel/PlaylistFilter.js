@@ -6,9 +6,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import debounce from 'lodash/debounce';
-import Tooltip from "material-ui/es/Tooltip";
-import IconButton from "material-ui/es/IconButton";
-import FilterIcon from '@material-ui/icons/Search';
+import Tooltip from "@material-ui/core/es/Tooltip";
+import IconButton from "@material-ui/core/es/IconButton";
+import FilterIcon from "@material-ui/icons/es/Search";
 var enhance = translate();
 
 var PlaylistFilter =

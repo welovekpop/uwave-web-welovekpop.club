@@ -3,7 +3,7 @@ import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import MoveToFirstIcon from '@material-ui/icons/KeyboardArrowUp';
+import MoveToFirstIcon from "@material-ui/icons/es/KeyboardArrowUp";
 import Action from './Action';
 
 var _ref2 =

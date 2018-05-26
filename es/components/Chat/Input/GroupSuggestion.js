@@ -2,8 +2,9 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItemIcon, ListItemText } from "material-ui/es/List";
-import PeopleIcon from '@material-ui/icons/People';
+import ListItemIcon from "@material-ui/core/es/ListItemIcon";
+import ListItemText from "@material-ui/core/es/ListItemText";
+import PeopleIcon from "@material-ui/icons/es/People";
 import Suggestion from './Suggestion';
 
 var _ref2 =

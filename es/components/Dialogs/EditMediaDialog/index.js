@@ -5,15 +5,17 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Dialog, { DialogTitle, DialogContent } from "material-ui/es/Dialog";
-import IconButton from "material-ui/es/IconButton";
+import Dialog from "@material-ui/core/es/Dialog";
+import DialogTitle from "@material-ui/core/es/DialogTitle";
+import DialogContent from "@material-ui/core/es/DialogContent";
+import IconButton from "@material-ui/core/es/IconButton";
 import uniqueId from 'lodash/uniqueId';
 import formatDuration from 'format-duration';
-import ArtistIcon from '@material-ui/icons/Headset';
-import TitleIcon from '@material-ui/icons/MusicNote';
-import StartIcon from '@material-ui/icons/PlayArrow';
-import EndIcon from '@material-ui/icons/Stop';
-import SwapArtistTitleIcon from '@material-ui/icons/SwapHoriz';
+import ArtistIcon from "@material-ui/icons/es/Headset";
+import TitleIcon from "@material-ui/icons/es/MusicNote";
+import StartIcon from "@material-ui/icons/es/PlayArrow";
+import EndIcon from "@material-ui/icons/es/Stop";
+import SwapArtistTitleIcon from "@material-ui/icons/es/SwapHoriz";
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import Button from '../../Form/Button';
@@ -146,20 +148,20 @@ function (_React$Component) {
   var _proto = EditMediaDialog.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        t = _props.t,
-        open = _props.open,
-        media = _props.media,
-        onCloseDialog = _props.onCloseDialog,
-        bodyClassName = _props.bodyClassName,
-        contentClassName = _props.contentClassName,
-        titleClassName = _props.titleClassName;
-    var _state = this.state,
-        errors = _state.errors,
-        artist = _state.artist,
-        title = _state.title,
-        start = _state.start,
-        end = _state.end;
+    var _this$props2 = this.props,
+        t = _this$props2.t,
+        open = _this$props2.open,
+        media = _this$props2.media,
+        onCloseDialog = _this$props2.onCloseDialog,
+        bodyClassName = _this$props2.bodyClassName,
+        contentClassName = _this$props2.contentClassName,
+        titleClassName = _this$props2.titleClassName;
+    var _this$state2 = this.state,
+        errors = _this$state2.errors,
+        artist = _this$state2.artist,
+        title = _this$state2.title,
+        start = _this$state2.start,
+        end = _this$state2.end;
     var baseTabIndex = 1000;
     var content = null;
 

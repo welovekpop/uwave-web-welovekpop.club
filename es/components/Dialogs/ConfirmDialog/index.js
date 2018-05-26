@@ -4,8 +4,9 @@ import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog, { DialogContent } from "material-ui/es/Dialog";
-import { CircularProgress } from "material-ui/es/Progress";
+import Dialog from "@material-ui/core/es/Dialog";
+import DialogContent from "@material-ui/core/es/DialogContent";
+import CircularProgress from "@material-ui/core/es/CircularProgress";
 import Form from '../../Form';
 import FormGroup from '../../Form/Group';
 import Button from '../../Form/Button';
@@ -70,11 +71,11 @@ function (_React$Component) {
   var _proto = ConfirmDialog.prototype;
 
   _proto.render = function render() {
-    var _props = this.props,
-        children = _props.children,
-        cancelLabel = _props.cancelLabel,
-        confirmLabel = _props.confirmLabel,
-        className = _props.className;
+    var _this$props = this.props,
+        children = _this$props.children,
+        cancelLabel = _this$props.cancelLabel,
+        confirmLabel = _this$props.confirmLabel,
+        className = _this$props.className;
     var busy = this.state.busy;
     return _jsx(Dialog, {
       className: cx('Dialog', className),

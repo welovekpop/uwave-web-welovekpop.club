@@ -3,7 +3,7 @@ import _extends from "@babel/runtime/helpers/builtin/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/builtin/objectWithoutProperties";
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/es/Add";
 import Action from './Action';
 
 var handleAdd = function handleAdd(onAdd) {

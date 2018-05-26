@@ -2,11 +2,11 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from "material-ui/es/IconButton";
-import FavoritedIcon from '@material-ui/icons/Favorite';
-import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
-import DownvoteIcon from '@material-ui/icons/ThumbDown';
-import UpvoteIcon from '@material-ui/icons/ThumbUp';
+import IconButton from "@material-ui/core/es/IconButton";
+import FavoritedIcon from "@material-ui/icons/es/Favorite";
+import FavoriteIcon from "@material-ui/icons/es/FavoriteBorder";
+import DownvoteIcon from "@material-ui/icons/es/ThumbDown";
+import UpvoteIcon from "@material-ui/icons/es/ThumbUp";
 
 var _ref2 =
 /*#__PURE__*/

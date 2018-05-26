@@ -1,8 +1,11 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from "material-ui/es/Avatar";
-import { ListItem, ListItemAvatar, ListItemText, ListItemIcon } from "material-ui/es/List";
+import Avatar from "@material-ui/core/es/Avatar";
+import ListItem from "@material-ui/core/es/ListItem";
+import ListItemAvatar from "@material-ui/core/es/ListItemAvatar";
+import ListItemText from "@material-ui/core/es/ListItemText";
+import ListItemIcon from "@material-ui/core/es/ListItemIcon";
 import Username from '../../../components/Username';
 
 var UserRow = function UserRow(_ref) {

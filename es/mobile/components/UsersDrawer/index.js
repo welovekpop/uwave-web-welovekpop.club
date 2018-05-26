@@ -1,7 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import React from 'react';
 import PropTypes from 'prop-types';
-import Drawer from "material-ui/es/Drawer";
+import Drawer from "@material-ui/core/es/Drawer";
 import UserList from './UserList';
 var classes = {
   paper: 'UsersDrawer'

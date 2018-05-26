@@ -2,7 +2,7 @@ import _jsx from "@babel/runtime/helpers/builtin/jsx";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MenuList } from "material-ui/es/Menu";
+import MenuList from "@material-ui/core/es/MenuList";
 import PlaylistRow from './Row';
 import PlaylistCreateRow from './NewPlaylist';
 import SearchResultsRow from './SearchResultsRow';
