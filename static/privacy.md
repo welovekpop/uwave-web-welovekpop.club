@@ -27,8 +27,9 @@ These services are:
    fix bugs more easily. Error reports contain the following potentially
    personally identifiable data:
 
-   * A unique number identifying your üWave account;
-   * Your IP address;
+   * A unique string identifying your üWave account, when signed in;
+   * A random string if you are not signed in, this helps us figure out how
+     many people are affected by a bug;
    * The operating system and operating system version you are using;
    * The browser and browser version you are using.
 
