@@ -13,7 +13,9 @@ var baseSelector = function baseSelector(state) {
 export var rawMotdSelector = createSelector(baseSelector, function (chat) {
   return chat.motd;
 });
-export var motdSelector = createSelector(rawMotdSelector, parseChatMarkup);
+export var motdSelector = createSelector(rawMotdSelector, function (motd) {
+  return motd ? parseChatMarkup(motd) : null;
+});
 var MAX_MESSAGES = 500;
 var allMessagesSelector = createSelector(baseSelector, function (chat) {
   return chat.messages;

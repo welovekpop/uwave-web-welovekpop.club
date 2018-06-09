@@ -1,8 +1,7 @@
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
-// Polyfills for browsers that might not yet support Promises or the Fetch API
-// (newer & better XMLHttpRequest).
-import 'lie/polyfill';
-import 'whatwg-fetch';
+
+/* eslint-disable import/first */
+import './polyfills';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,10 +9,12 @@ import { AppContainer as HotContainer } from 'react-hot-loader';
 import { create as createJss } from 'jss';
 import { jssPreset } from "@material-ui/core/es/styles";
 import JssProvider from 'react-jss/lib/JssProvider';
+/* eslint-enable */
+
 import createLocale from './locale';
 import AppContainer from './containers/App';
 import { get as readSession } from './utils/Session';
-import generateClassName from './utils/generateClassName';
+import createGenerateClassName from './utils/createGenerateClassName';
 import configureStore from './store/configureStore';
 import { initState, socketConnect, setSessionToken } from './actions/LoginActionCreators';
 import { languageSelector } from './selectors/settingSelectors';
@@ -42,6 +43,7 @@ function () {
     this.renderTarget = null;
     this.aboutPageComponent = null;
     this.jss = createJss(jssPreset());
+    this.generateClassName = createGenerateClassName();
     this.options = options;
     this.sessionToken = session;
     this.ready = new Promise(function (resolve) {
@@ -146,7 +148,7 @@ function () {
       store: this.store
     }, void 0, _jsx(JssProvider, {
       jss: this.jss,
-      generateClassName: generateClassName
+      generateClassName: this.generateClassName
     }, void 0, _jsx(AppContainer, {
       mediaSources: this.sources,
       locale: this.locale,
@@ -160,7 +162,10 @@ function () {
     }
 
     this.renderTarget = target;
-    render(this.getComponent(), target);
+
+    var element = _jsx(React.StrictMode, {}, void 0, this.getComponent());
+
+    render(element, target);
   };
 
   return Uwave;

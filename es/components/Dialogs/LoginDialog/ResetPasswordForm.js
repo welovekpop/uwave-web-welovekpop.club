@@ -55,6 +55,10 @@ function (_React$Component) {
           busy: false,
           done: true
         });
+      }, function () {
+        _this.setState({
+          busy: false
+        });
       });
     }, _this.refEmail = function (email) {
       _this.email = email;
@@ -62,12 +66,6 @@ function (_React$Component) {
   }
 
   var _proto = ResetPasswordForm.prototype;
-
-  _proto.componentWillReceiveProps = function componentWillReceiveProps() {
-    this.setState({
-      busy: false
-    });
-  };
 
   _proto.render = function render() {
     var _this$props = this.props,
@@ -92,7 +90,8 @@ function (_React$Component) {
       ref: this.refEmail,
       className: "ResetPasswordForm-field",
       type: "email",
-      placeholder: "E-Mail",
+      autocomplete: "email",
+      placeholder: t('login.email'),
       icon: _ref
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {
       className: "ResetPasswordForm-submit",

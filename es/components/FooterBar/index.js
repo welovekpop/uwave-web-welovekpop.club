@@ -1,7 +1,7 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
-import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
+import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -29,51 +29,45 @@ var FooterBar =
 function (_React$Component) {
   _inheritsLoose(FooterBar, _React$Component);
 
-  function FooterBar(props) {
-    var _this;
+  function FooterBar() {
+    var _temp, _this;
 
-    _this = _React$Component.call(this, props) || this;
-    _this.handleSkipTurn = _this.handleSkipTurn.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleJoinWaitlist = _this.handleJoinWaitlist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleLeaveWaitlist = _this.handleLeaveWaitlist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.handleSkipTurn = function (reason) {
+      if (!_this.props.showSkip) {
+        return null;
+      }
+
+      if (!_this.props.userIsDJ) {
+        return _this.props.onModSkip(reason);
+      }
+
+      return _this.props.onSkipTurn({
+        remove: false
+      });
+    }, _this.handleJoinWaitlist = function () {
+      if (_this.props.user) {
+        return _this.props.joinWaitlist(_this.props.user);
+      }
+
+      return null;
+    }, _this.handleLeaveWaitlist = function () {
+      if (_this.props.userIsDJ) {
+        return _this.props.onSkipTurn({
+          remove: true
+        });
+      } else if (_this.props.user) {
+        return _this.props.leaveWaitlist(_this.props.user);
+      }
+
+      return null;
+    }, _temp) || _assertThisInitialized(_this);
   }
 
   var _proto = FooterBar.prototype;
-
-  _proto.handleSkipTurn = function handleSkipTurn(reason) {
-    if (!this.props.showSkip) {
-      return null;
-    }
-
-    if (!this.props.userIsDJ) {
-      return this.props.onModSkip(reason);
-    }
-
-    return this.props.onSkipTurn({
-      remove: false
-    });
-  };
-
-  _proto.handleJoinWaitlist = function handleJoinWaitlist() {
-    if (this.props.user) {
-      return this.props.joinWaitlist(this.props.user);
-    }
-
-    return null;
-  };
-
-  _proto.handleLeaveWaitlist = function handleLeaveWaitlist() {
-    if (this.props.userIsDJ) {
-      return this.props.onSkipTurn({
-        remove: true
-      });
-    } else if (this.props.user) {
-      return this.props.leaveWaitlist(this.props.user);
-    }
-
-    return null;
-  };
 
   _proto.render = function render() {
     var _this$props = this.props,

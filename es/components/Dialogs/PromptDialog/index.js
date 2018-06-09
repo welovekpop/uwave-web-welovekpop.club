@@ -81,7 +81,8 @@ function (_React$Component) {
         bodyClassName = _this$props.bodyClassName,
         contentClassName = _this$props.contentClassName,
         titleClassName = _this$props.titleClassName,
-        props = _objectWithoutProperties(_this$props, ["children", "icon", "inputType", "placeholder", "submitLabel", "title", "bodyClassName", "contentClassName", "titleClassName"]);
+        onSubmit = _this$props.onSubmit,
+        props = _objectWithoutProperties(_this$props, ["children", "icon", "inputType", "placeholder", "submitLabel", "title", "bodyClassName", "contentClassName", "titleClassName", "onSubmit"]);
 
     var _this$state = this.state,
         busy = _this$state.busy,

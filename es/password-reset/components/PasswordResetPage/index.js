@@ -89,12 +89,14 @@ function (_React$Component) {
       icon: _ref
     })), _jsx(FormGroup, {}, void 0, _jsx(TextField, {
       type: "password",
+      autocomplete: "new-password",
       value: this.state.newPassword,
       onChange: this.handlePasswordChange,
       placeholder: t('login.password'),
       icon: _ref2
     })), _jsx(FormGroup, {}, void 0, _jsx(TextField, {
       type: "password",
+      autocomplete: "new-password",
       value: this.state.newPasswordConfirm,
       onChange: this.handlePasswordConfirmChange,
       placeholder: t('login.password'),

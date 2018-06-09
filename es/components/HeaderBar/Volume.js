@@ -9,7 +9,7 @@ import VolumeDownIcon from "@material-ui/icons/es/VolumeDown";
 import VolumeMuteIcon from "@material-ui/icons/es/VolumeMute";
 import VolumeOffIcon from "@material-ui/icons/es/VolumeOff";
 import VolumeUpIcon from "@material-ui/icons/es/VolumeUp";
-import Slider from './Slider';
+import Slider from '@material-ui/lab/Slider';
 
 var Volume =
 /*#__PURE__*/

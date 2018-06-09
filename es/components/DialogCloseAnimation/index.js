@@ -25,6 +25,7 @@ function (_React$Component) {
 
   var _proto = DialogCloseAnimation.prototype;
 
+  // TODO translate this to componentDidUpdate()?
   _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     var _this2 = this;
 

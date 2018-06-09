@@ -79,8 +79,12 @@ function (_React$Component) {
     }
   };
 
-  _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    if (this.props.isFullscreen && !nextProps.isFullscreen && screenfull.enabled) {
+  _proto.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
+    return !isEqual(nextProps, this.props);
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    if (prevProps.isFullscreen && !this.props.isFullscreen && screenfull.enabled) {
       // Checking for `enabled` here, because our props have probably changed
       // _after_ exiting fullscreen mode (see `this.handleFullscreenChange`).
       // This way we don't double-exit.
@@ -88,10 +92,6 @@ function (_React$Component) {
         screenfull.exit();
       }
     }
-  };
-
-  _proto.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
-    return !isEqual(nextProps, this.props);
   };
 
   _proto.render = function render() {

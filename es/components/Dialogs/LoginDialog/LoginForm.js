@@ -63,6 +63,10 @@ function (_React$Component) {
       _this.props.onLogin({
         email: _this.email.value,
         password: _this.password.value
+      }).finally(function () {
+        _this.setState({
+          busy: false
+        });
       });
     }, _this.handleResetPassword = function (event) {
       event.preventDefault();
@@ -77,12 +81,6 @@ function (_React$Component) {
 
   var _proto = LoginForm.prototype;
 
-  _proto.componentWillReceiveProps = function componentWillReceiveProps() {
-    this.setState({
-      busy: false
-    });
-  };
-
   _proto.render = function render() {
     var _this$props = this.props,
         t = _this$props.t,
@@ -96,6 +94,7 @@ function (_React$Component) {
       ref: this.refEmail,
       className: "LoginForm-field",
       type: "email",
+      autocomplete: "email",
       placeholder: t('login.email'),
       icon: _ref2,
       autoFocus: true
@@ -103,6 +102,7 @@ function (_React$Component) {
       ref: this.refPassword,
       className: "LoginForm-field",
       type: "password",
+      autocomplete: "current-password",
       placeholder: t('login.password'),
       icon: _ref3
     })), _jsx(FormGroup, {}, void 0, _jsx(Button, {

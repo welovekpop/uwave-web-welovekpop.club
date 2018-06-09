@@ -77,6 +77,10 @@ function (_React$Component) {
         email: _this.email.value,
         password: _this.password.value,
         grecaptcha: _this.state.captchaResponse
+      }).finally(function () {
+        _this.setState({
+          busy: false
+        });
       });
     }, _this.handleCaptchaResponse = function (response) {
       _this.setState({
@@ -96,12 +100,6 @@ function (_React$Component) {
   }
 
   var _proto = RegisterForm.prototype;
-
-  _proto.componentWillReceiveProps = function componentWillReceiveProps() {
-    this.setState({
-      busy: false
-    });
-  };
 
   _proto.renderCaptcha = function renderCaptcha() {
     if (!this.props.useReCaptcha) {
@@ -132,6 +130,7 @@ function (_React$Component) {
     }, void 0, error && _jsx(FormGroup, {}, void 0, error.message), supportsSocialAuth && _ref, _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refUsername,
       className: "RegisterForm-field",
+      autocomplete: "nickname",
       placeholder: t('login.username'),
       icon: _ref2,
       autoFocus: true
@@ -139,12 +138,14 @@ function (_React$Component) {
       ref: this.refEmail,
       className: "RegisterForm-field",
       type: "email",
+      autocomplete: "email",
       placeholder: t('login.email'),
       icon: _ref3
     })), _jsx(FormGroup, {}, void 0, React.createElement(TextField, {
       ref: this.refPassword,
       className: "RegisterForm-field",
       type: "password",
+      autocomplete: "new-password",
       placeholder: t('login.password'),
       icon: _ref4
     })), this.renderCaptcha(), _jsx(FormGroup, {}, void 0, _jsx(FormControlLabel, {
