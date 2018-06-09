@@ -47,15 +47,7 @@ class FooterBar extends React.Component {
     muiTheme: PropTypes.object,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.handleSkipTurn = this.handleSkipTurn.bind(this);
-    this.handleJoinWaitlist = this.handleJoinWaitlist.bind(this);
-    this.handleLeaveWaitlist = this.handleLeaveWaitlist.bind(this);
-  }
-
-  handleSkipTurn(reason) {
+  handleSkipTurn = (reason) => {
     if (!this.props.showSkip) {
       return null;
     }
@@ -65,14 +57,14 @@ class FooterBar extends React.Component {
     return this.props.onSkipTurn({ remove: false });
   }
 
-  handleJoinWaitlist() {
+  handleJoinWaitlist = () => {
     if (this.props.user) {
       return this.props.joinWaitlist(this.props.user);
     }
     return null;
   }
 
-  handleLeaveWaitlist() {
+  handleLeaveWaitlist = () => {
     if (this.props.userIsDJ) {
       return this.props.onSkipTurn({ remove: true });
     } else if (this.props.user) {

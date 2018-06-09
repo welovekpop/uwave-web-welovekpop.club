@@ -1,7 +1,5 @@
-// Polyfills for browsers that might not yet support Promises or the Fetch API
-// (newer & better XMLHttpRequest).
-import 'lie/polyfill';
-import 'whatwg-fetch';
+/* eslint-disable import/first */
+import './polyfills';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -9,10 +7,11 @@ import { AppContainer as HotContainer } from 'react-hot-loader';
 import { create as createJss } from 'jss';
 import { jssPreset } from '@material-ui/core/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
+/* eslint-enable */
 import createLocale from './locale';
 import AppContainer from './containers/App';
 import { get as readSession } from './utils/Session';
-import generateClassName from './utils/generateClassName';
+import createGenerateClassName from './utils/createGenerateClassName';
 import configureStore from './store/configureStore';
 import { initState, socketConnect, setSessionToken } from './actions/LoginActionCreators';
 import { languageSelector } from './selectors/settingSelectors';
@@ -29,6 +28,7 @@ export default class Uwave {
   aboutPageComponent = null;
 
   jss = createJss(jssPreset());
+  generateClassName = createGenerateClassName();
 
   constructor(options = {}, session = readSession()) {
     this.options = options;
@@ -126,7 +126,7 @@ export default class Uwave {
   getComponent() {
     return (
       <Provider store={this.store}>
-        <JssProvider jss={this.jss} generateClassName={generateClassName}>
+        <JssProvider jss={this.jss} generateClassName={this.generateClassName}>
           <AppContainer
             mediaSources={this.sources}
             locale={this.locale}
@@ -143,6 +143,11 @@ export default class Uwave {
     }
 
     this.renderTarget = target;
-    render(this.getComponent(), target);
+    const element = (
+      <React.StrictMode>
+        {this.getComponent()}
+      </React.StrictMode>
+    );
+    render(element, target);
   }
 }

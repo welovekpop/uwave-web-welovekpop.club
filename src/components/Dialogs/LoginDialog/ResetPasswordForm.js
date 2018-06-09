@@ -23,10 +23,6 @@ class ResetPasswordForm extends React.Component {
     done: false,
   };
 
-  componentWillReceiveProps() {
-    this.setState({ busy: false });
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState({ busy: true });
@@ -37,6 +33,8 @@ class ResetPasswordForm extends React.Component {
         busy: false,
         done: true,
       });
+    }, () => {
+      this.setState({ busy: false });
     });
   };
 
@@ -69,7 +67,8 @@ class ResetPasswordForm extends React.Component {
             ref={this.refEmail}
             className="ResetPasswordForm-field"
             type="email"
-            placeholder="E-Mail"
+            autocomplete="email"
+            placeholder={t('login.email')}
             icon={<EmailIcon nativeColor="#9f9d9e" />}
           />
         </FormGroup>
