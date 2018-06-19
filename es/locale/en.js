@@ -34,6 +34,7 @@ export default {
     "chat": {
       "title": "Chat",
       "placeholder": "Click here to chat!",
+      "label": "Chat message",
       "userJoin": "{{username}} joined the room",
       "userLeave": "{{username}} left the room",
       "userNameChanged": "{{username}} changed their nickname to {{newUsername}}",
@@ -42,7 +43,8 @@ export default {
       "selfSkip": "{{username}} skipped their turn",
       "selfSkipReason": "{{username}} skipped their turn: {{reason}}",
       "rolesAdded": "{{username}} is now a {{roles}}",
-      "rolesRemoved": "{{username}} is no longer a {{roles}}"
+      "rolesRemoved": "{{username}} is no longer a {{roles}}",
+      "scrollDown": "Scroll down to read new messages"
     },
     "dialogs": {
       "confirm": {
@@ -133,6 +135,8 @@ export default {
       "autoplayBlocked": "Your browser is blocking autoplay. Please press the button below to manually start playing this track.",
       "play": "Play",
       "currentDJ": "played by: {{user}}",
+      "mute": "Mute audio",
+      "unmute": "Unmute audio",
       "skip": {
         "self": "Skip your turn",
         "other": "Skip {{user}}'s turn",
