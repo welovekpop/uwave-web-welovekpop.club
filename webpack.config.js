@@ -49,14 +49,14 @@ const plugins = [
   ]),
   new HtmlSiblingChunksPlugin(),
   new HtmlPlugin({
-    chunks: ['bugsnag', 'app'],
+    chunks: ['polyfills', 'bugsnag', 'app'],
     template: './index.html',
     title: 'üWave',
     minify: nodeEnv === 'production' ? htmlMinifierOptions : false,
     loadingScreen: () => require('./tasks/utils/renderLoadingScreen')(),
   }),
   new HtmlPlugin({
-    chunks: ['passwordReset'],
+    chunks: ['polyfills', 'passwordReset'],
     template: './password-reset.html',
     filename: 'password-reset.html',
     title: 'Reset Password',
@@ -114,6 +114,7 @@ const base = {
   context: path.join(__dirname, 'src'),
   entry: {
     bugsnag: './_wlk/bugsnag.js',
+    polyfills: './polyfills.js',
     app: [
       isDemo ? './demo.js' : './app.js',
       './app.css',

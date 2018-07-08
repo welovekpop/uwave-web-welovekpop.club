@@ -101,6 +101,9 @@ uwave:
     shuffle: Shuffle
     filter: Filter
     rename: Rename
+    playlist:
+      empty: This playlist is empty
+      emptySub: Search for songs or import a playlist.
     import:
       title: Import
     search:
@@ -189,6 +192,7 @@ uwave:
       license: License
 
   login:
+    message: You have to sign in if you want to play!
     login: Sign in
     register: Register
     username: Username

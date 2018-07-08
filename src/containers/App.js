@@ -61,9 +61,17 @@ class AppContainer extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.applyThemeProperties();
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.language !== prevProps.language) {
       this.props.locale.changeLanguage(this.props.language);
+    }
+
+    if (this.props.theme !== prevProps.theme) {
+      this.applyThemeProperties();
     }
   }
 
@@ -74,6 +82,15 @@ class AppContainer extends React.Component {
       metaData: {
         componentStack: info.componentStack,
       },
+    });
+  }
+
+  applyThemeProperties() {
+    const { theme } = this.props;
+    const root = document.body;
+
+    Object.keys(theme.cssProperties).forEach((prop) => {
+      root.style.setProperty(prop, theme.cssProperties[prop]);
     });
   }
 
