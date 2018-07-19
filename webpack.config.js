@@ -7,7 +7,6 @@ const ExtractCssPlugin = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlSiblingChunksPlugin = require('html-webpack-include-sibling-chunks-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const ManifestPlugin = require('webpack-pwa-manifest');
 const merge = require('webpack-merge');
 const htmlMinifierOptions = require('./tasks/utils/htmlMinifierOptions');
 
@@ -46,6 +45,7 @@ const plugins = [
   }),
   new CopyPlugin([
     { from: '../assets/favicon.ico', to: 'favicon.ico' },
+    { from: '../assets/icon-white.png', to: 'icon-white.png' },
   ]),
   new HtmlSiblingChunksPlugin(),
   new HtmlPlugin({
@@ -69,7 +69,6 @@ const plugins = [
   new LodashModuleReplacementPlugin({
     paths: true,
   }),
-  new ManifestPlugin(require('./src/manifest').default),
 ];
 
 let optimization;

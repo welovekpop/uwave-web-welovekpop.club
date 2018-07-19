@@ -134,10 +134,8 @@ const actions = {
     return changeUsername(userID, username);
   },
   guests: receiveGuestCount,
-  'acl:allow': ({ userID, roles }) =>
-    addUserRoles(userID, roles),
-  'acl:disallow': ({ userID, roles }) =>
-    removeUserRoles(userID, roles),
+  'acl:allow': ({ userID, roles }) => addUserRoles(userID, roles),
+  'acl:disallow': ({ userID, roles }) => removeUserRoles(userID, roles),
   'wlk:shouldRandomize': ({ value }) => ({
     type: SHOULD_RANDOMIZE,
     payload: value,

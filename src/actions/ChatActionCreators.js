@@ -109,7 +109,7 @@ export function inputMessage(text) {
 }
 
 function isMuted(state, userID) {
-  return mutedUserIDsSelector(state).indexOf(userID) !== -1;
+  return mutedUserIDsSelector(state).includes(userID);
 }
 
 export function receive(message) {
@@ -193,8 +193,8 @@ export function muteUser(userID, { moderatorID, expiresAt }) {
         userID,
         moderatorID,
         expiresAt,
-        expirationTimer: expireIn > 0 ?
-          setTimeout(() => dispatch(expireMute(userID)), expireIn) : null,
+        expirationTimer: expireIn > 0
+          ? setTimeout(() => dispatch(expireMute(userID)), expireIn) : null,
       },
     });
   };
