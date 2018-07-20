@@ -104,6 +104,12 @@ export default {
       "shuffle": "Shuffle",
       "filter": "Filter",
       "rename": "Rename",
+      "playlist": {
+        "empty": "This playlist is empty",
+        "emptySub": "Search for songs or import a playlist.",
+        "filterEmpty": "No results",
+        "filterEmptySub": "No songs match that query."
+      },
       "import": {
         "title": "Import"
       },
@@ -200,6 +206,7 @@ export default {
       }
     },
     "login": {
+      "message": "You have to sign in if you want to play!",
       "login": "Sign in",
       "register": "Register",
       "username": "Username",

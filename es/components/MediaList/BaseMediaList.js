@@ -1,6 +1,5 @@
 import _extends from "@babel/runtime/helpers/builtin/extends";
 import _jsx from "@babel/runtime/helpers/builtin/jsx";
-import _assertThisInitialized from "@babel/runtime/helpers/builtin/assertThisInitialized";
 import _inheritsLoose from "@babel/runtime/helpers/builtin/inheritsLoose";
 import cx from 'classnames';
 import React from 'react';
@@ -29,61 +28,74 @@ function (_React$Component) {
   _inheritsLoose(BaseMediaList, _React$Component);
 
   function BaseMediaList() {
-    var _temp, _this;
+    var _this;
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return (_temp = _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this, _this.state = {
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+    _this.state = {
+      // eslint-disable-next-line react/destructuring-assignment
       selection: itemSelection(_this.props.media)
-    }, _this.renderList = function (items, ref) {
+    };
+
+    _this.renderList = function (items, ref) {
       var ListComponent = _this.props.listComponent;
       return React.createElement(ListComponent, {
         ref: ref
       }, items);
-    }, _this.renderRow = function (index) {
-      var _makeActions = _this.props.makeActions;
-      var props = _this.props.rowProps || {};
-      var media = _this.props.media[index];
+    };
+
+    _this.renderRow = function (index) {
+      var _this$props = _this.props,
+          _makeActions = _this$props.makeActions,
+          _this$props$rowProps = _this$props.rowProps,
+          props = _this$props$rowProps === void 0 ? {} : _this$props$rowProps,
+          media = _this$props.media,
+          RowComponent = _this$props.rowComponent,
+          onOpenPreviewMediaDialog = _this$props.onOpenPreviewMediaDialog;
       var selection = _this.state.selection;
       var selected = selection.isSelectedIndex(index);
 
-      if (!media) {
+      if (!media[index]) {
         return _jsx(LoadingRow, {
           className: "MediaList-row",
           selected: selected
         }, index);
       }
 
-      var MediaRow = _this.props.rowComponent;
-      var isAlternate = index % 2 === 0;
-      return React.createElement(MediaRow, _extends({
-        key: media ? media._id : index
+      return React.createElement(RowComponent, _extends({
+        key: media[index] ? media[index]._id : index
       }, props, {
-        className: cx('MediaList-row', isAlternate && 'MediaListRow--alternate'),
-        media: media,
+        className: "MediaList-row",
+        media: media[index],
         selected: selected,
         selection: selection.get(),
         onClick: function onClick(e) {
           return _this.selectItem(index, e);
         },
-        onOpenPreviewMediaDialog: _this.props.onOpenPreviewMediaDialog,
+        onOpenPreviewMediaDialog: onOpenPreviewMediaDialog,
         makeActions: function makeActions() {
-          return _makeActions(media, selection, index);
+          return _makeActions(media[index], selection, index);
         }
       }));
-    }, _temp) || _assertThisInitialized(_this);
+    };
+
+    return _this;
   }
 
   var _proto = BaseMediaList.prototype;
 
   _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    if (nextProps.media !== this.props.media) {
-      var selection = this.state.selection.getIndices();
-      var mediaChanged = didMediaChange(this.props.media, nextProps.media);
+    var media = this.props.media;
+    var selection = this.state.selection;
+
+    if (nextProps.media !== media) {
+      var selectedIndices = selection.getIndices();
+      var mediaChanged = didMediaChange(media, nextProps.media);
       this.setState({
-        selection: mediaChanged ? itemSelection(nextProps.media) : itemSelection(nextProps.media, selection)
+        selection: mediaChanged ? itemSelection(nextProps.media) : itemSelection(nextProps.media, selectedIndices)
       });
     }
   };
@@ -106,11 +118,12 @@ function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _this$props = this.props,
-        className = _this$props.className,
-        media = _this$props.media,
-        size = _this$props.size,
-        onRequestPage = _this$props.onRequestPage;
+    var _this$props2 = this.props,
+        className = _this$props2.className,
+        media = _this$props2.media,
+        size = _this$props2.size,
+        onRequestPage = _this$props2.onRequestPage;
+    var selection = this.state.selection;
 
     var list = _jsx(BaseList, {
       itemsRenderer: this.renderList,
@@ -118,7 +131,7 @@ function (_React$Component) {
       length: size || media.length,
       type: "uniform",
       forceUpdateOnMediaChange: media,
-      forceUpdateOnSelectionChange: this.state.selection
+      forceUpdateOnSelectionChange: selection
     });
 
     if (onRequestPage) {
