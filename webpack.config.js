@@ -154,6 +154,11 @@ const base = {
         ],
       },
 
+      {
+        test: /\.html$/,
+        use: require.resolve('./tasks/webpack/ejs-loader'),
+      },
+
       // Locale files.
       {
         test: /\.yaml$/,
