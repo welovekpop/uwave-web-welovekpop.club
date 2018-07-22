@@ -22,7 +22,7 @@
     "@u-wave/react-server-list": "^2.0.1",
     "@u-wave/react-youtube": "^0.6.0",
     "@wlk/tutorial": "^0.1.0",
-    "bugsnag-js": "^4.5.0",
+    "bugsnag-js": "^4.7.2",
     "classnames": "^2.2.6",
     "connect-gzip-static": "^2.1.1",
     "debug": "^3.1.0",
