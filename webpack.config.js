@@ -176,6 +176,13 @@ const base = {
         ],
       },
 
+      // hotfix buggy release
+      {
+        test: /\.mjs$/,
+        include: /react-server-list/,
+        type: 'javascript/auto',
+      },
+
       // JS loader for our own code:
       {
         test: /\.js$/,
