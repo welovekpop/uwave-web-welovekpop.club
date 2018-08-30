@@ -87,6 +87,7 @@ export function initState() {
       dispatch(syncTimestamps(beforeTime, state.time));
       dispatch(loadedState(state));
       dispatch(loadHistory());
+      return state;
     },
   });
 }

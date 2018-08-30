@@ -100,8 +100,8 @@ if (nodeEnv === 'production') {
 
   plugins.push(
     new ExtractCssPlugin({
-      filename: '[name]_[contenthash:7].css',
-      chunkFilename: '[name]_[contenthash:7].css',
+      filename: 'static/[name]_[contenthash:7].css',
+      chunkFilename: 'static/[name]_[contenthash:7].css',
     }),
     new SriPlugin({
       hashFuncNames: ['sha512'],
@@ -128,8 +128,8 @@ const base = {
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: nodeEnv === 'production' ? '[name]_[chunkhash:7].js' : '[name]_dev.js',
-    chunkFilename: nodeEnv === 'production' ? '[name]_[chunkhash:7].js' : '[name]_dev.js',
+    filename: nodeEnv === 'production' ? 'static/[name]_[chunkhash:7].js' : '[name]_dev.js',
+    chunkFilename: nodeEnv === 'production' ? 'static/[name]_[chunkhash:7].js' : '[name]_dev.js',
     crossOriginLoading: 'anonymous',
   },
 
@@ -143,13 +143,13 @@ const base = {
       {
         test: /\.(mp3|eot|ttf|woff|svg)$/,
         use: [
-          { loader: 'file-loader', query: { name: '[name]_[hash:7].[ext]' } },
+          { loader: 'file-loader', query: { name: 'static/[name]_[hash:7].[ext]' } },
         ],
       },
       {
         test: /\.(gif|jpe?g|png|svg)$/,
         use: [
-          { loader: 'file-loader', query: { name: '[name]_[hash:7].[ext]' } },
+          { loader: 'file-loader', query: { name: 'static/[name]_[hash:7].[ext]' } },
           { loader: 'image-webpack-loader', query: { bypassOnDebug: true } },
         ],
       },
@@ -194,7 +194,6 @@ const base = {
     alias: {
       // Use the ES modules versions of some packages.
       '@material-ui/core': path.join(__dirname, 'node_modules/@material-ui/core/es/'),
-      '@material-ui/icons': path.join(__dirname, 'node_modules/@material-ui/icons/es/'),
     },
     mainFields: [
       'browser',
