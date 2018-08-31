@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{328:function(o){o.exports={a:"1.11.3"}},399:function(o,r,a){"use strict";a.r(r);var e=a(327),n=a.n(e),c=a(328),t=null;try{(t=localStorage.errorReportId)||(t=Math.random().toString(32).slice(2,8),localStorage.errorReportId=t)}catch(o){t="anonymous"}var i=n()({apiKey:"a3246545081c8decaf0185c7a7f8d402",appVersion:c.a,collectUserIp:!1,beforeSend:function(o){o.user={id:t}}});window.bugsnag=i}},[[399,0,29]]]);
-//# sourceMappingURL=bugsnag_fdd4591.js.map
