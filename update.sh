@@ -26,7 +26,7 @@ git checkout -- .
 
 rm -r public
 mkdir public
-cp public-old/* public
-cp public-new/* public
+cp -r public-old/* public
+cp -r public-new/* public
 
-# rm -r public-old public-new
+rm -r public-old public-new
